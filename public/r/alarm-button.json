@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alarm-button",
+  "title": "Alarm Button",
+  "description": "Two flashes and a rest, which is what a warning lamp does and what a steady sine does not. Pointing at it answers the alarm, so the alarm stops.",
+  "registryDependencies": [
+    "@afterglow/button"
+  ],
+  "files": [
+    {
+      "path": "registry/terminal/components/alarm-button.tsx",
+      "content": "import type * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\nimport { Button } from \"@/registry/terminal/ui/button\";\n\n/**\n * The one control on the page that is not text.\n *\n * The lamp is a layer over the button rather than the button itself. It sits at\n * `-inset-px` so the flash brightens the edge the button already has instead of\n * drawing a second one inside it, and behind the label so the wash never pulses\n * the one piece of copy that has to stay readable. `isolate` on the button is\n * what makes that negative z-index mean \"above the border, below the words\"\n * rather than \"behind the whole section\".\n *\n * Pointing at it answers the alarm, so the alarm stops: a lamp still flashing\n * under the cursor puts a second glow over the hover glow and the button\n * flickers while you are aiming at it.\n */\nfunction AlarmButton({\n  className,\n  children,\n  ...props\n}: React.ComponentProps<typeof Button>) {\n  return (\n    <Button\n      className={cn(\n        \"relative isolate border-signal bg-signal/10 text-signal shadow-none\",\n        \"hover:translate-y-0 hover:bg-signal/30 hover:text-white hover:shadow-glow-signal\",\n        \"active:bg-signal/45\",\n        \"after:pointer-events-none after:absolute after:-inset-px after:-z-10 after:animate-alarm after:border after:border-transparent after:content-['']\",\n        \"hover:after:animate-none focus-visible:after:animate-none active:after:animate-none\",\n        className,\n      )}\n      data-slot=\"alarm-button\"\n      variant=\"signal\"\n      {...props}\n    >\n      {children}\n    </Button>\n  );\n}\n\nexport { AlarmButton };\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:component"
+}

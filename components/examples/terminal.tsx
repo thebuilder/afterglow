@@ -1,0 +1,374 @@
+import { ChevronRightIcon, PowerIcon } from "lucide-react";
+import Link from "next/link";
+
+import type { ExampleMap } from "@/lib/example";
+import { AlarmButton } from "@/registry/terminal/components/alarm-button";
+import { BootLog } from "@/registry/terminal/components/boot-log";
+import { Connector } from "@/registry/terminal/components/connector";
+import { Eyebrow } from "@/registry/terminal/components/eyebrow";
+import { Glyph, glyphTones } from "@/registry/terminal/components/glyph";
+import { Status } from "@/registry/terminal/components/led";
+import { Prompt } from "@/registry/terminal/components/prompt";
+import { Screen } from "@/registry/terminal/components/screen";
+import { TerminalWindow } from "@/registry/terminal/components/terminal-window";
+import { Badge } from "@/registry/terminal/ui/badge";
+import { Button } from "@/registry/terminal/ui/button";
+import { Checkbox } from "@/registry/terminal/ui/checkbox";
+import { Input } from "@/registry/terminal/ui/input";
+import { Kbd } from "@/registry/terminal/ui/kbd";
+import { Label } from "@/registry/terminal/ui/label";
+import { Progress } from "@/registry/terminal/ui/progress";
+import { Spinner } from "@/registry/terminal/ui/spinner";
+import { Switch } from "@/registry/terminal/ui/switch";
+
+const SWATCHES = [
+  { token: "void", note: "unlit glass" },
+  { token: "panel", note: "a surface on it" },
+  { token: "phosphor", note: "the beam" },
+  { token: "phosphor-bright", note: "where it blooms" },
+  { token: "phosphor-dim", note: "furniture" },
+  { token: "signal", note: "an event" },
+  { token: "amber", note: "measured" },
+  { token: "azure", note: "document" },
+  { token: "violet", note: "audio" },
+  { token: "ember", note: "destructive" },
+];
+
+const LONG_NOTE = `The spool went down at 04:12.
+No entry in the log, no fault light.
+Power cycled twice. Nothing.
+
+04:12:04 retry 1 of 3
+04:12:09 retry 2 of 3
+04:12:14 retry 3 of 3
+04:12:19 giving up
+
+Controller reports firmware 2.1.4, which is
+the version the release notes say fixed this.
+
+Ordering a replacement controller.
+Ticket NODE-04-118 raised with the vendor.`;
+
+const NOTE = `The spool went down at 04:12.
+No entry in the log, no fault light.
+Power cycled twice. Nothing.
+
+Ordering a replacement controller.`;
+
+export const terminalExamples: ExampleMap = {
+  theme: [
+    {
+      name: "Palette",
+      description:
+        "One palette, no light mode. A phosphor tube has no daylight setting, so the light and dark blocks carry the same values.",
+      node: (
+        <div className="grid w-full gap-px bg-line sm:grid-cols-2">
+          {SWATCHES.map((swatch) => (
+            <div
+              className="flex items-center gap-3 bg-panel px-3 py-2.5"
+              key={swatch.token}
+            >
+              <span
+                className="size-6 shrink-0 border border-line"
+                style={{ background: `var(--${swatch.token})` }}
+              />
+              <code className="font-mono text-phosphor-bright text-xs">
+                --{swatch.token}
+              </code>
+              <span className="ml-auto font-mono text-[0.625rem] text-phosphor-dim uppercase tracking-[0.08em]">
+                {swatch.note}
+              </span>
+            </div>
+          ))}
+        </div>
+      ),
+    },
+  ],
+
+  scanlines: [
+    {
+      name: "With and without",
+      description:
+        "The lines multiply rather than overlay: they darken what is under them instead of laying a grey film on top.",
+      node: (
+        <div className="grid w-full gap-3 sm:grid-cols-2">
+          <div className="relative isolate grid h-28 place-items-center border border-line bg-panel font-mono text-phosphor text-sm">
+            without
+          </div>
+          <Screen className="grid h-28 place-items-center bg-panel font-mono text-phosphor text-sm">
+            with
+          </Screen>
+        </div>
+      ),
+    },
+  ],
+
+  screen: [
+    {
+      name: "Default",
+      node: (
+        <Screen className="grid w-full place-items-center gap-2 px-6 py-10">
+          <Eyebrow caret>Standby</Eyebrow>
+          <p className="font-mono text-lg text-phosphor-bright">NO SIGNAL</p>
+        </Screen>
+      ),
+    },
+  ],
+
+  "boot-log": [
+    {
+      name: "Default",
+      description:
+        "Every line is in the DOM from the first frame and the unprinted ones are merely invisible, so the block is its final height before anything animates.",
+      node: (
+        <BootLog
+          className="w-full"
+          lines={[
+            { text: "power on self test", tone: "dim" },
+            { text: "phosphor at 100%", tone: "ok" },
+            { text: "3 volumes mounted, 1 read-only", tone: "default" },
+            { text: "beacon unreachable, running local", tone: "warn" },
+            { text: "ready", tone: "ok" },
+          ]}
+        />
+      ),
+    },
+  ],
+
+  led: [
+    {
+      name: "Tones",
+      description:
+        "The idle lamp holds still. A dark indicator that is also animating says nothing twice.",
+      node: (
+        <div className="grid gap-2.5">
+          <Status>uplink nominal</Status>
+          <Status tone="busy">indexing</Status>
+          <Status tone="error">spool offline</Status>
+          <Status tone="idle">standby</Status>
+        </div>
+      ),
+    },
+  ],
+
+  eyebrow: [
+    {
+      name: "With and without a caret",
+      description:
+        "The caret is a styled box, not a ▋ glyph: a character has the font's own sidebearings and never quite lines up with the text it follows.",
+      node: (
+        <div className="grid gap-4">
+          <Eyebrow>Section label</Eyebrow>
+          <Eyebrow caret>Awaiting input</Eyebrow>
+        </div>
+      ),
+    },
+  ],
+
+  connector: [
+    {
+      name: "Both directions",
+      node: (
+        <div className="grid w-full gap-6">
+          <div className="grid gap-2">
+            <h3 className="font-medium font-mono text-phosphor-bright">
+              Points right
+            </h3>
+            <Connector />
+          </div>
+          <div className="grid justify-items-end gap-2">
+            <h3 className="font-medium font-mono text-phosphor-bright">
+              Points left
+            </h3>
+            <Connector direction="left" />
+          </div>
+        </div>
+      ),
+    },
+  ],
+
+  glyph: [
+    {
+      name: "Categories",
+      description:
+        "Everything is derived from one hex value with color-mix, so a new category is one token rather than a border, a fill, an inset shade and a glow that have to be kept in agreement.",
+      node: (
+        <div className="flex flex-wrap gap-4">
+          {(Object.keys(glyphTones) as (keyof typeof glyphTones)[]).map(
+            (tone) => (
+              <div className="grid justify-items-center gap-2" key={tone}>
+                <Glyph tone={tone} />
+                <span className="font-mono text-[0.55rem] text-phosphor-dim uppercase tracking-[0.08em]">
+                  {tone}
+                </span>
+              </div>
+            ),
+          )}
+        </div>
+      ),
+    },
+  ],
+
+  "alarm-button": [
+    {
+      name: "Default",
+      description:
+        "Two flashes and a rest, which is what a warning lamp does and what a steady sine does not. Pointing at it answers the alarm, so the alarm stops.",
+      node: (
+        <AlarmButton>
+          <PowerIcon />
+          Restart spool
+        </AlarmButton>
+      ),
+    },
+  ],
+
+  "terminal-window": [
+    {
+      name: "macOS, resizable and collapsible",
+      description:
+        "Drag the corner or either edge. The yellow light rolls the window up to its titlebar, the corner takes arrow keys, and the content sits in a well with a margin of chrome round it, so the grip is never over the scrollbar.",
+      node: (
+        <TerminalWindow
+          className="h-64 w-[30rem] max-w-full shrink-0"
+          collapsible
+          footer={
+            <>
+              <span>14 lines</span>
+              <span>read-write</span>
+            </>
+          }
+          resizable
+          title="notes.txt"
+        >
+          <pre className="p-4 font-mono text-xs leading-relaxed">
+            {LONG_NOTE}
+          </pre>
+        </TerminalWindow>
+      ),
+    },
+    {
+      name: "Windows, with a subtitle",
+      description:
+        "The subtitle is a second line, and a second line is most of the chrome's height. Without one the bar is sized to the title alone.",
+      node: (
+        <TerminalWindow
+          className="h-52 w-full"
+          subtitle="read-only"
+          title="notes.txt"
+          variant="windows"
+        >
+          <pre className="p-4 font-mono text-xs leading-relaxed">{NOTE}</pre>
+        </TerminalWindow>
+      ),
+    },
+  ],
+
+  prompt: [
+    {
+      name: "Default",
+      node: <Prompt className="w-full" placeholder="mount /spool --force" />,
+    },
+  ],
+
+  console: [
+    {
+      name: "The block",
+      description:
+        "Boot log, volume manifest, progress, status line and a live prompt, on one page.",
+      node: (
+        <div className="grid gap-4">
+          <p className="max-w-prose text-muted-foreground text-sm">
+            The answer to what the pieces look like next to each other.
+          </p>
+          <Button
+            nativeButton={false}
+            render={<Link href="/console" />}
+            variant="outline"
+          >
+            Open the console
+            <ChevronRightIcon />
+          </Button>
+        </div>
+      ),
+    },
+  ],
+
+  terminal: [
+    {
+      name: "The system at a glance",
+      description:
+        "One of most things, on one strip. The green carries the interface, the pink is reserved for the thing that is actually happening, and every edge is a hairline.",
+      node: (
+        <div className="grid w-full max-w-xl grid-cols-[minmax(0,1fr)] gap-5 border border-line bg-card/90 p-5">
+          <div className="flex items-center justify-between gap-4">
+            <Eyebrow caret>Node-04</Eyebrow>
+            <Status>nominal</Status>
+          </div>
+
+          <Connector />
+
+          <div className="flex flex-wrap items-center gap-3">
+            <Button size="sm">Mount</Button>
+            <Button size="sm" variant="signal">
+              Restart
+            </Button>
+            <Button size="sm" variant="outline">
+              Inspect
+            </Button>
+            <Spinner />
+          </div>
+
+          <div className="flex flex-wrap items-center gap-4">
+            <span className="flex items-center gap-2.5">
+              <Checkbox defaultChecked id="ex-sys-cb" />
+              <Label htmlFor="ex-sys-cb">Read-write</Label>
+            </span>
+            <span className="flex items-center gap-2.5">
+              <Switch defaultChecked id="ex-sys-sw" size="sm" />
+              <Label htmlFor="ex-sys-sw">Beacon</Label>
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Kbd glyph>⌘</Kbd>
+              <Kbd>K</Kbd>
+            </span>
+          </div>
+
+          <Input defaultValue="node-04.local" />
+
+          <div className="grid gap-2">
+            <div className="flex items-baseline justify-between font-mono text-[0.625rem] uppercase tracking-[0.1em]">
+              <span className="text-muted-foreground">Indexing</span>
+              <span className="text-amber tabular-nums">68%</span>
+            </div>
+            <Progress value={68} />
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2 border-line border-t pt-4">
+            <Badge>mounted</Badge>
+            <Badge variant="amber">read-only</Badge>
+            <Badge variant="signal">offline</Badge>
+            <Glyph className="ml-auto size-5" tone="code" />
+            <Glyph className="size-5" tone="image" />
+            <Glyph className="size-5" tone="directory" />
+          </div>
+        </div>
+      ),
+    },
+    {
+      name: "Composed",
+      description:
+        "The console block is the same parts arranged as a page somebody would actually operate.",
+      node: (
+        <Button
+          nativeButton={false}
+          render={<Link href="/console" />}
+          variant="outline"
+        >
+          Open the console
+          <ChevronRightIcon />
+        </Button>
+      ),
+    },
+  ],
+};

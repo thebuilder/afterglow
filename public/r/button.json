@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button",
+  "title": "Button",
+  "description": "Mono, uppercase and tracked out, so a control never reads as a word. The default is the beam; the signal variant is the pink, and a page should hold at most one.",
+  "dependencies": [
+    "@base-ui/react",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "@afterglow/theme"
+  ],
+  "files": [
+    {
+      "path": "registry/terminal/ui/button.tsx",
+      "content": "import { Button as ButtonPrimitive } from \"@base-ui/react/button\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\n\nimport { cn } from \"@/lib/utils\";\n\n/**\n * Controls are set in the mono, uppercase and tracked out, because that is the\n * one thing that separates a control from a word on a terminal: both are green\n * text on glass, and only one of them is a key you can press.\n *\n * `default` is the beam and `signal` is the pink, which is the whole hierarchy.\n * A page with two pink buttons has no primary action, it has an alarm going off\n * twice.\n *\n * To render something other than a `<button>`, pass `render`:\n * `<Button render={<Link href=\"/x\" />} nativeButton={false}>Go</Button>`.\n */\nconst buttonVariants = cva(\n  \"inline-flex shrink-0 items-center justify-center gap-2 rounded-none border border-transparent font-mono font-bold uppercase whitespace-nowrap outline-none transition-[background-color,border-color,color,box-shadow,transform] duration-150 ease-terminal focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-phosphor-bright disabled:pointer-events-none disabled:opacity-40 data-disabled:pointer-events-none data-disabled:opacity-40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4\",\n  {\n    variants: {\n      variant: {\n        default:\n          \"border-line bg-secondary text-phosphor hover:-translate-y-px hover:border-line-strong hover:bg-accent hover:text-phosphor-bright hover:shadow-glow\",\n        signal:\n          \"bg-signal text-white shadow-[inset_0_0_0_1px_rgb(255_255_255/0.12),0_0_18px_rgb(255_91_130/0.12)] hover:-translate-y-px hover:bg-signal-soft hover:shadow-glow-signal\",\n        outline:\n          \"border-line text-phosphor hover:border-line-strong hover:bg-accent/60 hover:text-phosphor-bright\",\n        ghost: \"text-muted-foreground hover:bg-accent/50 hover:text-phosphor\",\n        destructive:\n          \"border-destructive bg-destructive/15 text-destructive hover:bg-destructive hover:text-white\",\n        link: \"text-phosphor underline-offset-4 hover:underline\",\n      },\n      size: {\n        default: \"h-9 px-3.5 text-[0.6875rem] tracking-[0.12em]\",\n        sm: \"h-8 gap-1.5 px-2.5 text-[0.625rem] tracking-[0.1em]\",\n        lg: \"h-11 px-6 text-xs tracking-[0.18em]\",\n        icon: \"size-9\",\n        \"icon-sm\": \"size-8\",\n      },\n    },\n    defaultVariants: { variant: \"default\", size: \"default\" },\n  },\n);\n\nfunction Button({\n  className,\n  variant = \"default\",\n  size = \"default\",\n  ...props\n}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {\n  return (\n    <ButtonPrimitive\n      className={cn(buttonVariants({ variant, size, className }))}\n      data-size={size}\n      data-slot=\"button\"\n      data-variant={variant}\n      {...props}\n    />\n  );\n}\n\nexport { Button, buttonVariants };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

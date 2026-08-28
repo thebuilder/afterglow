@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "separator",
+  "title": "Separator",
+  "description": "One pixel of the border colour, in either orientation.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "@afterglow/theme"
+  ],
+  "files": [
+    {
+      "path": "registry/terminal/ui/separator.tsx",
+      "content": "import { Separator as SeparatorPrimitive } from \"@base-ui/react/separator\";\n\nimport { cn } from \"@/lib/utils\";\n\nfunction Separator({\n  className,\n  orientation = \"horizontal\",\n  ...props\n}: SeparatorPrimitive.Props) {\n  return (\n    <SeparatorPrimitive\n      className={cn(\n        \"shrink-0 bg-line data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px\",\n        className,\n      )}\n      data-slot=\"separator\"\n      orientation={orientation}\n      {...props}\n    />\n  );\n}\n\nexport { Separator };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

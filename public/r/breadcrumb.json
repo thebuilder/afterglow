@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "breadcrumb",
+  "title": "Breadcrumb",
+  "description": "A path, drawn as one: mono, slash-separated, current segment in white. A chevron is a control's punctuation; a slash is what the thing being described actually contains.",
+  "dependencies": [
+    "@base-ui/react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@afterglow/theme"
+  ],
+  "files": [
+    {
+      "path": "registry/terminal/ui/breadcrumb.tsx",
+      "content": "import { mergeProps } from \"@base-ui/react/merge-props\";\nimport { useRender } from \"@base-ui/react/use-render\";\nimport { MoreHorizontalIcon } from \"lucide-react\";\nimport type * as React from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\n/**\n * A path, so it is drawn as one: mono, slash-separated, current segment in\n * white. A chevron between segments is a control's punctuation; a slash is what\n * the thing being described actually contains.\n */\nfunction Breadcrumb({ ...props }: React.ComponentProps<\"nav\">) {\n  return <nav aria-label=\"breadcrumb\" data-slot=\"breadcrumb\" {...props} />;\n}\n\nfunction BreadcrumbList({ className, ...props }: React.ComponentProps<\"ol\">) {\n  return (\n    <ol\n      className={cn(\n        \"flex flex-wrap items-center gap-1.5 break-words font-mono text-muted-foreground text-xs\",\n        className,\n      )}\n      data-slot=\"breadcrumb-list\"\n      {...props}\n    />\n  );\n}\n\nfunction BreadcrumbItem({ className, ...props }: React.ComponentProps<\"li\">) {\n  return (\n    <li\n      className={cn(\"inline-flex items-center gap-1.5\", className)}\n      data-slot=\"breadcrumb-item\"\n      {...props}\n    />\n  );\n}\n\n/**\n * Pass `render` to hand the crumb to a router link:\n * `<BreadcrumbLink render={<Link href=\"/x\" />}>x</BreadcrumbLink>`.\n */\nfunction BreadcrumbLink({\n  className,\n  render,\n  ...props\n}: useRender.ComponentProps<\"a\">) {\n  return useRender({\n    defaultTagName: \"a\",\n    props: mergeProps<\"a\">(\n      {\n        className: cn(\n          \"rounded-none outline-none transition-colors hover:text-phosphor focus-visible:text-phosphor\",\n          className,\n        ),\n      },\n      props,\n    ),\n    render,\n    state: { slot: \"breadcrumb-link\" },\n  });\n}\n\nfunction BreadcrumbPage({ className, ...props }: React.ComponentProps<\"span\">) {\n  return (\n    <span\n      aria-current=\"page\"\n      className={cn(\"text-phosphor-bright\", className)}\n      data-slot=\"breadcrumb-page\"\n      {...props}\n    />\n  );\n}\n\nfunction BreadcrumbSeparator({\n  children,\n  className,\n  ...props\n}: React.ComponentProps<\"li\">) {\n  return (\n    <li\n      aria-hidden=\"true\"\n      className={cn(\"text-phosphor-dim\", className)}\n      data-slot=\"breadcrumb-separator\"\n      role=\"presentation\"\n      {...props}\n    >\n      {children ?? \"/\"}\n    </li>\n  );\n}\n\nfunction BreadcrumbEllipsis({\n  className,\n  ...props\n}: React.ComponentProps<\"span\">) {\n  return (\n    <span\n      aria-hidden=\"true\"\n      className={cn(\n        \"flex size-4 items-center justify-center text-phosphor-dim\",\n        className,\n      )}\n      data-slot=\"breadcrumb-ellipsis\"\n      role=\"presentation\"\n      {...props}\n    >\n      <MoreHorizontalIcon className=\"size-3.5\" />\n      <span className=\"sr-only\">More</span>\n    </span>\n  );\n}\n\nexport {\n  Breadcrumb,\n  BreadcrumbEllipsis,\n  BreadcrumbItem,\n  BreadcrumbLink,\n  BreadcrumbList,\n  BreadcrumbPage,\n  BreadcrumbSeparator,\n};\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

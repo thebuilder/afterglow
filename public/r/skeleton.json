@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skeleton",
+  "title": "Skeleton",
+  "description": "A row that has not arrived yet. Sharp, faint, and the beam's colour rather than grey: a neutral placeholder on this palette reads as a broken element instead of an empty one.",
+  "registryDependencies": [
+    "@afterglow/theme"
+  ],
+  "files": [
+    {
+      "path": "registry/terminal/ui/skeleton.tsx",
+      "content": "import type * as React from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\n/**\n * A row that has not arrived yet. Sharp, faint, and the beam's colour rather\n * than grey: a neutral placeholder on this palette reads as a broken element\n * instead of an empty one.\n */\nfunction Skeleton({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      className={cn(\"animate-pulse rounded-none bg-phosphor/10\", className)}\n      data-slot=\"skeleton\"\n      {...props}\n    />\n  );\n}\n\nexport { Skeleton };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

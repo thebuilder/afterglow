@@ -1,0 +1,24 @@
+{
+  "$schema": "./node_modules/fallow/schema.json",
+  "ignoreExports": [
+    {
+      // The registry payload is a public API by definition. Its exports are
+      // consumed by whoever runs `shadcn add`, not by this repository, so
+      // "no known consumers" here means "working as intended" rather than
+      // "delete it". `buttonVariants`, `DialogPortal` and `TableCaption` are
+      // shadcn's own surface, and dropping them would make these components
+      // stop being drop-in replacements.
+      "file": "registry/terminal/**/*.tsx",
+      "exports": ["*"]
+    }
+  ],
+  "rules": {
+    // Reported, not fatal. Tailwind is imported by `app/globals.css` and
+    // compiled by `@tailwindcss/postcss` at build time; nothing loads it at
+    // runtime, so a devDependency is the correct home for it and moving it to
+    // satisfy the rule would be the wrong signal. Left at `warn` rather than
+    // `off` so the check still fires on a package that really did belong in
+    // production.
+    "dev-dependencies-in-production": "warn"
+  }
+}

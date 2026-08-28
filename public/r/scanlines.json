@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scanlines",
+  "title": "Scanlines",
+  "description": "The glass over the picture. Two densities, an optional vignette, and a multiply blend so the lines darken what is under them instead of laying a film on top.",
+  "registryDependencies": [
+    "@afterglow/theme"
+  ],
+  "files": [
+    {
+      "path": "registry/terminal/components/scanlines.tsx",
+      "content": "import type * as React from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\n/**\n * The glass over the picture.\n *\n * One element, absolutely positioned, and inert. It goes inside anything with a\n * positioning context (a screen, a card, a canvas), or `fixed` puts it over the\n * whole document, which is what a page-level treatment wants.\n *\n * The lines multiply rather than overlay: they darken what is under them instead\n * of laying a grey film on top, which is the difference between a tube and a\n * screenshot of a tube with 16% black over it.\n *\n * `fine` is 2px on 1px and belongs on text, which is where a coarse line starts\n * eating letterforms. `soft` is the 3-on-1 the whole page can carry.\n */\nfunction Scanlines({\n  className,\n  density = \"fine\",\n  vignette = false,\n  fixed = false,\n  ...props\n}: React.ComponentProps<\"div\"> & {\n  density?: \"fine\" | \"soft\";\n  vignette?: boolean;\n  fixed?: boolean;\n}) {\n  return (\n    <>\n      <div\n        aria-hidden=\"true\"\n        className={cn(\n          \"pointer-events-none z-100 inset-0\",\n          fixed ? \"fixed\" : \"absolute\",\n          density === \"fine\" ? \"scanlines\" : \"scanlines-soft\",\n          className,\n        )}\n        data-slot=\"scanlines\"\n        {...props}\n      />\n      {vignette && (\n        <div\n          aria-hidden=\"true\"\n          className={cn(\n            \"vignette pointer-events-none z-100 inset-0\",\n            fixed ? \"fixed\" : \"absolute\",\n          )}\n          data-slot=\"scanlines-vignette\"\n        />\n      )}\n    </>\n  );\n}\n\nexport { Scanlines };\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "effects"
+  ],
+  "type": "registry:component"
+}

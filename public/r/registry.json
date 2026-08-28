@@ -1,0 +1,1339 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "afterglow",
+  "homepage": "https://afterglow.thebuilder.dk",
+  "items": [
+    {
+      "name": "theme",
+      "type": "registry:theme",
+      "title": "Terminal Theme",
+      "description": "The palette, type, motion and glass. Phosphor green on unlit glass, a pink signal for events, hairline borders and no corner radius anywhere. Install this first: every other item is drawn with its tokens.",
+      "categories": [
+        "theme"
+      ],
+      "files": [],
+      "cssVars": {
+        "theme": {
+          "font-sans": "\"Helvetica Neue\", Inter, Arial, sans-serif",
+          "font-mono": "\"SFMono-Regular\", \"IBM Plex Mono\", \"Cascadia Mono\", Consolas, monospace",
+          "color-void": "var(--void)",
+          "color-panel": "var(--panel)",
+          "color-panel-raised": "var(--panel-raised)",
+          "color-panel-sunken": "var(--panel-sunken)",
+          "color-phosphor": "var(--phosphor)",
+          "color-phosphor-bright": "var(--phosphor-bright)",
+          "color-phosphor-dim": "var(--phosphor-dim)",
+          "color-signal": "var(--signal)",
+          "color-signal-soft": "var(--signal-soft)",
+          "color-amber": "var(--amber)",
+          "color-violet": "var(--violet)",
+          "color-azure": "var(--azure)",
+          "color-ember": "var(--ember)",
+          "color-ink": "var(--ink)",
+          "color-ink-muted": "var(--ink-muted)",
+          "color-line": "var(--line)",
+          "color-line-strong": "var(--line-strong)",
+          "color-background": "var(--background)",
+          "color-foreground": "var(--foreground)",
+          "color-card": "var(--card)",
+          "color-card-foreground": "var(--card-foreground)",
+          "color-popover": "var(--popover)",
+          "color-popover-foreground": "var(--popover-foreground)",
+          "color-primary": "var(--primary)",
+          "color-primary-foreground": "var(--primary-foreground)",
+          "color-secondary": "var(--secondary)",
+          "color-secondary-foreground": "var(--secondary-foreground)",
+          "color-muted": "var(--muted)",
+          "color-muted-foreground": "var(--muted-foreground)",
+          "color-accent": "var(--accent)",
+          "color-accent-foreground": "var(--accent-foreground)",
+          "color-destructive": "var(--destructive)",
+          "color-destructive-foreground": "var(--destructive-foreground)",
+          "color-border": "var(--border)",
+          "color-input": "var(--input)",
+          "color-ring": "var(--ring)",
+          "color-chart-1": "var(--chart-1)",
+          "color-chart-2": "var(--chart-2)",
+          "color-chart-3": "var(--chart-3)",
+          "color-chart-4": "var(--chart-4)",
+          "color-chart-5": "var(--chart-5)",
+          "color-sidebar": "var(--sidebar)",
+          "color-sidebar-foreground": "var(--sidebar-foreground)",
+          "color-sidebar-primary": "var(--sidebar-primary)",
+          "color-sidebar-primary-foreground": "var(--sidebar-primary-foreground)",
+          "color-sidebar-accent": "var(--sidebar-accent)",
+          "color-sidebar-accent-foreground": "var(--sidebar-accent-foreground)",
+          "color-sidebar-border": "var(--sidebar-border)",
+          "color-sidebar-ring": "var(--sidebar-ring)",
+          "radius-sm": "0px",
+          "radius-md": "0px",
+          "radius-lg": "0px",
+          "radius-xl": "0px",
+          "radius-2xl": "0px",
+          "ease-terminal": "cubic-bezier(0.2, 0.7, 0.3, 1)",
+          "shadow-glow": "0 0 18px rgb(134 250 221 / 0.18)",
+          "shadow-glow-strong": "0 0 34px 2px rgb(134 250 221 / 0.4), inset 0 0 0 1px rgb(134 250 221 / 0.2)",
+          "shadow-glow-signal": "0 0 34px 2px rgb(255 91 130 / 0.55)",
+          "shadow-panel": "0 2rem 5rem rgb(0 0 0 / 0.7), 0 0 50px rgb(134 250 221 / 0.08)",
+          "text-shadow-phosphor": "0 0 8px rgb(134 250 221 / 0.35)",
+          "text-shadow-signal": "0 0 10px rgb(255 91 130 / 0.45)",
+          "animate-caret": "terminal-caret 1.1s steps(1) infinite",
+          "animate-led": "terminal-led 2.5s infinite",
+          "animate-sweep": "terminal-sweep 1.15s ease-in-out infinite",
+          "animate-alarm": "terminal-alarm 2.4s var(--ease-terminal) infinite",
+          "animate-type": "terminal-type 560ms steps(24) both",
+          "animate-line-in": "terminal-line-in 420ms var(--ease-terminal) both",
+          "animate-beam": "terminal-beam 1s var(--ease-terminal) both",
+          "animate-open": "terminal-open 180ms steps(4, end)",
+          "animate-pixel": "terminal-pixel 800ms linear infinite",
+          "animate-fade-in": "terminal-fade-in 140ms ease-out",
+          "animate-fade-out": "terminal-fade-out 120ms ease-in forwards",
+          "animate-close": "terminal-close 120ms steps(3, end) forwards",
+          "animate-slide-in-right": "terminal-slide-in-right 220ms var(--ease-terminal)",
+          "animate-slide-in-left": "terminal-slide-in-left 220ms var(--ease-terminal)",
+          "animate-slide-in-top": "terminal-slide-in-top 220ms var(--ease-terminal)",
+          "animate-slide-in-bottom": "terminal-slide-in-bottom 220ms var(--ease-terminal)",
+          "animate-slide-out-right": "terminal-slide-out-right 170ms var(--ease-terminal) forwards",
+          "animate-slide-out-left": "terminal-slide-out-left 170ms var(--ease-terminal) forwards",
+          "animate-slide-out-top": "terminal-slide-out-top 170ms var(--ease-terminal) forwards",
+          "animate-slide-out-bottom": "terminal-slide-out-bottom 170ms var(--ease-terminal) forwards"
+        },
+        "light": {
+          "void": "#05090a",
+          "panel": "#0b1515",
+          "panel-raised": "#091212",
+          "panel-sunken": "#081210",
+          "phosphor": "#86fadd",
+          "phosphor-bright": "#d9ffef",
+          "phosphor-dim": "#4d8477",
+          "signal": "#ff5b82",
+          "signal-soft": "#e84970",
+          "amber": "#ffbc57",
+          "violet": "#b890ff",
+          "azure": "#8dbdf5",
+          "ember": "#ff5a65",
+          "ink": "#e9f6f1",
+          "ink-muted": "#87a39d",
+          "line": "rgb(132 255 224 / 0.22)",
+          "line-strong": "rgb(132 255 224 / 0.55)",
+          "background": "#05090a",
+          "foreground": "#e9f6f1",
+          "card": "#0b1515",
+          "card-foreground": "#e9f6f1",
+          "popover": "#091212",
+          "popover-foreground": "#e9f6f1",
+          "primary": "#86fadd",
+          "primary-foreground": "#05090a",
+          "secondary": "#10201f",
+          "secondary-foreground": "#86fadd",
+          "muted": "#0d1b1a",
+          "muted-foreground": "#87a39d",
+          "accent": "#17403a",
+          "accent-foreground": "#d9ffef",
+          "destructive": "#ff5a65",
+          "destructive-foreground": "#ffffff",
+          "border": "rgb(132 255 224 / 0.22)",
+          "input": "rgb(132 255 224 / 0.22)",
+          "ring": "#d9ffef",
+          "radius": "0rem",
+          "chart-1": "#86fadd",
+          "chart-2": "#ff5b82",
+          "chart-3": "#ffbc57",
+          "chart-4": "#8dbdf5",
+          "chart-5": "#b890ff",
+          "sidebar": "#091212",
+          "sidebar-foreground": "#e9f6f1",
+          "sidebar-primary": "#86fadd",
+          "sidebar-primary-foreground": "#05090a",
+          "sidebar-accent": "#17403a",
+          "sidebar-accent-foreground": "#d9ffef",
+          "sidebar-border": "rgb(132 255 224 / 0.22)",
+          "sidebar-ring": "#d9ffef"
+        },
+        "dark": {
+          "void": "#05090a",
+          "panel": "#0b1515",
+          "panel-raised": "#091212",
+          "panel-sunken": "#081210",
+          "phosphor": "#86fadd",
+          "phosphor-bright": "#d9ffef",
+          "phosphor-dim": "#4d8477",
+          "signal": "#ff5b82",
+          "signal-soft": "#e84970",
+          "amber": "#ffbc57",
+          "violet": "#b890ff",
+          "azure": "#8dbdf5",
+          "ember": "#ff5a65",
+          "ink": "#e9f6f1",
+          "ink-muted": "#87a39d",
+          "line": "rgb(132 255 224 / 0.22)",
+          "line-strong": "rgb(132 255 224 / 0.55)",
+          "background": "#05090a",
+          "foreground": "#e9f6f1",
+          "card": "#0b1515",
+          "card-foreground": "#e9f6f1",
+          "popover": "#091212",
+          "popover-foreground": "#e9f6f1",
+          "primary": "#86fadd",
+          "primary-foreground": "#05090a",
+          "secondary": "#10201f",
+          "secondary-foreground": "#86fadd",
+          "muted": "#0d1b1a",
+          "muted-foreground": "#87a39d",
+          "accent": "#17403a",
+          "accent-foreground": "#d9ffef",
+          "destructive": "#ff5a65",
+          "destructive-foreground": "#ffffff",
+          "border": "rgb(132 255 224 / 0.22)",
+          "input": "rgb(132 255 224 / 0.22)",
+          "ring": "#d9ffef",
+          "radius": "0rem",
+          "chart-1": "#86fadd",
+          "chart-2": "#ff5b82",
+          "chart-3": "#ffbc57",
+          "chart-4": "#8dbdf5",
+          "chart-5": "#b890ff",
+          "sidebar": "#091212",
+          "sidebar-foreground": "#e9f6f1",
+          "sidebar-primary": "#86fadd",
+          "sidebar-primary-foreground": "#05090a",
+          "sidebar-accent": "#17403a",
+          "sidebar-accent-foreground": "#d9ffef",
+          "sidebar-border": "rgb(132 255 224 / 0.22)",
+          "sidebar-ring": "#d9ffef"
+        }
+      },
+      "css": {
+        "@layer base": {
+          ":root": {
+            "color-scheme": "dark",
+            "scrollbar-color": "var(--phosphor-dim) transparent",
+            "scrollbar-width": "thin"
+          },
+          "html": {
+            "overflow-y": "scroll",
+            "scrollbar-gutter": "stable"
+          },
+          "*": {
+            "border-color": "var(--border)"
+          },
+          "body": {
+            "background": "var(--background)",
+            "color": "var(--foreground)",
+            "font-family": "var(--font-sans)",
+            "-webkit-font-smoothing": "antialiased",
+            "text-rendering": "optimizeLegibility"
+          },
+          "::selection": {
+            "background": "var(--signal)",
+            "color": "#fff"
+          },
+          ":where(a, button, input, textarea, select, summary, [tabindex]):focus-visible": {
+            "outline": "2px solid var(--phosphor-bright)",
+            "outline-offset": "3px"
+          }
+        },
+        "@keyframes terminal-caret": {
+          "50%": {
+            "opacity": "0"
+          }
+        },
+        "@keyframes terminal-led": {
+          "50%": {
+            "opacity": "0.35"
+          }
+        },
+        "@keyframes terminal-sweep": {
+          "from": {
+            "transform": "translateX(-110%)"
+          },
+          "to": {
+            "transform": "translateX(300%)"
+          }
+        },
+        "@keyframes terminal-alarm": {
+          "0%, 100%": {
+            "border-color": "transparent",
+            "box-shadow": "0 0 0 rgb(255 91 130 / 0)"
+          },
+          "8%": {
+            "border-color": "rgb(255 184 202 / 0.95)",
+            "box-shadow": "0 0 34px 2px rgb(255 91 130 / 0.55), inset 0 0 0 3rem rgb(255 91 130 / 0.3)"
+          },
+          "18%": {
+            "border-color": "transparent",
+            "box-shadow": "0 0 0 rgb(255 91 130 / 0)"
+          },
+          "28%": {
+            "border-color": "rgb(255 184 202 / 0.95)",
+            "box-shadow": "0 0 34px 2px rgb(255 91 130 / 0.55), inset 0 0 0 3rem rgb(255 91 130 / 0.3)"
+          },
+          "42%": {
+            "border-color": "transparent",
+            "box-shadow": "0 0 0 rgb(255 91 130 / 0)"
+          }
+        },
+        "@keyframes terminal-type": {
+          "from": {
+            "clip-path": "inset(-0.4em 100% -0.4em -0.1em)"
+          },
+          "to": {
+            "clip-path": "inset(-0.4em -0.15em -0.4em -0.1em)"
+          }
+        },
+        "@keyframes terminal-line-in": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(0.4em)",
+            "clip-path": "inset(-0.25em -0.12em 100% -0.06em)"
+          },
+          "to": {
+            "opacity": "1",
+            "transform": "none",
+            "clip-path": "inset(-0.25em -0.12em -0.25em -0.06em)"
+          }
+        },
+        "@keyframes terminal-beam": {
+          "from": {
+            "opacity": "0",
+            "transform": "translateY(-58%)"
+          },
+          "30%": {
+            "opacity": "1"
+          },
+          "to": {
+            "opacity": "0",
+            "transform": "translateY(58%)"
+          }
+        },
+        "@keyframes terminal-open": {
+          "from": {
+            "opacity": "0",
+            "transform": "scale(0.97) translateY(0.7rem)"
+          }
+        },
+        "@keyframes terminal-pixel": {
+          "0%, 12.49%": {
+            "opacity": "1"
+          },
+          "12.5%, 24.99%": {
+            "opacity": "0.62"
+          },
+          "25%, 37.49%": {
+            "opacity": "0.34"
+          },
+          "37.5%, 100%": {
+            "opacity": "0.16"
+          }
+        },
+        "@keyframes terminal-fade-in": {
+          "from": {
+            "opacity": "0"
+          }
+        },
+        "@keyframes terminal-fade-out": {
+          "to": {
+            "opacity": "0"
+          }
+        },
+        "@keyframes terminal-close": {
+          "to": {
+            "opacity": "0",
+            "transform": "scale(0.98)"
+          }
+        },
+        "@keyframes terminal-slide-in-right": {
+          "from": {
+            "transform": "translateX(100%)"
+          }
+        },
+        "@keyframes terminal-slide-in-left": {
+          "from": {
+            "transform": "translateX(-100%)"
+          }
+        },
+        "@keyframes terminal-slide-in-top": {
+          "from": {
+            "transform": "translateY(-100%)"
+          }
+        },
+        "@keyframes terminal-slide-in-bottom": {
+          "from": {
+            "transform": "translateY(100%)"
+          }
+        },
+        "@keyframes terminal-slide-out-right": {
+          "to": {
+            "transform": "translateX(100%)"
+          }
+        },
+        "@keyframes terminal-slide-out-left": {
+          "to": {
+            "transform": "translateX(-100%)"
+          }
+        },
+        "@keyframes terminal-slide-out-top": {
+          "to": {
+            "transform": "translateY(-100%)"
+          }
+        },
+        "@keyframes terminal-slide-out-bottom": {
+          "to": {
+            "transform": "translateY(100%)"
+          }
+        },
+        "@utility scanlines": {
+          "background-image": "repeating-linear-gradient(to bottom, transparent 0 2px, rgb(0 0 0 / 0.16) 2px 3px)",
+          "mix-blend-mode": "multiply"
+        },
+        "@utility scanlines-soft": {
+          "background-image": "repeating-linear-gradient(to bottom, transparent 0 3px, rgb(0 0 0 / 0.09) 3px 4px)",
+          "mix-blend-mode": "multiply"
+        },
+        "@utility vignette": {
+          "background-image": "radial-gradient(130% 100% at 50% 50%, transparent 52%, rgb(0 0 0 / 0.55) 100%)"
+        },
+        "@media (prefers-reduced-motion: reduce)": {
+          ".animate-caret, .animate-led, .animate-sweep, .animate-alarm, .animate-type, .animate-line-in, .animate-beam, .animate-open, .animate-pixel, .animate-fade-in, .animate-fade-out, .animate-close, .animate-slide-in-right, .animate-slide-in-left, .animate-slide-in-top, .animate-slide-in-bottom, .animate-slide-out-right, .animate-slide-out-left, .animate-slide-out-top, .animate-slide-out-bottom": {
+            "animation": "none !important"
+          }
+        }
+      }
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Mono, uppercase and tracked out, so a control never reads as a word. The default is the beam; the signal variant is the pink, and a page should hold at most one.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "A line you type on: hairline box, mono text, phosphor caret. Focus moves the border rather than adding a ring.",
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "The input's taller form, sized to its content so a growing draft does not sit in a fixed box with its own scrollbar.",
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/textarea.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "The field's name, set as an eyebrow: small, tracked out, phosphor.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/label.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "A panel on the glass, with a coloured left edge driven by a single accent property, and the hard-edged accent stripe to add when a card needs a masthead.",
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "A readout, not a pill. Eight variants covering the category colours, so a legend can have more than two entries.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/badge.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "Opens in four steps rather than on a curve, with one pass of the beam down the panel. The scrim desaturates as well as darkens, so the green behind it stops competing.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "A manifest: mono throughout, hairline rules, an is-numeric cell class that puts measured values in amber and lines them up, and an opt-in sticky header for tables that scroll inside their own box.",
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/table.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "Two shapes. Segment builds the rules between triggers out of a one-pixel gap in the list's own background; line is the quieter one for navigation.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/tabs.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "One pixel of the border colour, in either orientation.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/separator.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "title": "Kbd",
+      "description": "A key with two pixels of implied depth under it, which is what separates something you press from a badge. Pass `glyph` for the symbol keys, which need a larger type scale to read at all.",
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/kbd.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "Three pixels of track and a light in it. Pass indeterminate for a segment that sweeps and leaves, rather than a bar that creeps to ninety percent and stops.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/progress.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "`[ ]` and `[x]`. Square, sharp, and filled with the beam when it is on, which is the one state change worth making unmissable in a form.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/checkbox.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio Group",
+      "description": "`( )` and `(•)`. The one round shape in the set, deliberately: a terminal has always drawn radios with parentheses and checkboxes with brackets, so the convention and the aesthetic agree.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/radio-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "A rocker, not a pill. The pill is the one shape this system cannot borrow, and a rounded switch on a page of hairline rectangles is the single element that gives the theme away.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/switch.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "A trigger that reads as a field and a list whose selected row carries a lit left edge as well as a tick.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/select.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "title": "Slider",
+      "description": "A fader: hairline track, lit range, and a square handle taller than the track rather than a circle sitting on it.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/slider.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "input-otp",
+      "type": "registry:ui",
+      "title": "Input OTP",
+      "description": "One cell per character with a real caret in the active one, drawn rather than inherited because the field behind the cells is a single invisible input.",
+      "dependencies": [
+        "input-otp",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/input-otp.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui",
+      "title": "Toggle",
+      "description": "A button that stays down. Same mono and tracking as the others, so a pressed state reads as a state rather than a hover that stuck.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/toggle.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "title": "Toggle Group",
+      "description": "Joined the way the tabs are: the rules between items are a one-pixel gap in the group's own background rather than borders that have to be turned off at the ends.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@afterglow/toggle"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/toggle-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "A notice drawn as a panel with a lit edge rather than a tinted box. On this palette a filled alert is a block of colour with green type on it, and the type is the part that has to stay readable.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/alert.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "Alert Dialog",
+      "description": "The dialog for a decision that cannot be taken back, in the signal colour throughout: pink title, pink-edged panel, pink confirm.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@afterglow/button"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/alert-dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "Sonner in the house palette, with the theme pinned to dark. This system has one palette by design, so asking a theme provider which of two looks to use would be a dependency added to answer a question with one answer.",
+      "dependencies": [
+        "sonner",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@afterglow/spinner"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/toast.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "A row that has not arrived yet. Sharp, faint, and the beam's colour rather than grey: a neutral placeholder on this palette reads as a broken element instead of an empty one.",
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/skeleton.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "A lit pixel travelling a 3x3 grid with a four-level trail decaying behind it. A rotating ring is a smooth analogue sweep, and this system draws with cells.",
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/spinner.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "empty",
+      "type": "registry:ui",
+      "title": "Empty",
+      "description": "Nothing here, said deliberately. A dashed hairline rather than a solid one: a solid box around emptiness reads as a panel that failed to load.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/empty.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "A panel on the glass, opened in four steps from the control that asked for it.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/popover.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "A plate with one lit edge rather than a bubble with a tail. No arrow, because an arrow is a rounded speech shape.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown Menu",
+      "description": "The full menu surface, including checkbox and radio items, submenus and shortcut hints set in the same mono as the keys they name.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/dropdown-menu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "A drawer from any of the four edges. The edge it slides from keeps a lit border, so an open drawer reads as a thing pulled out of the frame.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/sheet.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "title": "Command",
+      "description": "A palette is a prompt: a sigil, a line you type on, and a list that narrows as you type. The component this registry was always going to be best at.",
+      "dependencies": [
+        "cmdk",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@afterglow/dialog"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/command.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "A plus that becomes a minus, not a chevron that spins. `+` and `−` are the two states written down, which is what a row of collapsed sections in a terminal has always looked like.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/accordion.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "title": "Collapsible",
+      "description": "The unstyled half of the accordion, for when the trigger is something you have drawn yourself.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/collapsible.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "Square. A round avatar is the one element that would give a page of hairline rectangles away, and initials in mono inside a bordered box is how an operator is identified on a terminal anyway.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/avatar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "description": "A path, drawn as one: mono, slash-separated, current segment in white. A chevron is a control's punctuation; a slash is what the thing being described actually contains.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/breadcrumb.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "Joined cells rather than floating buttons, so a run of page numbers reads as one control.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@afterglow/button"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/pagination.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "title": "Scroll Area",
+      "description": "A track and a block, not a rounded lozenge, so a scrolling panel does not grow the operating system's furniture down one side.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/scroll-area.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "resizable",
+      "type": "registry:ui",
+      "title": "Resizable",
+      "description": "Panels split by a hairline that lights when you take hold of it. The hit area is four times the width of the visible line, so the thing you aim at is bigger than the thing you see.",
+      "dependencies": [
+        "react-resizable-panels",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/resizable.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "scanlines",
+      "type": "registry:component",
+      "title": "Scanlines",
+      "description": "The glass over the picture. Two densities, an optional vignette, and a multiply blend so the lines darken what is under them instead of laying a film on top.",
+      "categories": [
+        "effects"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/components/scanlines.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "screen",
+      "type": "registry:component",
+      "title": "Screen",
+      "description": "A framed piece of tube: dark ground, glass, and the corner falloff a curved screen has and a flat rectangle does not.",
+      "categories": [
+        "effects"
+      ],
+      "registryDependencies": [
+        "@afterglow/scanlines"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/components/screen.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "boot-log",
+      "type": "registry:component",
+      "title": "Boot Log",
+      "description": "A self test printing itself. Every line is in the DOM from the first frame so the block reaches its final height before anything animates, and the caret stops when the log does.",
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/components/boot-log.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "led",
+      "type": "registry:component",
+      "title": "LED",
+      "description": "The lamp, and the status line it belongs to. Four tones; the idle one holds still, because a dark indicator that animates says nothing twice.",
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/components/led.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "eyebrow",
+      "type": "registry:component",
+      "title": "Eyebrow",
+      "description": "The tracked-out line above a heading, with an optional block caret drawn as a box rather than a glyph so it lands where it was asked to.",
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/components/eyebrow.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "connector",
+      "type": "registry:component",
+      "title": "Connector",
+      "description": "A rule that runs off a heading towards the thing it is about, with a terminal square at the end it starts from.",
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/components/connector.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "glyph",
+      "type": "registry:component",
+      "title": "Glyph",
+      "description": "A file marker: a box in the category's colour with the corner turned up. Everything is derived from one hex value with color-mix, so a new category is one token.",
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/components/glyph.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "alarm-button",
+      "type": "registry:component",
+      "title": "Alarm Button",
+      "description": "Two flashes and a rest, which is what a warning lamp does and what a steady sine does not. Pointing at it answers the alarm, so the alarm stops.",
+      "registryDependencies": [
+        "@afterglow/button"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/components/alarm-button.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "terminal-window",
+      "type": "registry:component",
+      "title": "Terminal Window",
+      "description": "Grey window chrome in both conventions: macOS lights left with a centred title, or Windows controls hard right with a red close. Resizable by the corner or either edge, collapsible to its titlebar, and the content sits in an inset well so the grip never lands on the scrollbar.",
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/components/terminal-window.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "prompt",
+      "type": "registry:component",
+      "title": "Prompt",
+      "description": "A shell line: sigil, field and caret on one row with no border between them, because a prompt is a line of text part of which happens to be editable.",
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/components/prompt.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "console",
+      "type": "registry:block",
+      "title": "Console",
+      "description": "A whole operator console assembled from the registry: boot log, volume manifest, progress, status line and a live prompt. The answer to what the pieces look like next to each other.",
+      "categories": [
+        "dashboard",
+        "application"
+      ],
+      "registryDependencies": [
+        "@afterglow/alarm-button",
+        "@afterglow/badge",
+        "@afterglow/boot-log",
+        "@afterglow/button",
+        "@afterglow/connector",
+        "@afterglow/eyebrow",
+        "@afterglow/glyph",
+        "@afterglow/kbd",
+        "@afterglow/led",
+        "@afterglow/progress",
+        "@afterglow/prompt",
+        "@afterglow/scanlines",
+        "@afterglow/table"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/blocks/console/page.tsx",
+          "type": "registry:page",
+          "target": "app/console/page.tsx"
+        }
+      ]
+    },
+    {
+      "name": "terminal",
+      "type": "registry:style",
+      "title": "Terminal",
+      "description": "The whole system in one install: theme, primitives and the terminal pieces. Use with shadcn init to start a project on it.",
+      "extends": "none",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge",
+        "lucide-react",
+        "cmdk",
+        "input-otp",
+        "react-resizable-panels",
+        "sonner"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme",
+        "@afterglow/button",
+        "@afterglow/input",
+        "@afterglow/textarea",
+        "@afterglow/label",
+        "@afterglow/card",
+        "@afterglow/badge",
+        "@afterglow/dialog",
+        "@afterglow/table",
+        "@afterglow/tabs",
+        "@afterglow/separator",
+        "@afterglow/kbd",
+        "@afterglow/progress",
+        "@afterglow/checkbox",
+        "@afterglow/radio-group",
+        "@afterglow/switch",
+        "@afterglow/select",
+        "@afterglow/slider",
+        "@afterglow/input-otp",
+        "@afterglow/toggle",
+        "@afterglow/toggle-group",
+        "@afterglow/alert",
+        "@afterglow/alert-dialog",
+        "@afterglow/toast",
+        "@afterglow/skeleton",
+        "@afterglow/spinner",
+        "@afterglow/empty",
+        "@afterglow/popover",
+        "@afterglow/tooltip",
+        "@afterglow/dropdown-menu",
+        "@afterglow/sheet",
+        "@afterglow/command",
+        "@afterglow/accordion",
+        "@afterglow/collapsible",
+        "@afterglow/avatar",
+        "@afterglow/breadcrumb",
+        "@afterglow/pagination",
+        "@afterglow/scroll-area",
+        "@afterglow/resizable",
+        "@afterglow/scanlines",
+        "@afterglow/screen",
+        "@afterglow/boot-log",
+        "@afterglow/led",
+        "@afterglow/eyebrow",
+        "@afterglow/connector",
+        "@afterglow/glyph",
+        "@afterglow/alarm-button",
+        "@afterglow/terminal-window",
+        "@afterglow/prompt"
+      ],
+      "files": []
+    }
+  ]
+}

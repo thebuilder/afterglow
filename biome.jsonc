@@ -1,0 +1,29 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "files": {
+    // Generated, in whole or in part, by `pnpm registry:build`. Formatting
+    // them is formatting an artefact, and worse, `registry.json` and the
+    // formatter would take turns rewriting each other on every run.
+    "includes": [
+      "**",
+      "!app/globals.css",
+      "!registry.json",
+      "!public/r",
+      "!.next"
+    ]
+  },
+  "formatter": { "enabled": true, "indentStyle": "space", "indentWidth": 2 },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "preset": "recommended",
+      "nursery": {
+        // The registry payload is source somebody else will own. Sorting a
+        // consumer's classes for them is a change they did not ask for, and
+        // Biome's order disagrees with the one shadcn's own components ship in.
+        "useSortedClasses": "off"
+      }
+    }
+  },
+  "assist": { "actions": { "source": { "organizeImports": "on" } } }
+}

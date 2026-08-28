@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge",
+  "title": "Badge",
+  "description": "A readout, not a pill. Eight variants covering the category colours, so a legend can have more than two entries.",
+  "dependencies": [
+    "@base-ui/react",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "@afterglow/theme"
+  ],
+  "files": [
+    {
+      "path": "registry/terminal/ui/badge.tsx",
+      "content": "import { mergeProps } from \"@base-ui/react/merge-props\";\nimport { useRender } from \"@base-ui/react/use-render\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\n\nimport { cn } from \"@/lib/utils\";\n\n/**\n * A readout, not a pill. Nothing on a terminal is round, so the tag that says\n * what state a row is in is a bordered rectangle of tracked-out mono, sized to\n * sit on the same line as the text it annotates.\n *\n * The height is explicit and the last pixel and a half of padding is on the\n * top only. All-caps text has no descender ink, but the line box still reserves\n * the descender space, so centring the *box* leaves the letters sitting high:\n * measured here, 4.58px above the caps against 6px below. The asymmetric\n * padding pushes them back down.\n *\n * `text-box: trim-both cap alphabetic` is the property built for this and would\n * be exact rather than measured, but it only applies to a block container, and\n * the text here is an anonymous flex item so nothing reaches it. Keeping the\n * flex box is what lets an icon and a label share a gap, which is worth more\n * than the last third of a pixel.\n *\n * Pass `render` to change the element: `<Badge render={<Link href=\"/x\" />} />`\n * makes the anchor *be* the badge rather than a link wrapped around one.\n */\nconst badgeVariants = cva(\n  \"inline-flex h-[1.125rem] w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap rounded-none border px-1.5 pt-[1.5px] font-mono font-semibold text-[0.625rem] uppercase leading-none tracking-[0.12em] transition-[color,border-color,background-color] [&>svg]:pointer-events-none [&>svg]:size-3\",\n  {\n    variants: {\n      variant: {\n        default: \"border-line-strong bg-phosphor/10 text-phosphor\",\n        signal: \"border-signal bg-signal/12 text-signal\",\n        solid: \"border-phosphor bg-phosphor text-void\",\n        outline: \"border-line text-muted-foreground\",\n        destructive: \"border-destructive bg-destructive/12 text-destructive\",\n        amber: \"border-amber/60 bg-amber/10 text-amber\",\n        azure: \"border-azure/60 bg-azure/10 text-azure\",\n        violet: \"border-violet/60 bg-violet/10 text-violet\",\n      },\n    },\n    defaultVariants: { variant: \"default\" },\n  },\n);\n\nfunction Badge({\n  className,\n  variant = \"default\",\n  render,\n  ...props\n}: useRender.ComponentProps<\"span\"> & VariantProps<typeof badgeVariants>) {\n  return useRender({\n    defaultTagName: \"span\",\n    props: mergeProps<\"span\">(\n      { className: cn(badgeVariants({ variant }), className) },\n      props,\n    ),\n    render,\n    /* `state` is how Base UI emits data attributes on whatever element the\n       render prop produced, so a link-shaped badge still carries the slot. */\n    state: { slot: \"badge\", variant },\n  });\n}\n\nexport { Badge, badgeVariants };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

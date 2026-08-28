@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox",
+  "title": "Checkbox",
+  "description": "`[ ]` and `[x]`. Square, sharp, and filled with the beam when it is on, which is the one state change worth making unmissable in a form.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "@afterglow/theme"
+  ],
+  "files": [
+    {
+      "path": "registry/terminal/ui/checkbox.tsx",
+      "content": "\"use client\";\n\nimport { Checkbox as CheckboxPrimitive } from \"@base-ui/react/checkbox\";\nimport { CheckIcon } from \"lucide-react\";\n\nimport { cn } from \"@/lib/utils\";\n\n/**\n * `[ ]` and `[x]`. Square, sharp, and filled with the beam when it is on, which\n * is the one state change worth making unmissable in a form.\n */\nfunction Checkbox({ className, ...props }: CheckboxPrimitive.Root.Props) {\n  return (\n    <CheckboxPrimitive.Root\n      className={cn(\n        \"peer size-4 shrink-0 rounded-none border border-input bg-panel-sunken outline-none transition-[background-color,border-color,box-shadow]\",\n        \"focus-visible:border-line-strong focus-visible:shadow-glow\",\n        \"data-disabled:cursor-not-allowed data-disabled:opacity-40\",\n        \"aria-invalid:border-destructive\",\n        \"data-checked:border-phosphor data-checked:bg-phosphor data-checked:text-void\",\n        \"data-indeterminate:border-phosphor data-indeterminate:text-phosphor\",\n        className,\n      )}\n      data-slot=\"checkbox\"\n      {...props}\n    >\n      <CheckboxPrimitive.Indicator\n        className=\"grid place-content-center text-current transition-none\"\n        data-slot=\"checkbox-indicator\"\n      >\n        <CheckIcon className=\"size-3.5\" strokeWidth={3} />\n      </CheckboxPrimitive.Indicator>\n    </CheckboxPrimitive.Root>\n  );\n}\n\nexport { Checkbox };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "glyph",
+  "title": "Glyph",
+  "description": "A file marker: a box in the category's colour with the corner turned up. Everything is derived from one hex value with color-mix, so a new category is one token.",
+  "registryDependencies": [
+    "@afterglow/theme"
+  ],
+  "files": [
+    {
+      "path": "registry/terminal/components/glyph.tsx",
+      "content": "import type * as React from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\n/**\n * A file marker: a box in the category's colour with the corner turned up.\n *\n * The colour is a single custom property and everything else is derived from it\n * with `color-mix`, so a new category is one hex value rather than a border\n * colour, a fill, an inset shade and a glow that have to be kept in agreement.\n *\n * Those derived values are written as inline styles rather than classes on\n * purpose: they are computed from a variable the caller sets, and a utility\n * class cannot be.\n */\nconst TONES = {\n  directory: \"var(--signal)\",\n  code: \"var(--phosphor)\",\n  image: \"var(--amber)\",\n  audio: \"var(--violet)\",\n  document: \"var(--azure)\",\n  archive: \"#e6de6d\",\n  system: \"var(--ember)\",\n  unknown: \"var(--ink-muted)\",\n} as const;\n\nfunction Glyph({\n  className,\n  tone = \"unknown\",\n  color,\n  ...props\n}: React.ComponentProps<\"span\"> & {\n  tone?: keyof typeof TONES;\n  color?: string;\n}) {\n  const glyph = color ?? TONES[tone];\n\n  return (\n    <span\n      className={cn(\"relative block size-10 shrink-0\", className)}\n      data-slot=\"glyph\"\n      data-tone={tone}\n      style={{\n        border: `1px solid color-mix(in srgb, ${glyph} 72%, transparent)`,\n        background: `color-mix(in srgb, ${glyph} 18%, transparent)`,\n        boxShadow: `inset -0.35rem -0.35rem 0 color-mix(in srgb, ${glyph} 9%, transparent), 0 0 14px color-mix(in srgb, ${glyph} 13%, transparent)`,\n      }}\n      {...props}\n    >\n      <span\n        className=\"absolute right-[-1px] bottom-[-1px] h-2/5 w-2/5\"\n        style={{\n          borderTop: `1px solid ${glyph}`,\n          borderLeft: `1px solid ${glyph}`,\n        }}\n      />\n    </span>\n  );\n}\n\nexport { Glyph, TONES as glyphTones };\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:component"
+}

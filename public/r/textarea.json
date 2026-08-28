@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea",
+  "title": "Textarea",
+  "description": "The input's taller form, sized to its content so a growing draft does not sit in a fixed box with its own scrollbar.",
+  "registryDependencies": [
+    "@afterglow/theme"
+  ],
+  "files": [
+    {
+      "path": "registry/terminal/ui/textarea.tsx",
+      "content": "import type * as React from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nfunction Textarea({ className, ...props }: React.ComponentProps<\"textarea\">) {\n  return (\n    <textarea\n      className={cn(\n        \"field-sizing-content flex min-h-16 w-full rounded-none border border-input bg-panel-sunken px-3 py-2 font-mono text-sm text-phosphor-bright caret-phosphor-bright outline-none transition-[border-color,box-shadow] duration-150 ease-terminal\",\n        \"placeholder:text-phosphor-dim selection:bg-signal selection:text-white\",\n        \"focus-visible:border-line-strong focus-visible:shadow-glow\",\n        \"disabled:cursor-not-allowed disabled:opacity-40\",\n        \"aria-invalid:border-destructive\",\n        className,\n      )}\n      data-slot=\"textarea\"\n      {...props}\n    />\n  );\n}\n\nexport { Textarea };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
