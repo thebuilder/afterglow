@@ -125,7 +125,7 @@ function Cell({
     <th
       className={cn(
         className,
-        "font-semibold text-[0.5625rem] text-phosphor-dim uppercase tracking-[0.12em]"
+        "font-semibold text-3xs text-phosphor-dim uppercase tracking-terminal-lg"
       )}
       scope="col"
     >

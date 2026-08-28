@@ -67,7 +67,7 @@ export function Toc({
 
   return (
     <nav aria-label="On this page" className={className}>
-      <p className="px-3 pb-2 font-bold font-mono text-[0.5625rem] text-phosphor-dim uppercase tracking-[0.18em]">
+      <p className="px-3 pb-2 font-bold font-mono text-3xs text-phosphor-dim uppercase tracking-terminal-3xl">
         On this page
       </p>
       <ul className="grid grid-cols-[minmax(0,1fr)]">

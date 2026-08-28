@@ -55,7 +55,7 @@ function GalleryCard({ item }: { item: RegistryItem }) {
               {item.title}
             </Link>
           </h3>
-          <code className="font-mono text-[0.625rem] text-phosphor-dim">
+          <code className="font-mono text-2xs text-phosphor-dim">
             {item.name}
           </code>
         </div>
@@ -76,7 +76,7 @@ export default function Home() {
     <>
       <SiteHeader
         after={
-          <span className="hidden items-center gap-2 whitespace-nowrap font-mono text-[0.55rem] text-muted-foreground uppercase tracking-[0.1em] md:flex">
+          <span className="hidden items-center gap-2 whitespace-nowrap font-mono text-4xs text-muted-foreground uppercase tracking-terminal md:flex">
             <Led />
             {total} items
           </span>
@@ -94,7 +94,7 @@ export default function Home() {
             borders. Square corners. Install the full system or add components
             one at a time.
           </p>
-          <p className="font-mono font-semibold text-[0.625rem] text-phosphor-dim uppercase tracking-[0.14em]">
+          <p className="font-mono font-semibold text-2xs text-phosphor-dim uppercase tracking-terminal-xl">
             By{" "}
             <a
               className="text-phosphor underline decoration-line-strong underline-offset-4 transition-colors hover:text-phosphor-bright"
@@ -110,7 +110,7 @@ export default function Home() {
             <CopyCommand
               command={`npx shadcn@latest init ${HOMEPAGE}/r/terminal.json`}
             />
-            <p className="font-mono text-[0.625rem] text-phosphor-dim uppercase tracking-[0.1em]">
+            <p className="font-mono text-2xs text-phosphor-dim uppercase tracking-terminal">
               or add one piece at a time, below
             </p>
           </div>

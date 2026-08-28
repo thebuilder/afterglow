@@ -97,7 +97,7 @@ export function NavTree({
     >
       {sections.map((section) => (
         <div className="grid grid-cols-[minmax(0,1fr)] gap-2" key={section.id}>
-          <p className="px-3 font-bold font-mono text-[0.5625rem] text-phosphor-dim uppercase tracking-[0.18em]">
+          <p className="px-3 font-bold font-mono text-3xs text-phosphor-dim uppercase tracking-terminal-3xl">
             {section.title}
           </p>
           <ul className="grid grid-cols-[minmax(0,1fr)]">

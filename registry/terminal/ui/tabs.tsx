@@ -64,7 +64,7 @@ function TabsTrigger({ className, ...props }: TabsPrimitive.Tab.Props) {
   return (
     <TabsPrimitive.Tab
       className={cn(
-        "relative inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-none font-mono font-semibold text-[0.625rem] text-muted-foreground uppercase tracking-[0.12em] outline-none transition-colors duration-150 ease-terminal",
+        "relative inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-none font-mono font-semibold text-2xs text-muted-foreground uppercase tracking-terminal-lg outline-none transition-colors duration-150 ease-terminal",
         "hover:text-phosphor focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-phosphor-bright",
         "data-disabled:pointer-events-none data-disabled:opacity-40",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-3.5",

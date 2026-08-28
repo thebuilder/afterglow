@@ -12,7 +12,7 @@ function Label({ className, ...props }: React.ComponentProps<"label">) {
     // biome-ignore lint/a11y/noLabelWithoutControl: this is the wrapper, not the usage. `htmlFor` and the text both arrive through props, and the rule cannot see across the call site.
     <label
       className={cn(
-        "flex select-none items-center gap-2 font-mono font-semibold text-[0.625rem] text-phosphor uppercase leading-none tracking-[0.14em]",
+        "flex select-none items-center gap-2 font-mono font-semibold text-2xs text-phosphor uppercase leading-none tracking-terminal-xl",
         "group-data-[disabled]:pointer-events-none group-data-[disabled]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50",
         className
       )}

@@ -54,7 +54,7 @@ export function Step({
     <li className="relative grid grid-cols-[minmax(0,1fr)] gap-3">
       <span
         aria-hidden="true"
-        className="-left-7 absolute top-0 grid size-[1.375rem] place-items-center border border-line bg-void font-bold font-mono text-[0.625rem] text-phosphor tabular-nums"
+        className="-left-7 absolute top-0 grid size-[1.375rem] place-items-center border border-line bg-void font-bold font-mono text-2xs text-phosphor tabular-nums"
       >
         {index}
       </span>

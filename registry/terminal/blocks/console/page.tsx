@@ -81,10 +81,10 @@ export default function ConsolePage() {
 
       <header className="flex items-center justify-between gap-6 border-line border-b px-6 py-4">
         <div className="flex items-baseline gap-3">
-          <strong className="font-bold font-mono text-base tracking-[0.16em]">
+          <strong className="font-bold font-mono text-base tracking-terminal-2xl">
             NODE-04
           </strong>
-          <span className="font-mono text-[0.55rem] text-muted-foreground uppercase tracking-[0.1em]">
+          <span className="font-mono text-4xs text-muted-foreground uppercase tracking-terminal">
             local operator
           </span>
         </div>
@@ -129,14 +129,14 @@ export default function ConsolePage() {
             </CardHeader>
             <CardContent className="grid gap-4">
               <div className="grid gap-2">
-                <div className="flex items-baseline justify-between font-mono text-[0.625rem] uppercase tracking-[0.1em]">
+                <div className="flex items-baseline justify-between font-mono text-2xs uppercase tracking-terminal">
                   <span className="text-muted-foreground">Pass 1</span>
                   <span className="text-amber tabular-nums">68%</span>
                 </div>
                 <Progress value={68} />
               </div>
               <div className="grid gap-2">
-                <div className="flex items-baseline justify-between font-mono text-[0.625rem] uppercase tracking-[0.1em]">
+                <div className="flex items-baseline justify-between font-mono text-2xs uppercase tracking-terminal">
                   <span className="text-muted-foreground">Pass 2</span>
                   <span className="text-phosphor-dim">waiting</span>
                 </div>
@@ -209,7 +209,7 @@ export default function ConsolePage() {
         <Status>uplink nominal</Status>
         <Status tone="busy">indexing</Status>
         <Status tone="error">spool offline</Status>
-        <span className="ml-auto flex items-center gap-2 font-mono text-[0.55rem] text-phosphor-dim uppercase tracking-[0.1em]">
+        <span className="ml-auto flex items-center gap-2 font-mono text-4xs text-phosphor-dim uppercase tracking-terminal">
           <Led tone="idle" /> node-04
         </span>
       </footer>

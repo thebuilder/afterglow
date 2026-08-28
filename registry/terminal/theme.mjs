@@ -122,6 +122,20 @@ const THEME = {
     '"SFMono-Regular", "IBM Plex Mono", "Cascadia Mono", Consolas, monospace',
   "font-sans": '"Helvetica Neue", Inter, Arial, sans-serif',
 
+  /* The compact type scale and wide tracking are part of the terminal voice.
+     Naming them here keeps labels consistent across the site and registry. */
+  "text-1xs": "0.6875rem",
+  "text-2xs": "0.625rem",
+  "text-3xs": "0.5625rem",
+  "text-4xs": "0.55rem",
+  "tracking-terminal": "0.1em",
+  "tracking-terminal-2xl": "0.16em",
+  "tracking-terminal-3xl": "0.18em",
+  "tracking-terminal-lg": "0.12em",
+  "tracking-terminal-sm": "0.08em",
+  "tracking-terminal-xl": "0.14em",
+  "tracking-terminal-xs": "0.06em",
+
   ...Object.fromEntries(
     Object.keys(PALETTE).map((key) => [`color-${key}`, `var(--${key})`])
   ),

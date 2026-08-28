@@ -26,7 +26,7 @@ export function ThemePalette() {
           <code className="font-mono text-phosphor-bright text-xs">
             --{swatch.token}
           </code>
-          <span className="ml-auto font-mono text-[0.625rem] text-phosphor-dim uppercase tracking-[0.08em]">
+          <span className="ml-auto font-mono text-2xs text-phosphor-dim uppercase tracking-terminal-sm">
             {swatch.note}
           </span>
         </div>

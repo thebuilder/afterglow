@@ -61,7 +61,7 @@ export function ItemIncludes({ item }: { item: RegistryItem }) {
               <h2 className="font-medium font-mono text-phosphor-bright text-sm">
                 {group.title}
               </h2>
-              <span className="font-mono text-[0.625rem] text-phosphor-dim tabular-nums">
+              <span className="font-mono text-2xs text-phosphor-dim tabular-nums">
                 {members.length}
               </span>
             </div>
@@ -87,7 +87,7 @@ export function ItemIncludes({ item }: { item: RegistryItem }) {
             <h2 className="font-medium font-mono text-phosphor-bright text-sm">
               Packages
             </h2>
-            <span className="font-mono text-[0.625rem] text-phosphor-dim tabular-nums">
+            <span className="font-mono text-2xs text-phosphor-dim tabular-nums">
               {packages.length}
             </span>
           </div>
