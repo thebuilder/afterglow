@@ -10,6 +10,14 @@
       // stop being drop-in replacements.
       "file": "registry/terminal/**/*.tsx",
       "exports": ["*"]
+    },
+    {
+      // Next reads these by filename, so there is no import to trace. fallow
+      // knows the convention for `page.tsx` but not for the metadata routes,
+      // and `generateStaticParams` is what prerenders one OG image per item at
+      // build time rather than on the first request.
+      "file": "app/**/{opengraph-image,apple-icon,icon}.tsx",
+      "exports": ["generateStaticParams", "alt", "size", "contentType"]
     }
   ],
   "rules": {

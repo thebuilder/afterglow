@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "popover",
   "title": "Popover",
-  "description": "A panel that opens from the control that asked for it, in the same four steps as the dialog.",
+  "description": "A panel that opens from the control that asked for it.",
   "dependencies": [
     "@base-ui/react"
   ],

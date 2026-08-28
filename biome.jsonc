@@ -18,7 +18,11 @@
     // is formatting an artefact, and worse, `registry.json` and the formatter
     // would take turns rewriting each other on every run. Everything else the
     // build produces is already out via .gitignore.
-    "includes": ["!app/globals.css", "!registry.json", "!public/r"]
+    //
+    // `assets` is data rather than source. The fonts are binary, and the logo
+    // is pasted verbatim into shadcn's directory.json, so its bytes are the
+    // artefact and reflowing them is not an improvement.
+    "includes": ["!app/globals.css", "!registry.json", "!public/r", "!assets"]
   },
   "linter": {
     "rules": {

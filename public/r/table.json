@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "table",
   "title": "Table",
-  "description": "A manifest in mono with hairline rules. Add `is-numeric` to a cell for amber tabular figures, and `stickyHeader` when the table scrolls inside its own box.",
+  "description": "A manifest in mono with hairline rules. `is-numeric` gives a cell amber tabular figures.",
   "registryDependencies": [
     "@afterglow/theme"
   ],

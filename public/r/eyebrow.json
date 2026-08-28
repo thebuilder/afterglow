@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "eyebrow",
   "title": "Eyebrow",
-  "description": "The tracked-out line above a heading, with an optional block caret. The caret is a styled box, so it lands exactly where you asked rather than wherever the font puts a `▋`.",
+  "description": "The tracked-out line above a heading, with an optional block caret.",
   "registryDependencies": [
     "@afterglow/theme"
   ],

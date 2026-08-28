@@ -64,6 +64,42 @@ sharp-cornered and phosphor-green without being touched.
 Every item has its own page at `/c/<name>` with its variants, its install
 line and what it pulls in. The index is a gallery of all 51.
 
+## Publishing to the shadcn directory
+
+The listing at [ui.shadcn.com/docs/directory](https://ui.shadcn.com/docs/directory)
+is a file in shadcn's own repository, not something this project serves. To be
+added, open a pull request on `shadcn-ui/ui` appending this to
+`apps/v4/registry/directory.json`, then run `pnpm validate:registries` there:
+
+```json
+  {
+    "name": "@afterglow",
+    "homepage": "https://afterglow.thebuilder.dk",
+    "url": "https://afterglow.thebuilder.dk/r/{name}.json",
+    "description": "Old-school terminal UI for the modern web. Phosphor green on unlit glass, hairline borders, no corner radius, built on Base UI.",
+    "author": "thebuilder",
+    "logo": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\" fill=\"currentColor\"><title>afterglow</title><path d=\"M6.45 5.9L18.23 16L6.45 26.1L3 22.07L10.09 16L3 9.93Z\"/><path d=\"M18.4 20.24L29 20.24L29 24.48L18.4 24.48Z\"/></svg>"
+  }
+```
+
+The logo is `assets/registry-logo.svg`, kept in this repo so the two stay in
+step. It is the favicon's mark with the background dropped and the chevron
+converted from a stroke to a filled outline, because the directory renders each
+entry with `grayscale`, forces the SVG to 32px, and overrides `fill` to the page
+foreground. A stroked path picks up no colour there, a background rectangle
+becomes a solid block, and a non-square viewBox gets squashed.
+
+What the directory checks before it will take an entry:
+
+| | |
+| --- | --- |
+| Open source | MIT, in `LICENSE`. A public repo with no licence is not open source. |
+| Publicly reachable | `https://afterglow.thebuilder.dk/r/{name}.json` answers 200. |
+| Valid namespace | `@afterglow` matches `^@[a-zA-Z0-9][a-zA-Z0-9_-]*$`. |
+| `{name}` placeholder | Required in the `url` field. |
+| Flat layout | `registry.json` and every item live at the root of `/r/`. |
+| No `content` in source | `registry.json` lists file paths; `shadcn build` inlines the content into `/r/`. |
+
 ## Working on it
 
 ```sh

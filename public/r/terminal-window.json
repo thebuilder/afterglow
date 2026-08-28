@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "terminal-window",
   "title": "Terminal Window",
-  "description": "Window chrome in three conventions. macOS lights at the left with a centred title, Windows bevelled buttons hard right, or a slim hairline version in this system's own vocabulary. Resizable by the corner or either edge, and collapsible to its titlebar.",
+  "description": "Window chrome in three conventions: macOS, Windows, or a slim hairline version. Resizable and collapsible.",
   "registryDependencies": [
     "@afterglow/theme"
   ],

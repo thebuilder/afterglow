@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "sheet",
   "title": "Sheet",
-  "description": "A drawer from any of the four edges. The edge it slides from keeps a lit border, so it reads as something pulled out of the frame.",
+  "description": "A drawer from any of the four edges. The edge it slides from keeps a lit border.",
   "dependencies": [
     "@base-ui/react",
     "lucide-react"

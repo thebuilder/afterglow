@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "breadcrumb",
   "title": "Breadcrumb",
-  "description": "A path in mono, separated by slashes, with the current segment in white. Slashes because that is what the thing being described actually contains.",
+  "description": "A path in mono, separated by slashes, with the current segment in white.",
   "dependencies": [
     "@base-ui/react",
     "lucide-react"

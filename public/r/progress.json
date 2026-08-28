@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "progress",
   "title": "Progress",
-  "description": "Three pixels of track and a light in it. Pass `indeterminate` for a segment that sweeps and leaves, which is the honest shape for a wait of unknown length.",
+  "description": "Three pixels of track and a light in it. Pass `indeterminate` for a segment that sweeps and leaves.",
   "dependencies": [
     "@base-ui/react"
   ],

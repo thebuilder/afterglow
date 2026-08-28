@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "pagination",
   "title": "Pagination",
-  "description": "Page numbers as joined cells, so a run of them reads as one control rather than a row of loose buttons.",
+  "description": "Page numbers as joined cells, so a run of them reads as one control.",
   "dependencies": [
     "lucide-react"
   ],

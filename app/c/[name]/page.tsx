@@ -10,6 +10,7 @@ import { ItemIncludes } from "@/components/item-includes";
 import {
   allItems,
   findItem,
+  HOMEPAGE,
   installCommand,
   internalName,
   isInternal,
@@ -30,9 +31,27 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { name } = await params;
   const item = findItem(name);
-  return item
-    ? { description: item.description, title: `${item.title}, afterglow` }
-    : {};
+  if (!item) {
+    return {};
+  }
+
+  const title = `${item.title}, afterglow`;
+
+  /*
+    openGraph has to be restated. A page that sets only `title` inherits the
+    root's openGraph block whole, so without this every item would share one
+    preview title.
+  */
+  return {
+    description: item.description,
+    openGraph: {
+      description: item.description,
+      title,
+      url: `${HOMEPAGE}/c/${item.name}`,
+    },
+    title,
+    twitter: { description: item.description, title },
+  };
 }
 
 export default async function ItemPage({ params }: Params) {
