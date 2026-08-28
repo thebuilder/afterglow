@@ -3,7 +3,7 @@
   "extends": "none",
   "name": "terminal",
   "title": "Terminal",
-  "description": "The whole system in one install: theme, primitives and the terminal pieces. Use with shadcn init to start a project on it.",
+  "description": "The whole system in one install. Use it with `shadcn init` to start a project on the theme, the primitives and the terminal pieces at once.",
   "dependencies": [
     "@base-ui/react",
     "class-variance-authority",

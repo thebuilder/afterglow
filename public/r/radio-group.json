@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "radio-group",
   "title": "Radio Group",
-  "description": "`( )` and `(•)`. The one round shape in the set, deliberately: a terminal has always drawn radios with parentheses and checkboxes with brackets, so the convention and the aesthetic agree.",
+  "description": "`( )` and `(•)`. The one round shape in the set, because a terminal has always drawn radios with parentheses and checkboxes with brackets.",
   "dependencies": [
     "@base-ui/react"
   ],

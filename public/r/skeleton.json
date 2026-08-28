@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "skeleton",
   "title": "Skeleton",
-  "description": "A row that has not arrived yet. Sharp, faint, and the beam's colour rather than grey: a neutral placeholder on this palette reads as a broken element instead of an empty one.",
+  "description": "A placeholder row in the beam's colour. Grey would read as a broken element rather than an empty one.",
   "registryDependencies": [
     "@afterglow/theme"
   ],

@@ -22,21 +22,21 @@ const SECTIONS: {
 }[] = [
   {
     blurb:
-      "One palette, no light mode. A phosphor tube has no daylight setting, so the light and dark blocks carry the same values and toggling a theme class is a no-op rather than a second, worse design.",
+      "One palette, no light mode. A phosphor tube has no daylight setting, so the light and dark blocks carry the same values and toggling a theme class does nothing.",
     id: "theme",
     title: "Theme",
     types: ["registry:theme"],
   },
   {
     blurb:
-      "shadcn's components, redrawn. Same props, same slots, same accessibility work, set in mono with hairline borders and no corner radius. Stock shadcn components dropped into a project running the theme go sharp on their own.",
+      "shadcn's components, redrawn. Same props, same slots, same accessibility work, set in mono with hairline borders and no corner radius. A stock shadcn component dropped into a project running the theme goes sharp on its own.",
     id: "primitives",
     title: "Primitives",
     types: ["registry:ui"],
   },
   {
     blurb:
-      "The parts that make it a tube rather than a dark theme: the glass, the lamp, the log that prints itself, the border that lights and runs.",
+      "The parts that make it a tube rather than a dark theme. The glass, the lamp, the window chrome, the log that prints itself.",
     id: "terminal",
     title: "Terminal",
     types: ["registry:component"],

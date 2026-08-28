@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "screen",
   "title": "Screen",
-  "description": "A framed piece of tube: dark ground, glass, and the corner falloff a curved screen has and a flat rectangle does not.",
+  "description": "A framed piece of tube: dark ground, scanlines, and the corner falloff a curved screen has.",
   "registryDependencies": [
     "@afterglow/scanlines"
   ],

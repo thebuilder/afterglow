@@ -94,7 +94,7 @@ export const primitiveExamples: ExampleMap = {
     },
     {
       description:
-        "Tracking opens up as the button gets bigger, not just the type.",
+        "Tracking opens up with the size, so a large button does not read as a small one enlarged.",
       name: "Sizes",
       node: (
         <div className="flex flex-wrap items-center gap-3">
@@ -233,7 +233,7 @@ export const primitiveExamples: ExampleMap = {
   input: [
     {
       description:
-        "Focus moves the border rather than adding a ring: at this contrast a ring reads as a second border and the field looks selected rather than active.",
+        "Focus brightens the border instead of adding a ring. At this contrast a ring reads as a second border, and the field looks selected rather than active.",
       name: "Default",
       node: (
         <div className="grid w-full max-w-sm gap-2">
@@ -257,7 +257,7 @@ export const primitiveExamples: ExampleMap = {
   kbd: [
     {
       description:
-        "`glyph` is not dressing. Measured at the letter size, K paints 7.3px of ink and ⌘ paints 6.5, ⇧ 5.6 and ↵ 4.2: strokes too thin for the eye to complete, so at a letter's size they read as smudges.",
+        "Measured at the letter size, K paints 7.3px of ink. ⌘ paints 6.5, ⇧ 5.6, ↵ 4.2. Those strokes are too thin for the eye to complete, so `glyph` sets them larger and lighter.",
       name: "Letters and symbols",
       node: (
         <div className="flex flex-wrap items-center gap-6 font-mono text-muted-foreground text-xs">
@@ -297,7 +297,7 @@ export const primitiveExamples: ExampleMap = {
   progress: [
     {
       description:
-        "`indeterminate` sweeps a segment and lets it leave at the far edge, which is the honest shape for a wait of unknown length: a bar creeping to ninety percent and stopping is a progress bar telling a lie.",
+        "`indeterminate` sweeps a segment and lets it leave at the far edge. That is the honest shape for a wait of unknown length. A bar creeping to ninety percent and stopping there is telling a lie.",
       name: "Determinate and indeterminate",
       node: (
         <div className="grid w-full max-w-sm gap-5">
@@ -375,7 +375,7 @@ export const primitiveExamples: ExampleMap = {
     },
     {
       description:
-        "Opt-in, and only once the container has a height to scroll inside. Sticky by default would be sticky to the page: the header row detaches as the table leaves the viewport and floats over whatever is below it.",
+        "Opt-in, and only once the container has a height to scroll inside. On by default it would stick to the page instead, so the header row would detach as the table left the viewport and float over whatever came next.",
       name: "Sticky header",
       node: (
         <div className="w-full border border-line bg-panel">

@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "select",
   "title": "Select",
-  "description": "A trigger that reads as a field and a list whose selected row carries a lit left edge as well as a tick.",
+  "description": "A trigger that reads as a field, and a list whose chosen row carries a lit left edge as well as a tick.",
   "dependencies": [
     "@base-ui/react"
   ],

@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "kbd",
   "title": "Kbd",
-  "description": "A key with two pixels of implied depth under it, which is what separates something you press from a badge. Pass `glyph` for the symbol keys, which need a larger type scale to read at all.",
+  "description": "A key with two pixels of implied depth under it. Pass `glyph` for `⌘`, `⇧` and `↵`: at the letter size those symbols paint about half the ink of a letter and read as smudges.",
   "registryDependencies": [
     "@afterglow/theme"
   ],

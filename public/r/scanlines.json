@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "scanlines",
   "title": "Scanlines",
-  "description": "The glass over the picture. Two densities, an optional vignette, and a multiply blend so the lines darken what is under them instead of laying a film on top.",
+  "description": "The glass. Two densities, an optional vignette, and a multiply blend so the lines darken what is under them instead of laying a film on top.",
   "registryDependencies": [
     "@afterglow/theme"
   ],

@@ -42,7 +42,7 @@ export const feedbackExamples: ExampleMap = {
   alert: [
     {
       description:
-        "The colour is carried by the left border and the icon, not by a wash behind the text. A filled alert on this palette is a block of colour with green type on it, and the type is the part that has to stay readable.",
+        "The left edge and the icon carry the colour. Washing it behind the text would leave a block of colour with green type on it, and the type is the part that has to stay readable.",
       name: "Variants",
       node: (
         <div className="grid w-full max-w-md gap-3">
@@ -110,7 +110,7 @@ export const feedbackExamples: ExampleMap = {
   empty: [
     {
       description:
-        "A dashed hairline rather than a solid one: a solid box around emptiness reads as a panel that failed to load.",
+        "The border is dashed. A solid box around emptiness reads as a panel that failed to load.",
       name: "Default",
       node: (
         <Empty className="w-full max-w-md">
@@ -155,7 +155,7 @@ export const feedbackExamples: ExampleMap = {
   spinner: [
     {
       description:
-        "A lit pixel travelling a 3x3 grid with a four-level trail decaying behind it. A rotating ring is a smooth analogue sweep; this system draws with cells.",
+        "A lit pixel travels a 3x3 grid with a four-level trail decaying behind it. A rotating ring would be a smooth analogue sweep, and this system draws with cells.",
       name: "Sizes",
       node: (
         <div className="flex items-center gap-6">
@@ -175,7 +175,7 @@ export const feedbackExamples: ExampleMap = {
   toast: [
     {
       description:
-        "The theme is pinned to dark rather than read from a provider: this system has one palette by design.",
+        "The theme is pinned to dark instead of read from a provider, because this system has one palette by design.",
       name: "Tones",
       node: <ToastDemo />,
     },

@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "label",
   "title": "Label",
-  "description": "The field's name, set as an eyebrow: small, tracked out, phosphor.",
+  "description": "A field's name, set as an eyebrow. Small, tracked out, phosphor.",
   "dependencies": [
     "@base-ui/react"
   ],

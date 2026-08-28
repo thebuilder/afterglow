@@ -59,7 +59,7 @@ export const terminalExamples: ExampleMap = {
   "alarm-button": [
     {
       description:
-        "Two flashes and a rest, which is what a warning lamp does and what a steady sine does not. Pointing at it answers the alarm, so the alarm stops.",
+        "Two flashes and a rest, which is what a warning lamp does and a steady sine does not. Pointing at it answers the alarm, so the flashing stops.",
       name: "Default",
       node: (
         <AlarmButton>
@@ -138,7 +138,7 @@ export const terminalExamples: ExampleMap = {
   eyebrow: [
     {
       description:
-        "The caret is a styled box, not a ▋ glyph: a character has the font's own sidebearings and never quite lines up with the text it follows.",
+        "The caret is a styled box rather than a ▋ glyph. A character carries the font's own sidebearings and never quite lines up with the text it follows.",
       name: "With and without a caret",
       node: (
         <div className="grid gap-4">
@@ -197,7 +197,7 @@ export const terminalExamples: ExampleMap = {
   scanlines: [
     {
       description:
-        "The lines multiply rather than overlay: they darken what is under them instead of laying a grey film on top.",
+        "The lines multiply rather than overlay, so they darken what is under them instead of laying a grey film on top.",
       name: "With and without",
       node: (
         <div className="grid w-full gap-3 sm:grid-cols-2">
@@ -227,7 +227,7 @@ export const terminalExamples: ExampleMap = {
   terminal: [
     {
       description:
-        "One of most things, on one strip. The green carries the interface, the pink is reserved for the thing that is actually happening, and every edge is a hairline.",
+        "One of most things, on one strip. Green carries the interface, pink is reserved for whatever is actually happening, and every edge is a hairline.",
       name: "The system at a glance",
       node: (
         <div className="grid w-full max-w-xl grid-cols-[minmax(0,1fr)] gap-5 border border-line bg-card/90 p-5">
