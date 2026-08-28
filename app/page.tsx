@@ -4,7 +4,7 @@ import { CopyCommand } from "@/components/copy-command";
 import { Prose } from "@/components/docs/prose";
 import { SiteHeader } from "@/components/docs/site-header";
 import { ExampleStage } from "@/components/example-stage";
-import { examplesFor } from "@/components/examples";
+import { examplesFor } from "@/lib/examples";
 import { HOMEPAGE, REGISTRY_NAME, type RegistryItem } from "@/lib/registry";
 import { sectionsWithItems } from "@/lib/sections";
 import { Connector } from "@/registry/terminal/components/connector";
@@ -34,6 +34,7 @@ const COMPONENTS_JSON = `{
  */
 function GalleryCard({ item }: { item: RegistryItem }) {
   const [first] = examplesFor(item.name);
+  const Preview = first.component;
 
   return (
     <article className="group relative grid grid-cols-[minmax(0,1fr)] gap-3">
@@ -42,7 +43,7 @@ function GalleryCard({ item }: { item: RegistryItem }) {
         clipped
         item={item.name}
       >
-        {first.node}
+        <Preview />
       </ExampleStage>
       <div className="grid grid-cols-[minmax(0,1fr)] gap-1">
         <div className="flex items-baseline gap-2">

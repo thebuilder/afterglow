@@ -92,3 +92,30 @@ export async function packagesFor(name: string): Promise<string[]> {
   const item = await built(name);
   return item.dependencies ?? [];
 }
+
+/**
+ * One example's file, highlighted.
+ *
+ * These are read from the repository, not from `public/r/`, because an example
+ * is not a registry item and nothing builds it. What comes back is the whole
+ * file, imports and `"use client"` included, so the block under an example is
+ * something you can paste into a project.
+ *
+ * `lib/examples.ts` names the file. A rename that leaves the file behind stops
+ * the build here, before it can show somebody another component's code.
+ */
+export async function exampleSource(file: string): Promise<Source> {
+  /* Joined from literal segments rather than from a path carrying its own
+     directory. A `join` whose first variable part is the folder reads to Next
+     as an access anywhere under the root, and it traces the whole repository
+     into the server bundle to be safe. */
+  const path = join(process.cwd(), "components", "examples", file);
+
+  const content = await readFile(path, "utf8").catch(() => {
+    throw new Error(
+      `No example file at components/examples/${file}. An example's file is named after the item and the example, so rename one to match the other.`
+    );
+  });
+
+  return { html: await highlight(content, "tsx"), path: file, text: content };
+}

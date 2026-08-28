@@ -1,13 +1,11 @@
-import { CopyButton } from "@/components/docs/copy-button";
+import { Highlighted } from "@/components/docs/highlighted";
 import { cn } from "@/lib/utils";
 
 /**
  * Highlighted source, with the path it installs to written above it.
  *
  * The HTML comes from Shiki at build time, so nothing here runs in a browser
- * except the copy button. Shiki paints its own background onto the `<pre>`; the
- * override below strips it, because the frame is already the panel colour and
- * two backgrounds a shade apart look like a rendering fault rather than depth.
+ * except the copy button.
  */
 export function CodeBlock({
   className,
@@ -30,18 +28,11 @@ export function CodeBlock({
           {title}
         </figcaption>
       ) : null}
-      <div className="relative">
-        <div
-          className="[&_pre]:!bg-transparent overflow-x-auto py-3.5 pr-12 pl-4 font-mono text-xs leading-relaxed [&_pre]:outline-none"
-          // biome-ignore lint/security/noDangerouslySetInnerHtml: Shiki's output is generated here at build time from files in this repository.
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
-        <CopyButton
-          className="absolute top-2.5 right-2.5"
-          label={title ? `Copy ${title}` : "Copy the code"}
-          text={text}
-        />
-      </div>
+      <Highlighted
+        html={html}
+        label={title ? `Copy ${title}` : "Copy the code"}
+        text={text}
+      />
     </figure>
   );
 }

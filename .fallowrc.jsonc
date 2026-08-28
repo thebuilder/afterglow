@@ -20,6 +20,15 @@
       "exports": ["generateStaticParams", "alt", "size", "contentType"]
     }
   ],
+  "duplicates": {
+    // An example is the thing somebody copies, so it has to be a whole file:
+    // its own imports, its own sample data, no helper next door that a reader
+    // pasting it into their project would not have. Two table examples that
+    // share a row of volumes are the arrangement working, and extracting the
+    // shared half would leave both snippets referencing a file that does not
+    // exist outside this repository.
+    "ignore": ["components/examples/**"]
+  },
   // All four thresholds are stated, because this block replaces the defaults
   // rather than merging with them. Three are fallow's own numbers; only
   // `maxCrap` is a disagreement.
