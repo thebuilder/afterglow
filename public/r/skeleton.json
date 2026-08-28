@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "skeleton",
   "title": "Skeleton",
-  "description": "A placeholder row in the beam's colour. Grey would read as a broken element rather than an empty one.",
+  "description": "A placeholder row in the beam's colour, because grey reads as broken rather than empty.",
   "registryDependencies": [
     "@afterglow/theme"
   ],

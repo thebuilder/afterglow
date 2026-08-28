@@ -11,6 +11,6 @@ export default function Image() {
     body: "Phosphor green on unlit glass, a pink signal for events, hairline borders and no corner radius anywhere.",
     eyebrow: "SHADCN REGISTRY",
     meta: `${allItems().length} ITEMS`,
-    title: "The old-school terminal look, as a registry.",
+    title: "Old-school terminal UI for the modern web",
   });
 }

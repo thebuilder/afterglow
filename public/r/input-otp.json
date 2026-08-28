@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "input-otp",
   "title": "Input OTP",
-  "description": "One cell per character, with a drawn caret in the active one. The field behind the cells is a single invisible input and has no caret to lend them.",
+  "description": "One cell per character, with a drawn caret in the active one.",
   "dependencies": [
     "input-otp",
     "lucide-react"

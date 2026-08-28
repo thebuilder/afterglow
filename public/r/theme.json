@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "theme",
   "title": "Terminal Theme",
-  "description": "The palette, type, motion and glass. Phosphor green on unlit glass, a pink signal for events, hairline borders, no corner radius anywhere. Install it first, because every other item is drawn with its tokens.",
+  "description": "The palette, type, motion and glass. One palette, no light mode.",
   "files": [],
   "cssVars": {
     "theme": {

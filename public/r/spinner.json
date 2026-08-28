@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "spinner",
   "title": "Spinner",
-  "description": "A lit pixel travelling a 3x3 grid, four brightness levels trailing behind it. Eight hops to the lap, because a character display picks an intensity rather than fading through them.",
+  "description": "A lit pixel travelling a 3x3 grid, four brightness levels trailing behind it.",
   "registryDependencies": [
     "@afterglow/theme"
   ],

@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "switch",
   "title": "Switch",
-  "description": "A squared-off rocker. The pill is the most rounded control in the shadcn set and the one shape that would give this theme away.",
+  "description": "A squared-off rocker. The pill is the one shadcn shape this system cannot borrow.",
   "dependencies": [
     "@base-ui/react"
   ],
