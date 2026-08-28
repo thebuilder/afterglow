@@ -39,8 +39,15 @@ export function internalName(dependency: string): string {
 
 const items = registry.items as RegistryItem[];
 
+/**
+ * Alphabetical within a type. `registry.json` is stored that way too, but
+ * sorting here as well means an item appended to the end of the file still
+ * lands in the right place on the page.
+ */
 export function itemsOfType(...types: string[]): RegistryItem[] {
-  return items.filter((item) => types.includes(item.type));
+  return items
+    .filter((item) => types.includes(item.type))
+    .sort((a, b) => a.name.localeCompare(b.name));
 }
 
 export function allItems(): RegistryItem[] {

@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "toast",
   "title": "Toast",
-  "description": "Sonner in the house palette, with the theme pinned to dark. This system has one palette by design, so asking a theme provider which of two looks to use would be a dependency added to answer a question with one answer.",
+  "description": "Sonner in the house palette, with the theme pinned to dark. One palette by design, so there is no provider to ask.",
   "dependencies": [
     "sonner",
     "lucide-react"

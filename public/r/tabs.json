@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "tabs",
   "title": "Tabs",
-  "description": "Two shapes. Segment builds the rules between triggers out of a one-pixel gap in the list's own background; line is the quieter one for navigation.",
+  "description": "Two shapes. `segment` builds the rules between triggers from a one-pixel gap in the list's background; `line` is the quieter one, for navigation.",
   "dependencies": [
     "@base-ui/react",
     "class-variance-authority"

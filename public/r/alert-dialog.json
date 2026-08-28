@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "alert-dialog",
   "title": "Alert Dialog",
-  "description": "The dialog for a decision that cannot be taken back, in the signal colour throughout: pink title, pink-edged panel, pink confirm.",
+  "description": "The dialog for a decision you cannot take back. Pink title, pink-edged panel, pink confirm, so it never looks like the ordinary one.",
   "dependencies": [
     "@base-ui/react"
   ],

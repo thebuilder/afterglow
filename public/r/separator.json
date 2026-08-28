@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "separator",
   "title": "Separator",
-  "description": "One pixel of the border colour, in either orientation.",
+  "description": "One pixel of the border colour, horizontal or vertical.",
   "dependencies": [
     "@base-ui/react"
   ],

@@ -32,7 +32,7 @@ export const formExamples: ExampleMap = {
   checkbox: [
     {
       description:
-        "Square, sharp, and filled with the beam when it is on: the one state change worth making unmissable in a form.",
+        "A square that fills with the beam when it is on. Of everything in a form, this is the state change worth making unmissable.",
       name: "Default",
       node: (
         <div className="grid gap-3">
@@ -56,7 +56,7 @@ export const formExamples: ExampleMap = {
   "input-otp": [
     {
       description:
-        "The caret is drawn rather than inherited: the field behind these cells is a single invisible input and has none to lend them.",
+        "Each cell draws its own caret. The field behind them is a single invisible input and has none to lend.",
       name: "Six digits",
       node: (
         <InputOTP maxLength={6}>
@@ -155,7 +155,7 @@ export const formExamples: ExampleMap = {
   switch: [
     {
       description:
-        "A rocker, not a pill. The pill is the one shape this system cannot borrow: a rounded switch on a page of hairline rectangles is the single element that gives the theme away.",
+        "A squared-off rocker. The pill is the one shadcn shape this system cannot borrow, since a rounded switch on a page of hairline rectangles is the single element that gives the theme away.",
       name: "Sizes",
       node: (
         <div className="grid gap-4">

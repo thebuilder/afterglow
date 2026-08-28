@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "slider",
   "title": "Slider",
-  "description": "A fader: hairline track, lit range, and a square handle taller than the track rather than a circle sitting on it.",
+  "description": "A hairline track, a lit range, and a square handle standing taller than the track. Single value or range.",
   "dependencies": [
     "@base-ui/react"
   ],

@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "card",
   "title": "Card",
-  "description": "A panel on the glass, with a coloured left edge driven by a single accent property, and a top rule that runs the accent across its first third when a card needs a masthead.",
+  "description": "A panel on the glass with a coloured left edge. One `accent` property drives that edge and the title. `CardAccent` adds a top rule when a card has to be read first.",
   "registryDependencies": [
     "@afterglow/theme"
   ],

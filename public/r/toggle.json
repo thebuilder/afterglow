@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "toggle",
   "title": "Toggle",
-  "description": "A button that stays down. Same mono and tracking as the others, so a pressed state reads as a state rather than a hover that stuck.",
+  "description": "A button that stays down. Same mono and tracking as the rest, so a pressed state reads as a state.",
   "dependencies": [
     "@base-ui/react",
     "class-variance-authority"

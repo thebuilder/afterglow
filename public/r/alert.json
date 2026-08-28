@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "alert",
   "title": "Alert",
-  "description": "A notice drawn as a panel with a lit edge rather than a tinted box. On this palette a filled alert is a block of colour with green type on it, and the type is the part that has to stay readable.",
+  "description": "A notice with a lit left edge and an icon in the same colour. Four tones. The edge carries the colour so the copy stays green and readable.",
   "dependencies": [
     "class-variance-authority"
   ],

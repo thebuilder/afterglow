@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "alarm-button",
   "title": "Alarm Button",
-  "description": "Two flashes and a rest, which is what a warning lamp does and what a steady sine does not. Pointing at it answers the alarm, so the alarm stops.",
+  "description": "Two flashes and a rest, which is what a warning lamp does and a steady sine does not. Pointing at it answers the alarm, so the flashing stops.",
   "registryDependencies": [
     "@afterglow/button"
   ],

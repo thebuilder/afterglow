@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "led",
   "title": "LED",
-  "description": "The lamp, and the status line it belongs to. Four tones; the idle one holds still, because a dark indicator that animates says nothing twice.",
+  "description": "A status lamp and the line it sits in. Four tones, and the idle one holds still.",
   "registryDependencies": [
     "@afterglow/theme"
   ],
