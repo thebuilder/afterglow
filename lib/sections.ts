@@ -59,11 +59,6 @@ export function sectionsWithItems(): SectionWithItems[] {
   }));
 }
 
-/** The section an item appears under, for a breadcrumb or a search result. */
-export function sectionOf(item: RegistryItem): Section | undefined {
-  return SECTIONS.find((section) => section.types.includes(item.type));
-}
-
 /**
  * The nav, flattened to what a link needs.
  *
