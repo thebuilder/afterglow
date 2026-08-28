@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "alert",
   "title": "Alert",
-  "description": "A notice with a lit left edge and an icon in the same colour. Four tones. The edge carries the colour so the copy stays green and readable.",
+  "description": "A notice with a lit left edge and a matching icon. Four tones.",
   "dependencies": [
     "class-variance-authority"
   ],

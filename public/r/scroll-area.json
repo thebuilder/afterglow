@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "scroll-area",
   "title": "Scroll Area",
-  "description": "A hairline track and a square thumb, so a scrolling panel does not grow the operating system's furniture down one side.",
+  "description": "A hairline track and a square thumb, in place of the operating system's own.",
   "dependencies": [
     "@base-ui/react"
   ],

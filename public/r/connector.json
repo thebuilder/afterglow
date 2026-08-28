@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "connector",
   "title": "Connector",
-  "description": "A rule running off a heading towards whatever it is about, with a square at the end it starts from.",
+  "description": "A rule running off a heading towards whatever it is about.",
   "registryDependencies": [
     "@afterglow/theme"
   ],

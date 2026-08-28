@@ -130,7 +130,7 @@ export default function Home() {
       <section className="grid grid-cols-[minmax(0,1fr)] gap-5 pt-10">
         <Eyebrow caret>Registry online</Eyebrow>
         <h1 className="max-w-3xl text-balance font-extrabold text-[clamp(2.4rem,8vw,4.5rem)] leading-[0.92] tracking-[-0.04em]">
-          The old-school terminal look, as a registry.
+          Old-school terminal UI for the modern web
         </h1>
         <Connector />
         <p className="max-w-[60ch] text-pretty text-foreground/85 text-lg">

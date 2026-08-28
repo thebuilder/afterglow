@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "toggle-group",
   "title": "Toggle Group",
-  "description": "Toggles joined the way the segmented tabs are, with the rules between them coming from a one-pixel gap in the group's background.",
+  "description": "Toggles joined the way the segmented tabs are.",
   "dependencies": [
     "@base-ui/react",
     "class-variance-authority"

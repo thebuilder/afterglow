@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "resizable",
   "title": "Resizable",
-  "description": "Panels split by a hairline that lights when you take hold of it. The hit area is four times the width of the visible line.",
+  "description": "Panels split by a hairline that lights when you take hold of it.",
   "dependencies": [
     "react-resizable-panels",
     "lucide-react"
