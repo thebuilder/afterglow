@@ -305,11 +305,11 @@ export const terminalExamples: ExampleMap = {
   "terminal-window": [
     {
       description:
-        "Drag the corner or either edge. The yellow light rolls the window up to its titlebar, the corner takes arrow keys, and the content sits in a well with a margin of chrome round it, so the grip is never over the scrollbar.",
-      name: "macOS, resizable and collapsible",
+        "One hairline instead of a double border, a slim bar instead of a pinstriped one, and the content flush rather than recessed. For a window that has to sit among the panels rather than in front of them.",
+      name: "Terminal",
       node: (
         <TerminalWindow
-          className="h-64 w-[30rem] max-w-full shrink-0"
+          className="h-56 w-[30rem] max-w-full shrink-0"
           collapsible
           footer={
             <>
@@ -317,6 +317,24 @@ export const terminalExamples: ExampleMap = {
               <span>read-write</span>
             </>
           }
+          resizable
+          title="notes.txt"
+          variant="terminal"
+        >
+          <pre className="p-4 font-mono text-xs leading-relaxed">
+            {LONG_NOTE}
+          </pre>
+        </TerminalWindow>
+      ),
+    },
+    {
+      description:
+        "Drag the corner or either edge. The yellow light rolls the window up to its titlebar, the corner takes arrow keys, and the content sits in a well with a margin of chrome round it so the grip is never over the scrollbar.",
+      name: "macOS",
+      node: (
+        <TerminalWindow
+          className="h-64 w-[30rem] max-w-full shrink-0"
+          collapsible
           resizable
           title="notes.txt"
         >
@@ -328,11 +346,12 @@ export const terminalExamples: ExampleMap = {
     },
     {
       description:
-        "The subtitle is a second line, and a second line is most of the chrome's height. Without one the bar is sized to the title alone.",
-      name: "Windows, with a subtitle",
+        "Bevelled buttons: light on the top and left, shadow on the bottom and right, inverting on press. It is the whole reason the era's buttons read as pressable.",
+      name: "Windows",
       node: (
         <TerminalWindow
           className="h-52 w-full"
+          collapsible
           subtitle="read-only"
           title="notes.txt"
           variant="windows"

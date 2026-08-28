@@ -43,19 +43,23 @@ function Card({
 }
 
 /**
- * The stripe: a hard-edged run of signal, a short tick of phosphor, then
- * nothing. It does the job a rounded coloured header would do in a softer
- * system, at three pixels tall.
+ * The card's top rule, with the accent running its first third.
  *
- * Opt-in, and worth being deliberate about. It is a masthead, not decoration:
- * on a card that is one of several it reads as an unexplained red line.
+ * It carries on in the border colour rather than stopping at transparent. A bar
+ * that ends part-way across leaves the top edge looking broken off, where a
+ * rule that reaches the far side reads as the frame with a coloured lead-in.
+ *
+ * The lead-in is the card's own accent, so a card marked with amber does not
+ * get a pink stripe. The bright tick after it is the mark itself: three pixels
+ * of the beam at full strength, which is the whole reason to reach for this
+ * over a heavier heading.
  */
 function CardAccent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       aria-hidden="true"
       className={cn(
-        "-mt-5 mb-1 h-[3px] bg-[linear-gradient(90deg,var(--signal)_0_28%,var(--phosphor)_28%_34%,transparent_34%)]",
+        "-mt-5 h-[3px] bg-[linear-gradient(90deg,var(--card-accent,var(--phosphor))_0_28%,var(--phosphor-bright)_28%_33%,var(--line)_33%)]",
         className
       )}
       data-slot="card-accent"

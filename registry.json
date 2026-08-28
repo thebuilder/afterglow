@@ -471,7 +471,7 @@
       "name": "card",
       "type": "registry:ui",
       "title": "Card",
-      "description": "A panel on the glass, with a coloured left edge driven by a single accent property, and the hard-edged accent stripe to add when a card needs a masthead.",
+      "description": "A panel on the glass, with a coloured left edge driven by a single accent property, and a top rule that runs the accent across its first third when a card needs a masthead.",
       "registryDependencies": [
         "@afterglow/theme"
       ],
@@ -1207,7 +1207,7 @@
       "name": "terminal-window",
       "type": "registry:component",
       "title": "Terminal Window",
-      "description": "Grey window chrome in both conventions: macOS lights left with a centred title, or Windows controls hard right with a red close. Resizable by the corner or either edge, collapsible to its titlebar, and the content sits in an inset well so the grip never lands on the scrollbar.",
+      "description": "Window chrome in three conventions: macOS lights left with a centred title, Windows bevelled buttons hard right, or a slim hairline chrome in the system's own vocabulary. Resizable by the corner or either edge, collapsible to its titlebar, and the heavy chromes sit their content in an inset well so the grip never lands on the scrollbar.",
       "registryDependencies": [
         "@afterglow/theme"
       ],

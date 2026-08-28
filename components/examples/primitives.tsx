@@ -178,7 +178,7 @@ export const primitiveExamples: ExampleMap = {
     },
     {
       description:
-        "`CardAccent` is a masthead, and is deliberate rather than decorative: on a card that is one of several it reads as an unexplained red line.",
+        "`CardAccent` runs the accent across the first third of the card's top rule. Use it on the one card that has to be read first.",
       name: "Stripe",
       node: (
         <Card accent="var(--signal)" className="w-full max-w-sm">

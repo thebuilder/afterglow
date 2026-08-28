@@ -48,7 +48,7 @@ function Slider({
   return (
     <SliderPrimitive.Root
       className={cn(
-        "data-disabled:opacity-40 data-horizontal:w-full data-vertical:h-full",
+        "data-disabled:opacity-40 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full",
         className
       )}
       data-slot="slider"
@@ -59,13 +59,13 @@ function Slider({
       value={value}
       {...props}
     >
-      <SliderPrimitive.Control className="flex touch-none select-none items-center data-vertical:h-full data-vertical:min-h-44 data-vertical:flex-col">
+      <SliderPrimitive.Control className="relative flex touch-none select-none items-center data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-44 data-[orientation=vertical]:flex-col">
         <SliderPrimitive.Track
-          className="relative grow overflow-hidden rounded-none bg-phosphor/10 data-horizontal:h-1 data-horizontal:w-full data-vertical:h-full data-vertical:w-1"
+          className="relative grow overflow-hidden rounded-none bg-phosphor/10 data-[orientation=horizontal]:h-1 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1"
           data-slot="slider-track"
         >
           <SliderPrimitive.Indicator
-            className="absolute bg-phosphor shadow-[0_0_10px_rgb(134_250_221/0.45)]"
+            className="absolute bg-phosphor shadow-[0_0_10px_rgb(134_250_221/0.45)] data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full"
             data-slot="slider-range"
           />
         </SliderPrimitive.Track>
