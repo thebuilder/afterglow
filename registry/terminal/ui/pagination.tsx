@@ -27,7 +27,7 @@ function PaginationContent({
     <ul
       className={cn(
         "flex flex-row items-center gap-px bg-line p-px",
-        className,
+        className
       )}
       data-slot="pagination-content"
       {...props}
@@ -54,10 +54,10 @@ function PaginationLink({
     <a
       aria-current={isActive ? "page" : undefined}
       className={cn(
-        buttonVariants({ variant: isActive ? "default" : "ghost", size }),
+        buttonVariants({ size, variant: isActive ? "default" : "ghost" }),
         "border-0 bg-secondary hover:translate-y-0 hover:shadow-none",
         isActive && "bg-accent text-phosphor-bright",
-        className,
+        className
       )}
       data-active={isActive}
       data-slot="pagination-link"
@@ -109,7 +109,7 @@ function PaginationEllipsis({
       aria-hidden="true"
       className={cn(
         "flex size-9 items-center justify-center bg-secondary text-phosphor-dim",
-        className,
+        className
       )}
       data-slot="pagination-ellipsis"
       {...props}

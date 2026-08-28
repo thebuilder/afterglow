@@ -29,7 +29,7 @@ function AlarmButton({
         "active:bg-signal/45",
         "after:pointer-events-none after:absolute after:-inset-px after:-z-10 after:animate-alarm after:border after:border-transparent after:content-['']",
         "hover:after:animate-none focus-visible:after:animate-none active:after:animate-none",
-        className,
+        className
       )}
       data-slot="alarm-button"
       variant="signal"

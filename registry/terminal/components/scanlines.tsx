@@ -35,21 +35,21 @@ function Scanlines({
           "pointer-events-none z-100 inset-0",
           fixed ? "fixed" : "absolute",
           density === "fine" ? "scanlines" : "scanlines-soft",
-          className,
+          className
         )}
         data-slot="scanlines"
         {...props}
       />
-      {vignette && (
+      {vignette ? (
         <div
           aria-hidden="true"
           className={cn(
             "vignette pointer-events-none z-100 inset-0",
-            fixed ? "fixed" : "absolute",
+            fixed ? "fixed" : "absolute"
           )}
           data-slot="scanlines-vignette"
         />
-      )}
+      ) : null}
     </>
   );
 }

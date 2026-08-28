@@ -20,7 +20,7 @@ function Input({ className, type, ...props }: React.ComponentProps<"input">) {
         "disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-40",
         "aria-invalid:border-destructive aria-invalid:shadow-[0_0_18px_rgb(255_90_101/0.2)]",
         "file:inline-flex file:h-7 file:border-0 file:bg-transparent file:font-medium file:font-mono file:text-foreground file:text-xs",
-        className,
+        className
       )}
       data-slot="input"
       type={type}

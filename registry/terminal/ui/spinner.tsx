@@ -27,7 +27,7 @@ function Spinner({ className, ...props }: React.ComponentProps<"span">) {
       aria-label="Loading"
       className={cn(
         "inline-grid size-4 grid-cols-3 grid-rows-3 gap-px",
-        className,
+        className
       )}
       data-slot="spinner"
       role="status"
@@ -42,7 +42,7 @@ function Spinner({ className, ...props }: React.ComponentProps<"span">) {
               "bg-phosphor",
               /* The centre is off the path, and sits at the tail's floor so the
                  grid still reads as nine pixels rather than a broken ring. */
-              step === -1 ? "opacity-[0.16]" : "animate-pixel",
+              step === -1 ? "opacity-[0.16]" : "animate-pixel"
             )}
             // biome-ignore lint/suspicious/noArrayIndexKey: the cells are a fixed grid, and the index is the position.
             key={index}

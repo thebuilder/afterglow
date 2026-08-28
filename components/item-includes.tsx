@@ -45,7 +45,7 @@ export function ItemIncludes({ item }: { item: RegistryItem }) {
 
       {GROUPS.map((group) => {
         const members = included.filter((entry) =>
-          group.types.includes(entry.type),
+          group.types.includes(entry.type)
         );
 
         if (members.length === 0) {

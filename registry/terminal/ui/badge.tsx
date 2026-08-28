@@ -27,20 +27,20 @@ import { cn } from "@/lib/utils";
 const badgeVariants = cva(
   "inline-flex h-[1.125rem] w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap rounded-none border px-1.5 pt-[1.5px] font-mono font-semibold text-[0.625rem] uppercase leading-none tracking-[0.12em] transition-[color,border-color,background-color] [&>svg]:pointer-events-none [&>svg]:size-3",
   {
+    defaultVariants: { variant: "default" },
     variants: {
       variant: {
-        default: "border-line-strong bg-phosphor/10 text-phosphor",
-        signal: "border-signal bg-signal/12 text-signal",
-        solid: "border-phosphor bg-phosphor text-void",
-        outline: "border-line text-muted-foreground",
-        destructive: "border-destructive bg-destructive/12 text-destructive",
         amber: "border-amber/60 bg-amber/10 text-amber",
         azure: "border-azure/60 bg-azure/10 text-azure",
+        default: "border-line-strong bg-phosphor/10 text-phosphor",
+        destructive: "border-destructive bg-destructive/12 text-destructive",
+        outline: "border-line text-muted-foreground",
+        signal: "border-signal bg-signal/12 text-signal",
+        solid: "border-phosphor bg-phosphor text-void",
         violet: "border-violet/60 bg-violet/10 text-violet",
       },
     },
-    defaultVariants: { variant: "default" },
-  },
+  }
 );
 
 function Badge({
@@ -53,7 +53,7 @@ function Badge({
     defaultTagName: "span",
     props: mergeProps<"span">(
       { className: cn(badgeVariants({ variant }), className) },
-      props,
+      props
     ),
     render,
     /* `state` is how Base UI emits data attributes on whatever element the

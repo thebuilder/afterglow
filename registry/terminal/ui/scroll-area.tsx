@@ -43,7 +43,7 @@ function ScrollBar({
         "flex touch-none select-none bg-phosphor/5 p-px transition-opacity",
         orientation === "vertical" && "h-full w-2 border-line border-l",
         orientation === "horizontal" && "h-2 flex-col border-line border-t",
-        className,
+        className
       )}
       data-slot="scroll-area-scrollbar"
       orientation={orientation}

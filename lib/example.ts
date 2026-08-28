@@ -9,10 +9,10 @@ import type { ReactNode } from "react";
  * the item's own page shows all of them, which is the only arrangement that
  * survives the registry growing past what one page can hold.
  */
-export type Example = {
-  name: string;
+export interface Example {
   description?: string;
+  name: string;
   node: ReactNode;
-};
+}
 
 export type ExampleMap = Record<string, Example[]>;

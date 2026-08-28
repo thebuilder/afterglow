@@ -66,7 +66,7 @@ function DropdownMenuItem({
         inset && "pl-8",
         variant === "destructive" &&
           "text-destructive data-highlighted:bg-destructive/15 data-highlighted:text-destructive [&_svg:not([class*='text-'])]:text-destructive",
-        className,
+        className
       )}
       data-inset={inset}
       data-slot="dropdown-menu-item"
@@ -138,7 +138,7 @@ function DropdownMenuLabel({
       className={cn(
         "px-2 py-1.5 font-bold font-mono text-[0.5625rem] text-phosphor-dim uppercase tracking-[0.14em]",
         inset && "pl-8",
-        className,
+        className
       )}
       data-inset={inset}
       data-slot="dropdown-menu-label"
@@ -168,7 +168,7 @@ function DropdownMenuShortcut({
     <span
       className={cn(
         "ml-auto font-mono text-[0.625rem] text-phosphor-dim tracking-[0.1em]",
-        className,
+        className
       )}
       data-slot="dropdown-menu-shortcut"
       {...props}
@@ -192,7 +192,7 @@ function DropdownMenuSubTrigger({
         ITEM,
         "data-popup-open:bg-phosphor/10 data-popup-open:text-phosphor-bright",
         inset && "pl-8",
-        className,
+        className
       )}
       data-inset={inset}
       data-slot="dropdown-menu-sub-trigger"

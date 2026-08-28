@@ -30,7 +30,7 @@ function Command({
     <CommandPrimitive
       className={cn(
         "flex size-full flex-col overflow-hidden rounded-none bg-popover text-popover-foreground",
-        className,
+        className
       )}
       data-slot="command"
       {...props}
@@ -85,7 +85,7 @@ function CommandInput({
       <CommandPrimitive.Input
         className={cn(
           "flex h-10 w-full rounded-none bg-transparent py-3 font-mono text-phosphor-bright text-sm caret-phosphor-bright outline-none placeholder:text-phosphor-dim disabled:cursor-not-allowed disabled:opacity-40",
-          className,
+          className
         )}
         data-slot="command-input"
         {...props}
@@ -102,7 +102,7 @@ function CommandList({
     <CommandPrimitive.List
       className={cn(
         "max-h-80 scroll-py-1 overflow-y-auto overflow-x-hidden p-1",
-        className,
+        className
       )}
       data-slot="command-list"
       {...props}
@@ -118,7 +118,7 @@ function CommandEmpty({
     <CommandPrimitive.Empty
       className={cn(
         "py-10 text-center font-mono font-semibold text-[0.6875rem] text-phosphor-dim uppercase tracking-[0.12em]",
-        className,
+        className
       )}
       data-slot="command-empty"
       {...props}
@@ -138,7 +138,7 @@ function CommandGroup({
         /* The rule between groups is drawn by the group above, so the first one
            does not start with a line hanging under the input's own border. */
         "[&:not(:first-child)]:mt-1 [&:not(:first-child)]:border-line [&:not(:first-child)]:border-t [&:not(:first-child)]:pt-1",
-        className,
+        className
       )}
       data-slot="command-group"
       {...props}
@@ -170,7 +170,7 @@ function CommandItem({
         "data-[selected=true]:bg-phosphor/10 data-[selected=true]:text-phosphor-bright data-[selected=true]:shadow-[inset_2px_0_0_var(--phosphor)]",
         "data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-40",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-phosphor-dim",
-        className,
+        className
       )}
       data-slot="command-item"
       {...props}
@@ -186,7 +186,7 @@ function CommandShortcut({
     <span
       className={cn(
         "ml-auto font-mono text-[0.625rem] text-phosphor-dim tracking-[0.1em]",
-        className,
+        className
       )}
       data-slot="command-shortcut"
       {...props}

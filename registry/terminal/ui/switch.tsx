@@ -26,7 +26,7 @@ function Switch({
         "focus-visible:border-line-strong focus-visible:shadow-glow",
         "data-disabled:cursor-not-allowed data-disabled:opacity-40",
         "data-checked:border-phosphor data-checked:bg-phosphor/20",
-        className,
+        className
       )}
       data-size={size}
       data-slot="switch"
@@ -36,7 +36,7 @@ function Switch({
         className={cn(
           "pointer-events-none block rounded-none bg-phosphor-dim transition-[transform,background-color] duration-150 ease-terminal",
           "group-data-[size=default]/switch:size-4 group-data-[size=sm]/switch:size-3",
-          "data-checked:translate-x-full data-checked:bg-phosphor data-checked:shadow-[0_0_8px_var(--phosphor)] data-unchecked:translate-x-0",
+          "data-checked:translate-x-full data-checked:bg-phosphor data-checked:shadow-[0_0_8px_var(--phosphor)] data-unchecked:translate-x-0"
         )}
         data-slot="switch-thumb"
       />

@@ -24,7 +24,7 @@ function Screen({
     <div
       className={cn(
         "relative isolate overflow-hidden border border-line bg-void",
-        className,
+        className
       )}
       data-slot="screen"
       {...props}

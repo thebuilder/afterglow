@@ -3,10 +3,10 @@ import type * as React from "react";
 import { cn } from "@/lib/utils";
 
 const TONES = {
-  ok: "bg-phosphor shadow-[0_0_8px_var(--phosphor)]",
   busy: "bg-amber shadow-[0_0_8px_var(--amber)]",
   error: "bg-signal shadow-[0_0_8px_var(--signal)]",
   idle: "bg-phosphor-dim shadow-none",
+  ok: "bg-phosphor shadow-[0_0_8px_var(--phosphor)]",
 } as const;
 
 /**
@@ -33,7 +33,7 @@ function Led({
         "inline-block size-[0.45rem] shrink-0 rounded-full",
         TONES[tone],
         animated && "animate-led",
-        className,
+        className
       )}
       data-slot="led"
       data-tone={tone}
@@ -54,7 +54,7 @@ function Status({
       className={cn(
         "flex items-center gap-2 font-mono font-semibold text-[0.625rem] uppercase tracking-[0.08em]",
         tone === "error" ? "text-signal" : "text-muted-foreground",
-        className,
+        className
       )}
       data-slot="status"
       {...props}

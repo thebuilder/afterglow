@@ -13,7 +13,7 @@ function ResizablePanelGroup({
     <ResizablePrimitive.Group
       className={cn(
         "flex h-full w-full aria-[orientation=vertical]:flex-col",
-        className,
+        className
       )}
       data-slot="resizable-panel-group"
       {...props}
@@ -48,16 +48,16 @@ function ResizableHandle({
         "aria-[orientation=horizontal]:h-px aria-[orientation=horizontal]:w-full",
         "aria-[orientation=horizontal]:after:-translate-y-1/2 aria-[orientation=horizontal]:after:left-0 aria-[orientation=horizontal]:after:h-1 aria-[orientation=horizontal]:after:w-full aria-[orientation=horizontal]:after:translate-x-0",
         "[&[aria-orientation=horizontal]>div]:rotate-90",
-        className,
+        className
       )}
       data-slot="resizable-handle"
       {...props}
     >
-      {withHandle && (
+      {withHandle ? (
         <div className="z-10 flex h-5 w-2.5 items-center justify-center border border-line bg-secondary">
           <GripVerticalIcon className="size-2.5 text-phosphor-dim" />
         </div>
-      )}
+      ) : null}
     </ResizablePrimitive.Separator>
   );
 }

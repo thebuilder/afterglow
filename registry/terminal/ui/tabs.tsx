@@ -14,7 +14,7 @@ function Tabs({
     <TabsPrimitive.Root
       className={cn(
         "group/tabs flex gap-3 data-[orientation=horizontal]:flex-col",
-        className,
+        className
       )}
       data-slot="tabs"
       orientation={orientation}
@@ -35,14 +35,14 @@ function Tabs({
 const tabsListVariants = cva(
   "group/tabs-list inline-flex w-fit items-center justify-center rounded-none group-data-[orientation=vertical]/tabs:h-fit group-data-[orientation=vertical]/tabs:flex-col",
   {
+    defaultVariants: { variant: "segment" },
     variants: {
       variant: {
-        segment: "gap-px bg-line p-px",
         line: "gap-5 border-line border-b bg-transparent",
+        segment: "gap-px bg-line p-px",
       },
     },
-    defaultVariants: { variant: "segment" },
-  },
+  }
 );
 
 function TabsList({
@@ -68,9 +68,9 @@ function TabsTrigger({ className, ...props }: TabsPrimitive.Tab.Props) {
         "hover:text-phosphor focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-phosphor-bright",
         "data-disabled:pointer-events-none data-disabled:opacity-40",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-3.5",
-        "group-data-[variant=segment]/tabs-list:bg-secondary group-data-[variant=segment]/tabs-list:px-3 group-data-[variant=segment]/tabs-list:py-2 group-data-[variant=segment]/tabs-list:data-selected:bg-accent group-data-[variant=segment]/tabs-list:data-selected:text-phosphor-bright",
-        "group-data-[variant=line]/tabs-list:-mb-px group-data-[variant=line]/tabs-list:border-transparent group-data-[variant=line]/tabs-list:border-b-2 group-data-[variant=line]/tabs-list:pb-2.5 group-data-[variant=line]/tabs-list:data-selected:border-phosphor group-data-[variant=line]/tabs-list:data-selected:text-phosphor-bright",
-        className,
+        "group-data-[variant=segment]/tabs-list:bg-secondary group-data-[variant=segment]/tabs-list:px-3 group-data-[variant=segment]/tabs-list:py-2 group-data-[variant=segment]/tabs-list:data-active:bg-accent group-data-[variant=segment]/tabs-list:data-active:text-phosphor-bright",
+        "group-data-[variant=line]/tabs-list:-mb-px group-data-[variant=line]/tabs-list:border-transparent group-data-[variant=line]/tabs-list:border-b-2 group-data-[variant=line]/tabs-list:pb-2.5 group-data-[variant=line]/tabs-list:data-active:border-phosphor group-data-[variant=line]/tabs-list:data-active:text-phosphor-bright",
+        className
       )}
       data-slot="tabs-trigger"
       {...props}

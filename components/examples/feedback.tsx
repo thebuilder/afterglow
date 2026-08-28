@@ -41,9 +41,9 @@ import { Spinner } from "@/registry/terminal/ui/spinner";
 export const feedbackExamples: ExampleMap = {
   alert: [
     {
-      name: "Variants",
       description:
         "The colour is carried by the left border and the icon, not by a wash behind the text. A filled alert on this palette is a block of colour with green type on it, and the type is the part that has to stay readable.",
+      name: "Variants",
       node: (
         <div className="grid w-full max-w-md gap-3">
           <Alert>
@@ -72,9 +72,9 @@ export const feedbackExamples: ExampleMap = {
 
   "alert-dialog": [
     {
-      name: "Default",
       description:
         "The signal colour throughout, because this is the dialog for a decision that cannot be taken back.",
+      name: "Default",
       node: (
         <AlertDialog>
           <AlertDialogTrigger render={<Button variant="outline" />}>
@@ -98,12 +98,38 @@ export const feedbackExamples: ExampleMap = {
     },
   ],
 
-  toast: [
+  command: [
     {
-      name: "Tones",
       description:
-        "The theme is pinned to dark rather than read from a provider: this system has one palette by design.",
-      node: <ToastDemo />,
+        "A palette is a prompt: a sigil, a line you type on, and a list that narrows as you type.",
+      name: "Palette",
+      node: <CommandDialogDemo />,
+    },
+  ],
+
+  empty: [
+    {
+      description:
+        "A dashed hairline rather than a solid one: a solid box around emptiness reads as a panel that failed to load.",
+      name: "Default",
+      node: (
+        <Empty className="w-full max-w-md">
+          <EmptyHeader>
+            <EmptyMedia variant="icon">
+              <FolderOpenIcon />
+            </EmptyMedia>
+            <EmptyTitle>No volumes mounted</EmptyTitle>
+            <EmptyDescription>
+              Nothing has answered since the last power cycle.
+            </EmptyDescription>
+          </EmptyHeader>
+          <EmptyContent>
+            <Button size="sm" variant="outline">
+              Rescan
+            </Button>
+          </EmptyContent>
+        </Empty>
+      ),
     },
   ],
 
@@ -128,9 +154,9 @@ export const feedbackExamples: ExampleMap = {
 
   spinner: [
     {
-      name: "Sizes",
       description:
         "A lit pixel travelling a 3x3 grid with a four-level trail decaying behind it. A rotating ring is a smooth analogue sweep; this system draws with cells.",
+      name: "Sizes",
       node: (
         <div className="flex items-center gap-6">
           <Spinner className="size-3" />
@@ -146,38 +172,12 @@ export const feedbackExamples: ExampleMap = {
     },
   ],
 
-  empty: [
+  toast: [
     {
-      name: "Default",
       description:
-        "A dashed hairline rather than a solid one: a solid box around emptiness reads as a panel that failed to load.",
-      node: (
-        <Empty className="w-full max-w-md">
-          <EmptyHeader>
-            <EmptyMedia variant="icon">
-              <FolderOpenIcon />
-            </EmptyMedia>
-            <EmptyTitle>No volumes mounted</EmptyTitle>
-            <EmptyDescription>
-              Nothing has answered since the last power cycle.
-            </EmptyDescription>
-          </EmptyHeader>
-          <EmptyContent>
-            <Button size="sm" variant="outline">
-              Rescan
-            </Button>
-          </EmptyContent>
-        </Empty>
-      ),
-    },
-  ],
-
-  command: [
-    {
-      name: "Palette",
-      description:
-        "A palette is a prompt: a sigil, a line you type on, and a list that narrows as you type.",
-      node: <CommandDialogDemo />,
+        "The theme is pinned to dark rather than read from a provider: this system has one palette by design.",
+      name: "Tones",
+      node: <ToastDemo />,
     },
   ],
 };

@@ -2,22 +2,23 @@
   "name": "afterglow",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "description": "A shadcn registry for the old-school terminal look.",
+  "type": "module",
   "scripts": {
     "build": "pnpm registry:build && next build",
     "check": "pnpm lint && pnpm typecheck && pnpm dead && pnpm build",
     "dead": "fallow dead-code",
     "dev": "pnpm registry:build && next dev",
-    "fix": "biome check --write .",
+    "fix": "ultracite fix",
     "health": "fallow health",
-    "lint": "biome check .",
+    "lint": "ultracite check",
     "registry:build": "node scripts/build-globals.mjs && shadcn build",
     "start": "next start",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
+    "@vercel/analytics": "^2.0.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
@@ -31,7 +32,7 @@
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.11",
+    "@biomejs/biome": "^2.5.9",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.18",
@@ -39,7 +40,8 @@
     "fallow": "^3.19.0",
     "shadcn": "^4.19.0",
     "tailwindcss": "^4.3.3",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "ultracite": "7.10.7"
   },
   "packageManager": "pnpm@10.33.0"
 }

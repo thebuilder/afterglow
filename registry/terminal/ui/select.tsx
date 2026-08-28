@@ -35,7 +35,7 @@ function SelectTrigger({
         "data-disabled:cursor-not-allowed data-disabled:opacity-40",
         "aria-invalid:border-destructive",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-        className,
+        className
       )}
       data-size={size}
       data-slot="select-trigger"
@@ -65,7 +65,7 @@ function SelectContent({
         <SelectPrimitive.Popup
           className={cn(
             "max-h-(--available-height) min-w-(--anchor-width) origin-(--transform-origin) overflow-y-auto rounded-none border border-line-strong bg-popover p-1 text-popover-foreground shadow-panel outline-none data-closed:animate-close data-open:animate-open",
-            className,
+            className
           )}
           data-slot="select-content"
           {...props}
@@ -87,7 +87,7 @@ function SelectLabel({
     <SelectPrimitive.GroupLabel
       className={cn(
         "px-2 py-1.5 font-bold font-mono text-[0.5625rem] text-phosphor-dim uppercase tracking-[0.14em]",
-        className,
+        className
       )}
       data-slot="select-label"
       {...props}
@@ -113,7 +113,7 @@ function SelectItem({
         "data-disabled:pointer-events-none data-disabled:opacity-40",
         "data-selected:text-phosphor-bright data-selected:shadow-[inset_2px_0_0_var(--phosphor)]",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-        className,
+        className
       )}
       data-slot="select-item"
       {...props}
@@ -147,7 +147,7 @@ function SelectScrollUpButton({
     <SelectPrimitive.ScrollUpArrow
       className={cn(
         "flex cursor-default items-center justify-center bg-popover py-1 text-phosphor-dim",
-        className,
+        className
       )}
       data-slot="select-scroll-up-button"
       {...props}
@@ -165,7 +165,7 @@ function SelectScrollDownButton({
     <SelectPrimitive.ScrollDownArrow
       className={cn(
         "flex cursor-default items-center justify-center bg-popover py-1 text-phosphor-dim",
-        className,
+        className
       )}
       data-slot="select-scroll-down-button"
       {...props}

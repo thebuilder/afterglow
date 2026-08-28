@@ -1,27 +1,83 @@
 <!-- fallow:agent-install v1 authored sha256=2f456b3d77cbaa985814efe1eea605b380458a353f4d31fd8a0a7a025d39f52c -->
-# AGENTS.md
+# afterglow
 
-This file gives coding agents project-specific context. Keep it short and update it when workflows change.
+A shadcn registry for the phosphor-tube terminal look, plus the Next.js site
+that documents it.
 
 ## Project Overview
 
-- Primary app or package:
-- Main entry points:
+- Primary package: `afterglow`, a shadcn registry served from `public/r/` and
+  published at `https://afterglow.thebuilder.dk`.
+- Main entry points: `registry.json` is the manifest and the site's content;
+  `app/page.tsx` is the gallery; `app/c/[name]/page.tsx` is one page per item.
 - Important directories:
+  - `registry/terminal/` is the payload: `theme.mjs`, `ui/` (shadcn primitives
+    redrawn), `components/` (the terminal-specific parts), `blocks/`.
+  - `app/`, `components/`, `lib/` are the documentation site only. Nothing here
+    ships to a consumer.
+  - `public/r/` is `shadcn build` output.
 
 ## Architecture Notes
 
-- Module boundaries:
-- Generated or vendored code:
-- Sensitive areas:
+### Two things are generated. Do not edit them by hand.
+
+- `app/globals.css` and the `theme` item's `cssVars`/`css` in `registry.json`
+  are both written by `scripts/build-globals.mjs` from
+  `registry/terminal/theme.mjs`. Change a token there and run
+  `pnpm registry:build`.
+- `public/r/*.json` is `shadcn build` output.
+
+Biome is configured to ignore all three.
+
+### Conventions in the payload
+
+- Registry components import siblings as `@/registry/terminal/ui/x` and
+  `@/registry/terminal/components/x`. The shadcn CLI rewrites those to the
+  consumer's aliases at install time, so the paths must stay in that shape.
+- Internal `registryDependencies` are written `@afterglow/<item>`. Bare names
+  mean shadcn's own registry, not this one. The namespace is derived from
+  `registry.json` in `lib/registry.ts`; do not hardcode it in page code.
+- A new item needs three things: the file, an entry in `registry.json`, and an
+  entry in one of the `components/examples/*.tsx` maps keyed by its name.
+  Missing the third throws at render rather than shipping a blank card.
+- Primitives are built on Base UI (`@base-ui/react`), not Radix. Composition is
+  `render` rather than `asChild`; overlays are `Portal > Positioner > Popup`;
+  the dialog scrim is `Backdrop`, not `Overlay`; and state is `data-open` /
+  `data-closed` / `data-checked`, not `data-state="open"`. A menu or select
+  label must sit inside its `Group`, or Base UI throws at open time.
+- Entrances and exits come from `theme.mjs`, not `tw-animate-css`. `animate-in`,
+  `fade-in-0` and friends do not exist here; use `animate-open`,
+  `animate-close`, `animate-fade-in/out` and the `animate-slide-*` set. Base UI
+  defers unmount on a running animation or transition, so anything that opens
+  needs a closing half or it vanishes instead of leaving.
+
+### Verifying a change to the payload
+
+Type-checking the site does not prove the registry works, because the site
+imports the source directly and a consumer does not. To check the real path:
+
+```sh
+pnpm registry:build
+```
+
+then install into a scratch Next.js project with a `registries` entry pointing
+at `public/r/{name}.json` over a local HTTP server, and confirm the imports were
+rewritten and the CSS merged. Import rewriting and CSS merging are the two
+things that only break on the far side of `shadcn add`.
+
+Interactive components need driving in a browser as well. Base UI throws at
+open time rather than compile time for a misused part, so typecheck alone will
+not catch it.
 
 ## Commands
 
-<!-- fallow init prefilled these from package.json; confirm before relying on them -->
-- Install: pnpm install
-- Build:
-- Test:
-- Typecheck or lint: tsc --noEmit
+- The gate: `pnpm check` (lint, types, dead code, registry build, next build)
+- Install: `pnpm install`
+- Dev: `pnpm dev`
+- Build: `pnpm build`
+- Typecheck: `pnpm typecheck`
+- Lint: `pnpm lint`, and `pnpm fix` writes what it can
+- Registry: `pnpm registry:build`
 
 ## Fallow
 
@@ -49,9 +105,12 @@ This file gives coding agents project-specific context. Keep it short and update
 
 ## Agent Rules
 
-- Do not edit:
-- Always ask before:
-- Preferred style:
+- Do not edit: `app/globals.css`, `public/r/**`, or the `cssVars`/`css` of the
+  `theme` item in `registry.json`. All three are generated.
+- Always ask before: pushing, or changing the registry `name` or `homepage`.
+  Both are baked into every install command the site and README print.
+- Preferred style: comments say why, not what, and are worth writing where a
+  decision would otherwise read as an accident. Never use em dashes.
 
 ---
 

@@ -21,19 +21,19 @@ function Eyebrow({
     <p
       className={cn(
         "m-0 font-bold font-mono text-[0.625rem] text-phosphor uppercase leading-tight tracking-[0.18em]",
-        className,
+        className
       )}
       data-slot="eyebrow"
       {...props}
     >
       {children}
-      {caret && (
+      {caret ? (
         <span
           aria-hidden="true"
           className="ml-[0.35em] inline-block h-[0.95em] w-[0.5em] animate-caret bg-phosphor align-[-0.12em]"
           data-slot="eyebrow-caret"
         />
-      )}
+      ) : null}
     </p>
   );
 }

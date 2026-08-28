@@ -1,7 +1,7 @@
 "use client";
 
 import { FileIcon, FolderIcon, PowerIcon, TerminalIcon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { Button } from "@/registry/terminal/ui/button";
 import {
@@ -22,35 +22,36 @@ import { Toaster, toast } from "@/registry/terminal/ui/toast";
  */
 
 export function ToastDemo() {
+  const success = useCallback(
+    () =>
+      toast.success("Spool mounted", {
+        description: "18 442 blocks, read-write.",
+      }),
+    []
+  );
+  const warning = useCallback(
+    () =>
+      toast.warning("Beacon unreachable", { description: "Running local." }),
+    []
+  );
+  const failure = useCallback(
+    () =>
+      toast.error("Spool did not answer", {
+        description: "Power cycle it and try again.",
+      }),
+    []
+  );
+
   return (
     <div className="flex flex-wrap items-center gap-3">
       <Toaster position="bottom-right" />
-      <Button
-        onClick={() =>
-          toast.success("Spool mounted", {
-            description: "18 442 blocks, read-write.",
-          })
-        }
-        variant="outline"
-      >
+      <Button onClick={success} variant="outline">
         Success
       </Button>
-      <Button
-        onClick={() =>
-          toast.warning("Beacon unreachable", { description: "Running local." })
-        }
-        variant="outline"
-      >
+      <Button onClick={warning} variant="outline">
         Warning
       </Button>
-      <Button
-        onClick={() =>
-          toast.error("Spool did not answer", {
-            description: "Power cycle it and try again.",
-          })
-        }
-        variant="signal"
-      >
+      <Button onClick={failure} variant="signal">
         Error
       </Button>
     </div>
@@ -58,7 +59,8 @@ export function ToastDemo() {
 }
 
 export function CommandDialogDemo() {
-  const [open, setOpen] = useState(false);
+  const [isOpen, setOpen] = useState(false);
+  const open = useCallback(() => setOpen(true), []);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -73,7 +75,7 @@ export function CommandDialogDemo() {
 
   return (
     <div className="grid justify-items-center gap-4">
-      <Button onClick={() => setOpen(true)} variant="outline">
+      <Button onClick={open} variant="outline">
         <TerminalIcon />
         Open palette
       </Button>
@@ -84,7 +86,7 @@ export function CommandDialogDemo() {
           <Kbd>K</Kbd>
         </KbdGroup>
       </p>
-      <CommandDialog onOpenChange={setOpen} open={open}>
+      <CommandDialog onOpenChange={setOpen} open={isOpen}>
         <CommandInput placeholder="Type a command or search a volume." />
         <CommandList>
           <CommandEmpty>No results.</CommandEmpty>

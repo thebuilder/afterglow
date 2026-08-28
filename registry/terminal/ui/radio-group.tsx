@@ -30,7 +30,7 @@ function RadioGroupItem({ className, ...props }: RadioPrimitive.Root.Props) {
         "data-disabled:cursor-not-allowed data-disabled:opacity-40",
         "aria-invalid:border-destructive",
         "data-checked:border-phosphor",
-        className,
+        className
       )}
       data-slot="radio-group-item"
       {...props}

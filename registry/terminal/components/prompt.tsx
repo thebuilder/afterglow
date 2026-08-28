@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useCallback, useId, useState } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -30,21 +30,32 @@ function Prompt({
   const id = useId();
   const [value, setValue] = useState("");
 
+  const submit = useCallback(
+    (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      const trimmed = value.trim();
+      if (trimmed) {
+        onSubmit?.(trimmed);
+        setValue("");
+      }
+    },
+    [value, onSubmit]
+  );
+
+  const change = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) =>
+      setValue(event.target.value),
+    []
+  );
+
   return (
     <form
       className={cn(
         "flex items-center gap-2 border border-line bg-panel-sunken px-3 py-2 font-mono text-sm transition-[border-color,box-shadow] duration-150 ease-terminal focus-within:border-line-strong focus-within:shadow-glow",
-        className,
+        className
       )}
       data-slot="prompt"
-      onSubmit={(event) => {
-        event.preventDefault();
-        const trimmed = value.trim();
-        if (trimmed) {
-          onSubmit?.(trimmed);
-          setValue("");
-        }
-      }}
+      onSubmit={submit}
       {...props}
     >
       <label className="sr-only" htmlFor={id}>
@@ -57,7 +68,7 @@ function Prompt({
         autoComplete="off"
         className="min-w-0 flex-1 border-0 bg-transparent p-0 text-phosphor-bright caret-phosphor-bright outline-none placeholder:text-phosphor-dim selection:bg-signal selection:text-white"
         id={id}
-        onChange={(event) => setValue(event.target.value)}
+        onChange={change}
         placeholder={placeholder}
         spellCheck={false}
         value={value}

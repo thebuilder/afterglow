@@ -11,7 +11,7 @@ function Textarea({ className, ...props }: React.ComponentProps<"textarea">) {
         "focus-visible:border-line-strong focus-visible:shadow-glow",
         "disabled:cursor-not-allowed disabled:opacity-40",
         "aria-invalid:border-destructive",
-        className,
+        className
       )}
       data-slot="textarea"
       {...props}

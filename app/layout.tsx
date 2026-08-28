@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 
 import { Scanlines } from "@/registry/terminal/components/scanlines";
@@ -5,9 +6,9 @@ import { Scanlines } from "@/registry/terminal/components/scanlines";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "afterglow, a shadcn registry",
   description:
     "Phosphor green on unlit glass, a pink signal for events, hairline borders and no corner radius anywhere. A shadcn registry for the old-school terminal look.",
+  title: "afterglow, a shadcn registry",
 };
 
 export default function RootLayout({
@@ -23,6 +24,7 @@ export default function RootLayout({
           present without the body copy paying for it.
         */}
         <Scanlines density="soft" fixed vignette />
+        <Analytics />
       </body>
     </html>
   );

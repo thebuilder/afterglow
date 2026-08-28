@@ -24,12 +24,12 @@ function SheetClose({ ...props }: SheetPrimitive.Close.Props) {
  * rectangle that happens to be over there.
  */
 const SIDES = {
-  right:
-    "inset-y-0 right-0 h-full w-3/4 border-line-strong border-l sm:max-w-sm data-closed:animate-slide-out-right data-open:animate-slide-in-right",
-  left: "inset-y-0 left-0 h-full w-3/4 border-line-strong border-r sm:max-w-sm data-closed:animate-slide-out-left data-open:animate-slide-in-left",
-  top: "inset-x-0 top-0 h-auto border-line-strong border-b data-closed:animate-slide-out-top data-open:animate-slide-in-top",
   bottom:
     "inset-x-0 bottom-0 h-auto border-line-strong border-t data-closed:animate-slide-out-bottom data-open:animate-slide-in-bottom",
+  left: "inset-y-0 left-0 h-full w-3/4 border-line-strong border-r sm:max-w-sm data-closed:animate-slide-out-left data-open:animate-slide-in-left",
+  right:
+    "inset-y-0 right-0 h-full w-3/4 border-line-strong border-l sm:max-w-sm data-closed:animate-slide-out-right data-open:animate-slide-in-right",
+  top: "inset-x-0 top-0 h-auto border-line-strong border-b data-closed:animate-slide-out-top data-open:animate-slide-in-top",
 } as const;
 
 function SheetContent({
@@ -48,7 +48,7 @@ function SheetContent({
         className={cn(
           "fixed z-50 flex flex-col gap-4 bg-popover p-6 text-popover-foreground shadow-panel outline-none",
           SIDES[side],
-          className,
+          className
         )}
         data-slot="sheet-content"
         {...props}
@@ -88,7 +88,7 @@ function SheetTitle({ className, ...props }: SheetPrimitive.Title.Props) {
     <SheetPrimitive.Title
       className={cn(
         "font-medium font-mono text-lg text-phosphor-bright leading-none",
-        className,
+        className
       )}
       data-slot="sheet-title"
       {...props}
