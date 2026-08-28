@@ -61,8 +61,19 @@ Because the theme defines every variable stock shadcn names, a component
 installed from `ui.shadcn.com` into a project running this theme comes out
 sharp-cornered and phosphor-green without being touched.
 
-Every item has its own page at `/c/<name>` with its variants, its install
-line and what it pulls in. The index is a gallery of all 51.
+Every item has its own page at `/c/<name>`: the component working, both ways to
+install it, the parts it exports and how they nest, the props afterglow adds on
+top of Base UI, and its full source. The index is a gallery of all 51, and
+either page opens the palette with `⌘K`.
+
+## For agents
+
+| | |
+| --- | --- |
+| `/llms.txt` | The annotated index. Start here. |
+| `/llms-full.txt` | Every page in one file, without the component sources. |
+| `/c/<name>.md` | One page, with the source the CLI would install. |
+| `/r/<name>.json` | The registry item itself, file contents included. |
 
 ## Publishing to the shadcn directory
 
@@ -115,7 +126,7 @@ The parts, if one of them is what you want:
 | `pnpm typecheck` | `tsc --noEmit`. |
 | `pnpm dead` | fallow: unused files, exports and dependencies. |
 | `pnpm health` | fallow: complexity, duplication, hotspots. Advisory. |
-| `pnpm registry:build` | Renders the theme, then `shadcn build` into `public/r/`. |
+| `pnpm registry:build` | Checks the docs against the source, renders the theme, then `shadcn build` into `public/r/`. |
 
 ### The theme is generated
 

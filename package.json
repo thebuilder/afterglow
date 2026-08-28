@@ -12,7 +12,7 @@
     "fix": "ultracite fix",
     "health": "fallow health",
     "lint": "ultracite check",
-    "registry:build": "node scripts/check-descriptions.mjs && node scripts/build-globals.mjs && shadcn build",
+    "registry:build": "node scripts/check-descriptions.mjs && node --import ./scripts/alias.mjs scripts/check-docs.mjs && node scripts/build-globals.mjs && shadcn build",
     "start": "next start",
     "typecheck": "tsc --noEmit"
   },
@@ -28,6 +28,7 @@
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-resizable-panels": "^4.12.3",
+    "shiki": "^4.4.3",
     "sonner": "^2.0.8",
     "tailwind-merge": "^3.6.0"
   },

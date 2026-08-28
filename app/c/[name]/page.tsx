@@ -1,28 +1,29 @@
-import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { CopyCommand } from "@/components/copy-command";
+import { ApiReference } from "@/components/docs/api-reference";
+import { CompositionTree } from "@/components/docs/composition-tree";
+import { InstallTabs } from "@/components/docs/install-tabs";
+import { ItemFooter } from "@/components/docs/item-footer";
+import { ItemHeader } from "@/components/docs/item-header";
+import { Prose } from "@/components/docs/prose";
+import { Toc } from "@/components/docs/toc";
 import { ExampleStage } from "@/components/example-stage";
 import { examplesFor } from "@/components/examples";
 import { ItemIncludes } from "@/components/item-includes";
-import {
-  allItems,
-  findItem,
-  HOMEPAGE,
-  installCommand,
-  internalName,
-  isInternal,
-} from "@/lib/registry";
-import { Connector } from "@/registry/terminal/components/connector";
-import { Eyebrow } from "@/registry/terminal/components/eyebrow";
-import { Badge } from "@/registry/terminal/ui/badge";
-import { Separator } from "@/registry/terminal/ui/separator";
+import { nests, reference } from "@/lib/doc";
+import { docFor } from "@/lib/docs";
+import { allItems, findItem, HOMEPAGE } from "@/lib/registry";
+import { packagesFor, sourcesFor } from "@/lib/source";
+import { headingsFor, slug } from "@/lib/toc";
 
 interface Params {
   params: Promise<{ name: string }>;
 }
+
+/* Twelve is well past any real component and well under the style's forty-nine,
+   so it separates the two cases without needing a flag in the manifest. */
+const BUNDLE = 12;
 
 export function generateStaticParams() {
   return allItems().map((item) => ({ name: item.name }));
@@ -54,6 +55,14 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   };
 }
 
+/**
+ * One item, in the order somebody reads it in.
+ *
+ * The first example comes before the install line and carries no heading: you
+ * see the thing working before you are asked to type anything. Every other
+ * example gets its own `h2`, and there is no wrapper "Examples" heading, so the
+ * table of contents doubles as an index of what the component can do.
+ */
 export default async function ItemPage({ params }: Params) {
   const { name } = await params;
   const item = findItem(name);
@@ -62,118 +71,90 @@ export default async function ItemPage({ params }: Params) {
     notFound();
   }
 
-  const examples = examplesFor(item.name);
+  const [hero, ...rest] = examplesFor(item.name);
+  const doc = docFor(item.name);
+  const notes = doc ? reference(doc) : undefined;
+  const bundled = (item.registryDependencies ?? []).length > BUNDLE;
+
   const items = allItems();
   const index = items.findIndex((entry) => entry.name === item.name);
-  const previous = items[index - 1];
-  const next = items[index + 1];
-  const dependencies = [
-    ...(item.dependencies ?? []),
-    ...(item.registryDependencies ?? []),
-  ];
-  /* A bundle's dependency list is its contents, and a flat row of fifty-eight
-     badges is a wall rather than an answer. It gets grouped and counted below
-     instead of inlined under the heading. */
-  const isBundle = (item.registryDependencies ?? []).length > 12;
 
   return (
-    <div className="mx-auto grid max-w-4xl grid-cols-[minmax(0,1fr)] gap-14 px-6 pb-24">
-      <header className="-mx-6 sticky top-0 z-40 flex items-center gap-4 border-line border-b bg-void/85 px-6 py-3.5 backdrop-blur-md">
-        <Link
-          className="flex items-center gap-2 font-bold font-mono text-[0.625rem] text-phosphor uppercase tracking-[0.14em] outline-none transition-colors hover:text-phosphor-bright focus-visible:text-phosphor-bright"
-          href="/"
-        >
-          <ChevronLeftIcon className="size-3.5" />
-          afterglow
-        </Link>
-        <span className="ml-auto font-mono text-[0.55rem] text-phosphor-dim uppercase tracking-[0.1em]">
-          {item.type.replace("registry:", "")}
-        </span>
-      </header>
+    <div className="mx-auto flex w-full max-w-6xl gap-10 px-6">
+      <article className="grid min-w-0 flex-1 grid-cols-[minmax(0,1fr)] gap-14 pb-24">
+        <ItemHeader bundled={bundled} item={item} />
 
-      <section className="grid grid-cols-[minmax(0,1fr)] gap-4 pt-8">
-        <Eyebrow caret>{item.name}</Eyebrow>
-        <h1 className="text-balance font-extrabold text-[clamp(2rem,6vw,3.25rem)] leading-[0.95] tracking-[-0.03em]">
-          {item.title}
-        </h1>
-        <Connector />
-        <p className="max-w-[52ch] text-pretty text-foreground/85 text-lg">
-          {item.description}
-        </p>
-        <CopyCommand className="mt-2" command={installCommand(item)} />
-        {dependencies.length > 0 && !isBundle && (
-          <div className="flex flex-wrap items-center gap-2 pt-1">
-            <span className="font-mono text-[0.55rem] text-phosphor-dim uppercase tracking-[0.1em]">
-              pulls in
-            </span>
-            {dependencies.map((dependency) =>
-              isInternal(dependency) ? (
-                <Badge
-                  className="transition-colors hover:border-line-strong hover:text-phosphor"
-                  key={dependency}
-                  render={<Link href={`/c/${internalName(dependency)}`} />}
-                  variant="outline"
-                >
-                  {dependency}
-                </Badge>
-              ) : (
-                <Badge key={dependency} variant="outline">
-                  {dependency}
-                </Badge>
-              )
-            )}
-          </div>
-        )}
-      </section>
+        <ExampleStage item={item.name}>{hero.node}</ExampleStage>
 
-      {isBundle && <ItemIncludes item={item} />}
+        <Section id="installation" title="Installation">
+          <InstallTabs
+            item={item}
+            packages={await packagesFor(item.name)}
+            sources={await sourcesFor(item.name)}
+          />
+        </Section>
 
-      <div className="grid grid-cols-[minmax(0,1fr)] gap-12">
-        {examples.map((example) => (
-          <section
-            className="grid grid-cols-[minmax(0,1fr)] gap-3"
+        {bundled ? <ItemIncludes item={item} /> : null}
+
+        {doc && nests(doc.parts) ? (
+          <Section id="composition" title="Composition">
+            <Prose>What goes inside what.</Prose>
+            <CompositionTree parts={doc.parts} />
+          </Section>
+        ) : null}
+
+        {rest.map((example) => (
+          <Section
+            id={slug(example.name)}
             key={example.name}
+            title={example.name}
           >
-            <h2 className="font-medium font-mono text-lg text-phosphor-bright">
-              {example.name}
-            </h2>
-            {example.description ? (
-              <p className="max-w-prose text-pretty text-muted-foreground text-sm">
-                {example.description}
-              </p>
-            ) : null}
+            {example.description ? <Prose>{example.description}</Prose> : null}
             <ExampleStage className="mt-1" item={item.name}>
               {example.node}
             </ExampleStage>
-          </section>
+          </Section>
         ))}
-      </div>
 
-      <footer className="grid grid-cols-[minmax(0,1fr)] gap-4">
-        <Separator />
-        <nav className="flex flex-wrap items-center justify-between gap-4">
-          {previous ? (
-            <Link
-              className="flex items-center gap-2 font-mono text-muted-foreground text-xs outline-none transition-colors hover:text-phosphor focus-visible:text-phosphor"
-              href={`/c/${previous.name}`}
-            >
-              <ChevronLeftIcon className="size-3.5" />
-              {previous.title}
-            </Link>
-          ) : (
-            <span />
-          )}
-          {next ? (
-            <Link
-              className="flex items-center gap-2 font-mono text-muted-foreground text-xs outline-none transition-colors hover:text-phosphor focus-visible:text-phosphor"
-              href={`/c/${next.name}`}
-            >
-              {next.title}
-              <ChevronRightIcon className="size-3.5" />
-            </Link>
-          ) : null}
-        </nav>
-      </footer>
+        {doc && notes ? (
+          <Section id={notes.id} title={notes.label}>
+            <ApiReference doc={doc} />
+          </Section>
+        ) : null}
+
+        <ItemFooter next={items[index + 1]} previous={items[index - 1]} />
+      </article>
+
+      <div className="hidden w-52 shrink-0 xl:block">
+        <Toc
+          className="sticky top-14 max-h-[calc(100svh-3.5rem)] overflow-y-auto py-10"
+          entries={headingsFor(item.name)}
+        />
+      </div>
     </div>
+  );
+}
+
+function Section({
+  children,
+  id,
+  title,
+}: {
+  children: React.ReactNode;
+  id: string;
+  title: string;
+}) {
+  return (
+    <section className="grid grid-cols-[minmax(0,1fr)] gap-3">
+      {/* The margin goes on the heading, not the section. A hash scrolls to the
+          element carrying the id, and the sticky header is 3.5rem tall. */}
+      <h2
+        className="scroll-mt-20 font-medium font-mono text-lg text-phosphor-bright"
+        id={id}
+      >
+        {title}
+      </h2>
+      {children}
+    </section>
   );
 }

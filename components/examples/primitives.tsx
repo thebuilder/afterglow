@@ -413,8 +413,11 @@ export const primitiveExamples: ExampleMap = {
       description:
         "The rules between triggers are a one-pixel gap in the list's own background, so nothing has to be turned off at the ends to avoid doubling.",
       name: "Segment",
+      /* A fixed box on both of these. The panels are different lengths, and a
+         shrink-to-fit root resizes and re-centres the whole control every time
+         you switch tab. */
       node: (
-        <Tabs defaultValue="manifest">
+        <Tabs className="w-full max-w-sm" defaultValue="manifest">
           <TabsList>
             <TabsTrigger value="manifest">Manifest</TabsTrigger>
             <TabsTrigger value="hex">Hex</TabsTrigger>
@@ -446,7 +449,7 @@ export const primitiveExamples: ExampleMap = {
         "The quieter one, for when the tabs are navigation rather than a switch.",
       name: "Line",
       node: (
-        <Tabs defaultValue="all">
+        <Tabs className="w-full max-w-sm" defaultValue="all">
           <TabsList variant="line">
             <TabsTrigger value="all">All</TabsTrigger>
             <TabsTrigger value="mounted">Mounted</TabsTrigger>

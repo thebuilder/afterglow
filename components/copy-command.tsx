@@ -1,16 +1,11 @@
-"use client";
-
-import { CheckIcon, CopyIcon } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
-
+import { CopyButton } from "@/components/docs/copy-button";
 import { cn } from "@/lib/utils";
 
 /**
  * The install line, and a button that puts it on the clipboard.
  *
- * The confirmation replaces the icon rather than sitting beside it, so the row
- * does not change width at the moment you click it. It clears itself after two
- * seconds; a tick that stays lit is a tick about a copy you made a while ago.
+ * The `$` is decoration and is not selectable, so a drag across the line copies
+ * a command rather than a command with a prompt stuck to the front of it.
  */
 export function CopyCommand({
   command,
@@ -19,20 +14,6 @@ export function CopyCommand({
   command: string;
   className?: string;
 }) {
-  const [copied, setCopied] = useState(false);
-
-  useEffect(() => {
-    if (!copied) {
-      return;
-    }
-    const timer = window.setTimeout(() => setCopied(false), 2000);
-    return () => window.clearTimeout(timer);
-  }, [copied]);
-
-  const copy = useCallback(() => {
-    navigator.clipboard.writeText(command).then(() => setCopied(true));
-  }, [command]);
-
   return (
     <div
       className={cn(
@@ -44,18 +25,11 @@ export function CopyCommand({
         <span className="select-none text-phosphor-dim">$ </span>
         {command}
       </code>
-      <button
-        aria-label={copied ? "Copied" : `Copy: ${command}`}
-        className="grid size-7 shrink-0 place-items-center border border-line text-phosphor-dim outline-none transition-colors hover:border-line-strong hover:text-phosphor-bright focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-phosphor-bright"
-        onClick={copy}
-        type="button"
-      >
-        {copied ? (
-          <CheckIcon className="size-3.5 text-phosphor" />
-        ) : (
-          <CopyIcon className="size-3.5" />
-        )}
-      </button>
+      <CopyButton
+        className="border-line"
+        label={`Copy: ${command}`}
+        text={command}
+      />
     </div>
   );
 }

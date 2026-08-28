@@ -9,13 +9,19 @@ that documents it.
 - Primary package: `afterglow`, a shadcn registry served from `public/r/` and
   published at `https://afterglow.thebuilder.dk`.
 - Main entry points: `registry.json` is the manifest and the site's content;
-  `app/page.tsx` is the gallery; `app/c/[name]/page.tsx` is one page per item.
+  `app/page.tsx` is the gallery; `app/c/[name]/page.tsx` is one page per item,
+  inside the shell in `app/c/layout.tsx`.
 - Important directories:
   - `registry/terminal/` is the payload: `theme.mjs`, `ui/` (shadcn primitives
     redrawn), `components/` (the terminal-specific parts), `blocks/`.
   - `app/`, `components/`, `lib/` are the documentation site only. Nothing here
     ships to a consumer.
   - `public/r/` is `shadcn build` output.
+- Text output for agents: `/llms.txt` is the annotated index, `/llms-full.txt`
+  is every page in one file, and `/c/<name>.md` is one page. All three come from
+  `lib/markdown.ts`, so they cannot disagree; the last is a rewrite in
+  `next.config.ts`, because Next cannot route a dynamic segment with a literal
+  suffix.
 
 ## Architecture Notes
 
@@ -29,6 +35,26 @@ that documents it.
 
 Biome is configured to ignore all three.
 
+### One thing is hand-written and checked.
+
+`lib/docs.ts`, split across `lib/docs/*.ts`, holds each item's parts, the props
+afterglow adds on top of Base UI, and where the rest of the API is documented.
+The order, the nesting and the sentences are judgement, so they are written by
+hand. The shape is not, so `scripts/check-docs.mjs` asserts it inside
+`pnpm registry:build`. It checks three things:
+
+- every item in the manifest has an entry;
+- an entry's parts are exactly its file's exports;
+- an item built on a Base UI component links to that component.
+
+Add a part to a registry file without adding it there and the build fails.
+
+The nesting is also the only source for the composition tree drawn on the page,
+so there is no ASCII art to keep in step with the list beside it.
+
+`scripts/alias.mjs` teaches Node the `@/` alias. That is what lets a build script
+import the site's own modules instead of re-deriving what they know.
+
 ### Conventions in the payload
 
 - Registry components import siblings as `@/registry/terminal/ui/x` and
@@ -37,9 +63,12 @@ Biome is configured to ignore all three.
 - Internal `registryDependencies` are written `@afterglow/<item>`. Bare names
   mean shadcn's own registry, not this one. The namespace is derived from
   `registry.json` in `lib/registry.ts`; do not hardcode it in page code.
-- A new item needs three things: the file, an entry in `registry.json`, and an
-  entry in one of the `components/examples/*.tsx` maps keyed by its name.
-  Missing the third throws at render rather than shipping a blank card.
+- A new item needs four things: the file, an entry in `registry.json`, an entry
+  in one of the `components/examples/*.tsx` maps keyed by its name, and an entry
+  in the matching `lib/docs/*.ts` map. Missing the third throws at render rather
+  than shipping a blank card; missing the fourth fails `pnpm registry:build`.
+  The two map files are named alike on purpose, so both edits are in the same
+  place.
 - Items are ordered alphabetically within their type in `registry.json`, and
   `itemsOfType` sorts again at read time. Append a new item wherever you like in
   the file; it will still land in the right place on the page.

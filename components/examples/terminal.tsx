@@ -29,8 +29,8 @@ const SWATCHES = [
   { note: "furniture", token: "phosphor-dim" },
   { note: "an event", token: "signal" },
   { note: "measured", token: "amber" },
-  { note: "document", token: "azure" },
-  { note: "audio", token: "violet" },
+  { note: "a category", token: "azure" },
+  { note: "and another", token: "violet" },
   { note: "destructive", token: "ember" },
 ];
 
