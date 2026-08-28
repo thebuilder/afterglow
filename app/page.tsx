@@ -117,21 +117,21 @@ export default function Home() {
         </section>
 
         <section
-          className="grid scroll-mt-20 grid-cols-[minmax(0,1fr)] gap-4"
+          className="grid w-full max-w-2xl scroll-mt-20 grid-cols-[minmax(0,1fr)] gap-4"
           id="setup"
         >
           <Eyebrow>Setup</Eyebrow>
-          <h2 className="font-medium font-mono text-2xl text-phosphor-bright">
+          <h2 className="text-balance font-medium font-mono text-2xl text-phosphor-bright">
             One line in components.json
           </h2>
-          <p className="max-w-prose text-muted-foreground text-sm">
+          <p className="max-w-prose text-pretty text-muted-foreground text-sm">
             Add the namespace once, then install any component by name. Registry
             dependencies resolve automatically.
           </p>
           <pre className="overflow-x-auto border border-line bg-panel-sunken p-4 font-mono text-phosphor text-xs leading-relaxed">
             <code>{COMPONENTS_JSON}</code>
           </pre>
-          <p className="max-w-prose text-muted-foreground text-sm">
+          <p className="max-w-prose text-pretty text-muted-foreground text-sm">
             Direct URL installs work too, but do not resolve dependencies
             between registry items.
           </p>
