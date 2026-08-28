@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { CopyCommand } from "@/components/copy-command";
+import { Prose } from "@/components/docs/prose";
 import { SiteHeader } from "@/components/docs/site-header";
 import { ExampleStage } from "@/components/example-stage";
 import { examplesFor } from "@/components/examples";
@@ -57,9 +58,7 @@ function GalleryCard({ item }: { item: RegistryItem }) {
             {item.name}
           </code>
         </div>
-        <p className="line-clamp-2 text-pretty text-muted-foreground text-xs">
-          {item.description}
-        </p>
+        <Prose className="line-clamp-2 text-xs">{item.description}</Prose>
       </div>
     </article>
   );
