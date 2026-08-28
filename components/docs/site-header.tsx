@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 
 import { HeaderNav } from "@/components/docs/header-nav";
 import { DocsSearch } from "@/components/docs/search";
+import { SourceLink } from "@/components/docs/source-link";
 import { DocsWordmark } from "@/components/docs/wordmark";
 import { docsEntry } from "@/lib/sections";
 
@@ -30,6 +31,7 @@ export function SiteHeader({
       <div className="ml-auto flex min-w-0 items-center gap-4">
         {after}
         <DocsSearch />
+        <SourceLink />
       </div>
     </header>
   );
