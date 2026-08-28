@@ -1,22 +1,12 @@
-import { examplesFor } from "@/components/examples";
 import { nests, reference } from "@/lib/doc";
 import { docFor } from "@/lib/docs";
+import { examplesFor } from "@/lib/examples";
+import { slug } from "@/lib/slug";
 
 /** One heading on a page, and the anchor that reaches it. */
 export interface TocEntry {
   id: string;
   label: string;
-}
-
-/**
- * An anchor from a heading, since the headings here are data rather than
- * markdown and nothing else is going to mint one.
- */
-export function slug(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
 }
 
 /**

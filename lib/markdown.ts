@@ -1,4 +1,3 @@
-import { examplesFor } from "@/components/examples";
 import {
   compositionOf,
   documentedParts,
@@ -8,6 +7,7 @@ import {
   reference,
 } from "@/lib/doc";
 import { docFor } from "@/lib/docs";
+import { examplesFor } from "@/lib/examples";
 import {
   allItems,
   HOMEPAGE,
@@ -15,7 +15,7 @@ import {
   type RegistryItem,
 } from "@/lib/registry";
 import { sectionsWithItems } from "@/lib/sections";
-import { type Source, sourcesFor } from "@/lib/source";
+import { exampleSource, type Source, sourcesFor } from "@/lib/source";
 
 /**
  * The item pages, as markdown.
@@ -26,8 +26,9 @@ import { type Source, sourcesFor } from "@/lib/source";
  * markdown is another rendering of `registry.json` and `lib/docs.ts`, not a
  * second copy of them.
  *
- * Examples are named and described, never reproduced. They are React trees, and
- * a rendering of one into a fenced block would be a picture of source code.
+ * Examples carry their source on the per-item pages and their names alone in
+ * the index. Each one is a file, so the fenced block is that file, byte for
+ * byte.
  */
 function fence(language: string, body: string): string[] {
   return [`\`\`\`${language}`, body, "```", ""];
@@ -53,22 +54,19 @@ function composition(doc: ItemDoc): string[] {
     : [];
 }
 
-function examples(name: string): string[] {
-  const found = examplesFor(name);
-
-  if (found.length === 0) {
-    return [];
-  }
-
+function examples(name: string, sources: Source[]): string[] {
   return [
     "## Examples",
     "",
-    ...found.map((example) =>
-      example.description
-        ? `- **${example.name}**. ${example.description}`
-        : `- **${example.name}**`
-    ),
-    "",
+    ...examplesFor(name).flatMap((example, index) => {
+      const source = sources[index];
+      return [
+        `### ${example.name}`,
+        "",
+        ...(example.description ? [example.description, ""] : []),
+        ...(source ? fence("tsx", source.text) : []),
+      ];
+    }),
   ];
 }
 
@@ -113,13 +111,21 @@ function api(doc: ItemDoc): string[] {
   ];
 }
 
-function itemToMarkdown(item: RegistryItem, sources: Source[] = []): string {
+interface Bodies {
+  /** One per example, in the order the item lists them. */
+  examples?: Source[];
+  /** Every file the item installs. */
+  sources?: Source[];
+}
+
+function itemToMarkdown(item: RegistryItem, bodies: Bodies = {}): string {
   const doc = docFor(item.name);
+  const sources = bodies.sources ?? [];
 
   const lines = [
     ...heading(item),
     ...(doc ? composition(doc) : []),
-    ...examples(item.name),
+    ...examples(item.name, bodies.examples ?? []),
     ...(doc ? api(doc) : []),
     ...sources.flatMap((source) => [
       `## ${source.path}`,
@@ -133,7 +139,14 @@ function itemToMarkdown(item: RegistryItem, sources: Source[] = []): string {
 
 /** One item, with the source a consumer would be copying. */
 export async function itemMarkdown(item: RegistryItem): Promise<string> {
-  return itemToMarkdown(item, await sourcesFor(item.name));
+  const [demos, sources] = await Promise.all([
+    Promise.all(
+      examplesFor(item.name).map((example) => exampleSource(example.file))
+    ),
+    sourcesFor(item.name),
+  ]);
+
+  return itemToMarkdown(item, { examples: demos, sources });
 }
 
 /**
@@ -183,9 +196,10 @@ export function llmsIndex(): string {
 }
 
 /**
- * Every page in one file, without the component sources. The sources are
- * already served per item under `/r/`, and repeating fifty-one files here would
- * make the one document an agent fetches first the largest one on the site.
+ * Every page in one file, without any of the source. Component files are served
+ * per item under `/r/` and example files sit behind `/c/<name>.md`, and pasting
+ * both here would make the one document an agent fetches first the largest on
+ * the site by an order of magnitude.
  */
 export function llmsFull(): string {
   return `${allItems()

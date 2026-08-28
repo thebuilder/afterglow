@@ -14,49 +14,6 @@ import {
   CommandShortcut,
 } from "@/registry/terminal/ui/command";
 import { Kbd, KbdGroup } from "@/registry/terminal/ui/kbd";
-import { Toaster, toast } from "@/registry/terminal/ui/toast";
-
-/**
- * The two examples that need a handler, and so cannot be constructed inside a
- * server component the way every other one is.
- */
-
-export function ToastDemo() {
-  const success = useCallback(
-    () =>
-      toast.success("Spool mounted", {
-        description: "18 442 blocks, read-write.",
-      }),
-    []
-  );
-  const warning = useCallback(
-    () =>
-      toast.warning("Beacon unreachable", { description: "Running local." }),
-    []
-  );
-  const failure = useCallback(
-    () =>
-      toast.error("Spool did not answer", {
-        description: "Power cycle it and try again.",
-      }),
-    []
-  );
-
-  return (
-    <div className="flex flex-wrap items-center gap-3">
-      <Toaster position="bottom-right" />
-      <Button onClick={success} variant="outline">
-        Success
-      </Button>
-      <Button onClick={warning} variant="outline">
-        Warning
-      </Button>
-      <Button onClick={failure} variant="signal">
-        Error
-      </Button>
-    </div>
-  );
-}
 
 /**
  * The palette opens from its button and nothing else.
@@ -65,7 +22,7 @@ export function ToastDemo() {
  * open two dialogs at once. The keys are still printed, as the shortcut to
  * wire up in your own app.
  */
-export function CommandDialogDemo() {
+export function CommandPalette() {
   const [isOpen, setOpen] = useState(false);
   const open = useCallback(() => setOpen(true), []);
 

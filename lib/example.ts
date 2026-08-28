@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ComponentType } from "react";
 
 /**
  * One thing a component can be shown doing.
@@ -8,11 +8,14 @@ import type { ReactNode } from "react";
  * header that stays put. The gallery shows the first example of each item and
  * the item's own page shows all of them, which is the only arrangement that
  * survives the registry growing past what one page can hold.
+ *
+ * An example is a component, because the page prints its source underneath and
+ * a node has no file to print.
  */
 export interface Example {
+  component: ComponentType;
   description?: string;
   name: string;
-  node: ReactNode;
 }
 
 export type ExampleMap = Record<string, Example[]>;

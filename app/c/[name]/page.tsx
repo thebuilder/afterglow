@@ -8,14 +8,15 @@ import { ItemFooter } from "@/components/docs/item-footer";
 import { ItemHeader } from "@/components/docs/item-header";
 import { Prose } from "@/components/docs/prose";
 import { Toc } from "@/components/docs/toc";
-import { ExampleStage } from "@/components/example-stage";
-import { examplesFor } from "@/components/examples";
+import { ExamplePreview } from "@/components/example-preview";
 import { ItemIncludes } from "@/components/item-includes";
 import { nests, reference } from "@/lib/doc";
 import { docFor } from "@/lib/docs";
+import { examplesFor } from "@/lib/examples";
 import { allItems, findItem, HOMEPAGE } from "@/lib/registry";
+import { slug } from "@/lib/slug";
 import { packagesFor, sourcesFor } from "@/lib/source";
-import { headingsFor, slug } from "@/lib/toc";
+import { headingsFor } from "@/lib/toc";
 
 interface Params {
   params: Promise<{ name: string }>;
@@ -84,7 +85,7 @@ export default async function ItemPage({ params }: Params) {
       <article className="grid min-w-0 flex-1 grid-cols-[minmax(0,1fr)] gap-14 pb-24">
         <ItemHeader bundled={bundled} item={item} />
 
-        <ExampleStage item={item.name}>{hero.node}</ExampleStage>
+        <ExamplePreview example={hero} item={item.name} />
 
         <Section id="installation" title="Installation">
           <InstallTabs
@@ -110,9 +111,11 @@ export default async function ItemPage({ params }: Params) {
             title={example.name}
           >
             {example.description ? <Prose>{example.description}</Prose> : null}
-            <ExampleStage className="mt-1" item={item.name}>
-              {example.node}
-            </ExampleStage>
+            <ExamplePreview
+              className="mt-1"
+              example={example}
+              item={item.name}
+            />
           </Section>
         ))}
 

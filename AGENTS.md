@@ -16,6 +16,8 @@ that documents it.
     redrawn), `components/` (the terminal-specific parts), `blocks/`.
   - `app/`, `components/`, `lib/` are the documentation site only. Nothing here
     ships to a consumer.
+  - `components/examples/` is one file per example, named `<item>-<example>.tsx`
+    after the entry that points at it.
   - `public/r/` is `shadcn build` output.
 - Text output for agents: `/llms.txt` is the annotated index, `/llms-full.txt`
   is every page in one file, and `/c/<name>.md` is one page. All three come from
@@ -34,6 +36,17 @@ that documents it.
 - `public/r/*.json` is `shadcn build` output.
 
 Biome is configured to ignore all three.
+
+### An example is a file, and the file is what you are shown.
+
+Each example under `components/examples/` is a whole component: the imports, the
+`"use client"` where it needs one, the markup. `ExamplePreview` renders it and
+reads the same file off disk for the block underneath, so the code on the page
+is the code that ran above it and there is nothing to keep in step.
+
+`lib/examples.ts` builds the file name from the item name and the example name,
+so the heading on the page, the anchor that reaches it and the file are one
+string. Rename an example and the build stops on the missing path.
 
 ### One thing is hand-written and checked.
 
@@ -63,12 +76,12 @@ import the site's own modules instead of re-deriving what they know.
 - Internal `registryDependencies` are written `@afterglow/<item>`. Bare names
   mean shadcn's own registry, not this one. The namespace is derived from
   `registry.json` in `lib/registry.ts`; do not hardcode it in page code.
-- A new item needs four things: the file, an entry in `registry.json`, an entry
-  in one of the `components/examples/*.tsx` maps keyed by its name, and an entry
-  in the matching `lib/docs/*.ts` map. Missing the third throws at render rather
-  than shipping a blank card; missing the fourth fails `pnpm registry:build`.
-  The two map files are named alike on purpose, so both edits are in the same
-  place.
+- A new item needs five things: the file, an entry in `registry.json`, at least
+  one example under `components/examples/`, an entry in one of the
+  `lib/examples/*.ts` maps keyed by its name, and an entry in the matching
+  `lib/docs/*.ts` map. Missing the fourth throws at render rather than shipping
+  a blank card; missing the fifth fails `pnpm registry:build`. The two map files
+  are named alike on purpose, so both edits are in the same place.
 - Items are ordered alphabetically within their type in `registry.json`, and
   `itemsOfType` sorts again at read time. Append a new item wherever you like in
   the file; it will still land in the right place on the page.
