@@ -79,6 +79,11 @@ const CHROME: Record<
     title: string;
     content: string;
     footer: string;
+    /* An absolute inset is measured from the padding box, so pulling a zone
+       flush with the outer edge means pulling it out by the border's width. */
+    edgeX: string;
+    edgeY: string;
+    corner: string;
     grip: string;
     control: string;
     markBox: string;
@@ -90,7 +95,11 @@ const CHROME: Record<
     content: "m-2 border-2 border-[#d8e2de] [border-style:inset]",
     control:
       "relative block size-[0.72rem] border border-[#2b443e] p-0 text-transparent transition-colors group-hover/titlebar:text-[rgb(9_22_19/0.72)]",
-    footer: "border-[#536c65] text-[#263e38]",
+    corner: "-right-[3px] -bottom-[3px] size-3.5",
+    edgeX: "-right-[3px] w-2",
+    edgeY: "-bottom-[3px] h-2",
+    footer:
+      "min-h-7 px-2.5 pr-6 text-[0.48rem] border-[#536c65] text-[#263e38]",
     frame:
       "border-[3px] border-[#263d38] border-double bg-[#b6c4be] text-[#09100f] shadow-[0_2rem_8rem_#000]",
     grip: "bg-[repeating-linear-gradient(-45deg,transparent_0_2px,#3d554f_2px_3px)]",
@@ -105,7 +114,12 @@ const CHROME: Record<
     content: "",
     control:
       "relative grid size-[0.9rem] place-items-center border border-line bg-panel p-0 text-phosphor-dim transition-colors hover:border-line-strong hover:text-phosphor-bright",
-    footer: "border-line text-phosphor-dim",
+    corner: "-right-px -bottom-px size-3",
+    edgeX: "-right-px w-1.5",
+    edgeY: "-bottom-px h-1.5",
+    /* Slimmer than the beige chromes': a status rail here is one line of
+       hairline type, not a moulded strip with a lip above and below it. */
+    footer: "min-h-5 px-2 pr-5 text-[0.4375rem] border-line text-phosphor-dim",
     frame: "border border-line bg-panel text-foreground shadow-panel",
     grip: "bg-[repeating-linear-gradient(-45deg,transparent_0_2px,var(--phosphor-dim)_2px_3px)]",
     markBox: "relative block size-[0.5rem]",
@@ -118,12 +132,16 @@ const CHROME: Record<
     bar: "border-[#1b302b] bg-[repeating-linear-gradient(#c3cfca_0_1px,#a2b4ac_1px_3px)] p-1.5 min-h-9",
     barTall: "min-h-[3.25rem]",
     content: "m-2 border-2 border-[#d8e2de] [border-style:inset]",
+    control:
+      "relative grid size-[1.15rem] place-items-center border border-t-[#e7eeeb] border-r-[#5c7269] border-b-[#5c7269] border-l-[#e7eeeb] bg-[#b6c4be] p-0 text-[#1b302b] active:border-t-[#5c7269] active:border-r-[#e7eeeb] active:border-b-[#e7eeeb] active:border-l-[#5c7269]",
     /* An outset bevel: light on the top and left, shadow on the bottom and
        right, inverting on press. That inversion is the era's entire feedback
        vocabulary, and without it the buttons are just marks on a stripe. */
-    control:
-      "relative grid size-[1.15rem] place-items-center border border-t-[#e7eeeb] border-r-[#5c7269] border-b-[#5c7269] border-l-[#e7eeeb] bg-[#b6c4be] p-0 text-[#1b302b] active:border-t-[#5c7269] active:border-r-[#e7eeeb] active:border-b-[#e7eeeb] active:border-l-[#5c7269]",
-    footer: "border-[#536c65] text-[#263e38]",
+    corner: "-right-[3px] -bottom-[3px] size-3.5",
+    edgeX: "-right-[3px] w-2",
+    edgeY: "-bottom-[3px] h-2",
+    footer:
+      "min-h-7 px-2.5 pr-6 text-[0.48rem] border-[#536c65] text-[#263e38]",
     frame:
       "border-[3px] border-[#263d38] border-double bg-[#b6c4be] text-[#09100f] shadow-[0_2rem_8rem_#000]",
     grip: "bg-[repeating-linear-gradient(-45deg,transparent_0_2px,#3d554f_2px_3px)]",
@@ -335,9 +353,10 @@ function TerminalWindow({
           ? "!h-fit grid-rows-[auto]"
           : "grid-rows-[auto_minmax(0,1fr)_auto]",
         /* Flush content leaves the grip nowhere to sit, so the terminal chrome
-           keeps a rail at the bottom for it. The heavy chromes get theirs free,
-           out of the margin around their well. */
-        variant === "terminal" && resizable && !collapsed && "pb-3.5",
+           keeps a rail at the bottom for it, unless a footer is already serving
+           as one. The heavy chromes get theirs free, out of the margin around
+           their well. */
+        variant === "terminal" && resizable && !(collapsed || footer) && "pb-3",
         className
       )}
       data-collapsed={collapsed || undefined}
@@ -428,7 +447,7 @@ function TerminalWindow({
           {footer ? (
             <div
               className={cn(
-                "flex min-h-7 items-center justify-between gap-4 border-t px-2.5 pr-6 font-bold font-mono text-[0.48rem] uppercase tracking-[0.08em]",
+                "flex items-center justify-between gap-4 border-t font-bold font-mono uppercase tracking-[0.08em]",
                 chrome.footer
               )}
               data-slot="terminal-window-footer"
@@ -446,19 +465,28 @@ function TerminalWindow({
               the keyboard, so resizing has one focus stop rather than three. */}
           <span
             aria-hidden="true"
-            className="-right-[3px] absolute inset-y-0 w-2 cursor-ew-resize touch-none"
+            className={cn(
+              "absolute inset-y-0 cursor-ew-resize touch-none",
+              chrome.edgeX
+            )}
             data-axis="x"
             onPointerDown={startResize}
           />
           <span
             aria-hidden="true"
-            className="-bottom-[3px] absolute inset-x-0 h-2 cursor-ns-resize touch-none"
+            className={cn(
+              "absolute inset-x-0 cursor-ns-resize touch-none",
+              chrome.edgeY
+            )}
             data-axis="y"
             onPointerDown={startResize}
           />
           <button
             aria-label="Resize window"
-            className="-right-[3px] -bottom-[3px] absolute z-1 size-3.5 cursor-nwse-resize touch-none border-0 bg-transparent p-0 outline-none focus-visible:outline-2 focus-visible:outline-phosphor-bright"
+            className={cn(
+              "absolute z-1 cursor-nwse-resize touch-none border-0 bg-transparent p-0 outline-none focus-visible:outline-2 focus-visible:outline-phosphor-bright",
+              chrome.corner
+            )}
             data-axis="both"
             onKeyDown={nudge}
             onPointerDown={startResize}
