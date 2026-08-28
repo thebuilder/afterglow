@@ -263,7 +263,7 @@ export function DocsSearch({ className }: { className?: string }) {
       <Trigger className={className} onIntent={load} onOpen={openSearch} />
 
       <CommandDialog
-        description="Every item in the registry, and every heading on its page."
+        description="Search components and documentation."
         onOpenChange={onOpenChange}
         open={open}
         shouldFilter={false}

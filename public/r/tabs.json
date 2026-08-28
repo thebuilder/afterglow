@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "tabs",
   "title": "Tabs",
-  "description": "Two shapes. `segment` draws rules between the triggers, and `line` is the quieter one.",
+  "description": "Two variants: joined segments and a quieter line.",
   "dependencies": [
     "@base-ui/react",
     "class-variance-authority"

@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     return {};
   }
 
-  const title = `${item.title}, afterglow`;
+  const socialTitle = `${item.title}, afterglow`;
 
   /*
     openGraph has to be restated. A page that sets only `title` inherits the
@@ -45,14 +45,21 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     preview title.
   */
   return {
+    alternates: { canonical: `${HOMEPAGE}/c/${item.name}` },
     description: item.description,
     openGraph: {
       description: item.description,
-      title,
+      siteName: "afterglow",
+      title: socialTitle,
+      type: "website",
       url: `${HOMEPAGE}/c/${item.name}`,
     },
-    title,
-    twitter: { description: item.description, title },
+    title: item.title,
+    twitter: {
+      card: "summary_large_image",
+      description: item.description,
+      title: socialTitle,
+    },
   };
 }
 
@@ -99,7 +106,7 @@ export default async function ItemPage({ params }: Params) {
 
         {doc && nests(doc.parts) ? (
           <Section id="composition" title="Composition">
-            <Prose>What goes inside what.</Prose>
+            <Prose>Component structure.</Prose>
             <CompositionTree parts={doc.parts} />
           </Section>
         ) : null}

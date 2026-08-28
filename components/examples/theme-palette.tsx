@@ -1,14 +1,14 @@
 const SWATCHES = [
-  { note: "unlit glass", token: "void" },
-  { note: "a surface on it", token: "panel" },
-  { note: "the beam", token: "phosphor" },
-  { note: "where it blooms", token: "phosphor-bright" },
-  { note: "furniture", token: "phosphor-dim" },
-  { note: "an event", token: "signal" },
-  { note: "measured", token: "amber" },
-  { note: "a category", token: "azure" },
-  { note: "and another", token: "violet" },
-  { note: "destructive", token: "ember" },
+  { note: "page background", token: "void" },
+  { note: "surfaces", token: "panel" },
+  { note: "text and controls", token: "phosphor" },
+  { note: "emphasis and glow", token: "phosphor-bright" },
+  { note: "muted text and borders", token: "phosphor-dim" },
+  { note: "actions and live states", token: "signal" },
+  { note: "metrics and warnings", token: "amber" },
+  { note: "category accent", token: "azure" },
+  { note: "category accent", token: "violet" },
+  { note: "destructive states", token: "ember" },
 ];
 
 export function ThemePalette() {

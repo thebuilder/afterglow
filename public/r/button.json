@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "button",
   "title": "Button",
-  "description": "Six variants and five sizes, set in uppercase mono. `signal` is the pink, and a page wants at most one.",
+  "description": "Six variants and five sizes in uppercase mono. Use `signal` for the primary action.",
   "dependencies": [
     "@base-ui/react",
     "class-variance-authority"

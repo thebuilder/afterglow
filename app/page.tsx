@@ -90,10 +90,9 @@ export default function Home() {
           </h1>
           <Connector />
           <p className="max-w-[60ch] text-pretty text-foreground/85 text-lg">
-            Phosphor green on unlit glass, a pink signal for the thing that is
-            actually happening, hairline borders and no corner radius anywhere.
-            A whole design system, cut into pieces you can install one at a
-            time.
+            Phosphor green on unlit glass. Pink for live signals. Hairline
+            borders. Square corners. Install the full system or add components
+            one at a time.
           </p>
           <p className="font-mono font-semibold text-[0.625rem] text-phosphor-dim uppercase tracking-[0.14em]">
             By{" "}
@@ -118,26 +117,23 @@ export default function Home() {
         </section>
 
         <section
-          className="grid scroll-mt-20 grid-cols-[minmax(0,1fr)] gap-4"
+          className="grid w-full max-w-2xl scroll-mt-20 grid-cols-[minmax(0,1fr)] gap-4"
           id="setup"
         >
           <Eyebrow>Setup</Eyebrow>
-          <h2 className="font-medium font-mono text-2xl text-phosphor-bright">
+          <h2 className="text-balance font-medium font-mono text-2xl text-phosphor-bright">
             One line in components.json
           </h2>
-          <p className="max-w-prose text-muted-foreground text-sm">
-            Register the namespace once and every item installs by name, pulling
-            whatever it depends on with it. Without it you can still install by
-            URL, but the dependencies between items will not resolve.
+          <p className="max-w-prose text-pretty text-muted-foreground text-sm">
+            Add the namespace once, then install any component by name. Registry
+            dependencies resolve automatically.
           </p>
           <pre className="overflow-x-auto border border-line bg-panel-sunken p-4 font-mono text-phosphor text-xs leading-relaxed">
             <code>{COMPONENTS_JSON}</code>
           </pre>
-          <p className="max-w-prose text-muted-foreground text-sm">
-            Install{" "}
-            <code className="text-phosphor">@{REGISTRY_NAME}/theme</code> first.
-            Everything else is drawn with its tokens and will render unstyled
-            without it.
+          <p className="max-w-prose text-pretty text-muted-foreground text-sm">
+            Direct URL installs work too, but do not resolve dependencies
+            between registry items.
           </p>
         </section>
 

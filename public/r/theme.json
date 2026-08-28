@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "theme",
   "title": "Terminal Theme",
-  "description": "The palette, type, motion and glass. One palette, no light mode.",
+  "description": "The tokens, typography, motion and CRT effects used by every component.",
   "files": [],
   "cssVars": {
     "theme": {

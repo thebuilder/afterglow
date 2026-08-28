@@ -24,16 +24,14 @@ export const structureExamples: ExampleMap = {
   avatar: [
     {
       component: AvatarDefault,
-      description:
-        "Square. A round avatar is the one element that would give a page of hairline rectangles away.",
+      description: "Initials in mono inside a bordered square.",
       name: "Default",
     },
   ],
   breadcrumb: [
     {
       component: BreadcrumbDefault,
-      description:
-        "A chevron is a control's punctuation. A slash is what the thing being described actually contains.",
+      description: "A monospace path separated by slashes.",
       name: "Default",
     },
   ],
@@ -72,24 +70,21 @@ export const structureExamples: ExampleMap = {
   "scroll-area": [
     {
       component: ScrollAreaDefault,
-      description:
-        "A hairline track and a square thumb, so a scrolling panel does not grow the operating system's furniture down one side.",
+      description: "A hairline track with a square thumb.",
       name: "Default",
     },
   ],
   sheet: [
     {
       component: SheetDefault,
-      description:
-        "The edge it slides from keeps a lit border, so an open drawer reads as a thing pulled out of the frame.",
+      description: "The sheet keeps a lit border on the edge it enters from.",
       name: "Default",
     },
   ],
   tooltip: [
     {
       component: TooltipDefault,
-      description:
-        "A plate with one lit edge. It has no arrow, because an arrow is a rounded speech shape.",
+      description: "A compact label with one lit edge and no arrow.",
       name: "Default",
     },
   ],

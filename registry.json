@@ -7,7 +7,7 @@
       "name": "theme",
       "type": "registry:theme",
       "title": "Terminal Theme",
-      "description": "The palette, type, motion and glass. One palette, no light mode.",
+      "description": "The tokens, typography, motion and CRT effects used by every component.",
       "categories": [
         "theme"
       ],
@@ -441,7 +441,7 @@
       "name": "alert-dialog",
       "type": "registry:ui",
       "title": "Alert Dialog",
-      "description": "The dialog for a decision you cannot take back. Pink throughout, so it never reads as the ordinary one.",
+      "description": "A pink confirmation dialog for destructive or irreversible actions.",
       "dependencies": [
         "@base-ui/react"
       ],
@@ -515,7 +515,7 @@
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
-      "description": "Six variants and five sizes, set in uppercase mono. `signal` is the pink, and a page wants at most one.",
+      "description": "Six variants and five sizes in uppercase mono. Use `signal` for the primary action.",
       "dependencies": [
         "@base-ui/react",
         "class-variance-authority"
@@ -745,7 +745,7 @@
       "name": "popover",
       "type": "registry:ui",
       "title": "Popover",
-      "description": "A panel that opens from the control that asked for it.",
+      "description": "A bordered panel anchored to its trigger.",
       "dependencies": [
         "@base-ui/react"
       ],
@@ -781,7 +781,7 @@
       "name": "radio-group",
       "type": "registry:ui",
       "title": "Radio Group",
-      "description": "`( )` and `(•)`. The one round shape in the set, because that is how a terminal draws radios.",
+      "description": "Terminal-style radio marks in their unchecked and checked states: `( )` and `(•)`.",
       "dependencies": [
         "@base-ui/react"
       ],
@@ -891,7 +891,7 @@
       "name": "skeleton",
       "type": "registry:ui",
       "title": "Skeleton",
-      "description": "A placeholder row in the beam's colour, because grey reads as broken rather than empty.",
+      "description": "Placeholder rows in dim phosphor.",
       "registryDependencies": [
         "@afterglow/theme"
       ],
@@ -939,7 +939,7 @@
       "name": "switch",
       "type": "registry:ui",
       "title": "Switch",
-      "description": "A squared-off rocker. The pill is the one shadcn shape this system cannot borrow.",
+      "description": "A squared-off rocker in two sizes.",
       "dependencies": [
         "@base-ui/react"
       ],
@@ -972,7 +972,7 @@
       "name": "tabs",
       "type": "registry:ui",
       "title": "Tabs",
-      "description": "Two shapes. `segment` draws rules between the triggers, and `line` is the quieter one.",
+      "description": "Two variants: joined segments and a quieter line.",
       "dependencies": [
         "@base-ui/react",
         "class-variance-authority"
@@ -991,7 +991,7 @@
       "name": "textarea",
       "type": "registry:ui",
       "title": "Textarea",
-      "description": "The input's taller form, sized to its content.",
+      "description": "A multiline field that grows with its content.",
       "registryDependencies": [
         "@afterglow/theme"
       ],
@@ -1006,7 +1006,7 @@
       "name": "toast",
       "type": "registry:ui",
       "title": "Toast",
-      "description": "Sonner in the house palette, with the theme pinned to dark.",
+      "description": "Sonner styled with the Afterglow palette.",
       "dependencies": [
         "sonner",
         "lucide-react"
@@ -1063,7 +1063,7 @@
       "name": "tooltip",
       "type": "registry:ui",
       "title": "Tooltip",
-      "description": "A plate with one lit edge. No arrow, since an arrow is a rounded speech shape.",
+      "description": "A compact label with one lit edge and no arrow.",
       "dependencies": [
         "@base-ui/react"
       ],
@@ -1111,7 +1111,7 @@
       "name": "connector",
       "type": "registry:component",
       "title": "Connector",
-      "description": "A rule running off a heading towards whatever it is about.",
+      "description": "A rule extending left or right from a heading.",
       "registryDependencies": [
         "@afterglow/theme"
       ],
@@ -1204,7 +1204,7 @@
       "name": "screen",
       "type": "registry:component",
       "title": "Screen",
-      "description": "A framed piece of tube. Dark ground, scanlines, and the falloff a curved screen has.",
+      "description": "A framed CRT surface with scanlines and curved-screen falloff.",
       "categories": [
         "effects"
       ],
@@ -1237,7 +1237,7 @@
       "name": "console",
       "type": "registry:block",
       "title": "Console",
-      "description": "A whole operator console built from the registry. Boot log, manifest, progress, status, live prompt.",
+      "description": "An operator console composed from the registry: boot log, manifest, progress, status and prompt.",
       "categories": [
         "dashboard",
         "application"

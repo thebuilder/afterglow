@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "switch",
   "title": "Switch",
-  "description": "A squared-off rocker. The pill is the one shadcn shape this system cannot borrow.",
+  "description": "A squared-off rocker in two sizes.",
   "dependencies": [
     "@base-ui/react"
   ],

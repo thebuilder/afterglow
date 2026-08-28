@@ -6,7 +6,7 @@ export function ConsoleTheBlock() {
   return (
     <div className="grid gap-4">
       <p className="max-w-prose text-muted-foreground text-sm">
-        The answer to what the pieces look like next to each other.
+        A complete operator console assembled from the registry.
       </p>
       <Button
         nativeButton={false}
