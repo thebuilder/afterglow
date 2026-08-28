@@ -153,14 +153,14 @@ export const terminalDocs: DocMap = {
           { default: "true", name: "vignette", type: "boolean" },
         ],
         summary:
-          "The frame, the glass and the corner darkening in one. Reach for `Scanlines` on its own when the thing underneath already has a frame.",
+          "The frame, glass and corner darkening in one. Use `Scanlines` alone when the underlying element already has a frame.",
       },
     ],
   },
 
   terminal: {
     notes: [
-      "A style, so it goes to `init` and not `add`. It installs the theme, every primitive, every terminal part and the block, then sets a project up around them.",
+      "`terminal` is a style preset, so install it with `shadcn init`, not `add`. It includes the theme, every primitive, every terminal component and the console block.",
     ],
     parts: [],
   },
@@ -192,7 +192,7 @@ export const terminalDocs: DocMap = {
   theme: {
     notes: [
       "Variables rather than files. It installs into a stylesheet, so there is nothing to import and nothing to copy but the CSS itself.",
-      "Install it first. Everything else in the registry is drawn with its tokens and renders unstyled without it.",
+      "Dark theme only. `:root` and `.dark` use identical token values.",
     ],
     parts: [],
   },

@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "console",
   "title": "Console",
-  "description": "A whole operator console built from the registry. Boot log, manifest, progress, status, live prompt.",
+  "description": "An operator console composed from the registry: boot log, manifest, progress, status and prompt.",
   "registryDependencies": [
     "@afterglow/alarm-button",
     "@afterglow/badge",

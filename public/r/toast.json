@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "toast",
   "title": "Toast",
-  "description": "Sonner in the house palette, with the theme pinned to dark.",
+  "description": "Sonner styled with the Afterglow palette.",
   "dependencies": [
     "sonner",
     "lucide-react"

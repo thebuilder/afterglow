@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "connector",
   "title": "Connector",
-  "description": "A rule running off a heading towards whatever it is about.",
+  "description": "A rule extending left or right from a heading.",
   "registryDependencies": [
     "@afterglow/theme"
   ],

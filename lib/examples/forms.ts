@@ -13,8 +13,7 @@ export const formExamples: ExampleMap = {
   checkbox: [
     {
       component: CheckboxDefault,
-      description:
-        "A square that fills with the beam when it is on. Of everything in a form, this is the state change worth making unmissable.",
+      description: "A square that fills with phosphor when checked.",
       name: "Default",
     },
   ],
@@ -30,7 +29,7 @@ export const formExamples: ExampleMap = {
     {
       component: RadioGroupDefault,
       description:
-        "The one round shape in the set. A terminal has always drawn radios with parentheses and checkboxes with brackets, so the convention and the aesthetic agree here.",
+        "Terminal-style radio marks in their unchecked and checked states: `( )` and `(•)`.",
       name: "Default",
     },
   ],
@@ -49,8 +48,7 @@ export const formExamples: ExampleMap = {
   switch: [
     {
       component: SwitchSizes,
-      description:
-        "A squared-off rocker. The pill is the one shadcn shape this system cannot borrow, since a rounded switch on a page of hairline rectangles is the single element that gives the theme away.",
+      description: "A squared-off rocker in two sizes.",
       name: "Sizes",
     },
   ],

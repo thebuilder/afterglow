@@ -22,7 +22,7 @@ export const terminalExamples: ExampleMap = {
     {
       component: AlarmButtonDefault,
       description:
-        "Two flashes and a rest, which is what a warning lamp does and a steady sine does not. Pointing at it answers the alarm, so the flashing stops.",
+        "Two flashes and a rest. Pointing at the button stops the alarm pattern.",
       name: "Default",
     },
   ],
@@ -68,7 +68,7 @@ export const terminalExamples: ExampleMap = {
     {
       component: LedTones,
       description:
-        "The idle lamp holds still. A dark indicator that is also animating says nothing twice.",
+        "Four status tones. The idle lamp stays still while the other tones pulse.",
       name: "Tones",
     },
   ],
@@ -96,7 +96,7 @@ export const terminalExamples: ExampleMap = {
     {
       component: TerminalTheSystemAtAGlance,
       description:
-        "One of most things, on one strip. Green carries the interface, pink is reserved for whatever is actually happening, and every edge is a hairline.",
+        "A compact strip of the system's components, colours and hairline borders.",
       name: "The system at a glance",
     },
     {
@@ -130,7 +130,7 @@ export const terminalExamples: ExampleMap = {
     {
       component: ThemePalette,
       description:
-        "One palette, no light mode. A phosphor tube has no daylight setting, so the light and dark blocks carry the same values.",
+        "Dark theme only. `:root` and `.dark` use identical token values.",
       name: "Palette",
     },
   ],

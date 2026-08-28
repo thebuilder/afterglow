@@ -7,27 +7,29 @@ import { Scanlines } from "@/registry/terminal/components/scanlines";
 import "./globals.css";
 
 const DESCRIPTION =
-  "Phosphor green on unlit glass, a pink signal for events, hairline borders and no corner radius anywhere. A shadcn registry for the old-school terminal look.";
+  "Old-school terminal UI for shadcn. Phosphor green, pink signals, hairline borders and square corners. Install the registry or add components one at a time.";
+const TITLE = "afterglow, terminal UI for shadcn";
 
 export const metadata: Metadata = {
+  alternates: { canonical: HOMEPAGE },
   description: DESCRIPTION,
   /*
-    Without a base, `opengraph-image` resolves to a relative URL and no crawler
-    can fetch it. Every item page inherits this and only overrides the title.
+    `metadataBase` gives the file-based Open Graph images absolute URLs that
+    crawlers can fetch.
   */
   metadataBase: new URL(HOMEPAGE),
   openGraph: {
     description: DESCRIPTION,
     siteName: "afterglow",
-    title: "afterglow, a shadcn registry",
+    title: TITLE,
     type: "website",
     url: HOMEPAGE,
   },
-  title: "afterglow, a shadcn registry",
+  title: { default: TITLE, template: "%s, afterglow" },
   twitter: {
     card: "summary_large_image",
     description: DESCRIPTION,
-    title: "afterglow, a shadcn registry",
+    title: TITLE,
   },
 };
 

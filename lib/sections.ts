@@ -18,29 +18,28 @@ export interface Section {
 
 const SECTIONS: Section[] = [
   {
-    blurb:
-      "One palette, no light mode. A phosphor tube has no daylight setting, so the light and dark blocks carry the same values and toggling a theme class does nothing.",
+    blurb: "One dark palette, shared by every component.",
     id: "theme",
     title: "Theme",
     types: ["registry:theme"],
   },
   {
     blurb:
-      "shadcn's components, redrawn. Same props, same slots, same accessibility work, set in mono with hairline borders and no corner radius. A stock shadcn component dropped into a project running the theme goes sharp on its own.",
+      "shadcn primitives, redrawn for Afterglow. Monospace type, hairline borders, square corners and stepped motion.",
     id: "primitives",
     title: "Primitives",
     types: ["registry:ui"],
   },
   {
     blurb:
-      "The parts that make it a tube rather than a dark theme. The glass, the lamp, the window chrome, the log that prints itself.",
+      "CRT-specific components for scanlines, screens, status lights, prompts, boot logs and window chrome.",
     id: "terminal",
     title: "Terminal",
     types: ["registry:component"],
   },
   {
     blurb:
-      "A composed page to look at, and a style that installs the system in one go.",
+      "A complete registry preset and an operator console composed from the same parts.",
     id: "whole",
     title: "The whole thing",
     types: ["registry:block", "registry:style"],

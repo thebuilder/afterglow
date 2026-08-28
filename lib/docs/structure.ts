@@ -34,7 +34,7 @@ export const structureDocs: DocMap = {
               {
                 name: "AccordionContent",
                 summary:
-                  "Base UI's `Panel`. It measures itself, so the open and close both animate to the height of the content rather than to a number written down somewhere.",
+                  "Base UI's `Panel`. Measures its content and animates to the actual height.",
               },
             ],
           },
@@ -249,7 +249,7 @@ export const structureDocs: DocMap = {
           {
             name: "ScrollBar",
             summary:
-              "`ScrollArea` renders the vertical one already. Reach for this to add the horizontal one.",
+              "`ScrollArea` renders the vertical one. Add this part for a horizontal scrollbar.",
           },
         ],
       },
@@ -294,7 +294,7 @@ export const structureDocs: DocMap = {
       {
         name: "TooltipProvider",
         summary:
-          "`Tooltip` mounts one of these for itself, so reach for it only to set a shared `delay` across a group of tooltips. The default is 0.",
+          "Each `Tooltip` creates its own provider. Use `TooltipProvider` only to set a shared `delay` across a group. The default is 0.",
       },
       {
         name: "Tooltip",
