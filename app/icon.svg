@@ -1,0 +1,23 @@
+<svg
+  height="32"
+  viewBox="0 0 32 32"
+  width="32"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title>afterglow</title>
+  <rect fill="#05090a" height="32" width="32" />
+  <!--
+    A prompt drawn rather than set, because at 16px a glyph is at the mercy of
+    the rasteriser. Coordinates are even and the caps are square. A rounded cap
+    or an odd offset lands on a half pixel and the chevron comes back blurred.
+  -->
+  <path
+    d="M7 10 L14 16 L7 22"
+    fill="none"
+    stroke="#86fadd"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+    stroke-width="5"
+  />
+  <rect fill="#86fadd" height="4" width="10" x="18" y="20" />
+</svg>
