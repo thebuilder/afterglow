@@ -9,7 +9,6 @@ import {
   type RegistryItem,
 } from "@/lib/registry";
 import { Connector } from "@/registry/terminal/components/connector";
-import { Eyebrow } from "@/registry/terminal/components/eyebrow";
 import { Badge } from "@/registry/terminal/ui/badge";
 
 /**
@@ -34,13 +33,12 @@ export function ItemHeader({
 
   return (
     <header className="grid grid-cols-[minmax(0,1fr)] gap-4 pt-10">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <Eyebrow caret>{item.name}</Eyebrow>
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <h1 className="min-w-0 flex-1 text-balance font-extrabold text-[clamp(2rem,6vw,3.25rem)] leading-[0.95] tracking-[-0.03em]">
+          {item.title}
+        </h1>
         <PageActions name={item.name} url={HOMEPAGE} />
       </div>
-      <h1 className="text-balance font-extrabold text-[clamp(2rem,6vw,3.25rem)] leading-[0.95] tracking-[-0.03em]">
-        {item.title}
-      </h1>
       <Connector />
       <Prose className="max-w-[52ch] text-foreground/85 text-lg">
         {item.description}
