@@ -314,7 +314,7 @@ export const structureExamples: ExampleMap = {
   "scroll-area": [
     {
       description:
-        "A track and a block, so a scrolling panel does not grow the operating system's furniture down one side.",
+        "A hairline track and a square thumb, so a scrolling panel does not grow the operating system's furniture down one side.",
       name: "Default",
       node: (
         <ScrollArea className="h-36 w-full max-w-sm border border-line bg-panel">
@@ -359,7 +359,7 @@ export const structureExamples: ExampleMap = {
   tooltip: [
     {
       description:
-        "A plate with one lit edge rather than a bubble with a tail. No arrow, because an arrow is a rounded speech shape.",
+        "A plate with one lit edge. It has no arrow, because an arrow is a rounded speech shape.",
       name: "Default",
       node: (
         <Tooltip>

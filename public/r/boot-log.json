@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "boot-log",
   "title": "Boot Log",
-  "description": "A self test printing itself. Every line is in the DOM from the first frame so the block reaches its final height before anything animates, and the caret stops when the log does.",
+  "description": "A self test that prints itself line by line. Every line is in the DOM from the first frame, so the block is its final height before anything moves.",
   "registryDependencies": [
     "@afterglow/theme"
   ],

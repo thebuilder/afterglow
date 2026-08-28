@@ -40,6 +40,9 @@ Biome is configured to ignore all three.
 - A new item needs three things: the file, an entry in `registry.json`, and an
   entry in one of the `components/examples/*.tsx` maps keyed by its name.
   Missing the third throws at render rather than shipping a blank card.
+- Items are ordered alphabetically within their type in `registry.json`, and
+  `itemsOfType` sorts again at read time. Append a new item wherever you like in
+  the file; it will still land in the right place on the page.
 - Primitives are built on Base UI (`@base-ui/react`), not Radix. Composition is
   `render` rather than `asChild`; overlays are `Portal > Positioner > Popup`;
   the dialog scrim is `Backdrop`, not `Overlay`; and state is `data-open` /
@@ -54,7 +57,8 @@ Biome is configured to ignore all three.
 ### Verifying a change to the payload
 
 Type-checking the site does not prove the registry works, because the site
-imports the source directly and a consumer does not. To check the real path:
+imports the source directly and a consumer does not. To check the real path,
+run:
 
 ```sh
 pnpm registry:build
@@ -109,8 +113,15 @@ not catch it.
   `theme` item in `registry.json`. All three are generated.
 - Always ask before: pushing, or changing the registry `name` or `homepage`.
   Both are baked into every install command the site and README print.
-- Preferred style: comments say why, not what, and are worth writing where a
-  decision would otherwise read as an accident. Never use em dashes.
+- Comments say why, not what, and are worth writing where a decision would
+  otherwise read as an accident.
+- Never use em dashes, in code, comments or prose. Commas or full stops instead.
+- Run any prose through the `unslop` skill before committing it. That covers
+  registry item descriptions, example descriptions, the site's copy, this file
+  and the README, all of which are read by people evaluating the registry. Two
+  habits this codebase keeps slipping back into: the colon used as a mid-sentence
+  connector, and the "X, not Y" construction, which stops being a point once
+  every third description makes it.
 
 ---
 

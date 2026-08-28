@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "dialog",
   "title": "Dialog",
-  "description": "Opens in four steps rather than on a curve, with one pass of the beam down the panel. The scrim desaturates as well as darkens, so the green behind it stops competing.",
+  "description": "Opens in four steps rather than on a curve, with one pass of the beam down the panel. The scrim desaturates as well as darkens so the green behind it stops competing.",
   "dependencies": [
     "@base-ui/react",
     "lucide-react"

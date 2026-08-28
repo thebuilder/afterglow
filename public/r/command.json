@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "command",
   "title": "Command",
-  "description": "A palette is a prompt: a sigil, a line you type on, and a list that narrows as you type. The component this registry was always going to be best at.",
+  "description": "A command palette: a search line and a list that narrows as you type, with groups, shortcuts and a dialog wrapper. The thing this registry is best at.",
   "dependencies": [
     "cmdk",
     "lucide-react"

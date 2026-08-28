@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "badge",
   "title": "Badge",
-  "description": "A readout, not a pill. Eight variants covering the category colours, so a legend can have more than two entries.",
+  "description": "A small bordered rectangle of tracked-out mono for a status or a count. Eight variants, so a legend can run to more than two colours.",
   "dependencies": [
     "@base-ui/react",
     "class-variance-authority"

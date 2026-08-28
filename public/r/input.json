@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "input",
   "title": "Input",
-  "description": "A line you type on: hairline box, mono text, phosphor caret. Focus moves the border rather than adding a ring.",
+  "description": "A hairline field in mono with a phosphor caret. Focus brightens the border instead of adding a ring, which at this contrast would look like a second border.",
   "registryDependencies": [
     "@afterglow/theme"
   ],

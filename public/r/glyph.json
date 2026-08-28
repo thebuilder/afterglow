@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "glyph",
   "title": "Glyph",
-  "description": "A file marker: a box in the category's colour with the corner turned up. Everything is derived from one hex value with color-mix, so a new category is one token.",
+  "description": "A file marker: a bordered box in the category's colour with one corner turned up. Eight categories, and a new one is a single hex value.",
   "registryDependencies": [
     "@afterglow/theme"
   ],

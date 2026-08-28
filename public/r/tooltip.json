@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "tooltip",
   "title": "Tooltip",
-  "description": "A plate with one lit edge rather than a bubble with a tail. No arrow, because an arrow is a rounded speech shape.",
+  "description": "A plate with one lit edge. No arrow, since an arrow is a rounded speech shape.",
   "dependencies": [
     "@base-ui/react"
   ],

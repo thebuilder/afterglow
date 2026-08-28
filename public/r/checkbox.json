@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "checkbox",
   "title": "Checkbox",
-  "description": "`[ ]` and `[x]`. Square, sharp, and filled with the beam when it is on, which is the one state change worth making unmissable in a form.",
+  "description": "`[ ]` and `[x]`. A square that fills with the beam when it is on.",
   "dependencies": [
     "@base-ui/react"
   ],

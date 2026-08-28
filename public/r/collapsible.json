@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "collapsible",
   "title": "Collapsible",
-  "description": "The unstyled half of the accordion, for when the trigger is something you have drawn yourself.",
+  "description": "The accordion without the styling, for when you have drawn the trigger yourself.",
   "dependencies": [
     "@base-ui/react"
   ],

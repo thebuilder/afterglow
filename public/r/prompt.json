@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "prompt",
   "title": "Prompt",
-  "description": "A shell line: sigil, field and caret on one row with no border between them, because a prompt is a line of text part of which happens to be editable.",
+  "description": "A shell line. Sigil, field and caret share one row with no border between them, because a prompt is a line of text that happens to be editable.",
   "registryDependencies": [
     "@afterglow/theme"
   ],

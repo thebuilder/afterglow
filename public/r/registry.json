@@ -7,7 +7,7 @@
       "name": "theme",
       "type": "registry:theme",
       "title": "Terminal Theme",
-      "description": "The palette, type, motion and glass. Phosphor green on unlit glass, a pink signal for events, hairline borders and no corner radius anywhere. Install this first: every other item is drawn with its tokens.",
+      "description": "The palette, type, motion and glass. Phosphor green on unlit glass, a pink signal for events, hairline borders, no corner radius anywhere. Install it first, because every other item is drawn with its tokens.",
       "categories": [
         "theme"
       ],
@@ -401,12 +401,30 @@
       }
     },
     {
-      "name": "button",
+      "name": "accordion",
       "type": "registry:ui",
-      "title": "Button",
-      "description": "Mono, uppercase and tracked out, so a control never reads as a word. The default is the beam; the signal variant is the pink, and a page should hold at most one.",
+      "title": "Accordion",
+      "description": "Sections that open one at a time or many. The marker is a plus that rotates into a minus, which is how a terminal has always written the two states down.",
       "dependencies": [
         "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/accordion.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "A notice with a lit left edge and an icon in the same colour. Four tones. The edge carries the colour so the copy stays green and readable.",
+      "dependencies": [
         "class-variance-authority"
       ],
       "registryDependencies": [
@@ -414,46 +432,34 @@
       ],
       "files": [
         {
-          "path": "registry/terminal/ui/button.tsx",
+          "path": "registry/terminal/ui/alert.tsx",
           "type": "registry:ui"
         }
       ]
     },
     {
-      "name": "input",
+      "name": "alert-dialog",
       "type": "registry:ui",
-      "title": "Input",
-      "description": "A line you type on: hairline box, mono text, phosphor caret. Focus moves the border rather than adding a ring.",
+      "title": "Alert Dialog",
+      "description": "The dialog for a decision you cannot take back. Pink title, pink-edged panel, pink confirm, so it never looks like the ordinary one.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
       "registryDependencies": [
-        "@afterglow/theme"
+        "@afterglow/button"
       ],
       "files": [
         {
-          "path": "registry/terminal/ui/input.tsx",
+          "path": "registry/terminal/ui/alert-dialog.tsx",
           "type": "registry:ui"
         }
       ]
     },
     {
-      "name": "textarea",
+      "name": "avatar",
       "type": "registry:ui",
-      "title": "Textarea",
-      "description": "The input's taller form, sized to its content so a growing draft does not sit in a fixed box with its own scrollbar.",
-      "registryDependencies": [
-        "@afterglow/theme"
-      ],
-      "files": [
-        {
-          "path": "registry/terminal/ui/textarea.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "label",
-      "type": "registry:ui",
-      "title": "Label",
-      "description": "The field's name, set as an eyebrow: small, tracked out, phosphor.",
+      "title": "Avatar",
+      "description": "Initials in mono inside a bordered square. Round would be the one soft shape on a page of hairlines.",
       "dependencies": [
         "@base-ui/react"
       ],
@@ -462,22 +468,7 @@
       ],
       "files": [
         {
-          "path": "registry/terminal/ui/label.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "card",
-      "type": "registry:ui",
-      "title": "Card",
-      "description": "A panel on the glass, with a coloured left edge driven by a single accent property, and a top rule that runs the accent across its first third when a card needs a masthead.",
-      "registryDependencies": [
-        "@afterglow/theme"
-      ],
-      "files": [
-        {
-          "path": "registry/terminal/ui/card.tsx",
+          "path": "registry/terminal/ui/avatar.tsx",
           "type": "registry:ui"
         }
       ]
@@ -486,7 +477,7 @@
       "name": "badge",
       "type": "registry:ui",
       "title": "Badge",
-      "description": "A readout, not a pill. Eight variants covering the category colours, so a legend can have more than two entries.",
+      "description": "A small bordered rectangle of tracked-out mono for a status or a count. Eight variants, so a legend can run to more than two colours.",
       "dependencies": [
         "@base-ui/react",
         "class-variance-authority"
@@ -502,10 +493,118 @@
       ]
     },
     {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "description": "A path in mono, separated by slashes, with the current segment in white. Slashes because that is what the thing being described actually contains.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/breadcrumb.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Six variants and five sizes, set in uppercase mono so a control never reads as a word. The default is the beam; `signal` is the pink, and a page wants at most one.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "A panel on the glass with a coloured left edge. One `accent` property drives that edge and the title. `CardAccent` adds a top rule when a card has to be read first.",
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "`[ ]` and `[x]`. A square that fills with the beam when it is on.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/checkbox.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "title": "Collapsible",
+      "description": "The accordion without the styling, for when you have drawn the trigger yourself.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/collapsible.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "title": "Command",
+      "description": "A command palette: a search line and a list that narrows as you type, with groups, shortcuts and a dialog wrapper. The thing this registry is best at.",
+      "dependencies": [
+        "cmdk",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@afterglow/dialog"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/command.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "dialog",
       "type": "registry:ui",
       "title": "Dialog",
-      "description": "Opens in four steps rather than on a curve, with one pass of the beam down the panel. The scrim desaturates as well as darkens, so the green behind it stops competing.",
+      "description": "Opens in four steps rather than on a curve, with one pass of the beam down the panel. The scrim desaturates as well as darkens so the green behind it stops competing.",
       "dependencies": [
         "@base-ui/react",
         "lucide-react"
@@ -521,27 +620,30 @@
       ]
     },
     {
-      "name": "table",
+      "name": "dropdown-menu",
       "type": "registry:ui",
-      "title": "Table",
-      "description": "A manifest: mono throughout, hairline rules, an is-numeric cell class that puts measured values in amber and lines them up, and an opt-in sticky header for tables that scroll inside their own box.",
+      "title": "Dropdown Menu",
+      "description": "Items, checkbox and radio items, submenus, and shortcut hints set in the same mono as the keys they name.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
       "registryDependencies": [
         "@afterglow/theme"
       ],
       "files": [
         {
-          "path": "registry/terminal/ui/table.tsx",
+          "path": "registry/terminal/ui/dropdown-menu.tsx",
           "type": "registry:ui"
         }
       ]
     },
     {
-      "name": "tabs",
+      "name": "empty",
       "type": "registry:ui",
-      "title": "Tabs",
-      "description": "Two shapes. Segment builds the rules between triggers out of a one-pixel gap in the list's own background; line is the quieter one for navigation.",
+      "title": "Empty",
+      "description": "A dashed hairline box for a list with nothing in it. Dashed, because a solid box around emptiness reads as a panel that failed to load.",
       "dependencies": [
-        "@base-ui/react",
         "class-variance-authority"
       ],
       "registryDependencies": [
@@ -549,148 +651,22 @@
       ],
       "files": [
         {
-          "path": "registry/terminal/ui/tabs.tsx",
+          "path": "registry/terminal/ui/empty.tsx",
           "type": "registry:ui"
         }
       ]
     },
     {
-      "name": "separator",
+      "name": "input",
       "type": "registry:ui",
-      "title": "Separator",
-      "description": "One pixel of the border colour, in either orientation.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "title": "Input",
+      "description": "A hairline field in mono with a phosphor caret. Focus brightens the border instead of adding a ring, which at this contrast would look like a second border.",
       "registryDependencies": [
         "@afterglow/theme"
       ],
       "files": [
         {
-          "path": "registry/terminal/ui/separator.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "kbd",
-      "type": "registry:ui",
-      "title": "Kbd",
-      "description": "A key with two pixels of implied depth under it, which is what separates something you press from a badge. Pass `glyph` for the symbol keys, which need a larger type scale to read at all.",
-      "registryDependencies": [
-        "@afterglow/theme"
-      ],
-      "files": [
-        {
-          "path": "registry/terminal/ui/kbd.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "progress",
-      "type": "registry:ui",
-      "title": "Progress",
-      "description": "Three pixels of track and a light in it. Pass indeterminate for a segment that sweeps and leaves, rather than a bar that creeps to ninety percent and stops.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
-      "registryDependencies": [
-        "@afterglow/theme"
-      ],
-      "files": [
-        {
-          "path": "registry/terminal/ui/progress.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "checkbox",
-      "type": "registry:ui",
-      "title": "Checkbox",
-      "description": "`[ ]` and `[x]`. Square, sharp, and filled with the beam when it is on, which is the one state change worth making unmissable in a form.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
-      "registryDependencies": [
-        "@afterglow/theme"
-      ],
-      "files": [
-        {
-          "path": "registry/terminal/ui/checkbox.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "radio-group",
-      "type": "registry:ui",
-      "title": "Radio Group",
-      "description": "`( )` and `(•)`. The one round shape in the set, deliberately: a terminal has always drawn radios with parentheses and checkboxes with brackets, so the convention and the aesthetic agree.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
-      "registryDependencies": [
-        "@afterglow/theme"
-      ],
-      "files": [
-        {
-          "path": "registry/terminal/ui/radio-group.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "switch",
-      "type": "registry:ui",
-      "title": "Switch",
-      "description": "A rocker, not a pill. The pill is the one shape this system cannot borrow, and a rounded switch on a page of hairline rectangles is the single element that gives the theme away.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
-      "registryDependencies": [
-        "@afterglow/theme"
-      ],
-      "files": [
-        {
-          "path": "registry/terminal/ui/switch.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "select",
-      "type": "registry:ui",
-      "title": "Select",
-      "description": "A trigger that reads as a field and a list whose selected row carries a lit left edge as well as a tick.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
-      "registryDependencies": [
-        "@afterglow/theme"
-      ],
-      "files": [
-        {
-          "path": "registry/terminal/ui/select.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "slider",
-      "type": "registry:ui",
-      "title": "Slider",
-      "description": "A fader: hairline track, lit range, and a square handle taller than the track rather than a circle sitting on it.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
-      "registryDependencies": [
-        "@afterglow/theme"
-      ],
-      "files": [
-        {
-          "path": "registry/terminal/ui/slider.tsx",
+          "path": "registry/terminal/ui/input.tsx",
           "type": "registry:ui"
         }
       ]
@@ -699,7 +675,7 @@
       "name": "input-otp",
       "type": "registry:ui",
       "title": "Input OTP",
-      "description": "One cell per character with a real caret in the active one, drawn rather than inherited because the field behind the cells is a single invisible input.",
+      "description": "One cell per character, with a drawn caret in the active one. The field behind the cells is a single invisible input and has no caret to lend them.",
       "dependencies": [
         "input-otp",
         "lucide-react"
@@ -715,10 +691,341 @@
       ]
     },
     {
+      "name": "kbd",
+      "type": "registry:ui",
+      "title": "Kbd",
+      "description": "A key with two pixels of implied depth under it. Pass `glyph` for `⌘`, `⇧` and `↵`: at the letter size those symbols paint about half the ink of a letter and read as smudges.",
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/kbd.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "A field's name, set as an eyebrow. Small, tracked out, phosphor.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/label.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "Page numbers as joined cells, so a run of them reads as one control rather than a row of loose buttons.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@afterglow/button"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/pagination.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "A panel that opens from the control that asked for it, in the same four steps as the dialog.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/popover.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "Three pixels of track and a light in it. Pass `indeterminate` for a segment that sweeps and leaves, which is the honest shape for a wait of unknown length.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/progress.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio Group",
+      "description": "`( )` and `(•)`. The one round shape in the set, because a terminal has always drawn radios with parentheses and checkboxes with brackets.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/radio-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "resizable",
+      "type": "registry:ui",
+      "title": "Resizable",
+      "description": "Panels split by a hairline that lights when you take hold of it. The hit area is four times the width of the visible line.",
+      "dependencies": [
+        "react-resizable-panels",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/resizable.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "title": "Scroll Area",
+      "description": "A hairline track and a square thumb, so a scrolling panel does not grow the operating system's furniture down one side.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/scroll-area.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "A trigger that reads as a field, and a list whose chosen row carries a lit left edge as well as a tick.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/select.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "One pixel of the border colour, horizontal or vertical.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/separator.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "A drawer from any of the four edges. The edge it slides from keeps a lit border, so it reads as something pulled out of the frame.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/sheet.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "A placeholder row in the beam's colour. Grey would read as a broken element rather than an empty one.",
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/skeleton.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "title": "Slider",
+      "description": "A hairline track, a lit range, and a square handle standing taller than the track. Single value or range.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/slider.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "A lit pixel travelling a 3x3 grid, four brightness levels trailing behind it. Eight hops to the lap, because a character display picks an intensity rather than fading through them.",
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/spinner.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "A squared-off rocker. The pill is the most rounded control in the shadcn set and the one shape that would give this theme away.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/switch.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "A manifest in mono with hairline rules. Add `is-numeric` to a cell for amber tabular figures, and `stickyHeader` when the table scrolls inside its own box.",
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/table.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "Two shapes. `segment` builds the rules between triggers from a one-pixel gap in the list's background; `line` is the quieter one, for navigation.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/tabs.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "The input's taller form, sized to its content so a growing draft never sits in a fixed box with its own scrollbar.",
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/textarea.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "Sonner in the house palette, with the theme pinned to dark. One palette by design, so there is no provider to ask.",
+      "dependencies": [
+        "sonner",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@afterglow/spinner"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/toast.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "toggle",
       "type": "registry:ui",
       "title": "Toggle",
-      "description": "A button that stays down. Same mono and tracking as the others, so a pressed state reads as a state rather than a hover that stuck.",
+      "description": "A button that stays down. Same mono and tracking as the rest, so a pressed state reads as a state.",
       "dependencies": [
         "@base-ui/react",
         "class-variance-authority"
@@ -737,7 +1044,7 @@
       "name": "toggle-group",
       "type": "registry:ui",
       "title": "Toggle Group",
-      "description": "Joined the way the tabs are: the rules between items are a one-pixel gap in the group's own background rather than borders that have to be turned off at the ends.",
+      "description": "Toggles joined the way the segmented tabs are, with the rules between them coming from a one-pixel gap in the group's background.",
       "dependencies": [
         "@base-ui/react",
         "class-variance-authority"
@@ -753,131 +1060,10 @@
       ]
     },
     {
-      "name": "alert",
-      "type": "registry:ui",
-      "title": "Alert",
-      "description": "A notice drawn as a panel with a lit edge rather than a tinted box. On this palette a filled alert is a block of colour with green type on it, and the type is the part that has to stay readable.",
-      "dependencies": [
-        "class-variance-authority"
-      ],
-      "registryDependencies": [
-        "@afterglow/theme"
-      ],
-      "files": [
-        {
-          "path": "registry/terminal/ui/alert.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "alert-dialog",
-      "type": "registry:ui",
-      "title": "Alert Dialog",
-      "description": "The dialog for a decision that cannot be taken back, in the signal colour throughout: pink title, pink-edged panel, pink confirm.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
-      "registryDependencies": [
-        "@afterglow/button"
-      ],
-      "files": [
-        {
-          "path": "registry/terminal/ui/alert-dialog.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "toast",
-      "type": "registry:ui",
-      "title": "Toast",
-      "description": "Sonner in the house palette, with the theme pinned to dark. This system has one palette by design, so asking a theme provider which of two looks to use would be a dependency added to answer a question with one answer.",
-      "dependencies": [
-        "sonner",
-        "lucide-react"
-      ],
-      "registryDependencies": [
-        "@afterglow/spinner"
-      ],
-      "files": [
-        {
-          "path": "registry/terminal/ui/toast.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "skeleton",
-      "type": "registry:ui",
-      "title": "Skeleton",
-      "description": "A row that has not arrived yet. Sharp, faint, and the beam's colour rather than grey: a neutral placeholder on this palette reads as a broken element instead of an empty one.",
-      "registryDependencies": [
-        "@afterglow/theme"
-      ],
-      "files": [
-        {
-          "path": "registry/terminal/ui/skeleton.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "spinner",
-      "type": "registry:ui",
-      "title": "Spinner",
-      "description": "A lit pixel travelling a 3x3 grid with a four-level trail decaying behind it. A rotating ring is a smooth analogue sweep, and this system draws with cells.",
-      "registryDependencies": [
-        "@afterglow/theme"
-      ],
-      "files": [
-        {
-          "path": "registry/terminal/ui/spinner.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "empty",
-      "type": "registry:ui",
-      "title": "Empty",
-      "description": "Nothing here, said deliberately. A dashed hairline rather than a solid one: a solid box around emptiness reads as a panel that failed to load.",
-      "dependencies": [
-        "class-variance-authority"
-      ],
-      "registryDependencies": [
-        "@afterglow/theme"
-      ],
-      "files": [
-        {
-          "path": "registry/terminal/ui/empty.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "popover",
-      "type": "registry:ui",
-      "title": "Popover",
-      "description": "A panel on the glass, opened in four steps from the control that asked for it.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
-      "registryDependencies": [
-        "@afterglow/theme"
-      ],
-      "files": [
-        {
-          "path": "registry/terminal/ui/popover.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
       "name": "tooltip",
       "type": "registry:ui",
       "title": "Tooltip",
-      "description": "A plate with one lit edge rather than a bubble with a tail. No arrow, because an arrow is a rounded speech shape.",
+      "description": "A plate with one lit edge. No arrow, since an arrow is a rounded speech shape.",
       "dependencies": [
         "@base-ui/react"
       ],
@@ -892,188 +1078,107 @@
       ]
     },
     {
-      "name": "dropdown-menu",
-      "type": "registry:ui",
-      "title": "Dropdown Menu",
-      "description": "The full menu surface, including checkbox and radio items, submenus and shortcut hints set in the same mono as the keys they name.",
-      "dependencies": [
-        "@base-ui/react",
-        "lucide-react"
-      ],
-      "registryDependencies": [
-        "@afterglow/theme"
-      ],
-      "files": [
-        {
-          "path": "registry/terminal/ui/dropdown-menu.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "sheet",
-      "type": "registry:ui",
-      "title": "Sheet",
-      "description": "A drawer from any of the four edges. The edge it slides from keeps a lit border, so an open drawer reads as a thing pulled out of the frame.",
-      "dependencies": [
-        "@base-ui/react",
-        "lucide-react"
-      ],
-      "registryDependencies": [
-        "@afterglow/theme"
-      ],
-      "files": [
-        {
-          "path": "registry/terminal/ui/sheet.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "command",
-      "type": "registry:ui",
-      "title": "Command",
-      "description": "A palette is a prompt: a sigil, a line you type on, and a list that narrows as you type. The component this registry was always going to be best at.",
-      "dependencies": [
-        "cmdk",
-        "lucide-react"
-      ],
-      "registryDependencies": [
-        "@afterglow/dialog"
-      ],
-      "files": [
-        {
-          "path": "registry/terminal/ui/command.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "accordion",
-      "type": "registry:ui",
-      "title": "Accordion",
-      "description": "A plus that becomes a minus, not a chevron that spins. `+` and `−` are the two states written down, which is what a row of collapsed sections in a terminal has always looked like.",
-      "dependencies": [
-        "@base-ui/react",
-        "lucide-react"
-      ],
-      "registryDependencies": [
-        "@afterglow/theme"
-      ],
-      "files": [
-        {
-          "path": "registry/terminal/ui/accordion.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "collapsible",
-      "type": "registry:ui",
-      "title": "Collapsible",
-      "description": "The unstyled half of the accordion, for when the trigger is something you have drawn yourself.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
-      "registryDependencies": [
-        "@afterglow/theme"
-      ],
-      "files": [
-        {
-          "path": "registry/terminal/ui/collapsible.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "avatar",
-      "type": "registry:ui",
-      "title": "Avatar",
-      "description": "Square. A round avatar is the one element that would give a page of hairline rectangles away, and initials in mono inside a bordered box is how an operator is identified on a terminal anyway.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
-      "registryDependencies": [
-        "@afterglow/theme"
-      ],
-      "files": [
-        {
-          "path": "registry/terminal/ui/avatar.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "breadcrumb",
-      "type": "registry:ui",
-      "title": "Breadcrumb",
-      "description": "A path, drawn as one: mono, slash-separated, current segment in white. A chevron is a control's punctuation; a slash is what the thing being described actually contains.",
-      "dependencies": [
-        "@base-ui/react",
-        "lucide-react"
-      ],
-      "registryDependencies": [
-        "@afterglow/theme"
-      ],
-      "files": [
-        {
-          "path": "registry/terminal/ui/breadcrumb.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "pagination",
-      "type": "registry:ui",
-      "title": "Pagination",
-      "description": "Joined cells rather than floating buttons, so a run of page numbers reads as one control.",
-      "dependencies": [
-        "lucide-react"
-      ],
+      "name": "alarm-button",
+      "type": "registry:component",
+      "title": "Alarm Button",
+      "description": "Two flashes and a rest, which is what a warning lamp does and a steady sine does not. Pointing at it answers the alarm, so the flashing stops.",
       "registryDependencies": [
         "@afterglow/button"
       ],
       "files": [
         {
-          "path": "registry/terminal/ui/pagination.tsx",
-          "type": "registry:ui"
+          "path": "registry/terminal/components/alarm-button.tsx",
+          "type": "registry:component"
         }
       ]
     },
     {
-      "name": "scroll-area",
-      "type": "registry:ui",
-      "title": "Scroll Area",
-      "description": "A track and a block, not a rounded lozenge, so a scrolling panel does not grow the operating system's furniture down one side.",
-      "dependencies": [
-        "@base-ui/react"
-      ],
+      "name": "boot-log",
+      "type": "registry:component",
+      "title": "Boot Log",
+      "description": "A self test that prints itself line by line. Every line is in the DOM from the first frame, so the block is its final height before anything moves.",
       "registryDependencies": [
         "@afterglow/theme"
       ],
       "files": [
         {
-          "path": "registry/terminal/ui/scroll-area.tsx",
-          "type": "registry:ui"
+          "path": "registry/terminal/components/boot-log.tsx",
+          "type": "registry:component"
         }
       ]
     },
     {
-      "name": "resizable",
-      "type": "registry:ui",
-      "title": "Resizable",
-      "description": "Panels split by a hairline that lights when you take hold of it. The hit area is four times the width of the visible line, so the thing you aim at is bigger than the thing you see.",
-      "dependencies": [
-        "react-resizable-panels",
-        "lucide-react"
-      ],
+      "name": "connector",
+      "type": "registry:component",
+      "title": "Connector",
+      "description": "A rule running off a heading towards whatever it is about, with a square at the end it starts from.",
       "registryDependencies": [
         "@afterglow/theme"
       ],
       "files": [
         {
-          "path": "registry/terminal/ui/resizable.tsx",
-          "type": "registry:ui"
+          "path": "registry/terminal/components/connector.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "eyebrow",
+      "type": "registry:component",
+      "title": "Eyebrow",
+      "description": "The tracked-out line above a heading, with an optional block caret. The caret is a styled box, so it lands exactly where you asked rather than wherever the font puts a `▋`.",
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/components/eyebrow.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "glyph",
+      "type": "registry:component",
+      "title": "Glyph",
+      "description": "A file marker: a bordered box in the category's colour with one corner turned up. Eight categories, and a new one is a single hex value.",
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/components/glyph.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "led",
+      "type": "registry:component",
+      "title": "LED",
+      "description": "A status lamp and the line it sits in. Four tones, and the idle one holds still.",
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/components/led.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "prompt",
+      "type": "registry:component",
+      "title": "Prompt",
+      "description": "A shell line. Sigil, field and caret share one row with no border between them, because a prompt is a line of text that happens to be editable.",
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/components/prompt.tsx",
+          "type": "registry:component"
         }
       ]
     },
@@ -1081,7 +1186,7 @@
       "name": "scanlines",
       "type": "registry:component",
       "title": "Scanlines",
-      "description": "The glass over the picture. Two densities, an optional vignette, and a multiply blend so the lines darken what is under them instead of laying a film on top.",
+      "description": "The glass. Two densities, an optional vignette, and a multiply blend so the lines darken what is under them instead of laying a film on top.",
       "categories": [
         "effects"
       ],
@@ -1099,7 +1204,7 @@
       "name": "screen",
       "type": "registry:component",
       "title": "Screen",
-      "description": "A framed piece of tube: dark ground, glass, and the corner falloff a curved screen has and a flat rectangle does not.",
+      "description": "A framed piece of tube: dark ground, scanlines, and the corner falloff a curved screen has.",
       "categories": [
         "effects"
       ],
@@ -1114,100 +1219,10 @@
       ]
     },
     {
-      "name": "boot-log",
-      "type": "registry:component",
-      "title": "Boot Log",
-      "description": "A self test printing itself. Every line is in the DOM from the first frame so the block reaches its final height before anything animates, and the caret stops when the log does.",
-      "registryDependencies": [
-        "@afterglow/theme"
-      ],
-      "files": [
-        {
-          "path": "registry/terminal/components/boot-log.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "led",
-      "type": "registry:component",
-      "title": "LED",
-      "description": "The lamp, and the status line it belongs to. Four tones; the idle one holds still, because a dark indicator that animates says nothing twice.",
-      "registryDependencies": [
-        "@afterglow/theme"
-      ],
-      "files": [
-        {
-          "path": "registry/terminal/components/led.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "eyebrow",
-      "type": "registry:component",
-      "title": "Eyebrow",
-      "description": "The tracked-out line above a heading, with an optional block caret drawn as a box rather than a glyph so it lands where it was asked to.",
-      "registryDependencies": [
-        "@afterglow/theme"
-      ],
-      "files": [
-        {
-          "path": "registry/terminal/components/eyebrow.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "connector",
-      "type": "registry:component",
-      "title": "Connector",
-      "description": "A rule that runs off a heading towards the thing it is about, with a terminal square at the end it starts from.",
-      "registryDependencies": [
-        "@afterglow/theme"
-      ],
-      "files": [
-        {
-          "path": "registry/terminal/components/connector.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "glyph",
-      "type": "registry:component",
-      "title": "Glyph",
-      "description": "A file marker: a box in the category's colour with the corner turned up. Everything is derived from one hex value with color-mix, so a new category is one token.",
-      "registryDependencies": [
-        "@afterglow/theme"
-      ],
-      "files": [
-        {
-          "path": "registry/terminal/components/glyph.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "alarm-button",
-      "type": "registry:component",
-      "title": "Alarm Button",
-      "description": "Two flashes and a rest, which is what a warning lamp does and what a steady sine does not. Pointing at it answers the alarm, so the alarm stops.",
-      "registryDependencies": [
-        "@afterglow/button"
-      ],
-      "files": [
-        {
-          "path": "registry/terminal/components/alarm-button.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
       "name": "terminal-window",
       "type": "registry:component",
       "title": "Terminal Window",
-      "description": "Window chrome in three conventions: macOS lights left with a centred title, Windows bevelled buttons hard right, or a slim hairline chrome in the system's own vocabulary. Resizable by the corner or either edge, collapsible to its titlebar, and the heavy chromes sit their content in an inset well so the grip never lands on the scrollbar.",
+      "description": "Window chrome in three conventions. macOS lights at the left with a centred title, Windows bevelled buttons hard right, or a slim hairline version in this system's own vocabulary. Resizable by the corner or either edge, and collapsible to its titlebar.",
       "registryDependencies": [
         "@afterglow/theme"
       ],
@@ -1219,25 +1234,10 @@
       ]
     },
     {
-      "name": "prompt",
-      "type": "registry:component",
-      "title": "Prompt",
-      "description": "A shell line: sigil, field and caret on one row with no border between them, because a prompt is a line of text part of which happens to be editable.",
-      "registryDependencies": [
-        "@afterglow/theme"
-      ],
-      "files": [
-        {
-          "path": "registry/terminal/components/prompt.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
       "name": "console",
       "type": "registry:block",
       "title": "Console",
-      "description": "A whole operator console assembled from the registry: boot log, volume manifest, progress, status line and a live prompt. The answer to what the pieces look like next to each other.",
+      "description": "A whole operator console built from the registry: boot log, volume manifest, progress, status line, live prompt. What the pieces look like next to each other.",
       "categories": [
         "dashboard",
         "application"
@@ -1269,7 +1269,7 @@
       "name": "terminal",
       "type": "registry:style",
       "title": "Terminal",
-      "description": "The whole system in one install: theme, primitives and the terminal pieces. Use with shadcn init to start a project on it.",
+      "description": "The whole system in one install. Use it with `shadcn init` to start a project on the theme, the primitives and the terminal pieces at once.",
       "extends": "none",
       "dependencies": [
         "@base-ui/react",
