@@ -694,7 +694,7 @@
       "name": "kbd",
       "type": "registry:ui",
       "title": "Kbd",
-      "description": "A key with two pixels of implied depth under it. Pass `glyph` for `⌘`, `⇧` and `↵`: at the letter size those symbols paint about half the ink of a letter and read as smudges.",
+      "description": "A key with two pixels of implied depth under it. Pass `glyph` for `⌘`, `⇧` and `↵`, which at the letter size paint about half the ink of a letter and read as smudges.",
       "registryDependencies": [
         "@afterglow/theme"
       ],
