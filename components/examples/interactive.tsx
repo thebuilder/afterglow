@@ -1,7 +1,7 @@
 "use client";
 
 import { FileIcon, FolderIcon, PowerIcon, TerminalIcon } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 
 import { Button } from "@/registry/terminal/ui/button";
 import {
@@ -58,20 +58,16 @@ export function ToastDemo() {
   );
 }
 
+/**
+ * The palette opens from its button and nothing else.
+ *
+ * ⌘K belongs to the site search, and a demo that listened for it too would
+ * open two dialogs at once. The keys are still printed, as the shortcut to
+ * wire up in your own app.
+ */
 export function CommandDialogDemo() {
   const [isOpen, setOpen] = useState(false);
   const open = useCallback(() => setOpen(true), []);
-
-  useEffect(() => {
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === "k" && (event.metaKey || event.ctrlKey)) {
-        event.preventDefault();
-        setOpen((current) => !current);
-      }
-    };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, []);
 
   return (
     <div className="grid justify-items-center gap-4">
@@ -80,7 +76,7 @@ export function CommandDialogDemo() {
         Open palette
       </Button>
       <p className="flex items-center gap-2 font-mono text-[0.625rem] text-phosphor-dim uppercase tracking-[0.1em]">
-        or press
+        wire it to
         <KbdGroup>
           <Kbd glyph>⌘</Kbd>
           <Kbd>K</Kbd>
