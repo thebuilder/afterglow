@@ -136,7 +136,7 @@ function DropdownMenuLabel({
   return (
     <MenuPrimitive.GroupLabel
       className={cn(
-        "px-2 py-1.5 font-bold font-mono text-[0.5625rem] text-phosphor-dim uppercase tracking-[0.14em]",
+        "px-2 py-1.5 font-bold font-mono text-3xs text-phosphor-dim uppercase tracking-terminal-xl",
         inset && "pl-8",
         className
       )}
@@ -167,7 +167,7 @@ function DropdownMenuShortcut({
   return (
     <span
       className={cn(
-        "ml-auto font-mono text-[0.625rem] text-phosphor-dim tracking-[0.1em]",
+        "ml-auto font-mono text-2xs text-phosphor-dim tracking-terminal",
         className
       )}
       data-slot="dropdown-menu-shortcut"

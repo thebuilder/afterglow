@@ -126,7 +126,7 @@ const CHROME: Record<
     plate: "mr-auto justify-items-start",
     subtitle: "text-phosphor-dim",
     title:
-      "font-semibold text-[0.6875rem] text-phosphor-bright uppercase tracking-[0.12em]",
+      "font-semibold text-1xs text-phosphor-bright uppercase tracking-terminal-lg",
   },
   windows: {
     bar: "border-[#1b302b] bg-[repeating-linear-gradient(#c3cfca_0_1px,#a2b4ac_1px_3px)] p-1.5 min-h-9",
@@ -388,7 +388,7 @@ function TerminalWindow({
           {subtitle ? (
             <span
               className={cn(
-                "font-bold font-mono text-[0.48rem] uppercase tracking-[0.12em]",
+                "font-bold font-mono text-[0.48rem] uppercase tracking-terminal-lg",
                 chrome.subtitle
               )}
             >
@@ -447,7 +447,7 @@ function TerminalWindow({
           {footer ? (
             <div
               className={cn(
-                "flex items-center justify-between gap-4 border-t font-bold font-mono uppercase tracking-[0.08em]",
+                "flex items-center justify-between gap-4 border-t font-bold font-mono uppercase tracking-terminal-sm",
                 chrome.footer
               )}
               data-slot="terminal-window-footer"

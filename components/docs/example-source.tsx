@@ -36,7 +36,7 @@ export function ExampleSource({
     <Collapsible
       className={cn("border border-line border-t-0 bg-panel-sunken", className)}
     >
-      <CollapsibleTrigger className="group/source flex w-full items-center justify-between gap-4 rounded-none px-3 py-2 font-mono text-[0.625rem] text-phosphor-dim uppercase tracking-[0.1em] outline-none transition-colors hover:text-phosphor-bright focus-visible:-outline-offset-2 focus-visible:outline-2 focus-visible:outline-phosphor-bright">
+      <CollapsibleTrigger className="group/source flex w-full items-center justify-between gap-4 rounded-none px-3 py-2 font-mono text-2xs text-phosphor-dim uppercase tracking-terminal outline-none transition-colors hover:text-phosphor-bright focus-visible:-outline-offset-2 focus-visible:outline-2 focus-visible:outline-phosphor-bright">
         <span className="flex items-center gap-2">
           <ChevronRightIcon className="size-3 transition-transform duration-200 ease-terminal group-data-panel-open/source:rotate-90" />
           source

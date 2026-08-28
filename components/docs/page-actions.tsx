@@ -57,7 +57,7 @@ export function PageActions({ name, url }: { name: string; url: string }) {
   return (
     <div className="flex shrink-0 items-center border border-line">
       <button
-        className="flex items-center gap-2 px-2.5 py-1.5 font-mono text-[0.5625rem] text-muted-foreground uppercase tracking-[0.1em] outline-none transition-colors hover:text-phosphor focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-phosphor-bright"
+        className="flex items-center gap-2 px-2.5 py-1.5 font-mono text-3xs text-muted-foreground uppercase tracking-terminal outline-none transition-colors hover:text-phosphor focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-phosphor-bright"
         onClick={copy}
         type="button"
       >

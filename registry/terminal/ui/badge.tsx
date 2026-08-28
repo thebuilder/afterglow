@@ -25,7 +25,7 @@ import { cn } from "@/lib/utils";
  * makes the anchor *be* the badge rather than a link wrapped around one.
  */
 const badgeVariants = cva(
-  "inline-flex h-[1.125rem] w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap rounded-none border px-1.5 pt-[1.5px] font-mono font-semibold text-[0.625rem] uppercase leading-none tracking-[0.12em] transition-[color,border-color,background-color] [&>svg]:pointer-events-none [&>svg]:size-3",
+  "inline-flex h-[1.125rem] w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap rounded-none border px-1.5 pt-[1.5px] font-mono font-semibold text-2xs uppercase leading-none tracking-terminal-lg transition-[color,border-color,background-color] [&>svg]:pointer-events-none [&>svg]:size-3",
   {
     defaultVariants: { variant: "default" },
     variants: {

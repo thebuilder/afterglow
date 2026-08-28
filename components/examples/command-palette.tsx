@@ -32,7 +32,7 @@ export function CommandPalette() {
         <TerminalIcon />
         Open palette
       </Button>
-      <p className="flex items-center gap-2 font-mono text-[0.625rem] text-phosphor-dim uppercase tracking-[0.1em]">
+      <p className="flex items-center gap-2 font-mono text-2xs text-phosphor-dim uppercase tracking-terminal">
         wire it to
         <KbdGroup>
           <Kbd glyph>⌘</Kbd>

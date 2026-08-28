@@ -45,7 +45,7 @@ export function ItemHeader({
       </Prose>
       {dependencies.length > 0 ? (
         <div className="flex flex-wrap items-center gap-2 pt-1">
-          <span className="font-mono text-[0.55rem] text-phosphor-dim uppercase tracking-[0.1em]">
+          <span className="font-mono text-4xs text-phosphor-dim uppercase tracking-terminal">
             pulls in
           </span>
           {dependencies.map((dependency) => (

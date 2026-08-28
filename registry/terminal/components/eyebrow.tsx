@@ -20,7 +20,7 @@ function Eyebrow({
   return (
     <p
       className={cn(
-        "m-0 font-bold font-mono text-[0.625rem] text-phosphor uppercase leading-tight tracking-[0.18em]",
+        "m-0 font-bold font-mono text-2xs text-phosphor uppercase leading-tight tracking-terminal-3xl",
         className
       )}
       data-slot="eyebrow"

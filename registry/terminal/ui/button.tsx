@@ -21,11 +21,11 @@ const buttonVariants = cva(
     defaultVariants: { size: "default", variant: "default" },
     variants: {
       size: {
-        default: "h-9 px-3.5 text-[0.6875rem] tracking-[0.12em]",
+        default: "h-9 px-3.5 text-1xs tracking-terminal-lg",
         icon: "size-9",
         "icon-sm": "size-8",
-        lg: "h-11 px-6 text-xs tracking-[0.18em]",
-        sm: "h-8 gap-1.5 px-2.5 text-[0.625rem] tracking-[0.1em]",
+        lg: "h-11 px-6 text-xs tracking-terminal-3xl",
+        sm: "h-8 gap-1.5 px-2.5 text-2xs tracking-terminal",
       },
       variant: {
         default:

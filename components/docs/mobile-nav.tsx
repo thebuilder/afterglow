@@ -36,7 +36,7 @@ export function MobileNav({ sections }: { sections: NavSection[] }) {
         className="w-[min(20rem,85vw)] gap-6 overflow-y-auto p-0 pt-6 pb-10"
         side="left"
       >
-        <SheetTitle className="px-6 font-bold font-mono text-[0.625rem] text-phosphor uppercase tracking-[0.18em]">
+        <SheetTitle className="px-6 font-bold font-mono text-2xs text-phosphor uppercase tracking-terminal-3xl">
           Registry
         </SheetTitle>
         <SheetDescription className="sr-only">

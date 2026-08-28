@@ -25,7 +25,7 @@ export function HeaderNav({
         <Link
           aria-current={pathname.startsWith(link.prefix) ? "page" : undefined}
           className={cn(
-            "font-mono font-semibold text-[0.625rem] uppercase tracking-[0.12em] outline-none transition-colors hover:text-phosphor focus-visible:text-phosphor",
+            "font-mono font-semibold text-2xs uppercase tracking-terminal-lg outline-none transition-colors hover:text-phosphor focus-visible:text-phosphor",
             pathname.startsWith(link.prefix)
               ? "text-phosphor-bright"
               : "text-muted-foreground"

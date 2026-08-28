@@ -206,7 +206,7 @@ function Trigger({
       {/* Hidden rather than dropped, so the icon-only button on a phone still
           has a name to announce. `display: none` takes it out of the
           accessibility tree along with the layout. */}
-      <span className="sr-only font-mono text-[0.625rem] uppercase tracking-[0.1em] sm:not-sr-only sm:inline">
+      <span className="sr-only font-mono text-2xs uppercase tracking-terminal sm:not-sr-only sm:inline">
         Search
       </span>
       <KbdGroup className="ml-auto hidden sm:flex">

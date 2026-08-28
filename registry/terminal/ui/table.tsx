@@ -93,7 +93,7 @@ function TableHead({ className, ...props }: React.ComponentProps<"th">) {
   return (
     <th
       className={cn(
-        "h-8 whitespace-nowrap bg-panel px-2.5 text-left align-middle font-semibold text-[0.625rem] text-phosphor-bright uppercase tracking-[0.1em]",
+        "h-8 whitespace-nowrap bg-panel px-2.5 text-left align-middle font-semibold text-2xs text-phosphor-bright uppercase tracking-terminal",
         className
       )}
       data-slot="table-head"
@@ -122,7 +122,7 @@ function TableCaption({
   return (
     <caption
       className={cn(
-        "mt-3 font-semibold text-[0.625rem] text-phosphor-dim uppercase tracking-[0.1em]",
+        "mt-3 font-semibold text-2xs text-phosphor-dim uppercase tracking-terminal",
         className
       )}
       data-slot="table-caption"

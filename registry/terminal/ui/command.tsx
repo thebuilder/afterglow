@@ -132,7 +132,7 @@ function CommandEmpty({
   return (
     <CommandPrimitive.Empty
       className={cn(
-        "py-10 text-center font-mono font-semibold text-[0.6875rem] text-phosphor-dim uppercase tracking-[0.12em]",
+        "py-10 text-center font-mono font-semibold text-1xs text-phosphor-dim uppercase tracking-terminal-lg",
         className
       )}
       data-slot="command-empty"
@@ -149,7 +149,7 @@ function CommandGroup({
     <CommandPrimitive.Group
       className={cn(
         "overflow-hidden text-foreground",
-        "[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:font-bold [&_[cmdk-group-heading]]:font-mono [&_[cmdk-group-heading]]:text-[0.5625rem] [&_[cmdk-group-heading]]:text-phosphor-dim [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-[0.14em]",
+        "[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:font-bold [&_[cmdk-group-heading]]:font-mono [&_[cmdk-group-heading]]:text-3xs [&_[cmdk-group-heading]]:text-phosphor-dim [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-terminal-xl",
         /* A rule above every group that has one before it, so the first group
            does not start with a line hanging under the input's own border.
            Filtered-out groups stay in the DOM with `hidden`, so this asks for a
@@ -203,7 +203,7 @@ function CommandShortcut({
   return (
     <span
       className={cn(
-        "ml-auto font-mono text-[0.625rem] text-phosphor-dim tracking-[0.1em]",
+        "ml-auto font-mono text-2xs text-phosphor-dim tracking-terminal",
         className
       )}
       data-slot="command-shortcut"

@@ -52,7 +52,7 @@ function Status({
   return (
     <p
       className={cn(
-        "flex items-center gap-2 font-mono font-semibold text-[0.625rem] uppercase tracking-[0.08em]",
+        "flex items-center gap-2 font-mono font-semibold text-2xs uppercase tracking-terminal-sm",
         tone === "error" ? "text-signal" : "text-muted-foreground",
         className
       )}

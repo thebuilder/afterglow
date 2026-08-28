@@ -6,7 +6,7 @@ export function GlyphCategories() {
       {(Object.keys(glyphTones) as (keyof typeof glyphTones)[]).map((tone) => (
         <div className="grid justify-items-center gap-2" key={tone}>
           <Glyph tone={tone} />
-          <span className="font-mono text-[0.55rem] text-phosphor-dim uppercase tracking-[0.08em]">
+          <span className="font-mono text-4xs text-phosphor-dim uppercase tracking-terminal-sm">
             {tone}
           </span>
         </div>

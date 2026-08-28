@@ -16,7 +16,7 @@ export default function ConsolePage() {
     <>
       <ConsoleBlock />
       <Link
-        className="fixed bottom-4 left-4 z-200 inline-flex items-center gap-2 border border-line bg-void/90 px-3 py-2 font-mono font-bold text-[0.625rem] text-phosphor uppercase tracking-[0.12em] outline-none backdrop-blur-md transition-colors hover:border-line-strong hover:text-phosphor-bright focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-phosphor-bright"
+        className="fixed bottom-4 left-4 z-200 inline-flex items-center gap-2 border border-line bg-void/90 px-3 py-2 font-mono font-bold text-2xs text-phosphor uppercase tracking-terminal-lg outline-none backdrop-blur-md transition-colors hover:border-line-strong hover:text-phosphor-bright focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-phosphor-bright"
         href="/"
       >
         <ChevronLeftIcon className="size-3.5" />
