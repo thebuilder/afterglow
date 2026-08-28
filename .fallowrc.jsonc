@@ -20,6 +20,22 @@
       "exports": ["generateStaticParams", "alt", "size", "contentType"]
     }
   ],
+  // All four thresholds are stated, because this block replaces the defaults
+  // rather than merging with them. Three are fallow's own numbers; only
+  // `maxCrap` is a disagreement.
+  "health": {
+    "maxCognitive": 15,
+    // CRAP is `CC^2 * (1 - coverage/100)^3 + CC`, and this project has no test
+    // suite, so the coverage term is always 1 and the score is cyclomatic
+    // complexity wearing a hat. At the default of 30 it gates every function
+    // with five branches, which is far stricter than `maxCyclomatic`, the
+    // dimension it has collapsed into. 420 is that same ceiling written in
+    // CRAP terms: 20^2 + 20. Wire `coverage` here if tests ever land and the
+    // metric starts measuring the thing it was built to measure.
+    "maxCrap": 420,
+    "maxCyclomatic": 20,
+    "maxUnitSize": 60
+  },
   "rules": {
     // Reported, not fatal. Tailwind is imported by `app/globals.css` and
     // compiled by `@tailwindcss/postcss` at build time; nothing loads it at

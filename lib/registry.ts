@@ -67,8 +67,20 @@ export function findItem(name: string): RegistryItem | undefined {
  * it goes to `init`, which builds the project around it; `add` would try to
  * drop a whole design system into one that already exists.
  */
-export function installCommand(item: RegistryItem): string {
+export function installArgs(item: RegistryItem): string {
   return item.type === "registry:style"
-    ? `npx shadcn@latest init ${HOMEPAGE}/r/${item.name}.json`
-    : `npx shadcn@latest add @${REGISTRY_NAME}/${item.name}`;
+    ? `shadcn@latest init ${HOMEPAGE}/r/${item.name}.json`
+    : `shadcn@latest add @${REGISTRY_NAME}/${item.name}`;
+}
+
+/** How each package manager runs a binary it has not installed. */
+export const RUNNERS = [
+  { command: "npx", name: "npm" },
+  { command: "pnpm dlx", name: "pnpm" },
+  { command: "yarn dlx", name: "yarn" },
+  { command: "bunx", name: "bun" },
+] as const;
+
+export function installCommand(item: RegistryItem): string {
+  return `npx ${installArgs(item)}`;
 }

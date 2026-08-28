@@ -415,6 +415,13 @@ const CSS = {
   },
 };
 
+/**
+ * The raw tube colours, for the one consumer that needs them as values rather
+ * than as CSS: the documentation site builds its syntax theme from these, so
+ * the code on a page is painted with the palette the page hands out.
+ */
+export const palette = PALETTE;
+
 export const cssVars = {
   dark: { ...RAW, ...SEMANTIC },
   light: { ...RAW, ...SEMANTIC },
