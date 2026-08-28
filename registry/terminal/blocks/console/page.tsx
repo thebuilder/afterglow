@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import { AlarmButton } from "@/registry/terminal/components/alarm-button";
 import { BootLog } from "@/registry/terminal/components/boot-log";
@@ -39,20 +39,20 @@ const BOOT = [
 ];
 
 const VOLUMES = [
-  { name: "core", tone: "code" as const, state: "mounted", blocks: "18 442" },
+  { blocks: "18 442", name: "core", state: "mounted", tone: "code" as const },
   {
-    name: "archive",
-    tone: "archive" as const,
-    state: "mounted",
     blocks: "4 011",
+    name: "archive",
+    state: "mounted",
+    tone: "archive" as const,
   },
   {
-    name: "capture",
-    tone: "image" as const,
-    state: "read-only",
     blocks: "92 780",
+    name: "capture",
+    state: "read-only",
+    tone: "image" as const,
   },
-  { name: "spool", tone: "system" as const, state: "offline", blocks: "0" },
+  { blocks: "0", name: "spool", state: "offline", tone: "system" as const },
 ];
 
 /**
@@ -70,6 +70,10 @@ export default function ConsolePage() {
    * text or the index makes React reuse the wrong row the moment one is added.
    */
   const [log, setLog] = useState<{ id: number; text: string }[]>([]);
+
+  const record = useCallback((value: string) => {
+    setLog((entries) => [...entries, { id: entries.length, text: value }]);
+  }, []);
 
   return (
     <div className="relative isolate min-h-svh bg-void">
@@ -188,15 +192,7 @@ export default function ConsolePage() {
 
         <section className="grid gap-3">
           <Eyebrow>Console</Eyebrow>
-          <Prompt
-            onSubmit={(value) =>
-              setLog((entries) => [
-                ...entries,
-                { id: entries.length, text: value },
-              ])
-            }
-            placeholder="mount /spool --force"
-          />
+          <Prompt onSubmit={record} placeholder="mount /spool --force" />
           {log.length > 0 && (
             <ol className="grid gap-1 font-mono text-phosphor-dim text-xs">
               {log.map((entry) => (

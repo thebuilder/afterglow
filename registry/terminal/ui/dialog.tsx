@@ -35,7 +35,7 @@ function DialogOverlay({
     <DialogPrimitive.Backdrop
       className={cn(
         "fixed inset-0 z-50 bg-[rgb(1_5_6/0.72)] backdrop-blur-[5px] backdrop-saturate-[0.65] data-closed:animate-fade-out data-open:animate-fade-in",
-        className,
+        className
       )}
       data-slot="dialog-overlay"
       {...props}
@@ -63,7 +63,7 @@ function DialogContent({
       <DialogPrimitive.Popup
         className={cn(
           "-translate-x-1/2 -translate-y-1/2 fixed top-1/2 left-1/2 z-50 grid w-full max-w-[calc(100%-2rem)] gap-4 overflow-hidden rounded-none border border-line-strong bg-popover p-6 text-popover-foreground shadow-panel outline-none data-closed:animate-close data-open:animate-open sm:max-w-lg",
-          className,
+          className
         )}
         data-slot="dialog-content"
         {...props}
@@ -73,7 +73,7 @@ function DialogContent({
           className="pointer-events-none absolute inset-0 animate-beam bg-[linear-gradient(180deg,transparent_44%,rgb(134_250_221/0.16)_50%,transparent_56%)]"
         />
         {children}
-        {showCloseButton && (
+        {showCloseButton ? (
           <DialogPrimitive.Close
             className="absolute top-4 right-4 rounded-none text-phosphor-dim outline-none transition-colors hover:text-phosphor-bright focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-phosphor-bright"
             data-slot="dialog-close"
@@ -81,7 +81,7 @@ function DialogContent({
             <XIcon className="size-4" />
             <span className="sr-only">Close</span>
           </DialogPrimitive.Close>
-        )}
+        ) : null}
       </DialogPrimitive.Popup>
     </DialogPortal>
   );
@@ -102,7 +102,7 @@ function DialogFooter({ className, ...props }: React.ComponentProps<"div">) {
     <div
       className={cn(
         "flex flex-col-reverse gap-2 sm:flex-row sm:justify-end",
-        className,
+        className
       )}
       data-slot="dialog-footer"
       {...props}
@@ -115,7 +115,7 @@ function DialogTitle({ className, ...props }: DialogPrimitive.Title.Props) {
     <DialogPrimitive.Title
       className={cn(
         "font-medium font-mono text-lg text-phosphor-bright leading-none",
-        className,
+        className
       )}
       data-slot="dialog-title"
       {...props}

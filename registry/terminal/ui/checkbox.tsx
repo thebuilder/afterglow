@@ -19,7 +19,7 @@ function Checkbox({ className, ...props }: CheckboxPrimitive.Root.Props) {
         "aria-invalid:border-destructive",
         "data-checked:border-phosphor data-checked:bg-phosphor data-checked:text-void",
         "data-indeterminate:border-phosphor data-indeterminate:text-phosphor",
-        className,
+        className
       )}
       data-slot="checkbox"
       {...props}

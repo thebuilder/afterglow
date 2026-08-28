@@ -22,30 +22,30 @@ function Toaster({ ...props }: ToasterProps) {
     <Sonner
       className="toaster group"
       icons={{
-        success: <CircleCheckIcon className="size-4 text-phosphor" />,
-        info: <InfoIcon className="size-4 text-azure" />,
-        warning: <TriangleAlertIcon className="size-4 text-amber" />,
         error: <OctagonXIcon className="size-4 text-signal" />,
+        info: <InfoIcon className="size-4 text-azure" />,
         loading: <Spinner className="size-4" />,
+        success: <CircleCheckIcon className="size-4 text-phosphor" />,
+        warning: <TriangleAlertIcon className="size-4 text-amber" />,
       }}
       style={
         {
-          "--normal-bg": "var(--popover)",
-          "--normal-text": "var(--popover-foreground)",
-          "--normal-border": "var(--line-strong)",
           "--border-radius": "0",
           "--font-family": "var(--font-mono)",
+          "--normal-bg": "var(--popover)",
+          "--normal-border": "var(--line-strong)",
+          "--normal-text": "var(--popover-foreground)",
         } as React.CSSProperties
       }
       theme="dark"
       toastOptions={{
         classNames: {
-          toast:
-            "!rounded-none !border-line-strong !bg-popover !font-mono !text-xs !shadow-panel",
-          title: "!text-phosphor-bright !font-medium",
-          description: "!text-muted-foreground",
           actionButton: "!rounded-none !bg-phosphor !text-void",
           cancelButton: "!rounded-none !bg-secondary !text-phosphor",
+          description: "!text-muted-foreground",
+          title: "!text-phosphor-bright !font-medium",
+          toast:
+            "!rounded-none !border-line-strong !bg-popover !font-mono !text-xs !shadow-panel",
         },
       }}
       {...props}

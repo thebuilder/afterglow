@@ -8,15 +8,15 @@ import registry from "@/registry.json";
  * documented. The alternative, a hand-kept list beside the manifest, is a
  * second source of truth that is wrong the first time somebody is in a hurry.
  */
-export type RegistryItem = {
-  name: string;
-  type: string;
-  title: string;
-  description: string;
+export interface RegistryItem {
   categories?: string[];
   dependencies?: string[];
+  description: string;
+  name: string;
   registryDependencies?: string[];
-};
+  title: string;
+  type: string;
+}
 
 export const HOMEPAGE = registry.homepage;
 export const REGISTRY_NAME = registry.name;

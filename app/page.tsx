@@ -21,31 +21,31 @@ const SECTIONS: {
   types: string[];
 }[] = [
   {
-    id: "theme",
-    title: "Theme",
     blurb:
       "One palette, no light mode. A phosphor tube has no daylight setting, so the light and dark blocks carry the same values and toggling a theme class is a no-op rather than a second, worse design.",
+    id: "theme",
+    title: "Theme",
     types: ["registry:theme"],
   },
   {
-    id: "primitives",
-    title: "Primitives",
     blurb:
       "shadcn's components, redrawn. Same props, same slots, same accessibility work, set in mono with hairline borders and no corner radius. Stock shadcn components dropped into a project running the theme go sharp on their own.",
+    id: "primitives",
+    title: "Primitives",
     types: ["registry:ui"],
   },
   {
-    id: "terminal",
-    title: "Terminal",
     blurb:
       "The parts that make it a tube rather than a dark theme: the glass, the lamp, the log that prints itself, the border that lights and runs.",
+    id: "terminal",
+    title: "Terminal",
     types: ["registry:component"],
   },
   {
-    id: "whole",
-    title: "The whole thing",
     blurb:
       "A composed page to look at, and a style that installs the system in one go.",
+    id: "whole",
+    title: "The whole thing",
     types: ["registry:block", "registry:style"],
   },
 ];
@@ -107,7 +107,7 @@ function GalleryCard({ item }: { item: RegistryItem }) {
 export default function Home() {
   const total = SECTIONS.reduce(
     (count, section) => count + itemsOfType(...section.types).length,
-    0,
+    0
   );
 
   return (

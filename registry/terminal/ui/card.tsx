@@ -27,7 +27,7 @@ function Card({
       className={cn(
         "relative isolate flex flex-col gap-4 rounded-none border border-line border-l-2 border-l-[var(--card-accent,var(--phosphor))] bg-card/90 py-5 text-card-foreground backdrop-blur-md transition-[border-color,background-color] duration-[260ms] ease-terminal",
         "hover:border-line-strong hover:border-l-[var(--card-accent,var(--phosphor))] hover:bg-card",
-        className,
+        className
       )}
       data-slot="card"
       style={
@@ -56,7 +56,7 @@ function CardAccent({ className, ...props }: React.ComponentProps<"div">) {
       aria-hidden="true"
       className={cn(
         "-mt-5 mb-1 h-[3px] bg-[linear-gradient(90deg,var(--signal)_0_28%,var(--phosphor)_28%_34%,transparent_34%)]",
-        className,
+        className
       )}
       data-slot="card-accent"
       {...props}
@@ -69,7 +69,7 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
     <div
       className={cn(
         "@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-5 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-4",
-        className,
+        className
       )}
       data-slot="card-header"
       {...props}
@@ -82,7 +82,7 @@ function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
     <div
       className={cn(
         "font-medium font-mono text-[var(--card-accent,var(--phosphor))] text-base leading-tight",
-        className,
+        className
       )}
       data-slot="card-title"
       {...props}
@@ -105,7 +105,7 @@ function CardAction({ className, ...props }: React.ComponentProps<"div">) {
     <div
       className={cn(
         "col-start-2 row-span-2 row-start-1 self-start justify-self-end",
-        className,
+        className
       )}
       data-slot="card-action"
       {...props}
@@ -128,7 +128,7 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
     <div
       className={cn(
         "flex items-center gap-4 px-5 [.border-t]:mt-1 [.border-t]:pt-4",
-        className,
+        className
       )}
       data-slot="card-footer"
       {...props}

@@ -29,7 +29,7 @@ function AlertDialogContent({
       <AlertDialogPrimitive.Popup
         className={cn(
           "-translate-x-1/2 -translate-y-1/2 fixed top-1/2 left-1/2 z-50 grid w-full max-w-[calc(100%-2rem)] gap-4 rounded-none border border-signal/70 bg-popover p-6 text-popover-foreground shadow-[0_2rem_5rem_rgb(0_0_0/0.7),0_0_50px_rgb(255_91_130/0.1)] outline-none data-closed:animate-close data-open:animate-open sm:max-w-lg",
-          className,
+          className
         )}
         data-slot="alert-dialog-content"
         {...props}
@@ -59,7 +59,7 @@ function AlertDialogFooter({
     <div
       className={cn(
         "flex flex-col-reverse gap-2 sm:flex-row sm:justify-end",
-        className,
+        className
       )}
       data-slot="alert-dialog-footer"
       {...props}
@@ -75,7 +75,7 @@ function AlertDialogTitle({
     <AlertDialogPrimitive.Title
       className={cn(
         "font-medium font-mono text-lg text-signal leading-none",
-        className,
+        className
       )}
       data-slot="alert-dialog-title"
       {...props}

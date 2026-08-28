@@ -14,12 +14,12 @@ import { cn } from "@/lib/utils";
  * class cannot be.
  */
 const TONES = {
-  directory: "var(--signal)",
-  code: "var(--phosphor)",
-  image: "var(--amber)",
-  audio: "var(--violet)",
-  document: "var(--azure)",
   archive: "#e6de6d",
+  audio: "var(--violet)",
+  code: "var(--phosphor)",
+  directory: "var(--signal)",
+  document: "var(--azure)",
+  image: "var(--amber)",
   system: "var(--ember)",
   unknown: "var(--ink-muted)",
 } as const;
@@ -41,8 +41,8 @@ function Glyph({
       data-slot="glyph"
       data-tone={tone}
       style={{
-        border: `1px solid color-mix(in srgb, ${glyph} 72%, transparent)`,
         background: `color-mix(in srgb, ${glyph} 18%, transparent)`,
+        border: `1px solid color-mix(in srgb, ${glyph} 72%, transparent)`,
         boxShadow: `inset -0.35rem -0.35rem 0 color-mix(in srgb, ${glyph} 9%, transparent), 0 0 14px color-mix(in srgb, ${glyph} 13%, transparent)`,
       }}
       {...props}
@@ -50,8 +50,8 @@ function Glyph({
       <span
         className="absolute right-[-1px] bottom-[-1px] h-2/5 w-2/5"
         style={{
-          borderTop: `1px solid ${glyph}`,
           borderLeft: `1px solid ${glyph}`,
+          borderTop: `1px solid ${glyph}`,
         }}
       />
     </span>

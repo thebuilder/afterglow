@@ -45,25 +45,42 @@ import {
 import { Textarea } from "@/registry/terminal/ui/textarea";
 
 const VOLUMES = [
-  { name: "core", state: "mounted", blocks: "18 442" },
-  { name: "archive", state: "mounted", blocks: "4 011" },
-  { name: "capture", state: "read-only", blocks: "92 780" },
-  { name: "scratch", state: "mounted", blocks: "612" },
-  { name: "spool", state: "offline", blocks: "0" },
+  { blocks: "18 442", name: "core", state: "mounted" },
+  { blocks: "4 011", name: "archive", state: "mounted" },
+  { blocks: "92 780", name: "capture", state: "read-only" },
+  { blocks: "612", name: "scratch", state: "mounted" },
+  { blocks: "0", name: "spool", state: "offline" },
 ];
 
 const STATE_VARIANT: Record<string, "default" | "signal" | "amber"> = {
   mounted: "default",
-  "read-only": "amber",
   offline: "signal",
+  "read-only": "amber",
 };
 
 export const primitiveExamples: ExampleMap = {
-  button: [
+  badge: [
     {
       name: "Variants",
+      node: (
+        <div className="flex flex-wrap items-center gap-2">
+          <Badge>mounted</Badge>
+          <Badge variant="signal">offline</Badge>
+          <Badge variant="solid">primary</Badge>
+          <Badge variant="outline">idle</Badge>
+          <Badge variant="amber">read-only</Badge>
+          <Badge variant="azure">document</Badge>
+          <Badge variant="violet">audio</Badge>
+          <Badge variant="destructive">corrupt</Badge>
+        </div>
+      ),
+    },
+  ],
+  button: [
+    {
       description:
         "The default is the beam. Signal is the pink, and a page should hold at most one.",
+      name: "Variants",
       node: (
         <div className="flex flex-wrap items-center gap-3">
           <Button>Mount</Button>
@@ -76,9 +93,9 @@ export const primitiveExamples: ExampleMap = {
       ),
     },
     {
-      name: "Sizes",
       description:
         "Tracking opens up as the button gets bigger, not just the type.",
+      name: "Sizes",
       node: (
         <div className="flex flex-wrap items-center gap-3">
           <Button size="sm">Small</Button>
@@ -112,59 +129,6 @@ export const primitiveExamples: ExampleMap = {
     },
   ],
 
-  input: [
-    {
-      name: "Default",
-      description:
-        "Focus moves the border rather than adding a ring: at this contrast a ring reads as a second border and the field looks selected rather than active.",
-      node: (
-        <div className="grid w-full max-w-sm gap-2">
-          <Label htmlFor="ex-host">Host</Label>
-          <Input defaultValue="node-04.local" id="ex-host" />
-        </div>
-      ),
-    },
-    {
-      name: "States",
-      node: (
-        <div className="grid w-full max-w-sm gap-3">
-          <Input placeholder="placeholder" />
-          <Input aria-invalid defaultValue="not a hostname" />
-          <Input disabled defaultValue="locked" />
-        </div>
-      ),
-    },
-  ],
-
-  textarea: [
-    {
-      name: "Default",
-      description:
-        "Sized to its content, so a growing draft does not sit in a fixed box with its own scrollbar.",
-      node: (
-        <div className="grid w-full max-w-sm gap-2">
-          <Label htmlFor="ex-note">Operator note</Label>
-          <Textarea
-            defaultValue="Spool has been down since the last power cycle."
-            id="ex-note"
-          />
-        </div>
-      ),
-    },
-  ],
-
-  label: [
-    {
-      name: "Default",
-      node: (
-        <div className="grid w-full max-w-sm gap-2">
-          <Label htmlFor="ex-label">Volume label</Label>
-          <Input id="ex-label" placeholder="/capture" />
-        </div>
-      ),
-    },
-  ],
-
   card: [
     {
       name: "Default",
@@ -186,9 +150,9 @@ export const primitiveExamples: ExampleMap = {
       ),
     },
     {
-      name: "Accent",
       description:
         "One property drives the left edge and the title, so a category gets a colour without a variant per category.",
+      name: "Accent",
       node: (
         <div className="grid w-full max-w-3xl gap-4 sm:grid-cols-3">
           <Card>
@@ -213,9 +177,9 @@ export const primitiveExamples: ExampleMap = {
       ),
     },
     {
-      name: "Stripe",
       description:
         "`CardAccent` is a masthead, and is deliberate rather than decorative: on a card that is one of several it reads as an unexplained red line.",
+      name: "Stripe",
       node: (
         <Card accent="var(--signal)" className="w-full max-w-sm">
           <CardAccent />
@@ -233,29 +197,11 @@ export const primitiveExamples: ExampleMap = {
     },
   ],
 
-  badge: [
-    {
-      name: "Variants",
-      node: (
-        <div className="flex flex-wrap items-center gap-2">
-          <Badge>mounted</Badge>
-          <Badge variant="signal">offline</Badge>
-          <Badge variant="solid">primary</Badge>
-          <Badge variant="outline">idle</Badge>
-          <Badge variant="amber">read-only</Badge>
-          <Badge variant="azure">document</Badge>
-          <Badge variant="violet">audio</Badge>
-          <Badge variant="destructive">corrupt</Badge>
-        </div>
-      ),
-    },
-  ],
-
   dialog: [
     {
-      name: "Default",
       description:
         "Opens in four steps rather than on a curve, with one pass of the beam down the panel.",
+      name: "Default",
       node: (
         <Dialog>
           <DialogTrigger render={<Button variant="outline" />}>
@@ -284,11 +230,120 @@ export const primitiveExamples: ExampleMap = {
     },
   ],
 
+  input: [
+    {
+      description:
+        "Focus moves the border rather than adding a ring: at this contrast a ring reads as a second border and the field looks selected rather than active.",
+      name: "Default",
+      node: (
+        <div className="grid w-full max-w-sm gap-2">
+          <Label htmlFor="ex-host">Host</Label>
+          <Input defaultValue="node-04.local" id="ex-host" />
+        </div>
+      ),
+    },
+    {
+      name: "States",
+      node: (
+        <div className="grid w-full max-w-sm gap-3">
+          <Input placeholder="placeholder" />
+          <Input aria-invalid defaultValue="not a hostname" />
+          <Input defaultValue="locked" disabled />
+        </div>
+      ),
+    },
+  ],
+
+  kbd: [
+    {
+      description:
+        "`glyph` is not dressing. Measured at the letter size, K paints 7.3px of ink and ⌘ paints 6.5, ⇧ 5.6 and ↵ 4.2: strokes too thin for the eye to complete, so at a letter's size they read as smudges.",
+      name: "Letters and symbols",
+      node: (
+        <div className="flex flex-wrap items-center gap-6 font-mono text-muted-foreground text-xs">
+          <span className="flex items-center gap-2">
+            <KbdGroup>
+              <Kbd glyph>⌘</Kbd>
+              <Kbd>K</Kbd>
+            </KbdGroup>
+            search
+          </span>
+          <span className="flex items-center gap-2">
+            <Kbd glyph>⇧</Kbd>
+            <Kbd glyph>↵</Kbd>
+            run
+          </span>
+          <span className="flex items-center gap-2">
+            <Kbd>ESC</Kbd>
+            dismiss
+          </span>
+        </div>
+      ),
+    },
+  ],
+
+  label: [
+    {
+      name: "Default",
+      node: (
+        <div className="grid w-full max-w-sm gap-2">
+          <Label htmlFor="ex-label">Volume label</Label>
+          <Input id="ex-label" placeholder="/capture" />
+        </div>
+      ),
+    },
+  ],
+
+  progress: [
+    {
+      description:
+        "`indeterminate` sweeps a segment and lets it leave at the far edge, which is the honest shape for a wait of unknown length: a bar creeping to ninety percent and stopping is a progress bar telling a lie.",
+      name: "Determinate and indeterminate",
+      node: (
+        <div className="grid w-full max-w-sm gap-5">
+          <div className="grid gap-2">
+            <div className="flex items-baseline justify-between font-mono text-[0.625rem] uppercase tracking-[0.1em]">
+              <span className="text-muted-foreground">Determinate</span>
+              <span className="text-amber tabular-nums">68%</span>
+            </div>
+            <Progress value={68} />
+          </div>
+          <div className="grid gap-2">
+            <div className="flex items-baseline justify-between font-mono text-[0.625rem] uppercase tracking-[0.1em]">
+              <span className="text-muted-foreground">Indeterminate</span>
+              <span className="text-phosphor-dim">unknown</span>
+            </div>
+            <Progress indeterminate />
+          </div>
+        </div>
+      ),
+    },
+  ],
+
+  separator: [
+    {
+      name: "Both orientations",
+      node: (
+        <div className="grid w-full max-w-sm gap-3 font-mono text-xs">
+          <span className="text-phosphor-bright">Uplink</span>
+          <Separator />
+          <div className="flex h-5 items-center gap-3 text-muted-foreground">
+            <span>rx 41ms</span>
+            <Separator orientation="vertical" />
+            <span>tx 38ms</span>
+            <Separator orientation="vertical" />
+            <span>0 dropped</span>
+          </div>
+        </div>
+      ),
+    },
+  ],
+
   table: [
     {
-      name: "Manifest",
       description:
         "`is-numeric` on a cell puts the value in amber with tabular figures, so measurements line up under each other.",
+      name: "Manifest",
       node: (
         <div className="w-full border border-line bg-panel">
           <Table>
@@ -319,9 +374,9 @@ export const primitiveExamples: ExampleMap = {
       ),
     },
     {
-      name: "Sticky header",
       description:
         "Opt-in, and only once the container has a height to scroll inside. Sticky by default would be sticky to the page: the header row detaches as the table leaves the viewport and floats over whatever is below it.",
+      name: "Sticky header",
       node: (
         <div className="w-full border border-line bg-panel">
           <Table containerClassName="max-h-32" stickyHeader>
@@ -355,9 +410,9 @@ export const primitiveExamples: ExampleMap = {
 
   tabs: [
     {
-      name: "Segment",
       description:
         "The rules between triggers are a one-pixel gap in the list's own background, so nothing has to be turned off at the ends to avoid doubling.",
+      name: "Segment",
       node: (
         <Tabs defaultValue="manifest">
           <TabsList>
@@ -387,9 +442,9 @@ export const primitiveExamples: ExampleMap = {
       ),
     },
     {
-      name: "Line",
       description:
         "The quieter one, for when the tabs are navigation rather than a switch.",
+      name: "Line",
       node: (
         <Tabs defaultValue="all">
           <TabsList variant="line">
@@ -420,74 +475,18 @@ export const primitiveExamples: ExampleMap = {
     },
   ],
 
-  separator: [
+  textarea: [
     {
-      name: "Both orientations",
-      node: (
-        <div className="grid w-full max-w-sm gap-3 font-mono text-xs">
-          <span className="text-phosphor-bright">Uplink</span>
-          <Separator />
-          <div className="flex h-5 items-center gap-3 text-muted-foreground">
-            <span>rx 41ms</span>
-            <Separator orientation="vertical" />
-            <span>tx 38ms</span>
-            <Separator orientation="vertical" />
-            <span>0 dropped</span>
-          </div>
-        </div>
-      ),
-    },
-  ],
-
-  kbd: [
-    {
-      name: "Letters and symbols",
       description:
-        "`glyph` is not dressing. Measured at the letter size, K paints 7.3px of ink and ⌘ paints 6.5, ⇧ 5.6 and ↵ 4.2: strokes too thin for the eye to complete, so at a letter's size they read as smudges.",
+        "Sized to its content, so a growing draft does not sit in a fixed box with its own scrollbar.",
+      name: "Default",
       node: (
-        <div className="flex flex-wrap items-center gap-6 font-mono text-muted-foreground text-xs">
-          <span className="flex items-center gap-2">
-            <KbdGroup>
-              <Kbd glyph>⌘</Kbd>
-              <Kbd>K</Kbd>
-            </KbdGroup>
-            search
-          </span>
-          <span className="flex items-center gap-2">
-            <Kbd glyph>⇧</Kbd>
-            <Kbd glyph>↵</Kbd>
-            run
-          </span>
-          <span className="flex items-center gap-2">
-            <Kbd>ESC</Kbd>
-            dismiss
-          </span>
-        </div>
-      ),
-    },
-  ],
-
-  progress: [
-    {
-      name: "Determinate and indeterminate",
-      description:
-        "`indeterminate` sweeps a segment and lets it leave at the far edge, which is the honest shape for a wait of unknown length: a bar creeping to ninety percent and stopping is a progress bar telling a lie.",
-      node: (
-        <div className="grid w-full max-w-sm gap-5">
-          <div className="grid gap-2">
-            <div className="flex items-baseline justify-between font-mono text-[0.625rem] uppercase tracking-[0.1em]">
-              <span className="text-muted-foreground">Determinate</span>
-              <span className="text-amber tabular-nums">68%</span>
-            </div>
-            <Progress value={68} />
-          </div>
-          <div className="grid gap-2">
-            <div className="flex items-baseline justify-between font-mono text-[0.625rem] uppercase tracking-[0.1em]">
-              <span className="text-muted-foreground">Indeterminate</span>
-              <span className="text-phosphor-dim">unknown</span>
-            </div>
-            <Progress indeterminate />
-          </div>
+        <div className="grid w-full max-w-sm gap-2">
+          <Label htmlFor="ex-note">Operator note</Label>
+          <Textarea
+            defaultValue="Spool has been down since the last power cycle."
+            id="ex-note"
+          />
         </div>
       ),
     },

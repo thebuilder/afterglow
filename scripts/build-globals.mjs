@@ -74,7 +74,7 @@ const globals = [
   renderVariables(".dark", cssVars.dark),
   renderVariables("@theme inline", cssVars.theme),
   ...Object.entries(css).map(
-    ([key, value]) => `${key} {\n${renderBlock(value, 1)}\n}`,
+    ([key, value]) => `${key} {\n${renderBlock(value, 1)}\n}`
   ),
 ].join("\n\n");
 
@@ -85,7 +85,7 @@ const theme = registry.items.find((item) => item.name === "theme");
 
 if (!theme) {
   throw new Error(
-    "registry.json has no item named 'theme' to write the tokens into.",
+    "registry.json has no item named 'theme' to write the tokens into."
   );
 }
 
@@ -95,5 +95,5 @@ theme.css = css;
 await writeFile(REGISTRY, `${JSON.stringify(registry, null, 2)}\n`);
 
 process.stdout.write(
-  `theme: ${Object.keys(cssVars.light).length} variables, ${Object.keys(css).length} css blocks\n`,
+  `theme: ${Object.keys(cssVars.light).length} variables, ${Object.keys(css).length} css blocks\n`
 );

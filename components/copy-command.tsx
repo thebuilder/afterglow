@@ -1,7 +1,7 @@
 "use client";
 
 import { CheckIcon, CopyIcon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -29,11 +29,15 @@ export function CopyCommand({
     return () => window.clearTimeout(timer);
   }, [copied]);
 
+  const copy = useCallback(() => {
+    navigator.clipboard.writeText(command).then(() => setCopied(true));
+  }, [command]);
+
   return (
     <div
       className={cn(
         "flex min-w-0 items-center gap-3 border border-line bg-panel-sunken py-2 pr-2 pl-3",
-        className,
+        className
       )}
     >
       <code className="min-w-0 flex-1 overflow-x-auto whitespace-nowrap font-mono text-phosphor text-xs">
@@ -43,9 +47,7 @@ export function CopyCommand({
       <button
         aria-label={copied ? "Copied" : `Copy: ${command}`}
         className="grid size-7 shrink-0 place-items-center border border-line text-phosphor-dim outline-none transition-colors hover:border-line-strong hover:text-phosphor-bright focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-phosphor-bright"
-        onClick={() => {
-          navigator.clipboard.writeText(command).then(() => setCopied(true));
-        }}
+        onClick={copy}
         type="button"
       >
         {copied ? (

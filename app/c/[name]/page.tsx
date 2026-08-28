@@ -19,7 +19,9 @@ import { Eyebrow } from "@/registry/terminal/components/eyebrow";
 import { Badge } from "@/registry/terminal/ui/badge";
 import { Separator } from "@/registry/terminal/ui/separator";
 
-type Params = { params: Promise<{ name: string }> };
+interface Params {
+  params: Promise<{ name: string }>;
+}
 
 export function generateStaticParams() {
   return allItems().map((item) => ({ name: item.name }));
@@ -29,7 +31,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { name } = await params;
   const item = findItem(name);
   return item
-    ? { title: `${item.title}, afterglow`, description: item.description }
+    ? { description: item.description, title: `${item.title}, afterglow` }
     : {};
 }
 
@@ -99,7 +101,7 @@ export default async function ItemPage({ params }: Params) {
                 <Badge key={dependency} variant="outline">
                   {dependency}
                 </Badge>
-              ),
+              )
             )}
           </div>
         )}
@@ -116,11 +118,11 @@ export default async function ItemPage({ params }: Params) {
             <h2 className="font-medium font-mono text-lg text-phosphor-bright">
               {example.name}
             </h2>
-            {example.description && (
+            {example.description ? (
               <p className="max-w-prose text-pretty text-muted-foreground text-sm">
                 {example.description}
               </p>
-            )}
+            ) : null}
             <ExampleStage className="mt-1" item={item.name}>
               {example.node}
             </ExampleStage>
@@ -142,7 +144,7 @@ export default async function ItemPage({ params }: Params) {
           ) : (
             <span />
           )}
-          {next && (
+          {next ? (
             <Link
               className="flex items-center gap-2 font-mono text-muted-foreground text-xs outline-none transition-colors hover:text-phosphor focus-visible:text-phosphor"
               href={`/c/${next.name}`}
@@ -150,7 +152,7 @@ export default async function ItemPage({ params }: Params) {
               {next.title}
               <ChevronRightIcon className="size-3.5" />
             </Link>
-          )}
+          ) : null}
         </nav>
       </footer>
     </div>

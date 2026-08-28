@@ -13,18 +13,18 @@ import { cn } from "@/lib/utils";
 const alertVariants = cva(
   "relative grid w-full grid-cols-[0_1fr] items-start gap-y-1 rounded-none border border-line border-l-2 bg-card/90 px-4 py-3 text-sm has-[>svg]:grid-cols-[calc(var(--spacing)*4)_1fr] has-[>svg]:gap-x-3 [&>svg]:size-4 [&>svg]:translate-y-0.5",
   {
+    defaultVariants: { variant: "default" },
     variants: {
       variant: {
         default: "border-l-phosphor [&>svg]:text-phosphor",
+        destructive:
+          "border-l-destructive *:data-[slot=alert-title]:text-destructive *:data-[slot=alert-description]:text-destructive/80 [&>svg]:text-destructive",
         signal:
           "border-l-signal *:data-[slot=alert-title]:text-signal [&>svg]:text-signal",
         warn: "border-l-amber *:data-[slot=alert-title]:text-amber [&>svg]:text-amber",
-        destructive:
-          "border-l-destructive *:data-[slot=alert-title]:text-destructive *:data-[slot=alert-description]:text-destructive/80 [&>svg]:text-destructive",
       },
     },
-    defaultVariants: { variant: "default" },
-  },
+  }
 );
 
 function Alert({
@@ -47,7 +47,7 @@ function AlertTitle({ className, ...props }: React.ComponentProps<"div">) {
     <div
       className={cn(
         "col-start-2 line-clamp-1 min-h-4 font-mono font-semibold text-[0.6875rem] text-phosphor-bright uppercase tracking-[0.12em]",
-        className,
+        className
       )}
       data-slot="alert-title"
       {...props}
@@ -63,7 +63,7 @@ function AlertDescription({
     <div
       className={cn(
         "col-start-2 grid justify-items-start gap-1 text-muted-foreground text-sm [&_p]:leading-relaxed",
-        className,
+        className
       )}
       data-slot="alert-description"
       {...props}

@@ -19,7 +19,7 @@ function BreadcrumbList({ className, ...props }: React.ComponentProps<"ol">) {
     <ol
       className={cn(
         "flex flex-wrap items-center gap-1.5 break-words font-mono text-muted-foreground text-xs",
-        className,
+        className
       )}
       data-slot="breadcrumb-list"
       {...props}
@@ -52,10 +52,10 @@ function BreadcrumbLink({
       {
         className: cn(
           "rounded-none outline-none transition-colors hover:text-phosphor focus-visible:text-phosphor",
-          className,
+          className
         ),
       },
-      props,
+      props
     ),
     render,
     state: { slot: "breadcrumb-link" },
@@ -100,7 +100,7 @@ function BreadcrumbEllipsis({
       aria-hidden="true"
       className={cn(
         "flex size-4 items-center justify-center text-phosphor-dim",
-        className,
+        className
       )}
       data-slot="breadcrumb-ellipsis"
       role="presentation"

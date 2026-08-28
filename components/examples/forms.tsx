@@ -31,9 +31,9 @@ import {
 export const formExamples: ExampleMap = {
   checkbox: [
     {
-      name: "Default",
       description:
         "Square, sharp, and filled with the beam when it is on: the one state change worth making unmissable in a form.",
+      name: "Default",
       node: (
         <div className="grid gap-3">
           <div className="flex items-center gap-2.5">
@@ -53,11 +53,34 @@ export const formExamples: ExampleMap = {
     },
   ],
 
+  "input-otp": [
+    {
+      description:
+        "The caret is drawn rather than inherited: the field behind these cells is a single invisible input and has none to lend them.",
+      name: "Six digits",
+      node: (
+        <InputOTP maxLength={6}>
+          <InputOTPGroup>
+            <InputOTPSlot index={0} />
+            <InputOTPSlot index={1} />
+            <InputOTPSlot index={2} />
+          </InputOTPGroup>
+          <InputOTPSeparator />
+          <InputOTPGroup>
+            <InputOTPSlot index={3} />
+            <InputOTPSlot index={4} />
+            <InputOTPSlot index={5} />
+          </InputOTPGroup>
+        </InputOTP>
+      ),
+    },
+  ],
+
   "radio-group": [
     {
-      name: "Default",
       description:
         "The one round shape in the set. A terminal has always drawn radios with parentheses and checkboxes with brackets, so the convention and the aesthetic agree here.",
+      name: "Default",
       node: (
         <RadioGroup defaultValue="fast">
           <div className="flex items-center gap-2.5">
@@ -73,30 +96,6 @@ export const formExamples: ExampleMap = {
             <Label htmlFor="ex-r-3">Read-only</Label>
           </div>
         </RadioGroup>
-      ),
-    },
-  ],
-
-  switch: [
-    {
-      name: "Sizes",
-      description:
-        "A rocker, not a pill. The pill is the one shape this system cannot borrow: a rounded switch on a page of hairline rectangles is the single element that gives the theme away.",
-      node: (
-        <div className="grid gap-4">
-          <div className="flex items-center gap-3">
-            <Switch defaultChecked id="ex-sw-1" />
-            <Label htmlFor="ex-sw-1">Beacon</Label>
-          </div>
-          <div className="flex items-center gap-3">
-            <Switch id="ex-sw-2" />
-            <Label htmlFor="ex-sw-2">Verbose log</Label>
-          </div>
-          <div className="flex items-center gap-3">
-            <Switch defaultChecked id="ex-sw-3" size="sm" />
-            <Label htmlFor="ex-sw-3">Small</Label>
-          </div>
-        </div>
       ),
     },
   ],
@@ -153,25 +152,26 @@ export const formExamples: ExampleMap = {
     },
   ],
 
-  "input-otp": [
+  switch: [
     {
-      name: "Six digits",
       description:
-        "The caret is drawn rather than inherited: the field behind these cells is a single invisible input and has none to lend them.",
+        "A rocker, not a pill. The pill is the one shape this system cannot borrow: a rounded switch on a page of hairline rectangles is the single element that gives the theme away.",
+      name: "Sizes",
       node: (
-        <InputOTP maxLength={6}>
-          <InputOTPGroup>
-            <InputOTPSlot index={0} />
-            <InputOTPSlot index={1} />
-            <InputOTPSlot index={2} />
-          </InputOTPGroup>
-          <InputOTPSeparator />
-          <InputOTPGroup>
-            <InputOTPSlot index={3} />
-            <InputOTPSlot index={4} />
-            <InputOTPSlot index={5} />
-          </InputOTPGroup>
-        </InputOTP>
+        <div className="grid gap-4">
+          <div className="flex items-center gap-3">
+            <Switch defaultChecked id="ex-sw-1" />
+            <Label htmlFor="ex-sw-1">Beacon</Label>
+          </div>
+          <div className="flex items-center gap-3">
+            <Switch id="ex-sw-2" />
+            <Label htmlFor="ex-sw-2">Verbose log</Label>
+          </div>
+          <div className="flex items-center gap-3">
+            <Switch defaultChecked id="ex-sw-3" size="sm" />
+            <Label htmlFor="ex-sw-3">Small</Label>
+          </div>
+        </div>
       ),
     },
   ],
@@ -198,9 +198,9 @@ export const formExamples: ExampleMap = {
 
   "toggle-group": [
     {
-      name: "Joined",
       description:
         "The rules between items are a one-pixel gap in the group's own background, the same trick the segmented tabs use.",
+      name: "Joined",
       node: (
         <div className="grid gap-4">
           <ToggleGroup defaultValue={["manifest"]}>

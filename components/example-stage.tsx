@@ -30,7 +30,7 @@ export function ExampleStage({
       className={cn(
         "relative isolate flex items-center justify-center overflow-hidden border border-line bg-[#070f0f]",
         clipped ? "pointer-events-none h-40 px-4 py-4" : "min-h-44 px-6 py-10",
-        className,
+        className
       )}
     >
       {/* The gallery preview is a picture of the component, not a copy of it to

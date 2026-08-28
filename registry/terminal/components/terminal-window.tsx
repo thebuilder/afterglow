@@ -54,9 +54,9 @@ const MARKS = {
 type LightName = keyof typeof MARKS;
 
 const LIGHTS: { name: LightName; label: string; color: string }[] = [
-  { name: "close", label: "Close", color: "#ff5d7f" },
-  { name: "collapse", label: "Collapse", color: "#ffd45d" },
-  { name: "zoom", label: "Zoom", color: "#68d9b4" },
+  { color: "#ff5d7f", label: "Close", name: "close" },
+  { color: "#ffd45d", label: "Collapse", name: "collapse" },
+  { color: "#68d9b4", label: "Zoom", name: "zoom" },
 ];
 
 function Marks({ name }: { name: LightName }) {
@@ -131,7 +131,7 @@ function TerminalWindow({
 }) {
   const frame = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState<{ width: number; height: number } | null>(
-    null,
+    null
   );
   const [collapsed, setCollapsed] = useState(false);
 
@@ -140,61 +140,62 @@ function TerminalWindow({
    * so the window can be laid out with classes until somebody grabs it and only
    * then becomes pixel-sized.
    *
+   * The axis comes off the handle that fired rather than a bound argument, so
+   * the three zones share one memoized callback.
+   *
    * Nothing calls `releasePointerCapture`. The capture is released implicitly
    * on `pointerup`, and calling it again afterwards throws `NotFoundError`,
    * which aborts the rest of the teardown and leaves the move listener
    * attached: the window then goes on resizing with no button held.
    */
-  const startResize = useCallback(
-    (event: ReactPointerEvent<HTMLElement>, axis: "x" | "y" | "both") => {
-      const box = frame.current?.getBoundingClientRect();
-      if (!box) {
-        return;
-      }
+  const startResize = useCallback((event: ReactPointerEvent<HTMLElement>) => {
+    const axis = event.currentTarget.dataset.axis as "x" | "y" | "both";
+    const box = frame.current?.getBoundingClientRect();
+    if (!box) {
+      return;
+    }
 
-      event.preventDefault();
-      const handle = event.currentTarget;
-      const originX = event.clientX;
-      const originY = event.clientY;
+    event.preventDefault();
+    const handle = event.currentTarget;
+    const originX = event.clientX;
+    const originY = event.clientY;
 
-      try {
-        handle.setPointerCapture(event.pointerId);
-      } catch {
-        // Not every pointer allows capture; the listeners below still work.
-      }
+    try {
+      handle.setPointerCapture(event.pointerId);
+    } catch {
+      // Not every pointer allows capture; the listeners below still work.
+    }
 
-      const move = (moved: PointerEvent) => {
-        setSize({
-          width:
-            axis === "y"
-              ? box.width
-              : Math.max(MIN_WIDTH, box.width + moved.clientX - originX),
-          height:
-            axis === "x"
-              ? box.height
-              : Math.max(MIN_HEIGHT, box.height + moved.clientY - originY),
-        });
-      };
+    const move = (moved: PointerEvent) => {
+      setSize({
+        height:
+          axis === "x"
+            ? box.height
+            : Math.max(MIN_HEIGHT, box.height + moved.clientY - originY),
+        width:
+          axis === "y"
+            ? box.width
+            : Math.max(MIN_WIDTH, box.width + moved.clientX - originX),
+      });
+    };
 
-      const stop = () => {
-        handle.removeEventListener("pointermove", move);
-        handle.removeEventListener("pointerup", stop);
-        handle.removeEventListener("pointercancel", stop);
-      };
+    const stop = () => {
+      handle.removeEventListener("pointermove", move);
+      handle.removeEventListener("pointerup", stop);
+      handle.removeEventListener("pointercancel", stop);
+    };
 
-      handle.addEventListener("pointermove", move);
-      handle.addEventListener("pointerup", stop);
-      handle.addEventListener("pointercancel", stop);
-    },
-    [],
-  );
+    handle.addEventListener("pointermove", move);
+    handle.addEventListener("pointerup", stop);
+    handle.addEventListener("pointercancel", stop);
+  }, []);
 
   /** A drag handle nobody can reach with a keyboard is a control for some people only. */
   const nudge = useCallback((event: React.KeyboardEvent<HTMLElement>) => {
     const step = {
-      ArrowRight: [KEY_STEP, 0],
-      ArrowLeft: [-KEY_STEP, 0],
       ArrowDown: [0, KEY_STEP],
+      ArrowLeft: [-KEY_STEP, 0],
+      ArrowRight: [KEY_STEP, 0],
       ArrowUp: [0, -KEY_STEP],
     }[event.key];
     const box = frame.current?.getBoundingClientRect();
@@ -205,8 +206,8 @@ function TerminalWindow({
 
     event.preventDefault();
     setSize({
-      width: Math.max(MIN_WIDTH, box.width + step[0]),
       height: Math.max(MIN_HEIGHT, box.height + step[1]),
+      width: Math.max(MIN_WIDTH, box.width + step[0]),
     });
   }, []);
 
@@ -243,7 +244,7 @@ function TerminalWindow({
           "relative grid w-11 place-items-center self-stretch border-0 bg-transparent text-[#1b302b] transition-colors",
           light.name === "close"
             ? "hover:bg-[#e81123] hover:text-white"
-            : "hover:bg-[rgb(9_22_19/0.12)]",
+            : "hover:bg-[rgb(9_22_19/0.12)]"
         )}
         key={light.name}
         light={light}
@@ -252,7 +253,7 @@ function TerminalWindow({
           <Marks name={light.name} />
         </span>
       </Light>
-    ),
+    )
   );
 
   return (
@@ -262,7 +263,7 @@ function TerminalWindow({
         collapsed
           ? "!h-fit grid-rows-[auto]"
           : "grid-rows-[auto_minmax(0,1fr)_auto]",
-        className,
+        className
       )}
       data-collapsed={collapsed || undefined}
       data-slot="terminal-window"
@@ -278,7 +279,7 @@ function TerminalWindow({
           /* The subtitle is a second line, and a second line is most of the
              chrome's height. Without one the bar is sized to the title alone. */
           subtitle ? "min-h-[3.25rem]" : "min-h-9",
-          variant === "macos" && "justify-between",
+          variant === "macos" && "justify-between"
         )}
         data-slot="terminal-window-titlebar"
       >
@@ -292,14 +293,14 @@ function TerminalWindow({
             "grid min-w-0 gap-0.5 bg-[#b6c4be] px-2 py-0.5",
             variant === "macos"
               ? "shrink justify-items-center text-center"
-              : "mr-auto justify-items-start",
+              : "mr-auto justify-items-start"
           )}
         >
-          {subtitle && (
+          {subtitle ? (
             <span className="font-bold font-mono text-[#38544d] text-[0.48rem] uppercase tracking-[0.12em]">
               {subtitle}
             </span>
-          )}
+          ) : null}
           <h2 className="max-w-full truncate font-bold font-mono text-[0.82rem] leading-tight">
             {title}
           </h2>
@@ -332,14 +333,14 @@ function TerminalWindow({
             {children}
           </div>
 
-          {footer && (
+          {footer ? (
             <div
               className="flex min-h-7 items-center justify-between gap-4 border-[#536c65] border-t px-2.5 pr-6 font-bold font-mono text-[#263e38] text-[0.48rem] uppercase tracking-[0.08em]"
               data-slot="terminal-window-footer"
             >
               {footer}
             </div>
-          )}
+          ) : null}
         </>
       )}
 
@@ -351,18 +352,21 @@ function TerminalWindow({
           <span
             aria-hidden="true"
             className="-right-[3px] absolute inset-y-0 w-2 cursor-ew-resize touch-none"
-            onPointerDown={(event) => startResize(event, "x")}
+            data-axis="x"
+            onPointerDown={startResize}
           />
           <span
             aria-hidden="true"
             className="-bottom-[3px] absolute inset-x-0 h-2 cursor-ns-resize touch-none"
-            onPointerDown={(event) => startResize(event, "y")}
+            data-axis="y"
+            onPointerDown={startResize}
           />
           <button
             aria-label="Resize window"
             className="-right-[3px] -bottom-[3px] absolute z-1 size-3.5 cursor-nwse-resize touch-none border-0 bg-transparent p-0 outline-none focus-visible:outline-2 focus-visible:outline-phosphor-bright"
+            data-axis="both"
             onKeyDown={nudge}
-            onPointerDown={(event) => startResize(event, "both")}
+            onPointerDown={startResize}
             type="button"
           >
             {/* Rules in the corner triangle, which is what a grow box has always

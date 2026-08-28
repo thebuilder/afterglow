@@ -16,7 +16,7 @@ function InputOTP({
       className={cn("disabled:cursor-not-allowed", className)}
       containerClassName={cn(
         "flex items-center gap-2 has-disabled:opacity-40",
-        containerClassName,
+        containerClassName
       )}
       data-slot="input-otp"
       {...props}
@@ -55,18 +55,18 @@ function InputOTPSlot({
         "relative flex size-9 items-center justify-center rounded-none bg-panel-sunken font-mono text-phosphor-bright text-sm outline-none transition-[background-color,box-shadow]",
         "data-[active=true]:z-10 data-[active=true]:bg-accent data-[active=true]:shadow-[inset_0_0_0_1px_var(--phosphor)]",
         "aria-invalid:shadow-[inset_0_0_0_1px_var(--destructive)]",
-        className,
+        className
       )}
       data-active={isActive}
       data-slot="input-otp-slot"
       {...props}
     >
       {char}
-      {hasFakeCaret && (
+      {hasFakeCaret ? (
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
           <div className="h-4 w-px animate-caret bg-phosphor-bright" />
         </div>
-      )}
+      ) : null}
     </div>
   );
 }

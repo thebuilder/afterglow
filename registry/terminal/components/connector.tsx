@@ -23,7 +23,7 @@ function Connector({
         direction === "right"
           ? "bg-[linear-gradient(90deg,var(--line-strong),transparent)]"
           : "bg-[linear-gradient(270deg,var(--line-strong),transparent)]",
-        className,
+        className
       )}
       data-direction={direction}
       data-slot="connector"
@@ -32,7 +32,7 @@ function Connector({
       <span
         className={cn(
           "-top-0.5 absolute size-[5px] bg-phosphor",
-          direction === "right" ? "left-0" : "right-0",
+          direction === "right" ? "left-0" : "right-0"
         )}
       />
     </span>

@@ -11,9 +11,9 @@ type BootLine = string | { text: string; tone?: BootTone };
 const TONE_CLASS: Record<BootTone, string> = {
   default: "text-phosphor-bright",
   dim: "text-phosphor-dim",
+  error: "text-signal",
   ok: "text-phosphor",
   warn: "text-amber",
-  error: "text-signal",
 };
 
 function toLine(line: BootLine): { text: string; tone: BootTone } {
@@ -71,7 +71,7 @@ function BootLog({
     <ol
       className={cn(
         "m-0 grid list-none gap-1 p-0 font-mono text-xs",
-        className,
+        className
       )}
       data-slot="boot-log"
       {...props}
@@ -85,7 +85,7 @@ function BootLog({
             className={cn(
               "flex gap-2 leading-relaxed",
               TONE_CLASS[line.tone],
-              shown ? "animate-type" : "invisible",
+              shown ? "animate-type" : "invisible"
             )}
             key={line.text}
           >

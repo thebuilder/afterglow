@@ -90,9 +90,9 @@ const LOG = [
 export const structureExamples: ExampleMap = {
   accordion: [
     {
-      name: "Default",
       description:
         "A plus that becomes a minus. Only the vertical stroke moves, so the horizontal one never appears to shift as it turns.",
+      name: "Default",
       node: (
         <Accordion className="w-full max-w-md" multiple={false}>
           <AccordionItem value="a">
@@ -119,6 +119,52 @@ export const structureExamples: ExampleMap = {
     },
   ],
 
+  avatar: [
+    {
+      description:
+        "Square. A round avatar is the one element that would give a page of hairline rectangles away.",
+      name: "Default",
+      node: (
+        <div className="flex items-center gap-3">
+          <Avatar>
+            <AvatarFallback>DS</AvatarFallback>
+          </Avatar>
+          <Avatar className="size-10">
+            <AvatarFallback>N4</AvatarFallback>
+          </Avatar>
+          <Avatar className="size-6">
+            <AvatarFallback className="text-[0.5rem]">OP</AvatarFallback>
+          </Avatar>
+        </div>
+      ),
+    },
+  ],
+
+  breadcrumb: [
+    {
+      description:
+        "A chevron is a control's punctuation. A slash is what the thing being described actually contains.",
+      name: "Default",
+      node: (
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="#">node-04</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink href="#">capture</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>2026-08-28</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      ),
+    },
+  ],
+
   collapsible: [
     {
       name: "Default",
@@ -141,168 +187,6 @@ export const structureExamples: ExampleMap = {
             <span>04:12:14 retry 3 of 3</span>
           </CollapsibleContent>
         </Collapsible>
-      ),
-    },
-  ],
-
-  avatar: [
-    {
-      name: "Default",
-      description:
-        "Square. A round avatar is the one element that would give a page of hairline rectangles away.",
-      node: (
-        <div className="flex items-center gap-3">
-          <Avatar>
-            <AvatarFallback>DS</AvatarFallback>
-          </Avatar>
-          <Avatar className="size-10">
-            <AvatarFallback>N4</AvatarFallback>
-          </Avatar>
-          <Avatar className="size-6">
-            <AvatarFallback className="text-[0.5rem]">OP</AvatarFallback>
-          </Avatar>
-        </div>
-      ),
-    },
-  ],
-
-  breadcrumb: [
-    {
-      name: "Default",
-      description:
-        "A chevron is a control's punctuation. A slash is what the thing being described actually contains.",
-      node: (
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink href="#">node-04</BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbLink href="#">capture</BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage>2026-08-28</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-      ),
-    },
-  ],
-
-  pagination: [
-    {
-      name: "Default",
-      node: (
-        <Pagination>
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious href="#" />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">1</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#" isActive>
-                2
-              </PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">3</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationEllipsis />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationNext href="#" />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
-      ),
-    },
-  ],
-
-  "scroll-area": [
-    {
-      name: "Default",
-      description:
-        "A track and a block, so a scrolling panel does not grow the operating system's furniture down one side.",
-      node: (
-        <ScrollArea className="h-36 w-full max-w-sm border border-line bg-panel">
-          <div className="grid gap-1 p-3 font-mono text-muted-foreground text-xs">
-            {LOG.map((line) => (
-              <span key={line}>{line}</span>
-            ))}
-          </div>
-        </ScrollArea>
-      ),
-    },
-  ],
-
-  resizable: [
-    {
-      name: "Default",
-      description:
-        "The hit area is four times the width of the visible line, so the thing you aim at is bigger than the thing you see.",
-      node: (
-        <ResizablePanelGroup className="h-40 w-full max-w-lg border border-line">
-          <ResizablePanel defaultSize="40%">
-            <div className="grid h-full place-items-center bg-panel font-mono text-phosphor text-xs">
-              manifest
-            </div>
-          </ResizablePanel>
-          <ResizableHandle withHandle />
-          <ResizablePanel>
-            <div className="grid h-full place-items-center bg-panel-sunken font-mono text-muted-foreground text-xs">
-              preview
-            </div>
-          </ResizablePanel>
-        </ResizablePanelGroup>
-      ),
-    },
-  ],
-
-  popover: [
-    {
-      name: "Default",
-      node: (
-        <Popover>
-          <PopoverTrigger render={<Button variant="outline" />}>
-            Rename volume
-          </PopoverTrigger>
-          <PopoverContent className="grid gap-3">
-            <div className="grid gap-1">
-              <p className="font-medium font-mono text-phosphor-bright text-sm">
-                Rename
-              </p>
-              <p className="text-muted-foreground text-xs">
-                The label the manifest shows. The mount point does not change.
-              </p>
-            </div>
-            <div className="grid gap-2">
-              <Label htmlFor="ex-pop">Label</Label>
-              <Input defaultValue="capture" id="ex-pop" />
-            </div>
-          </PopoverContent>
-        </Popover>
-      ),
-    },
-  ],
-
-  tooltip: [
-    {
-      name: "Default",
-      description:
-        "A plate with one lit edge rather than a bubble with a tail. No arrow, because an arrow is a rounded speech shape.",
-      node: (
-        <Tooltip>
-          <TooltipTrigger render={<Button size="icon" variant="outline" />}>
-            <SettingsIcon />
-            <span className="sr-only">Settings</span>
-          </TooltipTrigger>
-          <TooltipContent>Volume settings</TooltipContent>
-        </Tooltip>
       ),
     },
   ],
@@ -345,11 +229,110 @@ export const structureExamples: ExampleMap = {
     },
   ],
 
-  sheet: [
+  pagination: [
     {
       name: "Default",
+      node: (
+        <Pagination>
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious href="#" />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#">1</PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#" isActive>
+                2
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#">3</PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationNext href="#" />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
+      ),
+    },
+  ],
+
+  popover: [
+    {
+      name: "Default",
+      node: (
+        <Popover>
+          <PopoverTrigger render={<Button variant="outline" />}>
+            Rename volume
+          </PopoverTrigger>
+          <PopoverContent className="grid gap-3">
+            <div className="grid gap-1">
+              <p className="font-medium font-mono text-phosphor-bright text-sm">
+                Rename
+              </p>
+              <p className="text-muted-foreground text-xs">
+                The label the manifest shows. The mount point does not change.
+              </p>
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="ex-pop">Label</Label>
+              <Input defaultValue="capture" id="ex-pop" />
+            </div>
+          </PopoverContent>
+        </Popover>
+      ),
+    },
+  ],
+
+  resizable: [
+    {
+      description:
+        "The hit area is four times the width of the visible line, so the thing you aim at is bigger than the thing you see.",
+      name: "Default",
+      node: (
+        <ResizablePanelGroup className="h-40 w-full max-w-lg border border-line">
+          <ResizablePanel defaultSize="40%">
+            <div className="grid h-full place-items-center bg-panel font-mono text-phosphor text-xs">
+              manifest
+            </div>
+          </ResizablePanel>
+          <ResizableHandle withHandle />
+          <ResizablePanel>
+            <div className="grid h-full place-items-center bg-panel-sunken font-mono text-muted-foreground text-xs">
+              preview
+            </div>
+          </ResizablePanel>
+        </ResizablePanelGroup>
+      ),
+    },
+  ],
+
+  "scroll-area": [
+    {
+      description:
+        "A track and a block, so a scrolling panel does not grow the operating system's furniture down one side.",
+      name: "Default",
+      node: (
+        <ScrollArea className="h-36 w-full max-w-sm border border-line bg-panel">
+          <div className="grid gap-1 p-3 font-mono text-muted-foreground text-xs">
+            {LOG.map((line) => (
+              <span key={line}>{line}</span>
+            ))}
+          </div>
+        </ScrollArea>
+      ),
+    },
+  ],
+
+  sheet: [
+    {
       description:
         "The edge it slides from keeps a lit border, so an open drawer reads as a thing pulled out of the frame.",
+      name: "Default",
       node: (
         <Sheet>
           <SheetTrigger render={<Button variant="outline" />}>
@@ -369,6 +352,23 @@ export const structureExamples: ExampleMap = {
             </div>
           </SheetContent>
         </Sheet>
+      ),
+    },
+  ],
+
+  tooltip: [
+    {
+      description:
+        "A plate with one lit edge rather than a bubble with a tail. No arrow, because an arrow is a rounded speech shape.",
+      name: "Default",
+      node: (
+        <Tooltip>
+          <TooltipTrigger render={<Button size="icon" variant="outline" />}>
+            <SettingsIcon />
+            <span className="sr-only">Settings</span>
+          </TooltipTrigger>
+          <TooltipContent>Volume settings</TooltipContent>
+        </Tooltip>
       ),
     },
   ],

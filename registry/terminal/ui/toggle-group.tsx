@@ -29,14 +29,14 @@ function ToggleGroup({
     <ToggleGroupPrimitive
       className={cn(
         "group/toggle-group flex w-fit items-center gap-px rounded-none bg-line p-px",
-        className,
+        className
       )}
       data-size={size}
       data-slot="toggle-group"
       data-variant={variant}
       {...props}
     >
-      <ToggleGroupContext value={{ variant, size }}>
+      <ToggleGroupContext value={{ size, variant }}>
         {children}
       </ToggleGroupContext>
     </ToggleGroupPrimitive>
@@ -56,11 +56,11 @@ function ToggleGroupItem({
     <TogglePrimitive
       className={cn(
         toggleVariants({
-          variant: context.variant || variant,
           size: context.size || size,
+          variant: context.variant || variant,
         }),
         "min-w-0 shrink-0 border-0 bg-secondary px-3 focus-visible:z-10 focus-visible:outline-offset-[-2px]",
-        className,
+        className
       )}
       data-slot="toggle-group-item"
       {...props}

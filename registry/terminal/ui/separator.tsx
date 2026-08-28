@@ -11,7 +11,7 @@ function Separator({
     <SeparatorPrimitive
       className={cn(
         "shrink-0 bg-line data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px",
-        className,
+        className
       )}
       data-slot="separator"
       orientation={orientation}
