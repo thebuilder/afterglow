@@ -368,6 +368,9 @@
           "--sidebar-primary": "var(--phosphor)",
           "--sidebar-ring": "var(--phosphor-bright)"
         },
+        ":where(a, button, input, textarea, select, summary, [tabindex]):focus-visible": {
+          "outline-style": "solid"
+        },
         "@keyframes terminal-alarm": {
           "0%, 100%": {
             "border-color": "transparent",

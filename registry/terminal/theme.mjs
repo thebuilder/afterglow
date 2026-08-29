@@ -318,6 +318,10 @@ const REDUCED_MOTION_SELECTOR = Object.keys(THEME)
 const CSS = {
   ...PHOSPHOR_PRESET_CSS,
   ':root[data-phosphor]:not([data-phosphor="green"])': PHOSPHOR_SEMANTIC_CSS,
+  ":where(a, button, input, textarea, select, summary, [tabindex]):focus-visible":
+    {
+      "outline-style": "solid",
+    },
 
   "@keyframes terminal-alarm": {
     "0%, 100%": {
