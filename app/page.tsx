@@ -13,8 +13,8 @@ import { Separator } from "@/registry/terminal/ui/separator";
 const BENEFITS = [
   {
     description:
-      "Palette, typography, motion, CRT effects, shadows, and square geometry come from one registry theme.",
-    title: "One shared theme",
+      "Green, orange, yellow, cyan, blue, magenta, red, or grey, all using the same terminal geometry and motion.",
+    title: "Eight phosphor themes",
   },
   {
     description:
@@ -46,9 +46,9 @@ export default function Home() {
             </h1>
             <Connector />
             <p className="max-w-prose text-pretty text-foreground/85 text-lg">
-              Installed through shadcn, Afterglow adds a terminal theme with
-              eight phosphor presets, Base UI components, and terminal-specific
-              building blocks. The source stays in your codebase.
+              Installed through shadcn, Afterglow adds Base UI components,
+              terminal-specific building blocks, and eight phosphor color themes.
+              The source stays in your codebase.
             </p>
             <div className="flex flex-wrap gap-3 pt-2">
               <Button
