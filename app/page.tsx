@@ -126,7 +126,7 @@ export default function Home() {
               render={<Link href="/components" />}
               variant="outline"
             >
-              <span className="leading-none">View all components</span>
+              View all components
               <ChevronRightIcon />
             </Button>
           </div>

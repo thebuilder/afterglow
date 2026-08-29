@@ -1,5 +1,6 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
+import { IBM_Plex_Mono } from "next/font/google";
 
 import { PhosphorProvider } from "@/components/phosphor-provider";
 import { HOMEPAGE } from "@/lib/registry";
@@ -11,6 +12,11 @@ import "./site.css";
 const DESCRIPTION =
   "A complete terminal UI system for shadcn. Install the shared theme, Base UI components, and terminal-specific building blocks into your project.";
 const TITLE = "afterglow, terminal UI for shadcn";
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  variable: "--afterglow-font-mono",
+  weight: ["400", "500", "600", "700"],
+});
 
 export const metadata: Metadata = {
   alternates: { canonical: HOMEPAGE },
@@ -36,7 +42,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html className={ibmPlexMono.variable} lang="en" suppressHydrationWarning>
       <body className="relative isolate min-h-svh antialiased">
         <PhosphorProvider>
           {children}
