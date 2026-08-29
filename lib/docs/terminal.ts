@@ -32,6 +32,17 @@ export const terminalDocs: DocMap = {
     ],
   },
 
+  caret: {
+    parts: [
+      {
+        name: "Caret",
+        props: [{ default: "true", name: "blink", type: "boolean" }],
+        summary:
+          "Its em dimensions follow the surrounding font size. Set `blink` to `false` to hold it on.",
+      },
+    ],
+  },
+
   connector: {
     parts: [
       {
@@ -45,16 +56,6 @@ export const terminalDocs: DocMap = {
         ],
         summary:
           "The square end is where the rule starts. Point the other end at whatever the heading is about.",
-      },
-    ],
-  },
-
-  console: {
-    parts: [
-      {
-        name: "default",
-        summary:
-          "A page, installed at `app/console/page.tsx`. It is a starting point to edit rather than a component to compose, so it exports one default and takes no props.",
       },
     ],
   },
@@ -79,13 +80,28 @@ export const terminalDocs: DocMap = {
           { default: 'tone !== "idle"', name: "pulse", type: "boolean" },
         ],
         summary:
-          "It pulses by default and holds still when idle, because a dark indicator that is also animating is a light saying nothing twice.",
+          "It flickers between held brightness levels by default. The idle tone holds still.",
       },
       {
         name: "Status",
         props: [{ default: '"ok"', name: "tone", type: TONES }],
         summary:
           "A lamp and the word beside it, which is how a status line is always built.",
+      },
+    ],
+  },
+
+  "operator-dashboard": {
+    parts: [
+      {
+        name: "OperatorDashboard",
+        summary:
+          "The composed dashboard. It accepts `div` props, so the full-page route and embedded previews use the same component.",
+      },
+      {
+        name: "default",
+        summary:
+          "The page wrapper installed at `app/operator-dashboard/page.tsx`.",
       },
     ],
   },
@@ -135,9 +151,55 @@ export const terminalDocs: DocMap = {
     ],
   },
 
+  shell: {
+    parts: [
+      {
+        name: "Shell",
+        parts: [
+          {
+            name: "ShellOutput",
+            parts: [
+              {
+                name: "ShellCommand",
+                props: [{ default: '"$"', name: "prompt", type: "string" }],
+                summary: "A submitted command with its prompt.",
+              },
+              {
+                name: "ShellLine",
+                props: [
+                  {
+                    default: '"default"',
+                    name: "tone",
+                    type: '"command" | "default" | "error" | "muted" | "warning"',
+                  },
+                ],
+                summary: "One output line with an optional status tone.",
+              },
+            ],
+            summary:
+              "A scrolling `role=log` transcript that announces added lines politely.",
+          },
+          {
+            name: "ShellPrompt",
+            props: [
+              { default: '"Command"', name: "label", type: "string" },
+              { name: "onSubmit", type: "(command: string) => void" },
+              { name: "placeholder", type: "string" },
+              { default: '"$"', name: "prompt", type: "string" },
+            ],
+            summary:
+              "The command field. It trims submitted text, clears after submission and recalls the last 40 commands with Arrow Up and Arrow Down.",
+          },
+        ],
+        summary:
+          "The bordered shell surface. It accepts section props and labels itself `Shell` unless `aria-label` says otherwise.",
+      },
+    ],
+  },
+
   terminal: {
     notes: [
-      "`terminal` is a style preset, so install it with `shadcn init`, not `add`. It includes the theme, every primitive, every terminal component and the console block.",
+      "Install the `terminal` style preset with `shadcn init`. It includes the theme, every primitive and every terminal component.",
     ],
     parts: [],
   },

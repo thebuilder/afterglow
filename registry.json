@@ -243,10 +243,14 @@
           "animate-close": "terminal-close 120ms steps(3, end) forwards",
           "animate-fade-in": "terminal-fade-in 140ms ease-out",
           "animate-fade-out": "terminal-fade-out 120ms ease-in forwards",
-          "animate-led": "terminal-led 2.5s infinite",
+          "animate-led": "terminal-led 1.6s steps(2) infinite",
           "animate-line-in": "terminal-line-in 420ms var(--ease-terminal) both",
           "animate-open": "terminal-open 180ms steps(4, end)",
           "animate-pixel": "terminal-pixel 800ms linear infinite",
+          "animate-select-fold-in-down": "terminal-select-fold-in-down 140ms steps(4, end)",
+          "animate-select-fold-in-up": "terminal-select-fold-in-up 140ms steps(4, end)",
+          "animate-select-fold-out-down": "terminal-select-fold-out-down 100ms steps(3, end) forwards",
+          "animate-select-fold-out-up": "terminal-select-fold-out-up 100ms steps(3, end) forwards",
           "animate-slide-in-bottom": "terminal-slide-in-bottom 220ms var(--ease-terminal)",
           "animate-slide-in-left": "terminal-slide-in-left 220ms var(--ease-terminal)",
           "animate-slide-in-right": "terminal-slide-in-right 220ms var(--ease-terminal)",
@@ -339,7 +343,7 @@
         },
         "@keyframes terminal-led": {
           "50%": {
-            "opacity": "0.35"
+            "opacity": "0.45"
           }
         },
         "@keyframes terminal-line-in": {
@@ -372,6 +376,26 @@
           },
           "37.5%, 100%": {
             "opacity": "0.16"
+          }
+        },
+        "@keyframes terminal-select-fold-in-down": {
+          "from": {
+            "clip-path": "inset(0 0 100% 0)"
+          }
+        },
+        "@keyframes terminal-select-fold-in-up": {
+          "from": {
+            "clip-path": "inset(100% 0 0 0)"
+          }
+        },
+        "@keyframes terminal-select-fold-out-down": {
+          "to": {
+            "clip-path": "inset(100% 0 0 0)"
+          }
+        },
+        "@keyframes terminal-select-fold-out-up": {
+          "to": {
+            "clip-path": "inset(0 0 100% 0)"
           }
         },
         "@keyframes terminal-slide-in-bottom": {
@@ -460,7 +484,7 @@
           }
         },
         "@media (prefers-reduced-motion: reduce)": {
-          ".animate-alarm, .animate-beam, .animate-caret, .animate-close, .animate-fade-in, .animate-fade-out, .animate-led, .animate-line-in, .animate-open, .animate-pixel, .animate-slide-in-bottom, .animate-slide-in-left, .animate-slide-in-right, .animate-slide-in-top, .animate-slide-out-bottom, .animate-slide-out-left, .animate-slide-out-right, .animate-slide-out-top, .animate-sweep, .animate-type": {
+          ".animate-alarm, .animate-beam, .animate-caret, .animate-close, .animate-fade-in, .animate-fade-out, .animate-led, .animate-line-in, .animate-open, .animate-pixel, .animate-select-fold-in-down, .animate-select-fold-in-up, .animate-select-fold-out-down, .animate-select-fold-out-up, .animate-slide-in-bottom, .animate-slide-in-left, .animate-slide-in-right, .animate-slide-in-top, .animate-slide-out-bottom, .animate-slide-out-left, .animate-slide-out-right, .animate-slide-out-top, .animate-sweep, .animate-type": {
             "animation": "none !important"
           }
         },
@@ -471,6 +495,14 @@
         "@utility scanlines-soft": {
           "background-image": "repeating-linear-gradient(to bottom, transparent 0 3px, rgb(0 0 0 / 0.09) 3px 4px)",
           "mix-blend-mode": "multiply"
+        },
+        "@utility terminal-caret": {
+          "background-color": "currentColor",
+          "display": "inline-block",
+          "flex-shrink": "0",
+          "height": "1em",
+          "vertical-align": "-0.125em",
+          "width": "0.5em"
         },
         "@utility vignette": {
           "background-image": "radial-gradient(130% 100% at 50% 50%, transparent 52%, rgb(0 0 0 / 0.55) 100%)"
@@ -592,7 +624,7 @@
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
-      "description": "Six variants and five sizes in uppercase mono. Use `signal` for the primary action.",
+      "description": "Seven variants and five sizes in uppercase mono. `primary` is filled phosphor; `signal` marks urgent states.",
       "dependencies": [
         "@base-ui/react",
         "class-variance-authority"
@@ -1175,11 +1207,26 @@
       "title": "Boot Log",
       "description": "A self test that prints itself line by line, at its final height from the first frame.",
       "registryDependencies": [
-        "@afterglow/theme"
+        "@afterglow/caret"
       ],
       "files": [
         {
           "path": "registry/terminal/components/boot-log.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "caret",
+      "type": "registry:component",
+      "title": "Caret",
+      "description": "A blinking block that follows the surrounding font size.",
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/components/caret.tsx",
           "type": "registry:component"
         }
       ]
@@ -1205,7 +1252,7 @@
       "title": "Eyebrow",
       "description": "The tracked-out line above a heading, with an optional block caret.",
       "registryDependencies": [
-        "@afterglow/theme"
+        "@afterglow/caret"
       ],
       "files": [
         {
@@ -1235,7 +1282,7 @@
       "title": "Prompt",
       "description": "A shell line. Sigil, field and caret share one row with no border between them.",
       "registryDependencies": [
-        "@afterglow/theme"
+        "@afterglow/caret"
       ],
       "files": [
         {
@@ -1281,6 +1328,24 @@
       ]
     },
     {
+      "name": "shell",
+      "type": "registry:component",
+      "title": "Shell",
+      "description": "A command transcript and prompt with command history. Bring the commands and their effects.",
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/components/shell.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "terminal-window",
       "type": "registry:component",
       "title": "Terminal Window",
@@ -1296,10 +1361,10 @@
       ]
     },
     {
-      "name": "console",
+      "name": "operator-dashboard",
       "type": "registry:block",
-      "title": "Console",
-      "description": "An operator console composed from the registry: boot log, manifest, progress, status and prompt.",
+      "title": "Operator Dashboard",
+      "description": "A full-page operations dashboard with boot status, volume health, rebuild progress and a shell.",
       "categories": [
         "dashboard",
         "application"
@@ -1309,28 +1374,34 @@
         "@afterglow/badge",
         "@afterglow/boot-log",
         "@afterglow/button",
+        "@afterglow/card",
         "@afterglow/connector",
         "@afterglow/eyebrow",
         "@afterglow/kbd",
         "@afterglow/led",
         "@afterglow/progress",
-        "@afterglow/prompt",
+        "@afterglow/shell",
         "@afterglow/scanlines",
         "@afterglow/table"
       ],
       "files": [
         {
-          "path": "registry/terminal/blocks/console/page.tsx",
+          "path": "registry/terminal/blocks/operator-dashboard/dashboard.tsx",
+          "type": "registry:component",
+          "target": "components/operator-dashboard.tsx"
+        },
+        {
+          "path": "registry/terminal/blocks/operator-dashboard/page.tsx",
           "type": "registry:page",
-          "target": "app/console/page.tsx"
+          "target": "app/operator-dashboard/page.tsx"
         }
       ]
     },
     {
       "name": "terminal",
       "type": "registry:style",
-      "title": "Terminal",
-      "description": "The whole system in one install. Use it with `shadcn init` to start a project on it.",
+      "title": "Terminal Preset",
+      "description": "The shared theme and every registry component in one `shadcn init` preset.",
       "extends": "none",
       "dependencies": [
         "@base-ui/react",
@@ -1385,6 +1456,7 @@
         "@afterglow/resizable",
         "@afterglow/scanlines",
         "@afterglow/screen",
+        "@afterglow/shell",
         "@afterglow/boot-log",
         "@afterglow/led",
         "@afterglow/eyebrow",

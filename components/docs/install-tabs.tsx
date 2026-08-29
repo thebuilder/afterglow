@@ -21,6 +21,7 @@ export async function InstallTabs({
   sources: Source[];
 }) {
   const args = installArgs(item);
+  const sourceFirst = item.type === "registry:block";
 
   if (sources.length === 0) {
     return <CommandTab args={args} />;
@@ -32,10 +33,10 @@ export async function InstallTabs({
       : null;
 
   return (
-    <Tabs defaultValue="command">
+    <Tabs defaultValue={sourceFirst ? "manual" : "command"}>
       <TabsList>
         <TabsTrigger value="command">Command</TabsTrigger>
-        <TabsTrigger value="manual">Manual</TabsTrigger>
+        <TabsTrigger value="manual">Source</TabsTrigger>
       </TabsList>
 
       {/* The registry's type-on entrance stutters on short install commands. */}

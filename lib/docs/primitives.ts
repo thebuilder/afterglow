@@ -30,7 +30,7 @@ export const primitiveDocs: DocMap = {
           {
             default: '"default"',
             name: "variant",
-            type: '"default" | "signal" | "outline" | "ghost" | "destructive" | "link"',
+            type: '"default" | "primary" | "signal" | "outline" | "ghost" | "destructive" | "link"',
           },
           {
             default: '"default"',
@@ -39,7 +39,7 @@ export const primitiveDocs: DocMap = {
           },
         ],
         summary:
-          "`default` is the beam and `signal` is the pink. A page holds at most one of the second.",
+          "`primary` is the filled phosphor action. Keep `signal` for alarms and urgent states.",
       },
     ],
     upstream: [baseUi("button")],

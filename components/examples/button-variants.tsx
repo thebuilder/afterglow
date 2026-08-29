@@ -4,6 +4,7 @@ export function ButtonVariants() {
   return (
     <div className="flex flex-wrap items-center gap-3">
       <Button>Mount</Button>
+      <Button variant="primary">Engage</Button>
       <Button variant="signal">Restart</Button>
       <Button variant="outline">Inspect</Button>
       <Button variant="ghost">Cancel</Button>

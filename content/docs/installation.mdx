@@ -1,0 +1,49 @@
+## Before you start
+
+Adding individual components requires a shadcn project with a `components.json` file. Run the shadcn initializer first if the project does not have one.
+
+The complete Afterglow preset can initialize a new project directly.
+
+## Install the full system
+
+Use the `terminal` preset when the project should start with the entire registry:
+
+```bash
+npx shadcn@latest init https://afterglow.thebuilder.dk/r/terminal.json
+```
+
+This installs the theme, interface components, terminal-specific components, and composed blocks in one pass.
+
+## Configure the namespace
+
+Add the registry once to `components.json`:
+
+```json
+{
+  "registries": {
+    "@afterglow": "https://afterglow.thebuilder.dk/r/{name}.json"
+  }
+}
+```
+
+Keep the `{name}` placeholder. The shadcn CLI replaces it with the requested registry item.
+
+## Add components by name
+
+Install one item or several items in the same command:
+
+```bash
+npx shadcn@latest add @afterglow/button @afterglow/scanlines
+```
+
+Registry dependencies resolve automatically. Installing `button`, for example, also installs the shared theme and its package dependencies.
+
+## Direct URLs
+
+You can install an item from its JSON URL:
+
+```bash
+npx shadcn@latest add https://afterglow.thebuilder.dk/r/button.json
+```
+
+Direct URL installs do not resolve dependencies between Afterglow items. Use the namespace form for normal component installation.

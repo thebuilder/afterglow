@@ -1,0 +1,16 @@
+:root {
+  --site-header-height: 3.5rem;
+}
+
+.site-header {
+  height: var(--site-header-height);
+}
+
+.docs-sidebar {
+  top: var(--site-header-height);
+  height: calc(100svh - var(--site-header-height));
+}
+
+.list-square {
+  list-style-type: square;
+}

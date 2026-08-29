@@ -3,6 +3,7 @@
 import { useCallback, useId, useState } from "react";
 
 import { cn } from "@/lib/utils";
+import { Caret } from "@/registry/terminal/components/caret";
 
 function Prompt({
   className,
@@ -63,10 +64,7 @@ function Prompt({
         spellCheck={false}
         value={value}
       />
-      <span
-        aria-hidden="true"
-        className="h-[1em] w-[0.5em] shrink-0 animate-caret bg-phosphor"
-      />
+      <Caret />
     </form>
   );
 }

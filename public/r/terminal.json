@@ -2,8 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "extends": "none",
   "name": "terminal",
-  "title": "Terminal",
-  "description": "The whole system in one install. Use it with `shadcn init` to start a project on it.",
+  "title": "Terminal Preset",
+  "description": "The shared theme and every registry component in one `shadcn init` preset.",
   "dependencies": [
     "@base-ui/react",
     "class-variance-authority",
@@ -57,6 +57,7 @@
     "@afterglow/resizable",
     "@afterglow/scanlines",
     "@afterglow/screen",
+    "@afterglow/shell",
     "@afterglow/boot-log",
     "@afterglow/led",
     "@afterglow/eyebrow",

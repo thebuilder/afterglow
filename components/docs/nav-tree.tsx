@@ -61,7 +61,7 @@ export function NavTree({
 
   return (
     <nav
-      aria-label="Registry"
+      aria-label="Documentation"
       className={cn("grid grid-cols-[minmax(0,1fr)] gap-7", className)}
     >
       {sections.map((section) => (
@@ -71,20 +71,19 @@ export function NavTree({
           </p>
           <ul className="grid grid-cols-[minmax(0,1fr)]">
             {section.items.map((item) => {
-              const href = `/c/${item.name}`;
-              const active = pathname === href;
+              const active = pathname === item.href;
 
               return (
-                <li key={item.name}>
+                <li key={item.href}>
                   <Link
                     aria-current={active ? "page" : undefined}
                     className={cn(
-                      "block border-l-2 border-transparent py-1.5 pr-3 pl-[calc(0.75rem-2px)] font-mono text-xs outline-none transition-colors",
+                      "block border-l-2 border-transparent py-1.5 pr-3 pl-2.5 font-mono text-xs outline-none transition-colors",
                       active
                         ? "border-phosphor bg-accent/40 text-phosphor-bright"
                         : "text-muted-foreground hover:border-line-strong hover:text-phosphor focus-visible:border-line-strong focus-visible:text-phosphor"
                     )}
-                    href={href}
+                    href={item.href}
                     onClick={onNavigate}
                     ref={active ? revealActive : undefined}
                   >
