@@ -23,7 +23,7 @@ function Calendar({
   showOutsideDays = true,
   fixedWeeks = true,
   captionLayout = "label",
-  navLayout = captionLayout === "label" ? undefined : "after",
+  navLayout = captionLayout === "label" ? undefined : "around",
   buttonVariant = "ghost",
   locale,
   formatters,
@@ -44,12 +44,12 @@ function Calendar({
       classNames={{
         button_next: cn(
           buttonVariants({ variant: buttonVariant }),
-          "pointer-events-auto size-(--cell-size) p-0 select-none aria-disabled:opacity-40",
+          "pointer-events-auto absolute top-0 right-0 size-(--cell-size) p-0 select-none aria-disabled:opacity-40",
           defaultClassNames.button_next
         ),
         button_previous: cn(
           buttonVariants({ variant: buttonVariant }),
-          "pointer-events-auto size-(--cell-size) p-0 select-none aria-disabled:opacity-40",
+          "pointer-events-auto absolute top-0 left-0 size-(--cell-size) p-0 select-none aria-disabled:opacity-40",
           defaultClassNames.button_previous
         ),
         caption_label: cn(
