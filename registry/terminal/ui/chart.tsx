@@ -431,7 +431,7 @@ function ChartLegendContent({
           return (
             <div
               className="flex items-center gap-1.5 [&>svg]:size-3 [&>svg]:text-muted-foreground"
-              key={key}
+              key={item.value}
             >
               {itemConfig?.icon && !hideIcon ? (
                 <itemConfig.icon />

@@ -30,7 +30,7 @@ const SECTIONS: Section[] = [
     types: ["registry:component"],
   },
   {
-    blurb: "Full-page compositions built from registry components.",
+    blurb: "Installable compositions built from registry components.",
     id: "blocks",
     title: "Blocks",
     types: ["registry:block"],

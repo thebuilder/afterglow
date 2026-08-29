@@ -5,7 +5,9 @@ import { ButtonWithAnIconAndDisabled } from "@/components/examples/button-with-a
 import { CardAccent } from "@/components/examples/card-accent";
 import { CardDefault } from "@/components/examples/card-default";
 import { CardStripe } from "@/components/examples/card-stripe";
+import { ChartChannelLoad } from "@/components/examples/chart-channel-load";
 import { ChartSignalHistory } from "@/components/examples/chart-signal-history";
+import { ChartVolumeShare } from "@/components/examples/chart-volume-share";
 import { DialogDefault } from "@/components/examples/dialog-default";
 import { InputDefault } from "@/components/examples/input-default";
 import { InputStates } from "@/components/examples/input-states";
@@ -70,6 +72,18 @@ export const primitiveExamples: ExampleMap = {
       description:
         "The plot uses the chart tokens already in the theme. Its six-step reveal runs once when the chart mounts.",
       name: "Signal history",
+    },
+    {
+      component: ChartChannelLoad,
+      description:
+        "Square bars compare traffic in both directions without introducing another colour scale.",
+      name: "Channel load",
+    },
+    {
+      component: ChartVolumeShare,
+      description:
+        "A compact ring chart for part-to-whole data, with the same token-driven legend and tooltip.",
+      name: "Volume share",
     },
   ],
   dialog: [

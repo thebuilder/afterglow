@@ -41,6 +41,19 @@ export const formDocs: DocMap = {
     upstream: [baseUi("checkbox")],
   },
 
+  "date-picker": {
+    notes: [
+      "A date picker is a composition of `Popover`, `Calendar` and `Button`, rather than another UI primitive.",
+    ],
+    parts: [
+      {
+        name: "DatePicker",
+        summary:
+          "Owns the selected date and open state. Copy the block and adapt that state boundary to the form that uses it.",
+      },
+    ],
+  },
+
   "input-otp": {
     parts: [
       {

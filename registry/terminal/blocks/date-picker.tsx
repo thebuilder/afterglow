@@ -12,13 +12,11 @@ import {
   PopoverTrigger,
 } from "@/registry/terminal/ui/popover";
 
-const INITIAL_DATE = new Date(2026, 7, 29);
-
-export function CalendarDatePicker() {
-  const [date, setDate] = useState(INITIAL_DATE);
+function DatePicker() {
+  const [date, setDate] = useState<Date>();
   const [open, setOpen] = useState(false);
 
-  const selectDate = useCallback((nextDate: Date) => {
+  const selectDate = useCallback((nextDate: Date | undefined) => {
     setDate(nextDate);
     setOpen(false);
   }, []);
@@ -26,21 +24,27 @@ export function CalendarDatePicker() {
   return (
     <Popover onOpenChange={setOpen} open={open}>
       <PopoverTrigger
-        render={<Button className="w-64 justify-start" variant="outline" />}
+        render={
+          <Button
+            className="w-64 justify-start data-[empty=true]:text-muted-foreground"
+            data-empty={!date}
+            variant="outline"
+          />
+        }
       >
         <CalendarDaysIcon />
-        {format(date, "PPP")}
+        {date ? format(date, "PPP") : "Pick a date"}
       </PopoverTrigger>
       <PopoverContent align="start" className="w-auto p-0">
         <Calendar
           autoFocus
-          defaultMonth={date}
           mode="single"
           onSelect={selectDate}
-          required
           selected={date}
         />
       </PopoverContent>
     </Popover>
   );
 }
+
+export { DatePicker };

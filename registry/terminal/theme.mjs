@@ -427,13 +427,18 @@ const CSS = {
   },
 
   "@keyframes terminal-toast-in": {
-    "0%": { filter: "brightness(1)", opacity: "0" },
-    "34%": { filter: "brightness(1.9)", opacity: "1" },
-    "67%": { filter: "brightness(1.25)", opacity: "0.35" },
-    "100%": { filter: "brightness(1)", opacity: "1" },
+    "0%": { filter: "brightness(1)", opacity: "0", transform: "none" },
+    "34%": { filter: "brightness(1.9)", opacity: "1", transform: "none" },
+    "67%": {
+      filter: "brightness(1.25)",
+      opacity: "0.35",
+      transform: "none",
+    },
+    "100%": { filter: "brightness(1)", opacity: "1", transform: "none" },
   },
   "@keyframes terminal-toast-out": {
-    to: { filter: "brightness(1.5)", opacity: "0" },
+    from: { transform: "none" },
+    to: { filter: "brightness(1.5)", opacity: "0", transform: "none" },
   },
 
   "@keyframes terminal-type": {

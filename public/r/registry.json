@@ -542,25 +542,33 @@
         "@keyframes terminal-toast-in": {
           "0%": {
             "filter": "brightness(1)",
-            "opacity": "0"
+            "opacity": "0",
+            "transform": "none"
           },
           "34%": {
             "filter": "brightness(1.9)",
-            "opacity": "1"
+            "opacity": "1",
+            "transform": "none"
           },
           "67%": {
             "filter": "brightness(1.25)",
-            "opacity": "0.35"
+            "opacity": "0.35",
+            "transform": "none"
           },
           "100%": {
             "filter": "brightness(1)",
-            "opacity": "1"
+            "opacity": "1",
+            "transform": "none"
           }
         },
         "@keyframes terminal-toast-out": {
+          "from": {
+            "transform": "none"
+          },
           "to": {
             "filter": "brightness(1.5)",
-            "opacity": "0"
+            "opacity": "0",
+            "transform": "none"
           }
         },
         "@keyframes terminal-type": {
@@ -1723,6 +1731,31 @@
         {
           "path": "registry/terminal/components/terminal-window.tsx",
           "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "date-picker",
+      "type": "registry:block",
+      "title": "Date Picker",
+      "description": "A calendar, popover and button composed into an installable single-date picker.",
+      "categories": [
+        "forms"
+      ],
+      "dependencies": [
+        "date-fns",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@afterglow/button",
+        "@afterglow/calendar",
+        "@afterglow/popover"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/blocks/date-picker.tsx",
+          "type": "registry:component",
+          "target": "components/date-picker.tsx"
         }
       ]
     },
