@@ -13,6 +13,7 @@ export const formDocs: DocMap = {
         parts: [{ name: "CalendarDayButton" }],
         props: [
           { default: "true", name: "showOutsideDays", type: "boolean" },
+          { default: "true", name: "fixedWeeks", type: "boolean" },
           {
             default: '"label"',
             name: "captionLayout",

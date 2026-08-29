@@ -21,7 +21,9 @@ function Calendar({
   className,
   classNames,
   showOutsideDays = true,
+  fixedWeeks = true,
   captionLayout = "label",
+  navLayout = captionLayout === "label" ? undefined : "after",
   buttonVariant = "ghost",
   locale,
   formatters,
@@ -121,12 +123,14 @@ function Calendar({
         ...classNames,
       }}
       components={{ ...CALENDAR_COMPONENTS, ...components }}
+      fixedWeeks={fixedWeeks}
       formatters={{
         formatMonthDropdown: (date) =>
           date.toLocaleString(locale?.code, { month: "short" }),
         ...formatters,
       }}
       locale={locale}
+      navLayout={navLayout}
       showOutsideDays={showOutsideDays}
       {...props}
     />
@@ -152,7 +156,7 @@ function CalendarDayButton({
   return (
     <Button
       className={cn(
-        "relative isolate z-10 flex aspect-square size-auto w-full min-w-(--cell-size) flex-col gap-1 border border-transparent font-normal leading-none hover:translate-y-0 hover:border-line hover:bg-accent/60 hover:shadow-none group-data-[focused=true]/day:border-phosphor-bright data-[range-end=true]:bg-primary data-[range-end=true]:text-primary-foreground data-[range-middle=true]:bg-accent data-[range-middle=true]:text-accent-foreground data-[range-start=true]:bg-primary data-[range-start=true]:text-primary-foreground data-[selected-single=true]:bg-primary data-[selected-single=true]:text-primary-foreground [&>span]:text-3xs [&>span]:opacity-60",
+        "relative isolate z-10 flex aspect-square size-auto w-full min-w-(--cell-size) flex-col gap-1 border border-transparent font-normal text-foreground/80 leading-none hover:translate-y-0 hover:border-line hover:bg-accent/60 hover:shadow-none group-data-[focused=true]/day:border-phosphor-bright group-data-[outside=true]/day:text-muted-foreground/30 data-[range-end=true]:bg-primary data-[range-end=true]:text-primary-foreground data-[range-middle=true]:bg-accent data-[range-middle=true]:text-accent-foreground data-[range-start=true]:bg-primary data-[range-start=true]:text-primary-foreground data-[selected-single=true]:bg-primary data-[selected-single=true]:text-primary-foreground [&>span]:text-3xs [&>span]:opacity-60",
         defaultClassNames.day,
         className
       )}

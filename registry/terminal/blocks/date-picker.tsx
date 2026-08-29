@@ -12,6 +12,9 @@ import {
   PopoverTrigger,
 } from "@/registry/terminal/ui/popover";
 
+const START_MONTH = new Date(1900, 0);
+const END_MONTH = new Date(2100, 11);
+
 function DatePicker() {
   const [date, setDate] = useState<Date>();
   const [open, setOpen] = useState(false);
@@ -38,9 +41,12 @@ function DatePicker() {
       <PopoverContent align="start" className="w-auto p-0">
         <Calendar
           autoFocus
+          captionLayout="dropdown"
+          endMonth={END_MONTH}
           mode="single"
           onSelect={selectDate}
           selected={date}
+          startMonth={START_MONTH}
         />
       </PopoverContent>
     </Popover>
