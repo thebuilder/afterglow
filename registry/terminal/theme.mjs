@@ -207,8 +207,7 @@ const THEME = {
   "background-image-window-titlebar":
     "repeating-linear-gradient(var(--window-titlebar-light) 0 1px, var(--window-titlebar-dark) 1px 3px)",
   "font-heading": "var(--font-mono)",
-  "font-mono":
-    'var(--afterglow-font-mono, "SFMono-Regular", "IBM Plex Mono", "Cascadia Mono", Consolas, monospace)',
+  "font-mono": "var(--afterglow-font-mono, ui-monospace, monospace)",
   "font-sans": '"Helvetica Neue", Inter, Arial, sans-serif',
 
   "text-1xs": "0.6875rem",
