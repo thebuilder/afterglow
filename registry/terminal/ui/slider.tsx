@@ -74,7 +74,7 @@ function Slider({
           data-slot="slider-track"
         >
           <SliderPrimitive.Indicator
-            className="absolute bg-phosphor shadow-[0_0_10px_rgb(134_250_221/0.45)] data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full"
+            className="absolute bg-phosphor shadow-glow-slider-track data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full"
             data-slot="slider-range"
           />
         </SliderPrimitive.Track>
@@ -83,7 +83,7 @@ function Slider({
             // The `before` box is the handle's own target, wide enough that a
             // press near a fader grabs it instead of jumping the value to the
             // finger, and wide enough to tell two handles of a range apart.
-            className="block shrink-0 rounded-none border border-phosphor bg-void shadow-[0_0_10px_rgb(134_250_221/0.35)] outline-none transition-[box-shadow] before:absolute before:-inset-3.5 before:content-[''] hover:shadow-[0_0_14px_rgb(134_250_221/0.6)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-phosphor-bright data-[orientation=horizontal]:h-4 data-[orientation=horizontal]:w-2 data-[orientation=vertical]:h-2 data-[orientation=vertical]:w-4"
+            className="block shrink-0 rounded-none border border-phosphor bg-void shadow-glow-slider outline-none transition-[box-shadow] before:absolute before:-inset-3.5 before:content-[''] hover:shadow-glow-slider-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-phosphor-bright data-[orientation=horizontal]:h-4 data-[orientation=horizontal]:w-2 data-[orientation=vertical]:h-2 data-[orientation=vertical]:w-4"
             data-slot="slider-thumb"
             // biome-ignore lint/suspicious/noArrayIndexKey: a slider identifies thumbs by position, and its values are not stable ids.
             key={index}

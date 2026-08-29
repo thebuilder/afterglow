@@ -40,7 +40,7 @@ function exportsOf(source) {
 
   for (const block of values.matchAll(EXPORT_BLOCK)) {
     for (const entry of block[1].split(",")) {
-      /* `export { TONES as glyphTones }` is exported under the second name. */
+      /* A renamed export is documented under the name consumers import. */
       const name = entry.trim().split(RENAMED).pop()?.trim();
       if (name) {
         names.add(name);

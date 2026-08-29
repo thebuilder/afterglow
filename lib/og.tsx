@@ -4,16 +4,17 @@ import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
 import { HOMEPAGE } from "@/lib/registry";
+import { palette } from "@/registry/terminal/theme.mjs";
 
 export const OG_SIZE = { height: 630, width: 1200 };
 export const OG_CONTENT_TYPE = "image/png";
 
-const VOID = "#05090a";
-const PHOSPHOR = "#86fadd";
-const PHOSPHOR_BRIGHT = "#d9ffef";
-const PHOSPHOR_DIM = "#4d8477";
-const SIGNAL = "#ff5b82";
-const LINE = "rgba(132,255,224,0.22)";
+const LINE = palette.line;
+const PHOSPHOR = palette.phosphor;
+const PHOSPHOR_BRIGHT = palette["phosphor-bright"];
+const PHOSPHOR_DIM = palette["phosphor-dim"];
+const SIGNAL = palette.signal;
+const VOID = palette.void;
 
 /**
  * Satori has no font stack to fall back on, so the mono has to be handed to it

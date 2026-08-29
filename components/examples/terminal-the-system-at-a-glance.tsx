@@ -1,6 +1,5 @@
 import { Connector } from "@/registry/terminal/components/connector";
 import { Eyebrow } from "@/registry/terminal/components/eyebrow";
-import { Glyph } from "@/registry/terminal/components/glyph";
 import { Status } from "@/registry/terminal/components/led";
 import { Badge } from "@/registry/terminal/ui/badge";
 import { Button } from "@/registry/terminal/ui/button";
@@ -62,9 +61,6 @@ export function TerminalTheSystemAtAGlance() {
         <Badge>mounted</Badge>
         <Badge variant="amber">read-only</Badge>
         <Badge variant="signal">offline</Badge>
-        <Glyph className="ml-auto size-5" tone="code" />
-        <Glyph className="size-5" tone="image" />
-        <Glyph className="size-5" tone="directory" />
       </div>
     </div>
   );

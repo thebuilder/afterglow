@@ -34,7 +34,7 @@ function DialogOverlay({
   return (
     <DialogPrimitive.Backdrop
       className={cn(
-        "fixed inset-0 z-50 bg-[rgb(1_5_6/0.72)] backdrop-blur-[5px] backdrop-saturate-[0.65] data-closed:animate-fade-out data-open:animate-fade-in",
+        "fixed inset-0 z-50 bg-scrim backdrop-blur-[5px] backdrop-saturate-[0.65] data-closed:animate-fade-out data-open:animate-fade-in",
         className
       )}
       data-slot="dialog-overlay"
@@ -70,7 +70,7 @@ function DialogContent({
       >
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 animate-beam bg-[linear-gradient(180deg,transparent_44%,rgb(134_250_221/0.16)_50%,transparent_56%)]"
+          className="pointer-events-none absolute inset-0 animate-beam bg-beam"
         />
         {children}
         {showCloseButton ? (

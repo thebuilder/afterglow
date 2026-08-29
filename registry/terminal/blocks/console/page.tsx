@@ -6,7 +6,6 @@ import { AlarmButton } from "@/registry/terminal/components/alarm-button";
 import { BootLog } from "@/registry/terminal/components/boot-log";
 import { Connector } from "@/registry/terminal/components/connector";
 import { Eyebrow } from "@/registry/terminal/components/eyebrow";
-import { Glyph } from "@/registry/terminal/components/glyph";
 import { Led, Status } from "@/registry/terminal/components/led";
 import { Prompt } from "@/registry/terminal/components/prompt";
 import { Scanlines } from "@/registry/terminal/components/scanlines";
@@ -39,20 +38,18 @@ const BOOT = [
 ];
 
 const VOLUMES = [
-  { blocks: "18 442", name: "core", state: "mounted", tone: "code" as const },
+  { blocks: "18 442", name: "core", state: "mounted" },
   {
     blocks: "4 011",
     name: "archive",
     state: "mounted",
-    tone: "archive" as const,
   },
   {
     blocks: "92 780",
     name: "capture",
     state: "read-only",
-    tone: "image" as const,
   },
-  { blocks: "0", name: "spool", state: "offline", tone: "system" as const },
+  { blocks: "0", name: "spool", state: "offline" },
 ];
 
 /**
@@ -152,7 +149,6 @@ export default function ConsolePage() {
             <Table containerClassName="max-h-56" stickyHeader>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="w-12" />
                   <TableHead>Volume</TableHead>
                   <TableHead>State</TableHead>
                   <TableHead className="text-right">Blocks</TableHead>
@@ -161,9 +157,6 @@ export default function ConsolePage() {
               <TableBody>
                 {VOLUMES.map((volume) => (
                   <TableRow key={volume.name}>
-                    <TableCell>
-                      <Glyph className="size-6" tone={volume.tone} />
-                    </TableCell>
                     <TableCell className="text-phosphor-bright">
                       /{volume.name}
                     </TableCell>

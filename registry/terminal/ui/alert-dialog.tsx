@@ -23,12 +23,12 @@ function AlertDialogContent({
   return (
     <AlertDialogPrimitive.Portal>
       <AlertDialogPrimitive.Backdrop
-        className="fixed inset-0 z-50 bg-[rgb(1_5_6/0.72)] backdrop-blur-[5px] backdrop-saturate-[0.65] data-closed:animate-fade-out data-open:animate-fade-in"
+        className="fixed inset-0 z-50 bg-scrim backdrop-blur-[5px] backdrop-saturate-[0.65] data-closed:animate-fade-out data-open:animate-fade-in"
         data-slot="alert-dialog-overlay"
       />
       <AlertDialogPrimitive.Popup
         className={cn(
-          "-translate-x-1/2 -translate-y-1/2 fixed top-1/2 left-1/2 z-50 grid w-full max-w-[calc(100%-2rem)] gap-4 rounded-none border border-signal/70 bg-popover p-6 text-popover-foreground shadow-[0_2rem_5rem_rgb(0_0_0/0.7),0_0_50px_rgb(255_91_130/0.1)] outline-none data-closed:animate-close data-open:animate-open sm:max-w-lg",
+          "-translate-x-1/2 -translate-y-1/2 fixed top-1/2 left-1/2 z-50 grid w-full max-w-[calc(100%-2rem)] gap-4 rounded-none border border-signal/70 bg-popover p-6 text-popover-foreground shadow-panel-signal outline-none data-closed:animate-close data-open:animate-open sm:max-w-lg",
           className
         )}
         data-slot="alert-dialog-content"

@@ -18,7 +18,7 @@ function Input({ className, type, ...props }: React.ComponentProps<"input">) {
         "placeholder:text-phosphor-dim selection:bg-signal selection:text-white",
         "focus-visible:border-line-strong focus-visible:shadow-glow",
         "disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-40",
-        "aria-invalid:border-destructive aria-invalid:shadow-[0_0_18px_rgb(255_90_101/0.2)]",
+        "aria-invalid:border-destructive aria-invalid:shadow-glow-destructive",
         "file:inline-flex file:h-7 file:border-0 file:bg-transparent file:font-medium file:font-mono file:text-foreground file:text-xs",
         className
       )}

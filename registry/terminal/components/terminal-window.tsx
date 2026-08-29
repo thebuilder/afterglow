@@ -56,9 +56,9 @@ type LightName = keyof typeof MARKS;
 type Variant = "macos" | "windows" | "terminal";
 
 const LIGHTS: { name: LightName; label: string; color: string }[] = [
-  { color: "#ff5d7f", label: "Close", name: "close" },
-  { color: "#ffd45d", label: "Collapse", name: "collapse" },
-  { color: "#68d9b4", label: "Zoom", name: "zoom" },
+  { color: "var(--window-close)", label: "Close", name: "close" },
+  { color: "var(--window-collapse)", label: "Collapse", name: "collapse" },
+  { color: "var(--window-zoom)", label: "Zoom", name: "zoom" },
 ];
 
 /**
@@ -90,22 +90,23 @@ const CHROME: Record<
   }
 > = {
   macos: {
-    bar: "border-[#1b302b] bg-[repeating-linear-gradient(#c3cfca_0_1px,#a2b4ac_1px_3px)] p-1.5 min-h-9 justify-between",
+    bar: "border-window-rule bg-window-titlebar p-1.5 min-h-9 justify-between",
     barTall: "min-h-[3.25rem]",
-    content: "m-2 border-2 border-[#d8e2de] [border-style:inset]",
+    content: "m-2 border-2 border-window-inset [border-style:inset]",
     control:
-      "relative block size-[0.72rem] border border-[#2b443e] p-0 text-transparent transition-colors group-hover/titlebar:text-[rgb(9_22_19/0.72)]",
+      "relative block size-[0.72rem] border border-window-control p-0 text-transparent transition-colors group-hover/titlebar:text-window-text/72",
     corner: "-right-[3px] -bottom-[3px] size-3.5",
     edgeX: "-right-[3px] w-2",
     edgeY: "-bottom-[3px] h-2",
     footer:
-      "min-h-7 px-2.5 pr-6 text-[0.48rem] border-[#536c65] text-[#263e38]",
+      "min-h-7 px-2.5 pr-6 text-[0.48rem] border-window-footer text-window-footer-text",
     frame:
-      "border-[3px] border-[#263d38] border-double bg-[#b6c4be] text-[#09100f] shadow-[0_2rem_8rem_#000]",
-    grip: "bg-[repeating-linear-gradient(-45deg,transparent_0_2px,#3d554f_2px_3px)]",
+      "border-[3px] border-window-border border-double bg-window-surface text-window-text shadow-window",
+    grip: "bg-window-grip",
     markBox: "absolute inset-0",
-    plate: "bg-[#b6c4be] px-2 py-0.5 shrink justify-items-center text-center",
-    subtitle: "text-[#38544d]",
+    plate:
+      "bg-window-surface px-2 py-0.5 shrink justify-items-center text-center",
+    subtitle: "text-window-text-muted",
     title: "font-bold text-[0.82rem]",
   },
   terminal: {
@@ -129,11 +130,11 @@ const CHROME: Record<
       "font-semibold text-1xs text-phosphor-bright uppercase tracking-terminal-lg",
   },
   windows: {
-    bar: "border-[#1b302b] bg-[repeating-linear-gradient(#c3cfca_0_1px,#a2b4ac_1px_3px)] p-1.5 min-h-9",
+    bar: "border-window-rule bg-window-titlebar p-1.5 min-h-9",
     barTall: "min-h-[3.25rem]",
-    content: "m-2 border-2 border-[#d8e2de] [border-style:inset]",
+    content: "m-2 border-2 border-window-inset [border-style:inset]",
     control:
-      "relative grid size-[1.15rem] place-items-center border border-t-[#e7eeeb] border-r-[#5c7269] border-b-[#5c7269] border-l-[#e7eeeb] bg-[#b6c4be] p-0 text-[#1b302b] active:border-t-[#5c7269] active:border-r-[#e7eeeb] active:border-b-[#e7eeeb] active:border-l-[#5c7269]",
+      "relative grid size-[1.15rem] place-items-center border border-t-window-bevel-light border-r-window-bevel-dark border-b-window-bevel-dark border-l-window-bevel-light bg-window-surface p-0 text-window-rule active:border-t-window-bevel-dark active:border-r-window-bevel-light active:border-b-window-bevel-light active:border-l-window-bevel-dark",
     /* An outset bevel: light on the top and left, shadow on the bottom and
        right, inverting on press. That inversion is the era's entire feedback
        vocabulary, and without it the buttons are just marks on a stripe. */
@@ -141,13 +142,13 @@ const CHROME: Record<
     edgeX: "-right-[3px] w-2",
     edgeY: "-bottom-[3px] h-2",
     footer:
-      "min-h-7 px-2.5 pr-6 text-[0.48rem] border-[#536c65] text-[#263e38]",
+      "min-h-7 px-2.5 pr-6 text-[0.48rem] border-window-footer text-window-footer-text",
     frame:
-      "border-[3px] border-[#263d38] border-double bg-[#b6c4be] text-[#09100f] shadow-[0_2rem_8rem_#000]",
-    grip: "bg-[repeating-linear-gradient(-45deg,transparent_0_2px,#3d554f_2px_3px)]",
+      "border-[3px] border-window-border border-double bg-window-surface text-window-text shadow-window",
+    grip: "bg-window-grip",
     markBox: "relative block size-[0.55rem]",
-    plate: "bg-[#b6c4be] px-2 py-0.5 mr-auto justify-items-start",
-    subtitle: "text-[#38544d]",
+    plate: "bg-window-surface px-2 py-0.5 mr-auto justify-items-start",
+    subtitle: "text-window-text-muted",
     title: "font-bold text-[0.82rem]",
   },
 };
@@ -379,7 +380,7 @@ function TerminalWindow({
         data-slot="terminal-window-titlebar"
       >
         {variant === "macos" && (
-          <div className="flex justify-self-start gap-px bg-[#b6c4be] p-1">
+          <div className="flex justify-self-start gap-px bg-window-surface p-1">
             <Controls action={action} variant={variant} />
           </div>
         )}

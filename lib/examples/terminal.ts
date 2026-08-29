@@ -3,7 +3,6 @@ import { BootLogDefault } from "@/components/examples/boot-log-default";
 import { ConnectorBothDirections } from "@/components/examples/connector-both-directions";
 import { ConsoleTheBlock } from "@/components/examples/console-the-block";
 import { EyebrowWithAndWithoutACaret } from "@/components/examples/eyebrow-with-and-without-a-caret";
-import { GlyphCategories } from "@/components/examples/glyph-categories";
 import { LedTones } from "@/components/examples/led-tones";
 import { PromptDefault } from "@/components/examples/prompt-default";
 import { ScanlinesWithAndWithout } from "@/components/examples/scanlines-with-and-without";
@@ -54,14 +53,6 @@ export const terminalExamples: ExampleMap = {
       description:
         "The caret is a styled box rather than a ▋ glyph. A character carries the font's own sidebearings and never quite lines up with the text it follows.",
       name: "With and without a caret",
-    },
-  ],
-  glyph: [
-    {
-      component: GlyphCategories,
-      description:
-        "Everything is derived from one hex value with color-mix, so a new category is one token rather than a border, a fill, an inset shade and a glow that have to be kept in agreement.",
-      name: "Categories",
     },
   ],
   led: [

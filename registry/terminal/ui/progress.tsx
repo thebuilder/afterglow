@@ -38,12 +38,12 @@ function Progress({
       >
         {indeterminate ? (
           <div
-            className="absolute inset-y-0 left-0 w-1/3 animate-sweep bg-[linear-gradient(90deg,transparent,var(--phosphor)_35%_65%,transparent)] shadow-[0_0_12px_rgb(134_250_221/0.5)]"
+            className="absolute inset-y-0 left-0 w-1/3 animate-sweep bg-[linear-gradient(90deg,transparent,var(--phosphor)_35%_65%,transparent)] shadow-glow-progress"
             data-slot="progress-indicator"
           />
         ) : (
           <ProgressPrimitive.Indicator
-            className="h-full bg-phosphor shadow-[0_0_12px_rgb(134_250_221/0.5)] transition-all duration-300 ease-terminal"
+            className="h-full bg-phosphor shadow-glow-progress transition-all duration-300 ease-terminal"
             data-slot="progress-indicator"
           />
         )}

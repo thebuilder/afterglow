@@ -46,6 +46,29 @@ const PALETTE = {
   void: "#05090a",
 };
 
+/** The moulded beige chrome used by the macOS and Windows window variants. */
+const WINDOW_PALETTE = {
+  "window-bevel-dark": "#5c7269",
+  "window-bevel-light": "#e7eeeb",
+  "window-border": "#263d38",
+  "window-close": "#ff5d7f",
+  "window-collapse": "#ffd45d",
+  "window-control": "#2b443e",
+  "window-footer": "#536c65",
+  "window-footer-text": "#263e38",
+  "window-grip": "#3d554f",
+  "window-inset": "#d8e2de",
+  "window-rule": "#1b302b",
+  "window-surface": "#b6c4be",
+  "window-text": "#09100f",
+  "window-text-muted": "#38544d",
+  "window-titlebar-dark": "#a2b4ac",
+  "window-titlebar-light": "#c3cfca",
+  "window-zoom": "#68d9b4",
+};
+
+const TOKENS = { ...PALETTE, ...WINDOW_PALETTE };
+
 /**
  * shadcn's variable names, pointed at the palette above.
  *
@@ -92,6 +115,8 @@ const SEMANTIC = {
   radius: "0rem",
   ring: PALETTE["phosphor-bright"],
 
+  scrim: "rgb(1 5 6 / 0.72)",
+
   secondary: "#10201f",
   "secondary-foreground": PALETTE.phosphor,
 
@@ -107,7 +132,7 @@ const SEMANTIC = {
 
 /** The raw tokens, exposed under their own names for components to reach for. */
 const RAW = Object.fromEntries(
-  Object.entries(PALETTE).map(([key, value]) => [key, value])
+  Object.entries(TOKENS).map(([key, value]) => [key, value])
 );
 
 /**
@@ -118,6 +143,12 @@ const RAW = Object.fromEntries(
  * their own stylesheet would find `bg-signal` unchanged.
  */
 const THEME = {
+  "background-image-beam":
+    "linear-gradient(180deg, transparent 44%, color-mix(in srgb, var(--phosphor) 16%, transparent) 50%, transparent 56%)",
+  "background-image-window-grip":
+    "repeating-linear-gradient(-45deg, transparent 0 2px, var(--window-grip) 2px 3px)",
+  "background-image-window-titlebar":
+    "repeating-linear-gradient(var(--window-titlebar-light) 0 1px, var(--window-titlebar-dark) 1px 3px)",
   "font-mono":
     '"SFMono-Regular", "IBM Plex Mono", "Cascadia Mono", Consolas, monospace',
   "font-sans": '"Helvetica Neue", Inter, Arial, sans-serif',
@@ -137,7 +168,7 @@ const THEME = {
   "tracking-terminal-xs": "0.06em",
 
   ...Object.fromEntries(
-    Object.keys(PALETTE).map((key) => [`color-${key}`, `var(--${key})`])
+    Object.keys(TOKENS).map((key) => [`color-${key}`, `var(--${key})`])
   ),
 
   ...Object.fromEntries(
@@ -202,12 +233,30 @@ const THEME = {
   "radius-sm": "0px",
   "radius-xl": "0px",
 
-  "shadow-glow": "0 0 18px rgb(134 250 221 / 0.18)",
-  "shadow-glow-signal": "0 0 34px 2px rgb(255 91 130 / 0.55)",
+  "shadow-glow":
+    "0 0 18px color-mix(in srgb, var(--phosphor) 18%, transparent)",
+  "shadow-glow-destructive":
+    "0 0 18px color-mix(in srgb, var(--destructive) 20%, transparent)",
+  "shadow-glow-progress":
+    "0 0 12px color-mix(in srgb, var(--phosphor) 50%, transparent)",
+  "shadow-glow-signal":
+    "0 0 34px 2px color-mix(in srgb, var(--signal) 55%, transparent)",
+  "shadow-glow-slider":
+    "0 0 10px color-mix(in srgb, var(--phosphor) 35%, transparent)",
+  "shadow-glow-slider-hover":
+    "0 0 14px color-mix(in srgb, var(--phosphor) 60%, transparent)",
+  "shadow-glow-slider-track":
+    "0 0 10px color-mix(in srgb, var(--phosphor) 45%, transparent)",
   "shadow-glow-strong":
-    "0 0 34px 2px rgb(134 250 221 / 0.4), inset 0 0 0 1px rgb(134 250 221 / 0.2)",
+    "0 0 34px 2px color-mix(in srgb, var(--phosphor) 40%, transparent), inset 0 0 0 1px color-mix(in srgb, var(--phosphor) 20%, transparent)",
+  "shadow-kbd": "0 2px 0 rgb(0 0 0 / 0.45)",
   "shadow-panel":
-    "0 2rem 5rem rgb(0 0 0 / 0.7), 0 0 50px rgb(134 250 221 / 0.08)",
+    "0 2rem 5rem rgb(0 0 0 / 0.7), 0 0 50px color-mix(in srgb, var(--phosphor) 8%, transparent)",
+  "shadow-panel-signal":
+    "0 2rem 5rem rgb(0 0 0 / 0.7), 0 0 50px color-mix(in srgb, var(--signal) 10%, transparent)",
+  "shadow-signal-control":
+    "inset 0 0 0 1px rgb(255 255 255 / 0.12), 0 0 18px color-mix(in srgb, var(--signal) 12%, transparent)",
+  "shadow-window": "0 2rem 8rem #000",
 
   "text-shadow-phosphor": "0 0 8px rgb(134 250 221 / 0.35)",
   "text-shadow-signal": "0 0 10px rgb(255 91 130 / 0.45)",

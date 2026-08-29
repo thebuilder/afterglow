@@ -70,29 +70,6 @@ export const terminalDocs: DocMap = {
     ],
   },
 
-  glyph: {
-    parts: [
-      {
-        name: "Glyph",
-        props: [
-          {
-            default: '"unknown"',
-            name: "tone",
-            type: '"archive" | "audio" | "code" | "directory" | "document" | "image" | "system" | "unknown"',
-          },
-          { name: "color", type: "string" },
-        ],
-        summary:
-          "`color` overrides the tone's colour for a kind of file the eight tones do not cover.",
-      },
-      {
-        name: "glyphTones",
-        summary:
-          "The tone-to-colour map, exported so a legend can be built from the same values the icons are drawn with.",
-      },
-    ],
-  },
-
   led: {
     parts: [
       {
