@@ -75,6 +75,7 @@ export function navSections(): NavSection[] {
           title: guide.navTitle,
         })),
         { href: "/components", title: "Components" },
+        { href: "/typeset", title: "Typeset" },
       ],
       title: "Start",
     },

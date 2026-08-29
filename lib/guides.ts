@@ -58,6 +58,7 @@ const GUIDES: Guide[] = [
       { id: "install-the-theme", label: "Install the theme" },
       { id: "what-the-theme-controls", label: "What the theme controls" },
       { id: "phosphor-presets", label: "Phosphor presets" },
+      { id: "typeset-rendered-content", label: "Typeset rendered content" },
       { id: "change-a-token", label: "Change a token" },
       { id: "dark-by-design", label: "Dark by design" },
     ],

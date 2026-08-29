@@ -147,10 +147,10 @@ export default function Home() {
             </Button>
           </div>
 
-          <div className="grid border-line border-t">
+          <div className="-mx-4 grid border-line border-t">
             {sections.map((section) => (
               <Link
-                className="group -mx-4 grid gap-2 border-line border-b px-4 py-5 outline-none transition-colors hover:bg-accent/30 focus-visible:bg-accent/30 sm:grid-cols-4 sm:items-baseline"
+                className="group grid gap-2 border-line border-b px-4 py-5 outline-none transition-colors hover:bg-accent/30 focus-visible:bg-accent/30 sm:grid-cols-4 sm:items-baseline"
                 href={`/components#${section.id}`}
                 key={section.id}
               >

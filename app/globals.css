@@ -151,6 +151,7 @@
   --background-image-beam: linear-gradient(180deg, transparent 44%, color-mix(in srgb, var(--phosphor) 16%, transparent) 50%, transparent 56%);
   --background-image-window-grip: repeating-linear-gradient(-45deg, transparent 0 2px, var(--window-grip) 2px 3px);
   --background-image-window-titlebar: repeating-linear-gradient(var(--window-titlebar-light) 0 1px, var(--window-titlebar-dark) 1px 3px);
+  --font-heading: var(--font-mono);
   --font-mono: "SFMono-Regular", "IBM Plex Mono", "Cascadia Mono", Consolas, monospace;
   --font-sans: "Helvetica Neue", Inter, Arial, sans-serif;
   --text-1xs: 0.6875rem;
@@ -567,6 +568,181 @@
   html {
     overflow-y: scroll;
     scrollbar-gutter: stable;
+  }
+}
+
+@layer components {
+  .typeset {
+    --typeset-flow: 1.25em;
+    --typeset-leading: 1.75;
+    --typeset-measure: 80ch;
+    --typeset-size: 1rem;
+    & :where(:not(pre) > code, kbd) {
+      background-color: var(--muted);
+      border: 1px solid var(--line);
+      color: var(--phosphor-bright);
+      font-family: var(--font-mono);
+      font-size: 0.85em;
+      padding: 0.1em 0.3em;
+    }
+    & :where(a:hover) {
+      color: var(--phosphor-bright);
+      text-decoration-color: currentColor;
+    }
+    & :where(a) {
+      color: var(--phosphor);
+      font-weight: 500;
+      text-decoration-color: var(--line-strong);
+      text-decoration-line: underline;
+      text-underline-offset: 0.18em;
+    }
+    & :where(blockquote) {
+      border-inline-start: 2px solid var(--phosphor);
+      color: var(--muted-foreground);
+      margin-inline: 0;
+      padding-inline-start: 1em;
+    }
+    & :where(caption, figcaption) {
+      color: var(--muted-foreground);
+      font-size: 0.875em;
+      margin-block-start: 0.75em;
+      text-align: start;
+    }
+    & :where(dd) {
+      color: var(--muted-foreground);
+      margin-block-start: 0.25em;
+      margin-inline-start: 1em;
+    }
+    & :where(dt) {
+      color: var(--phosphor-bright);
+      font-family: var(--font-mono);
+      font-weight: 600;
+      margin-block-start: 0.75em;
+    }
+    & :where(h1, h2, h3, h4, h5, h6) {
+      color: var(--phosphor-bright);
+      font-family: var(--font-heading);
+      font-weight: 600;
+      line-height: 1.3;
+      margin-block-end: 0;
+      margin-block-start: calc(var(--typeset-flow) * 1.4);
+    }
+    & :where(h1, h2, h3, h4, h5, h6) + * {
+      margin-block-start: 0.5em;
+    }
+    & :where(h1) {
+      font-size: 2em;
+    }
+    & :where(h2) {
+      font-size: 1.5em;
+    }
+    & :where(h3) {
+      font-size: 1.25em;
+    }
+    & :where(h4) {
+      font-size: 1em;
+    }
+    & :where(h5) {
+      color: var(--phosphor);
+      font-size: 0.875em;
+    }
+    & :where(h6) {
+      color: var(--phosphor-dim);
+      font-size: 0.75em;
+      letter-spacing: var(--tracking-terminal-lg);
+      text-transform: uppercase;
+    }
+    & :where(hr) {
+      border: 0;
+      border-block-start: 1px solid var(--line);
+      margin-block-end: 0;
+      margin-block-start: calc(var(--typeset-flow) * 2);
+    }
+    & :where(li) {
+      margin-block-start: 0.5em;
+      padding-inline-start: 0.25em;
+    }
+    & :where(li)::marker {
+      color: var(--phosphor-dim);
+    }
+    & :where(mark) {
+      background: var(--amber);
+      color: var(--void);
+      padding: 0.05em 0.2em;
+    }
+    & :where(ol) {
+      list-style-type: decimal;
+    }
+    & :where(p, ul, ol, pre, blockquote, table, details, dl, figure) {
+      margin-block-end: 0;
+      margin-block-start: var(--typeset-flow);
+    }
+    & :where(pre code) {
+      background: transparent;
+      border: 0;
+      color: inherit;
+      font-family: inherit;
+      font-size: inherit;
+      padding: 0;
+    }
+    & :where(pre) {
+      background-color: var(--panel-sunken);
+      border: 1px solid var(--line);
+      color: var(--phosphor);
+      font-family: var(--font-mono);
+      font-size: 0.875em;
+      line-height: 1.6;
+      overflow-x: auto;
+      padding: 1em;
+      tab-size: 2;
+    }
+    & :where(strong, b) {
+      color: var(--phosphor-bright);
+      font-weight: 600;
+    }
+    & :where(summary) {
+      color: var(--phosphor-bright);
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-weight: 600;
+    }
+    & :where(summary)::marker {
+      color: var(--phosphor);
+    }
+    & :where(table) {
+      border-block-end: 1px solid var(--line);
+      border-collapse: collapse;
+      font-variant-numeric: tabular-nums;
+      width: 100%;
+    }
+    & :where(th, td) {
+      border-block-start: 1px solid var(--line);
+      padding: 0.65em 0.75em;
+      text-align: start;
+      vertical-align: top;
+    }
+    & :where(th) {
+      color: var(--phosphor-bright);
+      font-family: var(--font-mono);
+      font-size: 0.75em;
+      letter-spacing: var(--tracking-terminal);
+      text-transform: uppercase;
+    }
+    & :where(ul, ol) {
+      padding-inline-start: 1.5em;
+    }
+    & :where(ul) {
+      list-style-type: square;
+    }
+    & > :where(:first-child), & > :where(:first-child) > :where(:first-child), & :where(li, blockquote, td, th) > :where(:first-child) {
+      margin-block-start: 0;
+    }
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-size: var(--typeset-size);
+    line-height: var(--typeset-leading);
+    max-width: var(--typeset-measure);
+    overflow-wrap: break-word;
   }
 }
 

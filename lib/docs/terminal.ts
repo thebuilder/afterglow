@@ -231,6 +231,7 @@ export const terminalDocs: DocMap = {
   theme: {
     notes: [
       "Variables rather than files. It installs into a stylesheet, so there is nothing to import and nothing to copy but the CSS itself.",
+      "The `typeset` class styles rendered HTML with the theme's fonts and tokens. Its size, leading, flow and measure are inherited CSS variables.",
       "Dark theme only. `:root` and `.dark` use identical token values.",
     ],
     parts: [],

@@ -3,7 +3,7 @@ const REPOSITORY = "https://github.com/thebuilder/afterglow";
 export function SourceLink() {
   return (
     <a
-      className="grid size-9 shrink-0 place-items-center border border-line bg-panel-sunken text-muted-foreground outline-none transition-colors hover:border-line-strong hover:text-phosphor focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-phosphor-bright"
+      className="hidden size-9 shrink-0 place-items-center border border-line bg-panel-sunken text-muted-foreground outline-none transition-colors hover:border-line-strong hover:text-phosphor focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-phosphor-bright sm:grid"
       href={REPOSITORY}
       rel="noopener"
       target="_blank"

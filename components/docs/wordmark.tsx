@@ -22,7 +22,7 @@ export function DocsWordmark() {
       href="/"
     >
       <Mark className="size-[1.1rem]" />
-      <strong className="font-bold font-mono text-sm tracking-terminal-2xl">
+      <strong className="hidden font-bold font-mono text-sm tracking-terminal-2xl sm:inline">
         AFTERGLOW
       </strong>
     </Link>
