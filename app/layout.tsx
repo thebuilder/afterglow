@@ -1,6 +1,7 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 
+import { PhosphorProvider } from "@/components/phosphor-provider";
 import { HOMEPAGE } from "@/lib/registry";
 import { Scanlines } from "@/registry/terminal/components/scanlines";
 
@@ -35,11 +36,13 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className="relative isolate min-h-svh antialiased">
-        {children}
-        <Scanlines density="soft" fixed vignette />
-        <Analytics />
+        <PhosphorProvider>
+          {children}
+          <Scanlines density="soft" fixed vignette />
+          <Analytics />
+        </PhosphorProvider>
       </body>
     </html>
   );

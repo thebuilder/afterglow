@@ -23,6 +23,35 @@ The theme supplies:
 
 Stock shadcn components can use the same semantic variables after the theme is installed.
 
+## Phosphor presets
+
+Set `data-phosphor` on the root element to change the screen colour:
+
+```html
+<html data-phosphor="orange">
+```
+
+The theme includes `green`, `orange`, `yellow`, `cyan`, `magenta`, and `grey`. Green is the default. Each preset remaps the phosphor ramp, panels, borders, focus rings, and semantic controls. Signal and status colours keep their existing meanings.
+
+Afterglow only reads the attribute. Use any state library to manage it. The documentation site uses `next-themes` to apply the attribute before paint and store the selection:
+
+```tsx
+import { ThemeProvider } from "next-themes";
+
+<ThemeProvider
+  attribute="data-phosphor"
+  defaultTheme="green"
+  enableColorScheme={false}
+  enableSystem={false}
+  storageKey="afterglow-phosphor"
+  themes={["green", "orange", "yellow", "cyan", "magenta", "grey"]}
+>
+  {children}
+</ThemeProvider>
+```
+
+With the Next.js App Router, add `suppressHydrationWarning` to `<html>` because the provider updates that element.
+
 ## Change a token
 
 Edit the generated variables in your project's configured CSS file. Keep the semantic names used by components:

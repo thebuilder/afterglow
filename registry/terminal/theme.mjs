@@ -1,4 +1,37 @@
 // Source for the generated globals and the theme entry in registry.json.
+export const phosphorPresets = {
+  cyan: {
+    phosphor: "#67e8f9",
+    "phosphor-bright": "#cffafe",
+    "phosphor-dim": "#58abb8",
+  },
+  green: {
+    phosphor: "#86fadd",
+    "phosphor-bright": "#d9ffef",
+    "phosphor-dim": "#4d8477",
+  },
+  grey: {
+    phosphor: "#c5cbc9",
+    "phosphor-bright": "#f4f7f6",
+    "phosphor-dim": "#99a4a1",
+  },
+  magenta: {
+    phosphor: "#f09be7",
+    "phosphor-bright": "#ffd5fa",
+    "phosphor-dim": "#cf8ac8",
+  },
+  orange: {
+    phosphor: "#ff9d4d",
+    "phosphor-bright": "#ffe1bd",
+    "phosphor-dim": "#d48950",
+  },
+  yellow: {
+    phosphor: "#f4e66d",
+    "phosphor-bright": "#fff9c2",
+    "phosphor-dim": "#b4a753",
+  },
+};
+
 const PALETTE = {
   amber: "#ffbc57",
   azure: "#8dbdf5",
@@ -13,9 +46,7 @@ const PALETTE = {
   "panel-raised": "#091212",
   "panel-sunken": "#081210",
 
-  phosphor: "#86fadd",
-  "phosphor-bright": "#d9ffef",
-  "phosphor-dim": "#4d8477",
+  ...phosphorPresets.green,
 
   signal: "#ff5b82",
   "signal-soft": "#e84970",
@@ -96,6 +127,48 @@ const SEMANTIC = {
 const RAW = Object.fromEntries(
   Object.entries(TOKENS).map(([key, value]) => [key, value])
 );
+
+function cssVariables(values) {
+  return Object.fromEntries(
+    Object.entries(values).map(([name, value]) => [`--${name}`, value])
+  );
+}
+
+const PHOSPHOR_PRESET_CSS = Object.fromEntries(
+  Object.entries(phosphorPresets)
+    .filter(([name]) => name !== "green")
+    .map(([name, values]) => [
+      `:root[data-phosphor="${name}"]`,
+      cssVariables(values),
+    ])
+);
+
+const PHOSPHOR_SEMANTIC_CSS = cssVariables({
+  accent: "color-mix(in oklab, var(--phosphor) 22%, #08100f)",
+  "accent-foreground": "var(--phosphor-bright)",
+  border: "color-mix(in srgb, var(--phosphor) 22%, transparent)",
+  card: "color-mix(in oklab, var(--phosphor) 6%, #070a0a)",
+  "chart-1": "var(--phosphor)",
+  input: "var(--border)",
+  line: "var(--border)",
+  "line-strong": "color-mix(in srgb, var(--phosphor) 55%, transparent)",
+  muted: "color-mix(in oklab, var(--phosphor) 7%, #070a0a)",
+  "muted-foreground": "color-mix(in oklab, var(--phosphor) 54%, #9aa5a2)",
+  panel: "color-mix(in oklab, var(--phosphor) 6%, #070a0a)",
+  "panel-raised": "color-mix(in oklab, var(--phosphor) 5%, #060909)",
+  "panel-sunken": "color-mix(in oklab, var(--phosphor) 4%, #050808)",
+  popover: "var(--panel-raised)",
+  primary: "var(--phosphor)",
+  ring: "var(--phosphor-bright)",
+  secondary: "color-mix(in oklab, var(--phosphor) 9%, #080c0b)",
+  "secondary-foreground": "var(--phosphor)",
+  sidebar: "var(--panel-raised)",
+  "sidebar-accent": "var(--accent)",
+  "sidebar-accent-foreground": "var(--phosphor-bright)",
+  "sidebar-border": "var(--border)",
+  "sidebar-primary": "var(--phosphor)",
+  "sidebar-ring": "var(--phosphor-bright)",
+});
 
 const THEME = {
   "background-image-beam":
@@ -199,7 +272,8 @@ const THEME = {
     "inset 0 0 0 1px rgb(255 255 255 / 0.12), 0 0 18px color-mix(in srgb, var(--signal) 12%, transparent)",
   "shadow-window": "0 2rem 8rem #000",
 
-  "text-shadow-phosphor": "0 0 8px rgb(134 250 221 / 0.35)",
+  "text-shadow-phosphor":
+    "0 0 8px color-mix(in srgb, var(--phosphor) 35%, transparent)",
   "text-shadow-signal": "0 0 10px rgb(255 91 130 / 0.45)",
 };
 
@@ -209,6 +283,9 @@ const REDUCED_MOTION_SELECTOR = Object.keys(THEME)
   .join(", ");
 
 const CSS = {
+  ...PHOSPHOR_PRESET_CSS,
+  ':root[data-phosphor]:not([data-phosphor="green"])': PHOSPHOR_SEMANTIC_CSS,
+
   "@keyframes terminal-alarm": {
     "0%, 100%": {
       "border-color": "transparent",

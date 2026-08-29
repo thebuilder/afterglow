@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Prose } from "@/components/docs/prose";
 import { SiteHeader } from "@/components/docs/site-header";
 import { TerminalTheSystemAtAGlance } from "@/components/examples/terminal-the-system-at-a-glance";
+import { ThemePhosphorSelector } from "@/components/examples/theme-phosphor-selector";
 import { sectionsWithItems } from "@/lib/sections";
 import { Connector } from "@/registry/terminal/components/connector";
 import { Led } from "@/registry/terminal/components/led";
@@ -87,6 +88,7 @@ export default function Home() {
                 thebuilder
               </a>
             </p>
+            <ThemePhosphorSelector />
           </div>
 
           <div
