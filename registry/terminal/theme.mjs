@@ -140,8 +140,15 @@ const THEME = {
   "animate-led": "terminal-led 1.6s steps(2) infinite",
   "animate-line-in": "terminal-line-in 420ms var(--ease-terminal) both",
   "animate-open": "terminal-open 180ms steps(4, end)",
-
   "animate-pixel": "terminal-pixel 800ms linear infinite",
+
+  "animate-select-fold-in-down":
+    "terminal-select-fold-in-down 140ms steps(4, end)",
+  "animate-select-fold-in-up": "terminal-select-fold-in-up 140ms steps(4, end)",
+  "animate-select-fold-out-down":
+    "terminal-select-fold-out-down 100ms steps(3, end) forwards",
+  "animate-select-fold-out-up":
+    "terminal-select-fold-out-up 100ms steps(3, end) forwards",
   "animate-slide-in-bottom":
     "terminal-slide-in-bottom 220ms var(--ease-terminal)",
   "animate-slide-in-left": "terminal-slide-in-left 220ms var(--ease-terminal)",
@@ -261,6 +268,19 @@ const CSS = {
     "12.5%, 24.99%": { opacity: "0.62" },
     "25%, 37.49%": { opacity: "0.34" },
     "37.5%, 100%": { opacity: "0.16" },
+  },
+
+  "@keyframes terminal-select-fold-in-down": {
+    from: { "clip-path": "inset(0 0 100% 0)" },
+  },
+  "@keyframes terminal-select-fold-in-up": {
+    from: { "clip-path": "inset(100% 0 0 0)" },
+  },
+  "@keyframes terminal-select-fold-out-down": {
+    to: { "clip-path": "inset(100% 0 0 0)" },
+  },
+  "@keyframes terminal-select-fold-out-up": {
+    to: { "clip-path": "inset(0 0 100% 0)" },
   },
   "@keyframes terminal-slide-in-bottom": {
     from: { transform: "translateY(100%)" },
