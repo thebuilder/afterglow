@@ -6,6 +6,36 @@ const TOGGLE_PROPS = [
 ];
 
 export const formDocs: DocMap = {
+  calendar: {
+    parts: [
+      {
+        name: "Calendar",
+        parts: [{ name: "CalendarDayButton" }],
+        props: [
+          { default: "true", name: "showOutsideDays", type: "boolean" },
+          {
+            default: '"label"',
+            name: "captionLayout",
+            type: '"label" | "dropdown" | "dropdown-months" | "dropdown-years"',
+          },
+          {
+            default: '"ghost"',
+            name: "buttonVariant",
+            type: "Button variant",
+          },
+        ],
+        summary:
+          "Wraps React DayPicker and replaces its navigation and day controls with Afterglow buttons.",
+      },
+    ],
+    upstream: [
+      {
+        href: "https://daypicker.dev",
+        label: "React DayPicker",
+      },
+    ],
+  },
+
   checkbox: {
     parts: [{ name: "Checkbox" }],
     upstream: [baseUi("checkbox")],

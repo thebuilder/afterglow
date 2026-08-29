@@ -1,5 +1,6 @@
 "use client";
 
+import { ArchiveIcon } from "lucide-react";
 import { useCallback } from "react";
 
 import { Button } from "@/registry/terminal/ui/button";
@@ -18,10 +19,25 @@ export function ToastTones() {
       toast.warning("Beacon unreachable", { description: "Running local." }),
     []
   );
+  const info = useCallback(
+    () =>
+      toast.info("Downlink restored", {
+        description: "Round trip 42 ms.",
+      }),
+    []
+  );
   const failure = useCallback(
     () =>
       toast.error("Spool did not answer", {
         description: "Power cycle it and try again.",
+      }),
+    []
+  );
+  const custom = useCallback(
+    () =>
+      toast("Archive queued", {
+        description: "Spool 07 will run after capture.",
+        icon: <ArchiveIcon className="size-4 text-violet" />,
       }),
     []
   );
@@ -35,8 +51,14 @@ export function ToastTones() {
       <Button onClick={warning} variant="outline">
         Warning
       </Button>
+      <Button onClick={info} variant="outline">
+        Info
+      </Button>
       <Button onClick={failure} variant="signal">
         Error
+      </Button>
+      <Button onClick={custom} variant="ghost">
+        Custom icon
       </Button>
     </div>
   );

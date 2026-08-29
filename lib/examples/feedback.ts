@@ -60,7 +60,7 @@ export const feedbackExamples: ExampleMap = {
     {
       component: ToastTones,
       description:
-        "Sonner notifications in the Afterglow palette. This example shows the available tones.",
+        "Each tone sets the border, panel tint, title and built-in icon. A caller can replace the icon for a specific message.",
       name: "Tones",
     },
   ],

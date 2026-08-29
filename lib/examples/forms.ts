@@ -1,3 +1,4 @@
+import { CalendarDatePicker } from "@/components/examples/calendar-date-picker";
 import { CheckboxDefault } from "@/components/examples/checkbox-default";
 import { InputOtpSixDigits } from "@/components/examples/input-otp-six-digits";
 import { RadioGroupDefault } from "@/components/examples/radio-group-default";
@@ -10,6 +11,14 @@ import { ToggleVariants } from "@/components/examples/toggle-variants";
 import type { ExampleMap } from "@/lib/example";
 
 export const formExamples: ExampleMap = {
+  calendar: [
+    {
+      component: CalendarDatePicker,
+      description:
+        "A date picker composed from the calendar, popover and button. Choosing a day closes the panel and updates the trigger.",
+      name: "Date picker",
+    },
+  ],
   checkbox: [
     {
       component: CheckboxDefault,

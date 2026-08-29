@@ -36,9 +36,9 @@ function Toaster({ ...props }: ToasterProps) {
           actionButton: "!rounded-none !bg-phosphor !text-void",
           cancelButton: "!rounded-none !bg-secondary !text-phosphor",
           description: "!text-muted-foreground",
-          title: "!text-phosphor-bright !font-medium",
+          title: "!font-medium !text-[var(--toast-accent)]",
           toast:
-            "!rounded-none !border-line-strong !bg-popover !font-mono !text-xs !shadow-panel",
+            "[--toast-accent:var(--line-strong)] !rounded-none !border-[var(--toast-accent)] !bg-[color-mix(in_oklab,var(--toast-accent)_9%,var(--popover))] !font-mono !text-xs !shadow-panel !transition-[opacity,height,box-shadow] data-[mounted=false]:![--y:translateY(0)] data-[mounted=true]:animate-toast-in data-[removed=true]:![--y:translateY(0)] data-[removed=true]:animate-toast-out data-[type=error]:[--toast-accent:var(--destructive)] data-[type=info]:[--toast-accent:var(--info)] data-[type=success]:[--toast-accent:var(--phosphor)] data-[type=warning]:[--toast-accent:var(--warning)]",
         },
       }}
       {...props}
