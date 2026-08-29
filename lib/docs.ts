@@ -5,14 +5,6 @@ import { primitiveDocs } from "@/lib/docs/primitives";
 import { structureDocs } from "@/lib/docs/structure";
 import { terminalDocs } from "@/lib/docs/terminal";
 
-/**
- * Keyed by registry item name, and split across the same five files the
- * examples are, so a contributor adding an item edits the matching pair rather
- * than hunting through one file holding the whole registry.
- *
- * `scripts/check-docs.mjs` asserts that this covers every item and every export
- * of every item.
- */
 const DOCS: DocMap = {
   ...terminalDocs,
   ...primitiveDocs,

@@ -22,19 +22,6 @@ function toLine(line: BootLine): { text: string; tone: BootTone } {
     : { text: line.text, tone: line.tone ?? "default" };
 }
 
-/**
- * A self test printing itself, one line at a time.
- *
- * Every line is in the DOM from the first frame and the unprinted ones are
- * merely invisible, which buys two things: the block is its final height before
- * anything animates, so nothing below it is pushed down four times on the way
- * in, and the server and the client render the same markup, so there is nothing
- * for hydration to disagree about.
- *
- * The caret follows the last printed line and stops at the end. A cursor still
- * blinking under a finished log is a machine claiming to be waiting for input it
- * is not going to read.
- */
 function BootLog({
   className,
   lines,

@@ -4,18 +4,6 @@ import { Progress as ProgressPrimitive } from "@base-ui/react/progress";
 
 import { cn } from "@/lib/utils";
 
-/**
- * Three pixels of track and a light in it.
- *
- * Determinate by default. Passing `indeterminate` hands the primitive a null
- * value and swaps the fill for a segment that sweeps the track and leaves at
- * the far edge, which is the honest shape for a wait of unknown length: a bar
- * creeping to ninety percent and stopping is a progress bar telling a lie.
- *
- * The segment is held flat across its middle rather than faded from both ends,
- * because at three pixels a two-stop gradient is so rarely at full strength that
- * the sweep reads as a smudge instead of a light.
- */
 function Progress({
   className,
   value,

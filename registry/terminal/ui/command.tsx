@@ -13,15 +13,6 @@ import {
   DialogTitle,
 } from "@/registry/terminal/ui/dialog";
 
-/**
- * The one component this registry was always going to be best at.
- *
- * A palette is a prompt: a sigil, a line you type on, and a list that narrows
- * as you type. It is drawn as one, rather than as a search box with results
- * under it, and the active row is marked with a lit left edge as well as a
- * highlight, because on a list where every row is already green a background
- * change alone is doing quiet work.
- */
 function Command({
   className,
   ...props
@@ -51,14 +42,11 @@ function CommandDialog({
   title?: string;
   description?: string;
   className?: string;
-  /* cmdk's own two, forwarded because a palette fed from an index outside the
-     component has to be able to score its own rows, and the Command inside
-     here is otherwise unreachable. */
+
   filter?: React.ComponentProps<typeof CommandPrimitive>["filter"];
   shouldFilter?: boolean;
   showCloseButton?: boolean;
-  /* Base UI's Root accepts a render function as children; the palette does not,
-     and narrowing it here keeps the dialog's own generic out of this API. */
+
   children?: React.ReactNode;
 }) {
   return (
@@ -74,9 +62,6 @@ function CommandDialog({
         <Command
           className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group]]:px-1 [&_[cmdk-input-wrapper]]:h-11"
           filter={filter}
-          /* cmdk names the field from this, drawn out of sight. Without it the
-             name falls through to the placeholder, which disappears the moment
-             somebody types. */
           label={title}
           shouldFilter={shouldFilter}
         >
@@ -150,11 +135,7 @@ function CommandGroup({
       className={cn(
         "overflow-hidden text-foreground",
         "[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:font-bold [&_[cmdk-group-heading]]:font-mono [&_[cmdk-group-heading]]:text-3xs [&_[cmdk-group-heading]]:text-phosphor-dim [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-terminal-xl",
-        /* A rule above every group that has one before it, so the first group
-           does not start with a line hanging under the input's own border.
-           Filtered-out groups stay in the DOM with `hidden`, so this asks for a
-           visible predecessor rather than for `:not(:first-child)`, which would
-           put the rule back the moment a search emptied the group above. */
+
         "[[cmdk-group]:not([hidden])~&]:mt-1 [[cmdk-group]:not([hidden])~&]:border-line [[cmdk-group]:not([hidden])~&]:border-t [[cmdk-group]:not([hidden])~&]:pt-1",
         className
       )}

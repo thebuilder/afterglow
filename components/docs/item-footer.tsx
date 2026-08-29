@@ -7,7 +7,6 @@ import { Separator } from "@/registry/terminal/ui/separator";
 const LINK =
   "flex items-center gap-2 font-mono text-muted-foreground text-xs outline-none transition-colors hover:text-phosphor focus-visible:text-phosphor";
 
-/** The way on, in the manifest's own order, so the whole registry is walkable. */
 export function ItemFooter({
   next,
   previous,

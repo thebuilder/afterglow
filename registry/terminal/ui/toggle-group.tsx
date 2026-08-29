@@ -13,11 +13,6 @@ const ToggleGroupContext = createContext<VariantProps<typeof toggleVariants>>({
   variant: "default",
 });
 
-/**
- * Joined, the way the tabs are: the rules between items are a one-pixel gap in
- * the group's own background rather than borders that then have to be turned
- * off at the ends to stop them doubling.
- */
 function ToggleGroup({
   className,
   variant,

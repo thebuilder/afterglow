@@ -1,11 +1,5 @@
 const REPOSITORY = "https://github.com/thebuilder/afterglow";
 
-/**
- * The way out to the source, in the corner of every header.
- *
- * The mark is inlined because lucide dropped its brand icons, and a second
- * icon dependency for one path is not worth it.
- */
 export function SourceLink() {
   return (
     <a

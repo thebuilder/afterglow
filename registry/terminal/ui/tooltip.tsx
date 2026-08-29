@@ -29,11 +29,6 @@ function TooltipTrigger({ ...props }: TooltipPrimitive.Trigger.Props) {
   return <TooltipPrimitive.Trigger data-slot="tooltip-trigger" {...props} />;
 }
 
-/**
- * A plate with one lit edge rather than a bubble with a tail. There is no
- * arrow, because an arrow is a rounded speech shape, and this is a readout that
- * has appeared next to the thing it describes.
- */
 function TooltipContent({
   className,
   align = "center",

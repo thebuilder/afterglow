@@ -2,21 +2,8 @@ import type { ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
-/** Half the marker, which is where its centre lands and so where the rule goes. */
 const RULE = "left-[0.6875rem]";
 
-/**
- * A numbered sequence hung off a single rule.
- *
- * The number sits in a box on the rule rather than out in the margin, so a step
- * whose body is a code block still reads as one of three things to do and not
- * as a heading that happens to have a digit in front of it.
- *
- * The rule is drawn inside the list rather than as its left border, and the
- * markers are indented to sit on it. Hanging them outside costs half a marker
- * of overhang, and the tab panel this renders inside keeps a `clip-path` from
- * its entrance animation, so anything that leaves the box loses its left edge.
- */
 export function Steps({
   className,
   children,

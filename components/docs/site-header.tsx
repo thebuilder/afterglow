@@ -6,14 +6,6 @@ import { SourceLink } from "@/components/docs/source-link";
 import { DocsWordmark } from "@/components/docs/wordmark";
 import { docsEntry } from "@/lib/sections";
 
-/**
- * One header, on every page.
- *
- * The gallery and the item pages are the same site, and a bar that changes
- * shape between them reads as two. What differs is what each page genuinely
- * has: the item pages need a way at the drawer, because their sidebar is hidden
- * below `lg`, and the gallery has a count of what it is showing.
- */
 export function SiteHeader({
   before,
   after,

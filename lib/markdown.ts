@@ -17,19 +17,6 @@ import {
 import { sectionsWithItems } from "@/lib/sections";
 import { exampleSource, type Source, sourcesFor } from "@/lib/source";
 
-/**
- * The item pages, as markdown.
- *
- * One generator behind `/c/<name>.md`, `/llms-full.txt` and the page's own copy
- * button, so the three cannot end up saying it differently. The site's content
- * is structured data rather than prose, which is what makes this cheap: the
- * markdown is another rendering of `registry.json` and `lib/docs.ts`, not a
- * second copy of them.
- *
- * Examples carry their source on the per-item pages and their names alone in
- * the index. Each one is a file, so the fenced block is that file, byte for
- * byte.
- */
 function fence(language: string, body: string): string[] {
   return [`\`\`\`${language}`, body, "```", ""];
 }
@@ -112,9 +99,7 @@ function api(doc: ItemDoc): string[] {
 }
 
 interface Bodies {
-  /** One per example, in the order the item lists them. */
   examples?: Source[];
-  /** Every file the item installs. */
   sources?: Source[];
 }
 
@@ -137,7 +122,6 @@ function itemToMarkdown(item: RegistryItem, bodies: Bodies = {}): string {
   return `${lines.join("\n").trimEnd()}\n`;
 }
 
-/** One item, with the source a consumer would be copying. */
 export async function itemMarkdown(item: RegistryItem): Promise<string> {
   const [demos, sources] = await Promise.all([
     Promise.all(
@@ -149,10 +133,6 @@ export async function itemMarkdown(item: RegistryItem): Promise<string> {
   return itemToMarkdown(item, { examples: demos, sources });
 }
 
-/**
- * The index. Annotated links rather than content, so an agent reads this first
- * and then fetches only what it needs.
- */
 export function llmsIndex(): string {
   const lines = [
     "# afterglow",
@@ -195,12 +175,6 @@ export function llmsIndex(): string {
   return `${lines.join("\n").trimEnd()}\n`;
 }
 
-/**
- * Every page in one file, without any of the source. Component files are served
- * per item under `/r/` and example files sit behind `/c/<name>.md`, and pasting
- * both here would make the one document an agent fetches first the largest on
- * the site by an order of magnitude.
- */
 export function llmsFull(): string {
   return `${allItems()
     .map((item) => itemToMarkdown(item))

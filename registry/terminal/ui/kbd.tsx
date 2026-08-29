@@ -2,19 +2,6 @@ import type * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-/**
- * A key, drawn as one. The bottom border is brighter than the other three and
- * there is a hard shadow under it, which is the whole trick: a flat rectangle
- * reads as a badge, and two pixels of implied depth read as something you press.
- *
- * `glyph` is for the keys that are a symbol rather than a letter, and it is not
- * optional dressing. Measured at the letter size, `K` paints 7.3px of ink and
- * `⌘` paints 6.5, `⇧` 5.6 and `↵` 4.2: these are drawn from strokes thin enough
- * that the eye cannot complete them from memory the way it completes a letter,
- * so at a letter's size they read as smudges rather than as keys. The symbol
- * takes a larger type scale with its line box held down to the letter's, which
- * buys back the ink without the key growing or its cap drifting off the row.
- */
 function Kbd({
   className,
   glyph = false,

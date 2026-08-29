@@ -9,37 +9,10 @@ import {
 
 import { cn } from "@/lib/utils";
 
-/**
- * The window.
- *
- * Three chromes. `macos` puts three lights at the left and centres the title;
- * `windows` puts the title at the left and a row of bevelled buttons hard
- * against the right. Both are the beige era, drawn heavy on purpose: everything
- * else in this system is painted flat on the glass, and these are objects
- * sitting in front of it.
- *
- * `terminal` is the same window in this system's own vocabulary. One hairline
- * instead of a double border, a slim bar instead of a pinstriped one, the
- * content flush rather than recessed, and the controls as small bracketed
- * marks. Reach for it when the window has to sit among the panels rather than
- * in front of them.
- *
- * What it deliberately does not do is move. A window you can drag belongs in a
- * layer of its own, and this one sits in the page's flow: dragging it would
- * either tear it out of the document or shove everything around it.
- */
-
 const MIN_WIDTH = 260;
 const MIN_HEIGHT = 160;
 const KEY_STEP = 24;
 
-/**
- * Each mark is built from one-pixel rules given explicit insets, not from a
- * text glyph and not from a rotated box with no insets at all. `×` and `+` set
- * at eleven pixels are strokes the eye cannot complete, and an absolutely
- * positioned span with every inset left `auto` falls back to its static
- * position, which in a grid is the corner rather than the middle.
- */
 const MARKS = {
   close: [
     "absolute inset-x-[8%] inset-y-[calc(50%-0.5px)] rotate-45 bg-current",
@@ -61,13 +34,6 @@ const LIGHTS: { name: LightName; label: string; color: string }[] = [
   { color: "var(--window-zoom)", label: "Zoom", name: "zoom" },
 ];
 
-/**
- * Every difference between the three chromes, in one table.
- *
- * Written as conditionals inline this was thirty-odd branches threaded through
- * one component, and adding a fourth chrome meant finding all of them. Here a
- * chrome is a row you can read across.
- */
 const CHROME: Record<
   Variant,
   {
@@ -79,8 +45,7 @@ const CHROME: Record<
     title: string;
     content: string;
     footer: string;
-    /* An absolute inset is measured from the padding box, so pulling a zone
-       flush with the outer edge means pulling it out by the border's width. */
+
     edgeX: string;
     edgeY: string;
     corner: string;
@@ -118,8 +83,7 @@ const CHROME: Record<
     corner: "-right-px -bottom-px size-3",
     edgeX: "-right-px w-1.5",
     edgeY: "-bottom-px h-1.5",
-    /* Slimmer than the beige chromes': a status rail here is one line of
-       hairline type, not a moulded strip with a lip above and below it. */
+
     footer: "min-h-5 px-2 pr-5 text-[0.4375rem] border-line text-phosphor-dim",
     frame: "border border-line bg-panel text-foreground shadow-panel",
     grip: "bg-[repeating-linear-gradient(-45deg,transparent_0_2px,var(--phosphor-dim)_2px_3px)]",
@@ -135,9 +99,7 @@ const CHROME: Record<
     content: "m-2 border-2 border-window-inset [border-style:inset]",
     control:
       "relative grid size-[1.15rem] place-items-center border border-t-window-bevel-light border-r-window-bevel-dark border-b-window-bevel-dark border-l-window-bevel-light bg-window-surface p-0 text-window-rule active:border-t-window-bevel-dark active:border-r-window-bevel-light active:border-b-window-bevel-light active:border-l-window-bevel-dark",
-    /* An outset bevel: light on the top and left, shadow on the bottom and
-       right, inverting on press. That inversion is the era's entire feedback
-       vocabulary, and without it the buttons are just marks on a stripe. */
+
     corner: "-right-[3px] -bottom-[3px] size-3.5",
     edgeX: "-right-[3px] w-2",
     edgeY: "-bottom-[3px] h-2",
@@ -163,11 +125,6 @@ function Marks({ name }: { name: LightName }) {
   );
 }
 
-/**
- * A light is a button when something is listening and a painted dot when
- * nothing is. A control that looks pressable and does nothing is worse than one
- * that never claimed to be a control.
- */
 function Light({
   light,
   action,
@@ -264,17 +221,6 @@ function TerminalWindow({
   const [collapsed, setCollapsed] = useState(false);
   const chrome = CHROME[variant];
 
-  /**
-   * The size is taken from the frame's own measured box when the drag starts,
-   * so the window can be laid out with classes until somebody grabs it and only
-   * then becomes pixel-sized. The axis comes off the handle that fired rather
-   * than a bound argument, so the three zones share one memoized callback.
-   *
-   * Nothing calls `releasePointerCapture`. The capture is released implicitly
-   * on `pointerup`, and calling it again afterwards throws `NotFoundError`,
-   * which aborts the rest of the teardown and leaves the move listener
-   * attached: the window then goes on resizing with no button held.
-   */
   const startResize = useCallback((event: ReactPointerEvent<HTMLElement>) => {
     const axis = event.currentTarget.dataset.axis as "x" | "y" | "both";
     const box = frame.current?.getBoundingClientRect();
@@ -317,7 +263,6 @@ function TerminalWindow({
     handle.addEventListener("pointercancel", stop);
   }, []);
 
-  /** A drag handle nobody can reach with a keyboard is a control for some people only. */
   const nudge = useCallback((event: React.KeyboardEvent<HTMLElement>) => {
     const step = {
       ArrowDown: [0, KEY_STEP],
@@ -353,10 +298,7 @@ function TerminalWindow({
         collapsed
           ? "!h-fit grid-rows-[auto]"
           : "grid-rows-[auto_minmax(0,1fr)_auto]",
-        /* Flush content leaves the grip nowhere to sit, so the terminal chrome
-           keeps a rail at the bottom for it, unless a footer is already serving
-           as one. The heavy chromes get theirs free, out of the margin around
-           their well. */
+
         variant === "terminal" && resizable && !(collapsed || footer) && "pb-3",
         className
       )}
@@ -371,8 +313,7 @@ function TerminalWindow({
         className={cn(
           "group/titlebar flex select-none items-center gap-2",
           chrome.bar,
-          /* The subtitle is a second line, and a second line is most of the
-             chrome's height. Without one the bar is sized to the title alone. */
+
           subtitle && chrome.barTall,
           collapsed ? "border-b-0" : "border-b-2",
           variant === "terminal" && !collapsed && "border-b"
@@ -406,8 +347,7 @@ function TerminalWindow({
           </h2>
         </div>
 
-        {/* Balances the control cluster so the macOS title lands on the centre
-            of the bar rather than the centre of what is left of it. */}
+        {/* Mirrors the controls to keep the macOS title centered. */}
         {variant === "macos" && (
           <div aria-hidden="true" className="w-[3.1rem] shrink-0" />
         )}
@@ -425,16 +365,6 @@ function TerminalWindow({
 
       {!collapsed && (
         <>
-          {/**
-           * In the heavy chromes the content is a well: a margin of chrome all
-           * round it and an inset edge, the way a beige-era window recessed its
-           * document. That margin is also what makes the resize grip usable,
-           * because the grip lives in it and never sits over the scrollbar.
-           *
-           * The terminal chrome has no well. Everything else in this system is
-           * painted flat on the glass, and a recessed document in the middle of
-           * it would be the one raised object on the page.
-           */}
           <div
             className={cn(
               "min-h-0 overflow-auto overscroll-contain bg-panel-sunken text-phosphor-bright",
@@ -461,9 +391,7 @@ function TerminalWindow({
 
       {resizable && !collapsed && (
         <>
-          {/* The zones straddle the frame rather than sitting inside it, so the
-              cursor changes where the edge looks like it is. The corner carries
-              the keyboard, so resizing has one focus stop rather than three. */}
+          {/* Only the corner is keyboard-focusable. */}
           <span
             aria-hidden="true"
             className={cn(
@@ -493,9 +421,6 @@ function TerminalWindow({
             onPointerDown={startResize}
             type="button"
           >
-            {/* Rules in the corner triangle, which is what a grow box has always
-                looked like. A filled square of hatching reads as a patch of
-                texture rather than as somewhere to take hold. */}
             <span
               aria-hidden="true"
               className={cn("block size-full", chrome.grip)}

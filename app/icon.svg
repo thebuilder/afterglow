@@ -6,11 +6,7 @@
 >
   <title>afterglow</title>
   <rect fill="#05090a" height="32" width="32" />
-  <!--
-    A prompt drawn rather than set, because at 16px a glyph is at the mercy of
-    the rasteriser. Coordinates are even and the caps are square. A rounded cap
-    or an odd offset lands on a half pixel and the chevron comes back blurred.
-  -->
+  <!-- Even coordinates and square caps keep the 16px raster sharp. -->
   <path
     d="M7 10 L14 16 L7 22"
     fill="none"

@@ -9,7 +9,7 @@
   "files": [
     {
       "path": "registry/terminal/ui/skeleton.tsx",
-      "content": "import type * as React from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\n/**\n * A row that has not arrived yet. Sharp, faint, and the beam's colour rather\n * than grey: a neutral placeholder on this palette reads as a broken element\n * instead of an empty one.\n *\n * The pulse is Tailwind's, so the theme's reduced-motion block does not cover\n * it. That block is built from the theme's own `animate-*` tokens and cannot\n * see this one, so the component turns it off itself.\n */\nfunction Skeleton({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      className={cn(\n        \"animate-pulse rounded-none bg-phosphor/10 motion-reduce:animate-none\",\n        className\n      )}\n      data-slot=\"skeleton\"\n      {...props}\n    />\n  );\n}\n\nexport { Skeleton };\n",
+      "content": "import type * as React from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nfunction Skeleton({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      className={cn(\n        \"animate-pulse rounded-none bg-phosphor/10 motion-reduce:animate-none\",\n        className\n      )}\n      data-slot=\"skeleton\"\n      {...props}\n    />\n  );\n}\n\nexport { Skeleton };\n",
       "type": "registry:ui"
     }
   ],

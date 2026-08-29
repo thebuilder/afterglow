@@ -1,14 +1,5 @@
 import { itemsOfType, type RegistryItem } from "@/lib/registry";
 
-/**
- * How the registry is cut up for a reader.
- *
- * The manifest knows an item's `type` and nothing about which heading it
- * belongs under, and the four groups here are not one-to-one with the types:
- * a block and a style are both "the whole thing" to somebody deciding what to
- * install. Kept in one place because the gallery, the sidebar and `llms.txt`
- * all have to agree, and three copies of this list is three chances to disagree.
- */
 export interface Section {
   blurb: string;
   id: string;
@@ -50,7 +41,6 @@ export interface SectionWithItems extends Section {
   items: RegistryItem[];
 }
 
-/** The same four groups, each carrying the items that fall into it. */
 export function sectionsWithItems(): SectionWithItems[] {
   return SECTIONS.map((section) => ({
     ...section,
@@ -58,13 +48,6 @@ export function sectionsWithItems(): SectionWithItems[] {
   }));
 }
 
-/**
- * The nav, flattened to what a link needs.
- *
- * `registry.json` carries the theme's several hundred CSS variables, so
- * importing it into a client component to read two strings ships the whole
- * palette twice. The server builds this and passes it down instead.
- */
 export interface NavItem {
   name: string;
   title: string;
@@ -84,11 +67,6 @@ export function navSections(): NavSection[] {
   }));
 }
 
-/**
- * Where "Docs" goes. The first row of the sidebar, so the link and the list
- * cannot disagree about where reading starts. That is the theme, which is also
- * the item you have to install first.
- */
 export function docsEntry(): string {
   const [first] = itemsOfType(...SECTIONS[0].types);
   return `/c/${first.name}`;

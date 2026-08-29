@@ -7,7 +7,6 @@ import { useCallback } from "react";
 import type { NavSection } from "@/lib/sections";
 import { cn } from "@/lib/utils";
 
-/** The panel this list is scrolling inside, whichever of the two it is. */
 function scrollParent(node: HTMLElement): HTMLElement | null {
   let parent = node.parentElement;
 
@@ -24,22 +23,6 @@ function scrollParent(node: HTMLElement): HTMLElement | null {
   return null;
 }
 
-/**
- * Bring a row into its panel, and leave the panel alone if it is already there.
- *
- * The second half is what stops this being annoying. Clicking a row you can see
- * would otherwise pull the list out from under the click; only a row that is
- * off screen, which is how you arrive from a link or a search result, is worth
- * moving for.
- *
- * `scrollIntoView` is the obvious call and it is the wrong one here: in the
- * drawer this list sits inside a popup that is still sliding, and the browser
- * declines to scroll a transformed subtree to a position it is about to leave.
- * Two rects are unaffected by that, because the transform applies to both.
- *
- * Reports whether it found a panel at all, so the caller can try again once
- * there is one.
- */
 function reveal(node: HTMLElement): boolean {
   const panel = scrollParent(node);
   if (!panel) {
@@ -58,13 +41,6 @@ function reveal(node: HTMLElement): boolean {
   return true;
 }
 
-/**
- * The list of every item, grouped, with the one you are reading marked.
- *
- * The mark is a lit bar in the left gutter rather than a filled row. A row that
- * fills is a row that has been selected; a bar beside it is a position in a
- * list, which is what the sidebar is actually reporting.
- */
 export function NavTree({
   className,
   onNavigate,
@@ -76,16 +52,9 @@ export function NavTree({
 }) {
   const pathname = usePathname();
 
-  /*
-    Fifty-one items is taller than the column, so landing on one near the bottom
-    otherwise shows a list with no visible mark in it.
-
-    A second attempt a frame later covers the case where the column has no
-    height yet, and so nothing to scroll: `next dev` serves the stylesheet after
-    hydration, and a fresh page load lands in that window every time.
-  */
   const revealActive = useCallback((node: HTMLAnchorElement | null) => {
     if (node && !reveal(node)) {
+      // Retry after the drawer or stylesheet gives the panel a height.
       requestAnimationFrame(() => reveal(node));
     }
   }, []);

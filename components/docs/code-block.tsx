@@ -1,12 +1,6 @@
 import { Highlighted } from "@/components/docs/highlighted";
 import { cn } from "@/lib/utils";
 
-/**
- * Highlighted source, with the path it installs to written above it.
- *
- * The HTML comes from Shiki at build time, so nothing here runs in a browser
- * except the copy button.
- */
 export function CodeBlock({
   className,
   html,

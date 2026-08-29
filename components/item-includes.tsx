@@ -16,15 +16,6 @@ const GROUPS: { title: string; types: string[] }[] = [
   { title: "Blocks", types: ["registry:block"] },
 ];
 
-/**
- * What a bundle actually contains, grouped.
- *
- * The style pulls in forty-nine items and nine packages. Rendered the way a
- * single component's dependencies are, that is fifty-eight badges in one row:
- * a wall that says "a lot" and nothing else. Grouped and counted, the same data
- * answers the question somebody opening this page is asking, which is what they
- * get for the one command above.
- */
 export function ItemIncludes({ item }: { item: RegistryItem }) {
   const included = (item.registryDependencies ?? [])
     .filter(isInternal)

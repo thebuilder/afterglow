@@ -13,10 +13,7 @@ const TITLE = "afterglow, terminal UI for shadcn";
 export const metadata: Metadata = {
   alternates: { canonical: HOMEPAGE },
   description: DESCRIPTION,
-  /*
-    `metadataBase` gives the file-based Open Graph images absolute URLs that
-    crawlers can fetch.
-  */
+
   metadataBase: new URL(HOMEPAGE),
   openGraph: {
     description: DESCRIPTION,
@@ -40,11 +37,6 @@ export default function RootLayout({
     <html lang="en">
       <body className="relative isolate min-h-svh antialiased">
         {children}
-        {/*
-          Soft rather than fine, and over the whole document. At page scale the
-          2-on-1 density starts eating letterforms; at 3-on-1 the glass is
-          present without the body copy paying for it.
-        */}
         <Scanlines density="soft" fixed vignette />
         <Analytics />
       </body>

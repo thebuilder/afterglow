@@ -11,15 +11,6 @@ import {
 import { Connector } from "@/registry/terminal/components/connector";
 import { Badge } from "@/registry/terminal/ui/badge";
 
-/**
- * The top of an item's page: what it is called, what it is, and what installing
- * it drags in with it.
- *
- * The dependency row is suppressed for a bundle. The style pulls in forty-nine
- * items and nine packages, and rendered here that is fifty-eight badges in a
- * wall that says "a lot" and nothing else. `ItemIncludes` groups and counts
- * them instead.
- */
 export function ItemHeader({
   bundled,
   item,

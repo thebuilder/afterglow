@@ -3,18 +3,6 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
 
-/**
- * Controls are set in the mono, uppercase and tracked out, because that is the
- * one thing that separates a control from a word on a terminal: both are green
- * text on glass, and only one of them is a key you can press.
- *
- * `default` is the beam and `signal` is the pink, which is the whole hierarchy.
- * A page with two pink buttons has no primary action, it has an alarm going off
- * twice.
- *
- * To render something other than a `<button>`, pass `render`:
- * `<Button render={<Link href="/x" />} nativeButton={false}>Go</Button>`.
- */
 const buttonVariants = cva(
   "inline-flex shrink-0 items-center justify-center gap-2 rounded-none border border-transparent font-mono font-bold uppercase whitespace-nowrap outline-none transition-[background-color,border-color,color,box-shadow,transform] duration-150 ease-terminal focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-phosphor-bright disabled:pointer-events-none disabled:opacity-40 data-disabled:pointer-events-none data-disabled:opacity-40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {

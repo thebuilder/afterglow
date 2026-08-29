@@ -19,14 +19,6 @@ function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
   );
 }
 
-/**
- * A plus that becomes a minus, not a chevron that spins.
- *
- * A rotating chevron is a gesture; `+` and `−` are the two states written down,
- * which is what a row of collapsed sections in a terminal has always looked
- * like. Only the vertical stroke appears to move, so the horizontal one never
- * seems to shift as it turns.
- */
 function AccordionTrigger({
   className,
   children,

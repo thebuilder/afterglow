@@ -19,28 +19,11 @@ import {
   DropdownMenuTrigger,
 } from "@/registry/terminal/ui/dropdown-menu";
 
-/**
- * Where the assistants take a question in a query string. Data rather than
- * markup, so a fourth one is a line here instead of another block below.
- */
 const ASSISTANTS = [
   { label: "Open in ChatGPT", url: "https://chatgpt.com/?q=" },
   { label: "Open in Claude", url: "https://claude.ai/new?q=" },
 ];
 
-/**
- * The page, for whoever is not reading it.
- *
- * Copy fetches `/c/<name>.md` rather than carrying the markdown in the bundle.
- * The source of a component runs to several kilobytes, and shipping that to
- * every visitor so a few of them can press a button is the wrong trade. It also
- * means the button can only hand over what the route serves, so the two cannot
- * drift.
- *
- * The assistant links pass the URL, not the text. The model fetches it, which
- * is what the markdown route is for, and a page's worth of source in a query
- * string is past what a browser will carry anyway.
- */
 export function PageActions({ name, url }: { name: string; url: string }) {
   const markdown = `${url}/c/${name}.md`;
 

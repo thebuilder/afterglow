@@ -4,11 +4,6 @@ import { ScrollArea as ScrollAreaPrimitive } from "@base-ui/react/scroll-area";
 
 import { cn } from "@/lib/utils";
 
-/**
- * The scrollbar is a track and a block, not a rounded lozenge. It is the same
- * hairline vocabulary as everything else, so a scrolling panel does not
- * suddenly grow the operating system's furniture down one side.
- */
 function ScrollArea({
   className,
   children,

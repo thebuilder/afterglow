@@ -2,14 +2,6 @@ import type * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-/**
- * A field is a line you type on, so it is drawn as one: a hairline box, mono
- * text, and a caret in the bright phosphor rather than the browser's white.
- *
- * The focus treatment moves the border instead of adding a ring. A ring at this
- * palette's contrast reads as a second border around the first, and the field
- * ends up looking selected rather than active.
- */
 function Input({ className, type, ...props }: React.ComponentProps<"input">) {
   return (
     <input

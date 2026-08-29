@@ -5,13 +5,6 @@ import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 
-/**
- * The one link that is not the wordmark.
- *
- * It stays in the header on the pages it points at, marked rather than hidden.
- * A header that drops an item once you are inside it changes shape between two
- * pages of the same site, and the header is the one thing that should not.
- */
 export function HeaderNav({
   links,
 }: {

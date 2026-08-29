@@ -13,13 +13,6 @@ import {
   SheetTrigger,
 } from "@/registry/terminal/ui/sheet";
 
-/**
- * The same tree, in a drawer, below the width where a column fits.
- *
- * It closes on navigation. Base UI keeps the panel mounted until its closing
- * animation has run, so a drawer left open behind the page you just moved to is
- * a drawer that is still there when you come back.
- */
 export function MobileNav({ sections }: { sections: NavSection[] }) {
   const [open, setOpen] = useState(false);
   const close = useCallback(() => setOpen(false), []);
