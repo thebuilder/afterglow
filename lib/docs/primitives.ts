@@ -12,7 +12,7 @@ export const primitiveDocs: DocMap = {
           {
             default: '"default"',
             name: "variant",
-            type: '"default" | "signal" | "solid" | "outline" | "amber" | "azure" | "violet" | "destructive"',
+            type: '"default" | "signal" | "solid" | "outline" | "info" | "warning" | "amber" | "azure" | "violet" | "destructive"',
           },
         ],
       },

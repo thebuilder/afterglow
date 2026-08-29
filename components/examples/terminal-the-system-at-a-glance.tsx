@@ -52,14 +52,14 @@ export function TerminalTheSystemAtAGlance() {
       <div className="grid gap-2">
         <div className="flex items-baseline justify-between font-mono text-2xs uppercase tracking-terminal">
           <span className="text-muted-foreground">Indexing</span>
-          <span className="text-amber tabular-nums">68%</span>
+          <span className="text-metric tabular-nums">68%</span>
         </div>
         <Progress aria-label="Indexing" value={68} />
       </div>
 
       <div className="flex flex-wrap items-center gap-2 border-line border-t pt-4">
         <Badge>mounted</Badge>
-        <Badge variant="amber">read-only</Badge>
+        <Badge variant="warning">read-only</Badge>
         <Badge variant="signal">offline</Badge>
       </div>
     </div>

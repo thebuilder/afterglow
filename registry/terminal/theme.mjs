@@ -106,7 +106,9 @@ const SEMANTIC = {
   destructive: PALETTE.ember,
   "destructive-foreground": "#ffffff",
   foreground: PALETTE.ink,
+  info: PALETTE.azure,
   input: PALETTE.line,
+  metric: PALETTE["phosphor-bright"],
 
   muted: "#0d1b1a",
   "muted-foreground": PALETTE["ink-muted"],
@@ -132,6 +134,7 @@ const SEMANTIC = {
   "sidebar-primary": PALETTE.phosphor,
   "sidebar-primary-foreground": PALETTE.void,
   "sidebar-ring": PALETTE["phosphor-bright"],
+  warning: PALETTE.amber,
 };
 
 const RAW = Object.fromEntries(
@@ -144,12 +147,27 @@ function cssVariables(values) {
   );
 }
 
+const PHOSPHOR_ROLE_OVERRIDES = {
+  blue: { info: phosphorPresets.cyan.phosphor },
+  cyan: { info: PALETTE.violet },
+  magenta: {
+    signal: phosphorPresets.cyan.phosphor,
+    "signal-soft": phosphorPresets.cyan["phosphor-dim"],
+  },
+  orange: { warning: phosphorPresets.yellow.phosphor },
+  red: {
+    signal: phosphorPresets.magenta.phosphor,
+    "signal-soft": phosphorPresets.magenta["phosphor-dim"],
+  },
+  yellow: { warning: phosphorPresets.orange.phosphor },
+};
+
 const PHOSPHOR_PRESET_CSS = Object.fromEntries(
   Object.entries(phosphorPresets)
     .filter(([name]) => name !== "green")
     .map(([name, values]) => [
       `:root[data-phosphor="${name}"]`,
-      cssVariables(values),
+      cssVariables({ ...values, ...PHOSPHOR_ROLE_OVERRIDES[name] }),
     ])
 );
 
@@ -162,6 +180,7 @@ const PHOSPHOR_SEMANTIC_CSS = cssVariables({
   input: "var(--border)",
   line: "var(--border)",
   "line-strong": "color-mix(in srgb, var(--phosphor) 55%, transparent)",
+  metric: "var(--phosphor-bright)",
   muted: "color-mix(in oklab, var(--phosphor) 7%, #070a0a)",
   "muted-foreground": "color-mix(in oklab, var(--phosphor) 54%, #9aa5a2)",
   panel: "color-mix(in oklab, var(--phosphor) 6%, #070a0a)",

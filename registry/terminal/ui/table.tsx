@@ -19,7 +19,7 @@ function Table({
       <table
         className={cn(
           "w-full caption-bottom border-collapse font-mono text-xs",
-          "[&_td.is-numeric]:text-right [&_td.is-numeric]:font-normal [&_td.is-numeric]:text-amber [&_td.is-numeric]:tabular-nums",
+          "[&_td.is-numeric]:text-right [&_td.is-numeric]:font-normal [&_td.is-numeric]:text-metric [&_td.is-numeric]:tabular-nums",
           stickyHeader &&
             "[&_thead_th]:sticky [&_thead_th]:top-0 [&_thead_th]:z-10",
           className
