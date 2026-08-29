@@ -1,6 +1,6 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
-import { IBM_Plex_Mono } from "next/font/google";
+import { IBM_Plex_Mono, Inter } from "next/font/google";
 
 import { PhosphorProvider } from "@/components/phosphor-provider";
 import { HOMEPAGE } from "@/lib/registry";
@@ -16,6 +16,11 @@ const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   variable: "--afterglow-font-mono",
   weight: ["400", "500", "600", "700"],
+});
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--afterglow-font-sans",
+  weight: "variable",
 });
 
 export const metadata: Metadata = {
@@ -42,7 +47,11 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html className={ibmPlexMono.variable} lang="en" suppressHydrationWarning>
+    <html
+      className={`${ibmPlexMono.variable} ${inter.variable}`}
+      lang="en"
+      suppressHydrationWarning
+    >
       <body className="relative isolate min-h-svh antialiased">
         <PhosphorProvider>
           {children}
