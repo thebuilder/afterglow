@@ -44,12 +44,12 @@ function Calendar({
       classNames={{
         button_next: cn(
           buttonVariants({ variant: buttonVariant }),
-          "size-(--cell-size) p-0 select-none aria-disabled:opacity-40",
+          "pointer-events-auto size-(--cell-size) p-0 select-none aria-disabled:opacity-40",
           defaultClassNames.button_next
         ),
         button_previous: cn(
           buttonVariants({ variant: buttonVariant }),
-          "size-(--cell-size) p-0 select-none aria-disabled:opacity-40",
+          "pointer-events-auto size-(--cell-size) p-0 select-none aria-disabled:opacity-40",
           defaultClassNames.button_previous
         ),
         caption_label: cn(
@@ -91,7 +91,7 @@ function Calendar({
           defaultClassNames.months
         ),
         nav: cn(
-          "absolute inset-x-0 top-0 flex w-full items-center justify-between gap-1",
+          "pointer-events-none absolute inset-x-0 top-0 flex w-full items-center justify-between gap-1",
           defaultClassNames.nav
         ),
         outside: cn(
