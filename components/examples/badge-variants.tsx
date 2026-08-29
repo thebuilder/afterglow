@@ -7,8 +7,8 @@ export function BadgeVariants() {
       <Badge variant="signal">offline</Badge>
       <Badge variant="solid">primary</Badge>
       <Badge variant="outline">idle</Badge>
-      <Badge variant="amber">read-only</Badge>
-      <Badge variant="azure">document</Badge>
+      <Badge variant="warning">read-only</Badge>
+      <Badge variant="info">document</Badge>
       <Badge variant="violet">audio</Badge>
       <Badge variant="destructive">corrupt</Badge>
     </div>

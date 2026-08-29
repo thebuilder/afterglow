@@ -14,10 +14,12 @@ const badgeVariants = cva(
         azure: "border-azure/60 bg-azure/10 text-azure",
         default: "border-line-strong bg-phosphor/10 text-phosphor",
         destructive: "border-destructive bg-destructive/12 text-destructive",
+        info: "border-info/60 bg-info/10 text-info",
         outline: "border-line text-muted-foreground",
         signal: "border-signal bg-signal/12 text-signal",
         solid: "border-phosphor bg-phosphor text-void",
         violet: "border-violet/60 bg-violet/10 text-violet",
+        warning: "border-warning/60 bg-warning/10 text-warning",
       },
     },
   }

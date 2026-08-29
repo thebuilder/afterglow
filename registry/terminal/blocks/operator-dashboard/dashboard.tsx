@@ -117,7 +117,7 @@ export function OperatorDashboard({
               <div className="grid gap-2">
                 <div className="flex items-baseline justify-between font-mono text-2xs uppercase tracking-terminal">
                   <span className="text-muted-foreground">Pass 1</span>
-                  <span className="text-amber tabular-nums">68%</span>
+                  <span className="text-metric tabular-nums">68%</span>
                 </div>
                 <Progress value={68} />
               </div>
@@ -155,7 +155,7 @@ export function OperatorDashboard({
                       ) : (
                         <Badge
                           variant={
-                            volume.state === "read-only" ? "amber" : "default"
+                            volume.state === "read-only" ? "warning" : "default"
                           }
                         >
                           {volume.state}

@@ -14,6 +14,7 @@ import { TerminalWindowMacos } from "@/components/examples/terminal-window-macos
 import { TerminalWindowTerminal } from "@/components/examples/terminal-window-terminal";
 import { TerminalWindowWindows } from "@/components/examples/terminal-window-windows";
 import { ThemePalette } from "@/components/examples/theme-palette";
+import { ThemePhosphorSelector } from "@/components/examples/theme-phosphor-selector";
 
 import type { ExampleMap } from "@/lib/example";
 
@@ -134,6 +135,12 @@ export const terminalExamples: ExampleMap = {
       description:
         "Dark theme only. `:root` and `.dark` use identical token values.",
       name: "Palette",
+    },
+    {
+      component: ThemePhosphorSelector,
+      description:
+        "Sets `data-phosphor` on the root. The docs site stores the selection with `next-themes`, and the installed CSS supplies each preset.",
+      name: "Phosphor selector",
     },
   ],
 };

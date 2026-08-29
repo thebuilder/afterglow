@@ -16,10 +16,10 @@ function Toaster({ ...props }: ToasterProps) {
       className="toaster group"
       icons={{
         error: <OctagonXIcon className="size-4 text-signal" />,
-        info: <InfoIcon className="size-4 text-azure" />,
+        info: <InfoIcon className="size-4 text-info" />,
         loading: <Spinner className="size-4" />,
         success: <CircleCheckIcon className="size-4 text-phosphor" />,
-        warning: <TriangleAlertIcon className="size-4 text-amber" />,
+        warning: <TriangleAlertIcon className="size-4 text-warning" />,
       }}
       style={
         {

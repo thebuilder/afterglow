@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { GuidePage } from "@/components/docs/guide-page";
+import { ThemeGuidePreview } from "@/components/docs/theme-guide-preview";
 import GettingStarted from "@/content/docs/getting-started.mdx";
 import Installation from "@/content/docs/installation.mdx";
 import Theming from "@/content/docs/theming.mdx";
@@ -77,6 +78,7 @@ export default async function GuideRoute({ params }: Params) {
 
   return (
     <GuidePage guide={guide}>
+      {name === "theming" ? <ThemeGuidePreview /> : null}
       <Content />
     </GuidePage>
   );

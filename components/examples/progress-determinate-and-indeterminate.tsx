@@ -6,7 +6,7 @@ export function ProgressDeterminateAndIndeterminate() {
       <div className="grid gap-2">
         <div className="flex items-baseline justify-between font-mono text-2xs uppercase tracking-terminal">
           <span className="text-muted-foreground">Determinate</span>
-          <span className="text-amber tabular-nums">68%</span>
+          <span className="text-metric tabular-nums">68%</span>
         </div>
         <Progress value={68} />
       </div>

@@ -7,7 +7,9 @@ export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 
 export function generateStaticParams() {
-  return allItems().map((item) => ({ name: item.name }));
+  return allItems()
+    .filter((item) => item.name !== "theme")
+    .map((item) => ({ name: item.name }));
 }
 
 export default async function Image({
@@ -18,7 +20,7 @@ export default async function Image({
   const { name } = await params;
   const item = findItem(name);
 
-  if (!item) {
+  if (!item || item.name === "theme") {
     notFound();
   }
 

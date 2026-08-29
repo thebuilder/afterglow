@@ -23,6 +23,46 @@ The theme supplies:
 
 Stock shadcn components can use the same semantic variables after the theme is installed.
 
+Use role tokens such as `--info`, `--warning`, `--destructive`, and `--metric` for interface meaning. Use `--amber`, `--azure`, `--violet`, and `--ember` when a fixed pigment is intentional. Charts have their own `--chart-1` through `--chart-5` series, so data colours do not inherit status semantics.
+
+## Phosphor presets
+
+Set `data-phosphor` on the root element to change the screen colour:
+
+```html
+<html data-phosphor="orange">
+```
+
+The theme includes `green`, `orange`, `yellow`, `cyan`, `blue`, `magenta`, `red`, and `grey`. Green is the default. Each preset remaps the phosphor ramp, panels, borders, focus rings, and semantic controls. A role may shift hue when the selected phosphor would make it difficult to distinguish, but its name and meaning stay the same.
+
+Afterglow only reads the attribute. Use any state library to manage it. The documentation site uses `next-themes` to apply the attribute before paint and store the selection:
+
+```tsx
+import { ThemeProvider } from "next-themes";
+
+<ThemeProvider
+  attribute="data-phosphor"
+  defaultTheme="green"
+  enableColorScheme={false}
+  enableSystem={false}
+  storageKey="afterglow-phosphor"
+  themes={[
+    "green",
+    "orange",
+    "yellow",
+    "cyan",
+    "blue",
+    "magenta",
+    "red",
+    "grey",
+  ]}
+>
+  {children}
+</ThemeProvider>
+```
+
+With the Next.js App Router, add `suppressHydrationWarning` to `<html>` because the provider updates that element.
+
 ## Typeset rendered content
 
 The theme includes a `typeset` class for HTML or markdown output that does not carry component classes:

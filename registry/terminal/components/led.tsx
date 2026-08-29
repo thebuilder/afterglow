@@ -3,7 +3,7 @@ import type * as React from "react";
 import { cn } from "@/lib/utils";
 
 const TONES = {
-  busy: "bg-amber shadow-[0_0_8px_var(--amber)]",
+  busy: "bg-warning shadow-[0_0_8px_var(--warning)]",
   error: "bg-signal shadow-[0_0_8px_var(--signal)]",
   idle: "bg-phosphor-dim shadow-none",
   ok: "bg-phosphor shadow-[0_0_8px_var(--phosphor)]",

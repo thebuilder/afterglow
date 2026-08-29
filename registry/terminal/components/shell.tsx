@@ -13,7 +13,7 @@ const shellLineVariants = cva("min-h-5", {
       default: "text-phosphor",
       error: "text-signal",
       muted: "text-phosphor-dim",
-      warning: "text-amber",
+      warning: "text-warning",
     },
   },
 });

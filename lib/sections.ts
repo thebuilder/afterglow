@@ -79,14 +79,18 @@ export function navSections(): NavSection[] {
       ],
       title: "Start",
     },
-    ...sectionsWithItems().map(({ id, title, items }) => ({
-      id,
-      items: items.map((item) => ({
-        href: `/c/${item.name}`,
-        title: item.title,
-      })),
-      title,
-    })),
+    ...sectionsWithItems()
+      .map(({ id, title, items }) => ({
+        id,
+        items: items
+          .filter((item) => item.name !== "theme")
+          .map((item) => ({
+            href: `/c/${item.name}`,
+            title: item.title,
+          })),
+        title,
+      }))
+      .filter((section) => section.items.length > 0),
   ];
 }
 

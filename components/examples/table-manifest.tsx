@@ -15,10 +15,10 @@ const VOLUMES = [
   { blocks: "612", name: "scratch", state: "mounted" },
   { blocks: "0", name: "spool", state: "offline" },
 ];
-const STATE_VARIANT: Record<string, "default" | "signal" | "amber"> = {
+const STATE_VARIANT: Record<string, "default" | "signal" | "warning"> = {
   mounted: "default",
   offline: "signal",
-  "read-only": "amber",
+  "read-only": "warning",
 };
 
 export function TableManifest() {

@@ -14,7 +14,7 @@ const alertVariants = cva(
           "border-l-destructive *:data-[slot=alert-title]:text-destructive *:data-[slot=alert-description]:text-destructive/80 [&>svg]:text-destructive",
         signal:
           "border-l-signal *:data-[slot=alert-title]:text-signal [&>svg]:text-signal",
-        warn: "border-l-amber *:data-[slot=alert-title]:text-amber [&>svg]:text-amber",
+        warn: "border-l-warning *:data-[slot=alert-title]:text-warning [&>svg]:text-warning",
       },
     },
   }

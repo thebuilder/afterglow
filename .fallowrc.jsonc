@@ -25,6 +25,7 @@
     "@mdx-js/loader",
     "@mdx-js/react",
     "@next/mdx",
+    "@shikijs/rehype",
     "rehype-slug"
   ],
   "duplicates": {

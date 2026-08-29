@@ -14,7 +14,7 @@ const TONE_CLASS: Record<BootTone, string> = {
   dim: "text-phosphor-dim",
   error: "text-signal",
   ok: "text-phosphor",
-  warn: "text-amber",
+  warn: "text-warning",
 };
 
 function toLine(line: BootLine): { text: string; tone: BootTone } {
