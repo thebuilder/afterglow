@@ -3,7 +3,14 @@
 import { defaultFilter } from "cmdk";
 import { SearchIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
 
 import type { SearchRecord } from "@/lib/search";
 import { cn } from "@/lib/utils";
@@ -31,6 +38,26 @@ const FLOOR = 0.01;
 const LIMIT = 40;
 
 const WORDS = /\s+/;
+
+const APPLE_DEVICE = /Mac|iPhone|iPad|iPod/;
+
+const subscribeToPlatform = () => () => undefined;
+
+type ShortcutModifier = "Ctrl" | "⌘";
+
+function getShortcutModifier(): ShortcutModifier {
+  return APPLE_DEVICE.test(navigator.userAgent) ? "⌘" : "Ctrl";
+}
+
+const getServerShortcutModifier = (): ShortcutModifier => "Ctrl";
+
+function useShortcutModifier() {
+  return useSyncExternalStore(
+    subscribeToPlatform,
+    getShortcutModifier,
+    getServerShortcutModifier
+  );
+}
 
 function carries(text: string | undefined, term: string): boolean {
   return text?.toLowerCase().includes(term) ?? false;
@@ -143,6 +170,8 @@ function Trigger({
   onOpen: () => void;
   onIntent: () => void;
 }) {
+  const modifier = useShortcutModifier();
+
   return (
     <button
       className={cn(
@@ -159,7 +188,7 @@ function Trigger({
         Search
       </span>
       <KbdGroup className="ml-auto hidden sm:flex">
-        <Kbd glyph>⌘</Kbd>
+        <Kbd glyph={modifier === "⌘"}>{modifier}</Kbd>
         <Kbd>K</Kbd>
       </KbdGroup>
     </button>
