@@ -2,13 +2,20 @@
 
 import { useCallback, useState } from "react";
 
+import { cn } from "@/lib/utils";
 import { AlarmButton } from "@/registry/terminal/components/alarm-button";
 import { BootLog } from "@/registry/terminal/components/boot-log";
 import { Connector } from "@/registry/terminal/components/connector";
 import { Eyebrow } from "@/registry/terminal/components/eyebrow";
 import { Led, Status } from "@/registry/terminal/components/led";
-import { Prompt } from "@/registry/terminal/components/prompt";
 import { Scanlines } from "@/registry/terminal/components/scanlines";
+import {
+  Shell,
+  ShellCommand,
+  ShellLine,
+  ShellOutput,
+  ShellPrompt,
+} from "@/registry/terminal/components/shell";
 import { Badge } from "@/registry/terminal/ui/badge";
 import { Button } from "@/registry/terminal/ui/button";
 import {
@@ -39,29 +46,24 @@ const BOOT = [
 
 const VOLUMES = [
   { blocks: "18 442", name: "core", state: "mounted" },
-  {
-    blocks: "4 011",
-    name: "archive",
-    state: "mounted",
-  },
-  {
-    blocks: "92 780",
-    name: "capture",
-    state: "read-only",
-  },
+  { blocks: "4 011", name: "archive", state: "mounted" },
+  { blocks: "92 780", name: "capture", state: "read-only" },
   { blocks: "0", name: "spool", state: "offline" },
 ];
 
-export default function ConsolePage() {
-  const [log, setLog] = useState<{ id: number; text: string }[]>([]);
+export function OperatorDashboard({
+  className,
+  ...props
+}: React.ComponentProps<"div">) {
+  const [commands, setCommands] = useState<{ id: number; text: string }[]>([]);
 
   const record = useCallback((value: string) => {
-    setLog((entries) => [...entries, { id: entries.length, text: value }]);
+    setCommands((entries) => [...entries, { id: entries.length, text: value }]);
   }, []);
 
   return (
-    <div className="relative isolate min-h-svh bg-void">
-      <Scanlines density="soft" fixed vignette />
+    <div className={cn("relative isolate bg-void", className)} {...props}>
+      <Scanlines density="soft" vignette />
 
       <header className="flex items-center justify-between gap-6 border-line border-b px-6 py-4">
         <div className="flex items-baseline gap-3">
@@ -81,7 +83,7 @@ export default function ConsolePage() {
       <main className="mx-auto grid max-w-5xl gap-10 px-6 py-12">
         <section className="grid gap-3">
           <Eyebrow caret>Session</Eyebrow>
-          <h1 className="max-w-2xl font-mono font-medium text-2xl text-phosphor-bright leading-tight text-balance">
+          <h1 className="max-w-2xl text-balance font-mono font-medium text-2xl text-phosphor-bright leading-tight">
             Four volumes, one of them not answering.
           </h1>
           <Connector />
@@ -171,17 +173,22 @@ export default function ConsolePage() {
         </section>
 
         <section className="grid gap-3">
-          <Eyebrow>Console</Eyebrow>
-          <Prompt onSubmit={record} placeholder="mount /spool --force" />
-          {log.length > 0 && (
-            <ol className="grid gap-1 font-mono text-phosphor-dim text-xs">
-              {log.map((entry) => (
-                <li key={entry.id}>
-                  <span className="text-signal">$</span> {entry.text}
-                </li>
+          <Eyebrow>Shell</Eyebrow>
+          <Shell aria-label="Node command shell">
+            <ShellOutput>
+              <ShellLine tone="muted">session ready</ShellLine>
+              {commands.map((command) => (
+                <ShellCommand key={command.id} prompt="node-04:~$">
+                  {command.text}
+                </ShellCommand>
               ))}
-            </ol>
-          )}
+            </ShellOutput>
+            <ShellPrompt
+              onSubmit={record}
+              placeholder="mount /spool --force"
+              prompt="node-04:~$"
+            />
+          </Shell>
         </section>
       </main>
 

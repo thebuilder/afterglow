@@ -36,7 +36,7 @@ The name is Afterglow. The incumbent terminal visual system and direct technical
 
 ## Evidence on hand
 
-The site has live component examples, complete installable source, installation commands, API documentation, a composed console, and machine-readable Markdown routes. No testimonials, customer logos, or usage metrics are available and none should be invented.
+The site has live component examples, complete installable source, installation commands, API documentation, an operator dashboard block, an interactive shell, and machine-readable Markdown routes. No testimonials, customer logos, or usage metrics are available and none should be invented.
 
 ## Product principles
 

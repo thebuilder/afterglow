@@ -30,11 +30,16 @@ const SECTIONS: Section[] = [
     types: ["registry:component"],
   },
   {
-    blurb:
-      "A complete registry preset and an operator console composed from the same parts.",
-    id: "whole",
-    title: "The whole thing",
-    types: ["registry:block", "registry:style"],
+    blurb: "Full-page compositions built from registry components.",
+    id: "blocks",
+    title: "Blocks",
+    types: ["registry:block"],
+  },
+  {
+    blurb: "Start a project with the theme and every component installed.",
+    id: "presets",
+    title: "Presets",
+    types: ["registry:style"],
   },
 ];
 

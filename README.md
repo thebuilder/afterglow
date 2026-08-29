@@ -25,7 +25,7 @@ Then install any component by name. Registry dependencies resolve automatically:
 npx shadcn@latest add @afterglow/button @afterglow/scanlines
 ```
 
-Or start a project on the whole system:
+Or start a project with the complete preset:
 
 ```sh
 npx shadcn@latest init https://afterglow.thebuilder.dk/r/terminal.json
@@ -40,8 +40,9 @@ items.
 | --- | --- |
 | `theme` | Tokens, typography, motion and CRT effects. Dark theme only. |
 | Primitives | `accordion` `alert` `alert-dialog` `avatar` `badge` `breadcrumb` `button` `card` `checkbox` `collapsible` `command` `dialog` `dropdown-menu` `empty` `input` `input-otp` `kbd` `label` `pagination` `popover` `progress` `radio-group` `resizable` `scroll-area` `select` `separator` `sheet` `skeleton` `slider` `spinner` `switch` `table` `tabs` `textarea` `toast` `toggle` `toggle-group` `tooltip` |
-| Terminal | `alarm-button` `boot-log` `connector` `eyebrow` `led` `prompt` `scanlines` `screen` `terminal-window` |
-| Whole | `console` (a composed page), `terminal` (a style that installs the lot) |
+| Terminal | `alarm-button` `boot-log` `connector` `eyebrow` `led` `prompt` `scanlines` `screen` `shell` `terminal-window` |
+| Blocks | `operator-dashboard` |
+| Presets | `terminal` |
 
 The primitives are shadcn components redrawn for Afterglow and built on
 [Base UI](https://base-ui.com). Two API details matter when moving from a Radix

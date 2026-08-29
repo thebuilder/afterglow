@@ -1281,6 +1281,24 @@
       ]
     },
     {
+      "name": "shell",
+      "type": "registry:component",
+      "title": "Shell",
+      "description": "A command transcript and prompt with command history. Bring the commands and their effects.",
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/components/shell.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "terminal-window",
       "type": "registry:component",
       "title": "Terminal Window",
@@ -1296,10 +1314,10 @@
       ]
     },
     {
-      "name": "console",
+      "name": "operator-dashboard",
       "type": "registry:block",
-      "title": "Console",
-      "description": "An operator console composed from the registry: boot log, manifest, progress, status and prompt.",
+      "title": "Operator Dashboard",
+      "description": "A full-page operations dashboard with boot status, volume health, rebuild progress and a shell.",
       "categories": [
         "dashboard",
         "application"
@@ -1309,28 +1327,34 @@
         "@afterglow/badge",
         "@afterglow/boot-log",
         "@afterglow/button",
+        "@afterglow/card",
         "@afterglow/connector",
         "@afterglow/eyebrow",
         "@afterglow/kbd",
         "@afterglow/led",
         "@afterglow/progress",
-        "@afterglow/prompt",
+        "@afterglow/shell",
         "@afterglow/scanlines",
         "@afterglow/table"
       ],
       "files": [
         {
-          "path": "registry/terminal/blocks/console/page.tsx",
+          "path": "registry/terminal/blocks/operator-dashboard/dashboard.tsx",
+          "type": "registry:component",
+          "target": "components/operator-dashboard.tsx"
+        },
+        {
+          "path": "registry/terminal/blocks/operator-dashboard/page.tsx",
           "type": "registry:page",
-          "target": "app/console/page.tsx"
+          "target": "app/operator-dashboard/page.tsx"
         }
       ]
     },
     {
       "name": "terminal",
       "type": "registry:style",
-      "title": "Terminal",
-      "description": "The whole system in one install. Use it with `shadcn init` to start a project on it.",
+      "title": "Terminal Preset",
+      "description": "The shared theme and every registry component in one `shadcn init` preset.",
       "extends": "none",
       "dependencies": [
         "@base-ui/react",
@@ -1385,6 +1409,7 @@
         "@afterglow/resizable",
         "@afterglow/scanlines",
         "@afterglow/screen",
+        "@afterglow/shell",
         "@afterglow/boot-log",
         "@afterglow/led",
         "@afterglow/eyebrow",

@@ -1,13 +1,13 @@
 import { AlarmButtonDefault } from "@/components/examples/alarm-button-default";
 import { BootLogDefault } from "@/components/examples/boot-log-default";
 import { ConnectorBothDirections } from "@/components/examples/connector-both-directions";
-import { ConsoleTheBlock } from "@/components/examples/console-the-block";
 import { EyebrowWithAndWithoutACaret } from "@/components/examples/eyebrow-with-and-without-a-caret";
 import { LedTones } from "@/components/examples/led-tones";
+import { OperatorDashboardFullPage } from "@/components/examples/operator-dashboard-full-page";
 import { PromptDefault } from "@/components/examples/prompt-default";
 import { ScanlinesWithAndWithout } from "@/components/examples/scanlines-with-and-without";
 import { ScreenDefault } from "@/components/examples/screen-default";
-import { TerminalComposed } from "@/components/examples/terminal-composed";
+import { ShellInteractive } from "@/components/examples/shell-interactive";
 import { TerminalTheSystemAtAGlance } from "@/components/examples/terminal-the-system-at-a-glance";
 import { TerminalWindowMacos } from "@/components/examples/terminal-window-macos";
 import { TerminalWindowTerminal } from "@/components/examples/terminal-window-terminal";
@@ -39,14 +39,6 @@ export const terminalExamples: ExampleMap = {
       name: "Both directions",
     },
   ],
-  console: [
-    {
-      component: ConsoleTheBlock,
-      description:
-        "Boot log, volume manifest, progress, status line and a live prompt, on one page.",
-      name: "The block",
-    },
-  ],
   eyebrow: [
     {
       component: EyebrowWithAndWithoutACaret,
@@ -61,6 +53,14 @@ export const terminalExamples: ExampleMap = {
       description:
         "Four status tones. The idle lamp stays still while the other tones pulse.",
       name: "Tones",
+    },
+  ],
+  "operator-dashboard": [
+    {
+      component: OperatorDashboardFullPage,
+      description:
+        "The installed block, embedded here at its real width. Scroll the preview to inspect the full layout.",
+      name: "Full page",
     },
   ],
   prompt: [
@@ -83,18 +83,20 @@ export const terminalExamples: ExampleMap = {
       name: "Default",
     },
   ],
+  shell: [
+    {
+      component: ShellInteractive,
+      description:
+        "Type `help`, `status` or `clear`. Arrow keys recall earlier commands.",
+      name: "Interactive",
+    },
+  ],
   terminal: [
     {
       component: TerminalTheSystemAtAGlance,
       description:
         "A compact strip of the system's components, colours and hairline borders.",
       name: "The system at a glance",
-    },
-    {
-      component: TerminalComposed,
-      description:
-        "The console block is the same parts arranged as a page somebody would actually operate.",
-      name: "Composed",
     },
   ],
   "terminal-window": [
