@@ -3,20 +3,6 @@ import { createHighlighter } from "shiki";
 
 import { palette as PALETTE } from "@/registry/terminal/theme.mjs";
 
-/**
- * A syntax theme built out of the registry's own palette.
- *
- * Generated rather than picked so the code on a page is painted with the values
- * the page is handing out. A published theme sitting next to this one would
- * drift the first time a token moves, and the drift would show up as the one
- * place on the site that is not the same green.
- *
- * Mostly one colour, because a terminal is. The four accents are doing specific
- * jobs: the pink marks the words that control what runs, amber marks the
- * literal text, blue the names of types and tags, violet the numbers. Comments
- * drop to the dim green, which is the same move the interface makes for
- * anything that is present rather than active.
- */
 const THEME: ThemeRegistrationRaw = {
   colors: {
     "editor.background": PALETTE["panel-sunken"],
@@ -88,11 +74,6 @@ const CODE_LANGUAGES = ["bash", "css", "json", "tsx"] as const;
 
 export type CodeLanguage = (typeof CODE_LANGUAGES)[number];
 
-/*
-  One highlighter for the whole build. Every item page asks for one, and
-  standing up a fresh WASM-free engine and grammar set per page turns a fast
-  build into a slow one.
-*/
 let pending: Promise<Highlighter> | undefined;
 
 function highlighter(): Promise<Highlighter> {
@@ -103,7 +84,6 @@ function highlighter(): Promise<Highlighter> {
   return pending;
 }
 
-/** Source in, `<pre>` out. Server only: the highlighter never reaches a browser. */
 export async function highlight(
   code: string,
   lang: CodeLanguage

@@ -5,14 +5,6 @@ import { useEffect, useState } from "react";
 import type { TocEntry } from "@/lib/toc";
 import { cn } from "@/lib/utils";
 
-/**
- * The headings of the page, with the one you are level with lit.
- *
- * The observer watches a band across the top of the viewport rather than the
- * whole of it, so the active entry is the heading you have most recently
- * reached rather than whichever section happens to be tallest. The last
- * heading in the band wins, because scrolling down should move the mark down.
- */
 export function Toc({
   className,
   entries,
@@ -48,9 +40,7 @@ export function Toc({
           setActive(lit.id);
         }
       },
-      /* The band is just under the sticky header, and shallow, so the
-         mark tracks the heading you have reached rather than the tallest
-         section on screen. Pixels: `rootMargin` rejects any other unit. */
+
       { rootMargin: "-72px 0px -70% 0px" }
     );
 

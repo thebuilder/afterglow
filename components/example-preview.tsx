@@ -3,14 +3,6 @@ import { ExampleStage } from "@/components/example-stage";
 import type { LocatedExample } from "@/lib/examples";
 import { exampleSource } from "@/lib/source";
 
-/**
- * An example, with the file it came from underneath it.
- *
- * One frame holds the component running on its ground, a hairline, and the bar
- * that opens its source. The block prints the whole file, imports included,
- * because the markup on its own leaves you guessing at where any of it came
- * from.
- */
 export async function ExamplePreview({
   className,
   example,

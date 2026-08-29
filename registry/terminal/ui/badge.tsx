@@ -4,26 +4,6 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
 
-/**
- * A readout, not a pill. Nothing on a terminal is round, so the tag that says
- * what state a row is in is a bordered rectangle of tracked-out mono, sized to
- * sit on the same line as the text it annotates.
- *
- * The height is explicit and the last pixel and a half of padding is on the
- * top only. All-caps text has no descender ink, but the line box still reserves
- * the descender space, so centring the *box* leaves the letters sitting high:
- * measured here, 4.58px above the caps against 6px below. The asymmetric
- * padding pushes them back down.
- *
- * `text-box: trim-both cap alphabetic` is the property built for this and would
- * be exact rather than measured, but it only applies to a block container, and
- * the text here is an anonymous flex item so nothing reaches it. Keeping the
- * flex box is what lets an icon and a label share a gap, which is worth more
- * than the last third of a pixel.
- *
- * Pass `render` to change the element: `<Badge render={<Link href="/x" />} />`
- * makes the anchor *be* the badge rather than a link wrapped around one.
- */
 const badgeVariants = cva(
   "inline-flex h-[1.125rem] w-fit shrink-0 items-center justify-center gap-1 overflow-hidden whitespace-nowrap rounded-none border px-1.5 pt-[1.5px] font-mono font-semibold text-2xs uppercase leading-none tracking-terminal-lg transition-[color,border-color,background-color] [&>svg]:pointer-events-none [&>svg]:size-3",
   {
@@ -56,8 +36,7 @@ function Badge({
       props
     ),
     render,
-    /* `state` is how Base UI emits data attributes on whatever element the
-       render prop produced, so a link-shaped badge still carries the slot. */
+
     state: { slot: "badge", variant },
   });
 }

@@ -10,17 +10,6 @@ import {
   CollapsibleTrigger,
 } from "@/registry/terminal/ui/collapsible";
 
-/**
- * The source under an example, shut.
- *
- * An example is there to be looked at first, and the code is the second
- * question. Open by default it would push the next example off the screen, and
- * an item with four of them would be a page of source with pictures in it.
- *
- * The bar is the only chrome. A caret that turns, the word, and the file name
- * on the right. Nothing peeks out from under it, because three dimmed lines of
- * an import block say nothing the word does not.
- */
 export function ExampleSource({
   className,
   file,

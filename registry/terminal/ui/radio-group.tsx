@@ -5,12 +5,6 @@ import { RadioGroup as RadioGroupPrimitive } from "@base-ui/react/radio-group";
 
 import { cn } from "@/lib/utils";
 
-/**
- * `( )` and `(•)`. Round, and deliberately so: it is the one shape in the set
- * that is not square, because the shape is what tells you that picking this one
- * unpicks the others. A terminal has always drawn radios with parentheses and
- * checkboxes with brackets, so the convention and the aesthetic agree here.
- */
 function RadioGroup({ className, ...props }: RadioGroupPrimitive.Props) {
   return (
     <RadioGroupPrimitive

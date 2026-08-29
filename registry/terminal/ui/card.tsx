@@ -2,19 +2,6 @@ import type * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-/**
- * A panel on the glass: hairline box, no corner, and a blur behind it so it
- * reads as something laid over the scene rather than a hole cut in it.
- *
- * `accent` is the card's own colour and defaults to the beam. It drives the
- * left edge, the title and anything else that reaches for `--card-accent`, so a
- * category gets a colour without a variant per category.
- *
- * Hover brightens the three hairline sides and re-states the accent on the
- * fourth. `border-color` is one property covering all four edges, so a bare
- * `hover:border-line-strong` silently repaints the accent edge grey-green: the
- * card's one piece of colour disappears at the moment you point at it.
- */
 function Card({
   className,
   accent,
@@ -42,18 +29,6 @@ function Card({
   );
 }
 
-/**
- * The card's top rule, with the accent running its first third.
- *
- * It carries on in the border colour rather than stopping at transparent. A bar
- * that ends part-way across leaves the top edge looking broken off, where a
- * rule that reaches the far side reads as the frame with a coloured lead-in.
- *
- * The lead-in is the card's own accent, so a card marked with amber does not
- * get a pink stripe. The bright tick after it is the mark itself: three pixels
- * of the beam at full strength, which is the whole reason to reach for this
- * over a heavier heading.
- */
 function CardAccent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div

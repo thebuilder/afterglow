@@ -1,13 +1,5 @@
 import Link from "next/link";
 
-/**
- * The mark, drawn rather than fetched.
- *
- * The same two paths are in `assets/registry-logo.svg`, which exists because
- * shadcn's directory listing takes the SVG's literal bytes pasted into a JSON
- * field. That file is data; this is the header. Change the mark and change
- * both, or the site and the listing stop being the same logo.
- */
 function Mark({ className }: { className?: string }) {
   return (
     <svg
@@ -23,7 +15,6 @@ function Mark({ className }: { className?: string }) {
   );
 }
 
-/** The way back to the gallery, and the only branding a header carries. */
 export function DocsWordmark() {
   return (
     <Link

@@ -4,22 +4,7 @@ import { Slider as SliderPrimitive } from "@base-ui/react/slider";
 
 import { cn } from "@/lib/utils";
 
-/**
- * A fader: a hairline track, a lit range, and a square handle with a glow.
- *
- * The thumb is a rectangle across the track rather than a circle on it, which
- * is what a physical fader looks like from above and what keeps the one moving
- * part in the same vocabulary as everything else. It turns with the track, so
- * a vertical fader gets a wide handle rather than a two pixel sliver.
- */
-/**
- * How many thumbs to draw.
- *
- * Only the count matters here, so it is counted rather than mapped over a value
- * that may not be an array: Base UI accepts a bare number for a single-thumb
- * slider, and treating that as the value list is what makes `.map` blow up.
- * With nothing given at all it is a range, which is what two handles means.
- */
+// Base UI accepts either a number or an array for a single-thumb value.
 function thumbCount(
   value: SliderPrimitive.Root.Props["value"],
   defaultValue: SliderPrimitive.Root.Props["defaultValue"]
@@ -72,10 +57,9 @@ function Slider({
         </SliderPrimitive.Track>
         {Array.from({ length: thumbs }, (_, index) => (
           <SliderPrimitive.Thumb
-            // The handle stays narrow while its hit area remains 32px square.
             className="block shrink-0 rounded-none border border-phosphor bg-void shadow-glow-slider outline-none transition-[background-color,border-color,box-shadow] before:absolute before:content-[''] group-hover/slider:border-phosphor-bright group-hover/slider:bg-panel-raised group-hover/slider:shadow-glow-slider-hover focus-visible:border-phosphor-bright focus-visible:bg-panel-raised focus-visible:shadow-glow-slider-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-phosphor-bright data-[orientation=horizontal]:h-4 data-[orientation=horizontal]:w-2 data-[orientation=horizontal]:before:-inset-x-3 data-[orientation=horizontal]:before:-inset-y-2 data-[orientation=vertical]:h-2 data-[orientation=vertical]:w-4 data-[orientation=vertical]:before:-inset-x-2 data-[orientation=vertical]:before:-inset-y-3"
             data-slot="slider-thumb"
-            // biome-ignore lint/suspicious/noArrayIndexKey: a slider identifies thumbs by position, and its values are not stable ids.
+            // biome-ignore lint/suspicious/noArrayIndexKey: the thumb index is its position.
             key={index}
           />
         ))}

@@ -2,18 +2,6 @@ import type * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-/**
- * A manifest. Mono throughout, hairline rules, and numbers in the amber with
- * `tabular-nums`, which is the rule for anything measured rather than named:
- * sizes and counts line up under each other and stop competing with the names
- * beside them. Add `is-numeric` to a cell to get it.
- *
- * `stickyHeader` is opt-in, and only makes sense once the container has a
- * height to scroll inside, hence `containerClassName`. Sticky by default would
- * be sticky to the page: the header row detaches as the table leaves the
- * viewport and floats over whatever is below it, usually under the site's own
- * fixed chrome.
- */
 function Table({
   className,
   containerClassName,

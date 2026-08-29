@@ -22,8 +22,6 @@ interface Params {
   params: Promise<{ name: string }>;
 }
 
-/* Twelve is well past any real component and well under the style's forty-nine,
-   so it separates the two cases without needing a flag in the manifest. */
 const BUNDLE = 12;
 
 export function generateStaticParams() {
@@ -39,11 +37,6 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
   const socialTitle = `${item.title}, afterglow`;
 
-  /*
-    openGraph has to be restated. A page that sets only `title` inherits the
-    root's openGraph block whole, so without this every item would share one
-    preview title.
-  */
   return {
     alternates: { canonical: `${HOMEPAGE}/c/${item.name}` },
     description: item.description,
@@ -63,14 +56,6 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   };
 }
 
-/**
- * One item, in the order somebody reads it in.
- *
- * The first example comes before the install line and carries no heading: you
- * see the thing working before you are asked to type anything. Every other
- * example gets its own `h2`, and there is no wrapper "Examples" heading, so the
- * table of contents doubles as an index of what the component can do.
- */
 export default async function ItemPage({ params }: Params) {
   const { name } = await params;
   const item = findItem(name);
@@ -156,8 +141,7 @@ function Section({
 }) {
   return (
     <section className="grid grid-cols-[minmax(0,1fr)] gap-3">
-      {/* The margin goes on the heading, not the section. A hash scrolls to the
-          element carrying the id, and the sticky header is 3.5rem tall. */}
+      {/* The heading owns the anchor offset for the sticky header. */}
       <h2
         className="scroll-mt-20 font-medium font-mono text-lg text-phosphor-bright"
         id={id}

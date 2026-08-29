@@ -5,10 +5,6 @@ import { CheckIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
-/**
- * `[ ]` and `[x]`. Square, sharp, and filled with the beam when it is on, which
- * is the one state change worth making unmissable in a form.
- */
 function Checkbox({ className, ...props }: CheckboxPrimitive.Root.Props) {
   return (
     <CheckboxPrimitive.Root

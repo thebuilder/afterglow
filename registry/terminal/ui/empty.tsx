@@ -3,13 +3,6 @@ import type * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-/**
- * Nothing here, said deliberately.
- *
- * A dashed hairline rather than a solid one: a solid box around emptiness reads
- * as a panel that failed to load, and the dashes say the container is real and
- * the contents are not there yet.
- */
 function Empty({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div

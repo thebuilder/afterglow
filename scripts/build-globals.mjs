@@ -1,13 +1,3 @@
-/**
- * Renders `registry/terminal/theme.mjs` into the two places the theme has to
- * exist: this site's stylesheet, and the `theme` item inside `registry.json`
- * that `shadcn add` merges into somebody else's.
- *
- * Both outputs are committed. They are generated rather than written so the
- * documentation site is painted with the same values it hands out. A registry
- * whose demo has drifted from its payload is worse than no demo.
- */
-
 import { readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -25,17 +15,11 @@ const BANNER = `/**
 
 const INDENT = "  ";
 
-/** A block whose values are all leaves, e.g. \`:root { --void: #05090a }\`. */
 function renderDeclarations(entries, depth) {
   const pad = INDENT.repeat(depth);
   return entries.map(([prop, value]) => `${pad}${prop}: ${value};`).join("\n");
 }
 
-/**
- * Objects nest arbitrarily: `@layer base` holds selectors, selectors hold
- * declarations, `@keyframes` holds offsets which hold declarations. So the
- * renderer only has to know which of the two a value is.
- */
 function renderBlock(node, depth) {
   const pad = INDENT.repeat(depth);
   const lines = [];
@@ -59,7 +43,6 @@ function renderBlock(node, depth) {
   return lines.join("\n");
 }
 
-/** Variable maps arrive without their leading dashes; every consumer adds them. */
 function renderVariables(selector, variables) {
   const body = Object.entries(variables)
     .map(([name, value]) => `${INDENT}--${name}: ${value};`)

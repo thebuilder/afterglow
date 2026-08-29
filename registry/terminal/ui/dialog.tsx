@@ -22,11 +22,6 @@ function DialogClose({ ...props }: DialogPrimitive.Close.Props) {
   return <DialogPrimitive.Close data-slot="dialog-close" {...props} />;
 }
 
-/**
- * Desaturated as well as darkened. A plain black scrim over a green interface
- * leaves the colour behind it perfectly readable and the panel in front has
- * nothing to be brighter than.
- */
 function DialogOverlay({
   className,
   ...props
@@ -43,14 +38,6 @@ function DialogOverlay({
   );
 }
 
-/**
- * The panel arrives in four steps rather than on a curve. A smooth scale-up is
- * how a sheet of paper moves; a screen that has just been switched to is either
- * off or on, and the steps put the difference back.
- *
- * The beam is the pass of light down the panel as it comes up to power. It is
- * `aria-hidden` and pointer-transparent: it is weather, not content.
- */
 function DialogContent({
   className,
   children,

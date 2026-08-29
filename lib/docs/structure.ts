@@ -1,10 +1,5 @@
 import { baseUi, type DocMap, type PropDoc } from "@/lib/doc";
 
-/**
- * The three overlays each lift the same positioning props off Base UI's
- * positioner and onto the one part a caller writes. The defaults differ, so
- * they are passed in rather than shared.
- */
 function placement(align: string, side: string, offset: number): PropDoc[] {
   return [
     {

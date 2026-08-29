@@ -1,12 +1,6 @@
 import { CopyButton } from "@/components/docs/copy-button";
 import { cn } from "@/lib/utils";
 
-/**
- * The install line, and a button that puts it on the clipboard.
- *
- * The `$` is decoration and is not selectable, so a drag across the line copies
- * a command rather than a command with a prompt stuck to the front of it.
- */
 export function CopyCommand({
   command,
   className,

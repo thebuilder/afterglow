@@ -34,13 +34,6 @@ function InputOTPGroup({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
-/**
- * One cell per character, with a real caret in the active one.
- *
- * `input-otp` reports which slot is focused and whether the caret should be
- * showing; the caret is drawn rather than inherited, because the field behind
- * these cells is a single invisible input and has no caret to lend them.
- */
 function InputOTPSlot({
   index,
   className,

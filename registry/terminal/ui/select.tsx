@@ -13,10 +13,6 @@ function SelectGroup({ ...props }: SelectPrimitive.Group.Props) {
   return <SelectPrimitive.Group data-slot="select-group" {...props} />;
 }
 
-/**
- * Base UI renders the selected *value* here, not the item's text. Where the two
- * differ, hand `items` to `Select` so the trigger can look the label up.
- */
 function SelectValue({ ...props }: SelectPrimitive.Value.Props) {
   return <SelectPrimitive.Value data-slot="select-value" {...props} />;
 }
@@ -95,11 +91,6 @@ function SelectLabel({
   );
 }
 
-/**
- * The selected row is marked with a lit left edge as well as a tick. On a list
- * where every row is already green, a tick alone is one small glyph doing all
- * the work of saying which one you are on.
- */
 function SelectItem({
   className,
   children,

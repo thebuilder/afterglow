@@ -2,15 +2,6 @@ import type * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-/**
- * The small tracked-out line above a heading that says what kind of thing you
- * are looking at.
- *
- * `caret` puts a solid block after it. Not a text character: a `▋` is a glyph
- * with the font's own sidebearings and its own idea of cap height, and it never
- * quite lines up with the text it follows. A styled empty box is the same mark
- * at exactly the size asked for.
- */
 function Eyebrow({
   className,
   caret = false,

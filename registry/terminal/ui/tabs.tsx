@@ -23,15 +23,6 @@ function Tabs({
   );
 }
 
-/**
- * `segment` is the house shape: the list is a single-pixel sheet of the border
- * colour and the tabs sit on it with a one-pixel gap, so the rules between them
- * are the background showing through rather than borders that have to be turned
- * off at the ends to avoid doubling.
- *
- * `line` is the quieter one, for when the tabs are navigation rather than a
- * switch and should not read as a control.
- */
 const tabsListVariants = cva(
   "group/tabs-list inline-flex w-fit items-center justify-center rounded-none group-data-[orientation=vertical]/tabs:h-fit group-data-[orientation=vertical]/tabs:flex-col",
   {

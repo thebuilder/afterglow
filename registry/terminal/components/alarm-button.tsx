@@ -2,20 +2,6 @@ import type * as React from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/registry/terminal/ui/button";
 
-/**
- * The one control on the page that is not text.
- *
- * The lamp is a layer over the button rather than the button itself. It sits at
- * `-inset-px` so the flash brightens the edge the button already has instead of
- * drawing a second one inside it, and behind the label so the wash never pulses
- * the one piece of copy that has to stay readable. `isolate` on the button is
- * what makes that negative z-index mean "above the border, below the words"
- * rather than "behind the whole section".
- *
- * Pointing at it answers the alarm, so the alarm stops: a lamp still flashing
- * under the cursor puts a second glow over the hover glow and the button
- * flickers while you are aiming at it.
- */
 function AlarmButton({
   className,
   children,

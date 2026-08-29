@@ -4,11 +4,6 @@ import { Avatar as AvatarPrimitive } from "@base-ui/react/avatar";
 
 import { cn } from "@/lib/utils";
 
-/**
- * Square. A round avatar is the one element that would give a page of hairline
- * rectangles away, and initials in mono inside a bordered box is how an operator
- * is identified on a terminal anyway.
- */
 function Avatar({ className, ...props }: AvatarPrimitive.Root.Props) {
   return (
     <AvatarPrimitive.Root

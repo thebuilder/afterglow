@@ -5,11 +5,6 @@ import type * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-/**
- * A path, so it is drawn as one: mono, slash-separated, current segment in
- * white. A chevron between segments is a control's punctuation; a slash is what
- * the thing being described actually contains.
- */
 function Breadcrumb({ ...props }: React.ComponentProps<"nav">) {
   return <nav aria-label="breadcrumb" data-slot="breadcrumb" {...props} />;
 }
@@ -37,10 +32,6 @@ function BreadcrumbItem({ className, ...props }: React.ComponentProps<"li">) {
   );
 }
 
-/**
- * Pass `render` to hand the crumb to a router link:
- * `<BreadcrumbLink render={<Link href="/x" />}>x</BreadcrumbLink>`.
- */
 function BreadcrumbLink({
   className,
   render,

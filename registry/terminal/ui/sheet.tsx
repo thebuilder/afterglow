@@ -18,11 +18,6 @@ function SheetClose({ ...props }: SheetPrimitive.Close.Props) {
   return <SheetPrimitive.Close data-slot="sheet-close" {...props} />;
 }
 
-/**
- * The panel slides; the edge it slides from keeps a lit border, so a drawer
- * open on the right reads as a thing pulled out of the frame rather than a
- * rectangle that happens to be over there.
- */
 const SIDES = {
   bottom:
     "inset-x-0 bottom-0 h-auto border-line-strong border-t data-closed:animate-slide-out-bottom data-open:animate-slide-in-bottom",

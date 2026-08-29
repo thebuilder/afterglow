@@ -123,11 +123,6 @@ function DropdownMenuRadioItem({
   );
 }
 
-/**
- * A label names a group, so it has to sit inside one. Base UI throws rather
- * than guessing, and the error names a context rather than the mistake, so:
- * wrap the label and the items it heads in `DropdownMenuGroup`.
- */
 function DropdownMenuLabel({
   className,
   inset,

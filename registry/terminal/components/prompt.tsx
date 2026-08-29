@@ -4,16 +4,6 @@ import { useCallback, useId, useState } from "react";
 
 import { cn } from "@/lib/utils";
 
-/**
- * A line you type on.
- *
- * The sigil, the field and the caret are one row with no border between them,
- * because a shell prompt is not a form control sitting next to a label. It is a
- * single line of text, part of which happens to be editable.
- *
- * The visible label is the sigil, so the real one is hidden rather than dropped:
- * `>` tells a screen reader nothing about what to type here.
- */
 function Prompt({
   className,
   sigil = ">",

@@ -18,20 +18,6 @@ const COMPONENTS_JSON = `{
   }
 }`;
 
-/**
- * A card in the gallery: the first example shown as a picture rather than as
- * something to operate, over the name and the one line that says what it is.
- *
- * Everything an item can do lives on its own page. A single page carrying every
- * variant of every component stops working somewhere around thirty items, and
- * there is no way to link anyone to one of them.
- *
- * The link is on the title and stretched over the card with a pseudo-element,
- * rather than wrapped around the whole thing. Half these previews contain a
- * button or an anchor of their own, and an anchor inside an anchor is invalid
- * markup that React will refuse to hydrate. It reads better too: the accessible
- * name of the link is the component's name, not a recital of its demo.
- */
 function GalleryCard({ item }: { item: RegistryItem }) {
   const [first] = examplesFor(item.name);
   const Preview = first.component;

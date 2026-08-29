@@ -15,13 +15,6 @@ import {
 } from "@/registry/terminal/ui/command";
 import { Kbd, KbdGroup } from "@/registry/terminal/ui/kbd";
 
-/**
- * The palette opens from its button and nothing else.
- *
- * ⌘K belongs to the site search, and a demo that listened for it too would
- * open two dialogs at once. The keys are still printed, as the shortcut to
- * wire up in your own app.
- */
 export function CommandPalette() {
   const [isOpen, setOpen] = useState(false);
   const open = useCallback(() => setOpen(true), []);

@@ -3,14 +3,6 @@ import Link from "next/link";
 
 import ConsoleBlock from "@/registry/terminal/blocks/console/page";
 
-/**
- * The block, mounted at the route it installs to, plus a way back.
- *
- * The block itself is rendered untouched: the page somebody reviews before
- * installing has to be the page the registry hands them, and a "back to the
- * registry" link is not something a consumer wants shipped into their app. It
- * belongs to this site, so it lives here, over the top.
- */
 export default function ConsolePage() {
   return (
     <>

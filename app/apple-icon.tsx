@@ -5,11 +5,6 @@ import { palette } from "@/registry/terminal/theme.mjs";
 export const size = { height: 180, width: 180 };
 export const contentType = "image/png";
 
-/**
- * iOS ignores the SVG favicon and screenshots the page instead, so the mark is
- * drawn again at 180. Shapes rather than a glyph, which keeps this free of the
- * font the OG card has to load.
- */
 export default function AppleIcon() {
   return new ImageResponse(
     <div
@@ -23,11 +18,6 @@ export default function AppleIcon() {
         width: "100%",
       }}
     >
-      {/*
-        126 inside 180 leaves room for the rounding iOS applies, and satori
-        paints an SVG <title> as visible text, so the mark is labelled by
-        the route instead.
-      */}
       <svg
         aria-hidden="true"
         fill="none"

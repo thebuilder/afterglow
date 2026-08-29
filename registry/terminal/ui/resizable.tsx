@@ -25,15 +25,6 @@ function ResizablePanel({ ...props }: ResizablePrimitive.PanelProps) {
   return <ResizablePrimitive.Panel data-slot="resizable-panel" {...props} />;
 }
 
-/**
- * A hairline that lights when you take hold of it, which is what every other
- * border in the system does. The grip is optional and off by default: a divider
- * that already brightens under the cursor does not need a texture on it to say
- * it can be moved.
- *
- * The hit area is a pseudo-element four times the width of the visible line, so
- * the thing you have to aim at is bigger than the thing you can see.
- */
 function ResizableHandle({
   withHandle,
   className,

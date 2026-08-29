@@ -4,15 +4,6 @@ import { Switch as SwitchPrimitive } from "@base-ui/react/switch";
 
 import { cn } from "@/lib/utils";
 
-/**
- * A rocker, not a pill.
- *
- * The pill is the one shape this system cannot borrow: it is the most rounded
- * control in the whole set, and a rounded switch on a page of hairline
- * rectangles is the single element that gives the theme away. Squared off, with
- * the track lighting up under the thumb, it reads as a physical switch thrown
- * from one side to the other.
- */
 function Switch({
   className,
   size = "default",

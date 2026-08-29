@@ -2,27 +2,6 @@ import { readFileSync } from "node:fs";
 import { flatten } from "../lib/doc.ts";
 import { allDocs } from "../lib/docs.ts";
 
-/**
- * Holds `lib/docs.ts` to the registry it documents.
- *
- * The parts list on an item's page is hand-written, because the useful order,
- * the nesting and the sentences that are worth saying are all judgement. What
- * is not judgement is whether the list is complete, and that is the half that
- * rots: an item grows a part, the page keeps rendering, and nobody finds out
- * until somebody goes looking for a component the registry ships and the site
- * has never heard of.
- *
- * So the shape is checked here rather than trusted. Three things:
- *
- *   - every item in the manifest has an entry;
- *   - the entry's parts are exactly the file's exports;
- *   - an item built on a Base UI component links to that component.
- *
- * Runs inside `pnpm registry:build`, ahead of `shadcn build`, so the failure
- * lands before anything is published.
- */
-
-/** cva helpers are exported for composition, not as parts to document. */
 const NOT_A_PART = /Variants$/;
 
 const TYPE_EXPORTS = /export\s+type\s*\{[^}]*\}\s*;?/g;
@@ -33,14 +12,11 @@ const DEFAULT_EXPORT = /export\s+default/;
 const BASE_UI_IMPORT = /from\s+"@base-ui\/react\/([\w-]+)"/g;
 
 function exportsOf(source) {
-  /* Type-only exports first: `export type { BootLine }` is a type a consumer
-     may annotate with, not a component with a place in the tree. */
   const values = source.replace(TYPE_EXPORTS, "");
   const names = new Set();
 
   for (const block of values.matchAll(EXPORT_BLOCK)) {
     for (const entry of block[1].split(",")) {
-      /* A renamed export is documented under the name consumers import. */
       const name = entry.trim().split(RENAMED).pop()?.trim();
       if (name) {
         names.add(name);
@@ -59,10 +35,6 @@ function exportsOf(source) {
   return [...names].filter((name) => !NOT_A_PART.test(name));
 }
 
-/**
- * The Base UI components a file is built on. `merge-props` and `use-render` are
- * composition helpers with no component page to link to.
- */
 const HELPERS = new Set(["merge-props", "use-render"]);
 
 function baseUiOf(source) {
@@ -111,8 +83,6 @@ for (const item of registry.items) {
     (module) => !upstream.includes(`/components/${module}`)
   );
 
-  /* One link is enough. `toggle-group` is built on two Base UI components and
-     only the group has a page worth sending anyone to. */
   if (unlinked.length > 0 && upstream === "") {
     problems.push(
       `${item.name}: built on Base UI ${unlinked.join(", ")}, links to nothing`

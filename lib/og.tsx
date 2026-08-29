@@ -16,11 +16,6 @@ const PHOSPHOR_DIM = palette["phosphor-dim"];
 const SIGNAL = palette.signal;
 const VOID = palette.void;
 
-/**
- * Satori has no font stack to fall back on, so the mono has to be handed to it
- * as bytes. The two latin subsets are 13KB each and live in `assets/`, which is
- * documentation-site territory and never reaches a consumer.
- */
 async function fonts() {
   const [regular, bold] = await Promise.all([
     readFile(join(process.cwd(), "assets/ibm-plex-mono-latin-400.woff")),
@@ -43,14 +38,6 @@ async function fonts() {
   ];
 }
 
-/**
- * The glass, as elements.
- *
- * The site paints scanlines with a repeating gradient in a `@utility`, which
- * satori does not implement. One absolutely positioned rule every four pixels
- * is the same picture by a duller route, and 157 empty divs cost nothing at
- * build time.
- */
 function Scanlines() {
   return (
     <div
@@ -65,7 +52,7 @@ function Scanlines() {
     >
       {Array.from({ length: Math.ceil(OG_SIZE.height / 4) }, (_, row) => (
         <div
-          // biome-ignore lint/suspicious/noArrayIndexKey: the rules are a fixed grid, and the index is the row.
+          // biome-ignore lint/suspicious/noArrayIndexKey: the row index is the position.
           key={row}
           style={{
             background: "rgba(134,250,221,0.05)",
@@ -98,13 +85,6 @@ function Prompt({ size }: { size: number }) {
   );
 }
 
-/**
- * Backticks are markup the card has no way to render, and the symbols only
- * exist in a font this build does not ship. Left alone, satori goes to the
- * network for a face that covers them, which fails in CI and drops the glyph
- * without saying so. The site keeps the real characters; the picture spells
- * them out.
- */
 const SUBSTITUTIONS: [RegExp, string][] = [
   [/`/g, ""],
   [/⌘/g, "Cmd"],
@@ -121,11 +101,6 @@ function plain(text: string): string {
   );
 }
 
-/**
- * One card, two callers. The root page passes the registry's own pitch; an item
- * page passes its name and description, so a link to `/c/slider` previews as
- * that item rather than as the site again.
- */
 export async function ogImage({
   eyebrow,
   title,
@@ -152,11 +127,7 @@ export async function ogImage({
     >
       <Scanlines />
 
-      {/*
-        Satori drops the `inset` shorthand, so the frame is placed by four
-        explicit offsets. Left as `inset`, it collapses to the size of its own
-        text in the top-left corner.
-      */}
+      {/* Satori drops the `inset` shorthand. */}
       <div
         style={{
           border: `1px solid ${LINE}`,

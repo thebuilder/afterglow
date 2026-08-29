@@ -2,18 +2,6 @@ import { Prose } from "@/components/docs/prose";
 import { documentedParts, type ItemDoc, type PartDoc } from "@/lib/doc";
 import { cn } from "@/lib/utils";
 
-/**
- * The part of the API that is ours.
- *
- * Every primitive here is a redrawing of a Base UI part, so all but a handful
- * of its props belong to Base UI. Restating them would be a copy that goes
- * stale on somebody else's release schedule, and a worse copy than the one
- * upstream. What is listed here is the parts an item exports and the props
- * afterglow adds; the link at the end is where the rest lives.
- *
- * Three columns, and no Description. The sentence sits above the table, where
- * it has the width to be a sentence.
- */
 export function ApiReference({ doc }: { doc: ItemDoc }) {
   const parts = documentedParts(doc);
 
@@ -99,14 +87,6 @@ function Part({ part }: { part: PartDoc }) {
   );
 }
 
-/**
- * `fill` takes the slack, and it goes on the type column.
- *
- * A prop name and a default are a few characters; a type is a union of six.
- * Giving the width to either of the short columns starves the one that needs
- * it, and a union broken across five lines one word at a time is unreadable.
- * `w-px` with `nowrap` is how a table column is told to hug its contents.
- */
 function Cell({
   children,
   fill = false,

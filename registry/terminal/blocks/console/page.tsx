@@ -52,20 +52,7 @@ const VOLUMES = [
   { blocks: "0", name: "spool", state: "offline" },
 ];
 
-/**
- * A console, assembled out of the registry rather than described.
- *
- * It is here to answer the question a screenshot cannot: what the pieces look
- * like next to each other. The green carries the interface, the pink appears
- * exactly twice (once on the control that wants pressing, once on the volume
- * that is down) and everything else is a hairline.
- */
 export default function ConsolePage() {
-  /**
-   * Entries carry an id rather than being keyed by position. The same command
-   * typed twice is two entries with identical text, and a key built from the
-   * text or the index makes React reuse the wrong row the moment one is added.
-   */
   const [log, setLog] = useState<{ id: number; text: string }[]>([]);
 
   const record = useCallback((value: string) => {

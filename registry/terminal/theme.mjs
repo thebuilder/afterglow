@@ -1,21 +1,5 @@
-/**
- * The theme, and the only place its numbers are written down.
- *
- * `scripts/build-globals.mjs` renders this into two artefacts: `app/globals.css`,
- * which is what this site is painted with, and the `theme` item in
- * `registry.json`, which is what `shadcn add` merges into somebody else's
- * stylesheet. Editing either of those by hand puts the registry and the site it
- * documents out of step, and the drift is invisible until someone installs.
- *
- * The palette is one palette. A phosphor tube has no light mode, so `light` and
- * `dark` carry the same values and toggling a consumer's theme class is a no-op
- * rather than a second, worse design nobody asked for.
- */
-
-/** The tube's own colours, before they are given interface jobs below. */
+// Source for the generated globals and the theme entry in registry.json.
 const PALETTE = {
-  /* Category colours. They exist so a legend can have more than two entries
-     without inventing a hue on the spot. */
   amber: "#ffbc57",
   azure: "#8dbdf5",
   ember: "#ff5a65",
@@ -23,30 +7,23 @@ const PALETTE = {
   ink: "#e9f6f1",
   "ink-muted": "#87a39d",
 
-  /* Every border in the system is the beam at low power, so a hairline reads as
-     something the tube drew rather than as a box somebody added. */
   line: "rgb(132 255 224 / 0.22)",
   "line-strong": "rgb(132 255 224 / 0.55)",
   panel: "#0b1515",
   "panel-raised": "#091212",
   "panel-sunken": "#081210",
 
-  /* The beam. `phosphor` is the reading colour, `bright` is where it blooms,
-     `dim` is the same green far enough down to read as furniture. */
   phosphor: "#86fadd",
   "phosphor-bright": "#d9ffef",
   "phosphor-dim": "#4d8477",
 
-  /* The one warm colour, and the reason the interface has a pulse. Used for
-     the thing that is happening, never for the thing that is merely present. */
   signal: "#ff5b82",
   "signal-soft": "#e84970",
   violet: "#b890ff",
-  /* The glass with nothing on it. Not black: a tube that is off is still glass. */
+
   void: "#05090a",
 };
 
-/** The moulded beige chrome used by the macOS and Windows window variants. */
 const WINDOW_PALETTE = {
   "window-bevel-dark": "#5c7269",
   "window-bevel-light": "#e7eeeb",
@@ -69,16 +46,7 @@ const WINDOW_PALETTE = {
 
 const TOKENS = { ...PALETTE, ...WINDOW_PALETTE };
 
-/**
- * shadcn's variable names, pointed at the palette above.
- *
- * This is the whole compatibility story: a stock shadcn component dropped into a
- * project running this theme comes out sharp-cornered and phosphor-green without
- * being touched, because every colour it names is defined here.
- */
 const SEMANTIC = {
-  /* shadcn spends `accent` on hover fills, so it has to be a wash rather than a
-     colour. The pink lives in `--signal` and is asked for by name. */
   accent: "#17403a",
   "accent-foreground": PALETTE["phosphor-bright"],
   background: PALETTE.void,
@@ -104,14 +72,9 @@ const SEMANTIC = {
   popover: PALETTE["panel-raised"],
   "popover-foreground": PALETTE.ink,
 
-  /* Primary is the beam, not the accent. The interface is green; the pink is an
-     event. Making pink primary would put an alarm on every submit button. */
   primary: PALETTE.phosphor,
   "primary-foreground": PALETTE.void,
 
-  /* Sharp, and sharp everywhere. The derived radii below are pinned to zero
-     rather than computed off this, so `rounded-xl` on a stock component cannot
-     quietly reintroduce a corner. */
   radius: "0rem",
   ring: PALETTE["phosphor-bright"],
 
@@ -130,18 +93,10 @@ const SEMANTIC = {
   "sidebar-ring": PALETTE["phosphor-bright"],
 };
 
-/** The raw tokens, exposed under their own names for components to reach for. */
 const RAW = Object.fromEntries(
   Object.entries(TOKENS).map(([key, value]) => [key, value])
 );
 
-/**
- * `@theme inline`, which is to say everything that becomes a Tailwind utility.
- *
- * `inline` matters: the values are `var()` references, and without it Tailwind
- * would resolve them once at build time and a consumer overriding `--signal` in
- * their own stylesheet would find `bg-signal` unchanged.
- */
 const THEME = {
   "background-image-beam":
     "linear-gradient(180deg, transparent 44%, color-mix(in srgb, var(--phosphor) 16%, transparent) 50%, transparent 56%)",
@@ -153,8 +108,6 @@ const THEME = {
     '"SFMono-Regular", "IBM Plex Mono", "Cascadia Mono", Consolas, monospace',
   "font-sans": '"Helvetica Neue", Inter, Arial, sans-serif',
 
-  /* The compact type scale and wide tracking are part of the terminal voice.
-     Naming them here keeps labels consistent across the site and registry. */
   "text-1xs": "0.6875rem",
   "text-2xs": "0.625rem",
   "text-3xs": "0.5625rem",
@@ -179,32 +132,15 @@ const THEME = {
   "animate-alarm": "terminal-alarm 2.4s var(--ease-terminal) infinite",
   "animate-beam": "terminal-beam 1s var(--ease-terminal) both",
 
-  /* Named so a component can ask for the motion rather than restate its timing.
-     `steps()` on the caret and the boot log is deliberate: a cursor that fades
-     is a cursor drawn by something other than a terminal. */
   "animate-caret": "terminal-caret 1.1s steps(1) infinite",
   "animate-close": "terminal-close 120ms steps(3, end) forwards",
 
-  /**
-   * Entrances and exits for everything Radix mounts and unmounts.
-   *
-   * Hand-rolled rather than pulled from tw-animate-css, for two reasons. The
-   * registry claims to be the whole system in one install, and an animation
-   * library it silently needs makes that untrue. And the house entrance is
-   * stepped: a panel that scales up smoothly is a sheet of paper, and a screen
-   * that has just been switched to is either off or on.
-   *
-   * The closing halves matter as much as the opening ones. Radix defers unmount
-   * on a running CSS *animation*, not a transition, so an element with no close
-   * animation vanishes rather than leaves.
-   */
   "animate-fade-in": "terminal-fade-in 140ms ease-out",
   "animate-fade-out": "terminal-fade-out 120ms ease-in forwards",
   "animate-led": "terminal-led 2.5s infinite",
   "animate-line-in": "terminal-line-in 420ms var(--ease-terminal) both",
   "animate-open": "terminal-open 180ms steps(4, end)",
-  /* One lap of a 3x3 grid in eight hops. Each cell runs the same decay and the
-     spinner phase-shifts them, so what travels is a lit head with a tail. */
+
   "animate-pixel": "terminal-pixel 800ms linear infinite",
   "animate-slide-in-bottom":
     "terminal-slide-in-bottom 220ms var(--ease-terminal)",
@@ -223,8 +159,6 @@ const THEME = {
   "animate-sweep": "terminal-sweep 1.15s ease-in-out infinite",
   "animate-type": "terminal-type 560ms steps(24) both",
 
-  /* Leaves immediately, settles late. One curve for the whole system: a set of
-     entrances that each ease differently reads as a set of unrelated events. */
   "ease-terminal": "cubic-bezier(0.2, 0.7, 0.3, 1)",
   "radius-2xl": "0px",
   "radius-lg": "0px",
@@ -262,26 +196,12 @@ const THEME = {
   "text-shadow-signal": "0 0 10px rgb(255 91 130 / 0.45)",
 };
 
-/**
- * Every `--animate-*` token, as a selector list.
- *
- * Derived rather than written out. The hand-kept version was already one edit
- * behind by the time there were ten animations, and an animation missing from
- * that list is one that keeps running for somebody who asked the operating
- * system to stop them.
- */
 const REDUCED_MOTION_SELECTOR = Object.keys(THEME)
   .filter((key) => key.startsWith("animate-"))
   .map((key) => `.${key}`)
   .join(", ");
 
-/**
- * Everything that is not a variable: the base layer, the keyframes the tokens
- * above refer to, and three utilities for the glass.
- */
 const CSS = {
-  /* Two flashes and a rest, which is what a warning lamp does and what a steady
-     sine does not: an even fade reads as breathing, and breathing is decoration. */
   "@keyframes terminal-alarm": {
     "0%, 100%": {
       "border-color": "transparent",
@@ -306,7 +226,7 @@ const CSS = {
       "box-shadow": "0 0 0 rgb(255 91 130 / 0)",
     },
   },
-  /* One pass of the beam down a panel that has just come up to power. */
+
   "@keyframes terminal-beam": {
     "30%": { opacity: "1" },
     from: { opacity: "0", transform: "translateY(-58%)" },
@@ -335,19 +255,8 @@ const CSS = {
   "@keyframes terminal-open": {
     from: { opacity: "0", transform: "scale(0.97) translateY(0.7rem)" },
   },
-  /**
-   * Four brightness levels, held flat between the steps.
-   *
-   * A smooth fade would be a phosphor cell dimming continuously, which is not
-   * what a character-cell display does: it has a handful of intensities and
-   * picks one. The plateaus are what make the tail read as three separate lit
-   * pixels behind the head rather than a smear.
-   */
+
   "@keyframes terminal-pixel": {
-    /* The steps land on eighths, because that is where the cells are: with the
-       ramps a whole percent wide the phase offsets fell inside them and a tail
-       pixel could be caught at an interpolated brightness. A hundredth of a
-       percent is 0.08ms, which is a jump. */
     "0%, 12.49%": { opacity: "1" },
     "12.5%, 24.99%": { opacity: "0.62" },
     "25%, 37.49%": { opacity: "0.34" },
@@ -379,37 +288,26 @@ const CSS = {
   },
   "@keyframes terminal-sweep": {
     from: { transform: "translateX(-110%)" },
-    /* 300%: a segment a third of the track wide clears the far edge three
-       widths out, so the light leaves rather than stopping at the edge. */
+
     to: { transform: "translateX(300%)" },
   },
-  /* Both ends are stated: `clip-path` has no interpolable initial value to fall
-     back on, so a one-sided keyframe animates from nothing and shows nothing. */
+
   "@keyframes terminal-type": {
     from: { "clip-path": "inset(-0.4em 100% -0.4em -0.1em)" },
     to: { "clip-path": "inset(-0.4em -0.15em -0.4em -0.1em)" },
   },
   "@layer base": {
-    /* Selection is the one place the pink is unavoidable, and it is the right
-       place: highlighting is something you did, not something the page did. */
     "::selection": {
       background: "var(--signal)",
       color: "#fff",
     },
     ":root": {
-      /* Scrollbars, form controls and the canvas the browser paints before the
-         first frame. Without it there is a white flash on load, which on this
-         palette is the one mistake the eye cannot miss. */
       "color-scheme": "dark",
-      /* The thumb in the beam's colour, on no track. A default scrollbar down
-         the side of a phosphor interface is the one piece of the operating
-         system the design does not get to draw. */
+
       "scrollbar-color": "var(--phosphor-dim) transparent",
       "scrollbar-width": "thin",
     },
-    /* A ring rather than a glow. Focus has to be legible over a bright scene,
-       and `:where()` keeps this at zero specificity so any component can take
-       the outline off and draw its own. */
+
     ":where(a, button, input, textarea, select, summary, [tabindex]):focus-visible":
       {
         outline: "2px solid var(--phosphor-bright)",
@@ -425,43 +323,19 @@ const CSS = {
       "font-family": "var(--font-sans)",
       "text-rendering": "optimizeLegibility",
     },
-    /**
-     * The gutter is always there, whether the page scrolls or not.
-     *
-     * Without it, moving from a short page to a long one takes the scrollbar's
-     * width out of the viewport and everything centred shifts sideways. The
-     * fixed scanline layer shifts with it, so the whole picture jumps rather
-     * than just the text.
-     *
-     * `scrollbar-gutter` is the property built for this and reserves the space
-     * without painting a dead track; `overflow-y: scroll` is the floor for
-     * anything that does not support it yet.
-     */
+
     html: {
       "overflow-y": "scroll",
       "scrollbar-gutter": "stable",
     },
   },
 
-  /**
-   * Nobody asked for a light flashing at them, and a caret blinking through a
-   * long read is the same imposition at lower amplitude. Both hold a lit frame
-   * so the interface still reads as powered rather than as paused.
-   */
   "@media (prefers-reduced-motion: reduce)": {
     [REDUCED_MOTION_SELECTOR]: {
       animation: "none !important",
     },
   },
 
-  /**
-   * The glass.
-   *
-   * Two densities and a vignette, kept as utilities rather than baked into a
-   * component so they can be laid over a canvas, a card or a whole page. The
-   * multiply blend is what stops them washing a dark panel grey: the lines
-   * darken what is under them instead of adding a film on top.
-   */
   "@utility scanlines": {
     "background-image":
       "repeating-linear-gradient(to bottom, transparent 0 2px, rgb(0 0 0 / 0.16) 2px 3px)",
@@ -478,11 +352,6 @@ const CSS = {
   },
 };
 
-/**
- * The raw tube colours, for the one consumer that needs them as values rather
- * than as CSS: the documentation site builds its syntax theme from these, so
- * the code on a page is painted with the palette the page hands out.
- */
 export const palette = PALETTE;
 
 export const cssVars = {

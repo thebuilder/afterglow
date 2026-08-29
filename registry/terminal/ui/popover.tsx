@@ -12,11 +12,6 @@ function PopoverTrigger({ ...props }: PopoverPrimitive.Trigger.Props) {
   return <PopoverPrimitive.Trigger data-slot="popover-trigger" {...props} />;
 }
 
-/**
- * Base UI splits placement from appearance: the Positioner owns the side and
- * the offset, the Popup owns the box. The side props are lifted onto this
- * component so a caller still writes `side` and `sideOffset` in one place.
- */
 function PopoverContent({
   className,
   align = "center",

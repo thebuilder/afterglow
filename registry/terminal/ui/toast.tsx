@@ -10,13 +10,6 @@ import { Toaster as Sonner, type ToasterProps } from "sonner";
 
 import { Spinner } from "@/registry/terminal/ui/spinner";
 
-/**
- * Toasts, in the house palette.
- *
- * The theme is pinned to dark rather than read from a theme provider. This
- * system has one palette by design, so asking `next-themes` which of two looks
- * to use would be a dependency added to answer a question that has one answer.
- */
 function Toaster({ ...props }: ToasterProps) {
   return (
     <Sonner
