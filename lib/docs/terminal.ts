@@ -69,7 +69,7 @@ export const terminalDocs: DocMap = {
           { default: 'tone !== "idle"', name: "pulse", type: "boolean" },
         ],
         summary:
-          "It pulses by default and holds still when idle, because a dark indicator that is also animating is a light saying nothing twice.",
+          "It flickers between held brightness levels by default. The idle tone holds still.",
       },
       {
         name: "Status",

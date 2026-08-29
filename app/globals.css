@@ -237,7 +237,7 @@
   --animate-close: terminal-close 120ms steps(3, end) forwards;
   --animate-fade-in: terminal-fade-in 140ms ease-out;
   --animate-fade-out: terminal-fade-out 120ms ease-in forwards;
-  --animate-led: terminal-led 2.5s infinite;
+  --animate-led: terminal-led 1.6s steps(2) infinite;
   --animate-line-in: terminal-line-in 420ms var(--ease-terminal) both;
   --animate-open: terminal-open 180ms steps(4, end);
   --animate-pixel: terminal-pixel 800ms linear infinite;
@@ -338,7 +338,7 @@
 
 @keyframes terminal-led {
   50% {
-    opacity: 0.35;
+    opacity: 0.45;
   }
 }
 

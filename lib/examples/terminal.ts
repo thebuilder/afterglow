@@ -51,7 +51,7 @@ export const terminalExamples: ExampleMap = {
     {
       component: LedTones,
       description:
-        "Four status tones. The idle lamp stays still while the other tones pulse.",
+        "Four status tones. The idle lamp stays still while the other tones flicker in held steps.",
       name: "Tones",
     },
   ],

@@ -137,7 +137,7 @@ const THEME = {
 
   "animate-fade-in": "terminal-fade-in 140ms ease-out",
   "animate-fade-out": "terminal-fade-out 120ms ease-in forwards",
-  "animate-led": "terminal-led 2.5s infinite",
+  "animate-led": "terminal-led 1.6s steps(2) infinite",
   "animate-line-in": "terminal-line-in 420ms var(--ease-terminal) both",
   "animate-open": "terminal-open 180ms steps(4, end)",
 
@@ -239,7 +239,7 @@ const CSS = {
   },
   "@keyframes terminal-fade-in": { from: { opacity: "0" } },
   "@keyframes terminal-fade-out": { to: { opacity: "0" } },
-  "@keyframes terminal-led": { "50%": { opacity: "0.35" } },
+  "@keyframes terminal-led": { "50%": { opacity: "0.45" } },
   "@keyframes terminal-line-in": {
     from: {
       "clip-path": "inset(-0.25em -0.12em 100% -0.06em)",
