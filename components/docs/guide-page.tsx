@@ -17,7 +17,7 @@ export function GuidePage({
     <div className="mx-auto flex w-full max-w-6xl gap-10 px-6">
       <article className="grid min-w-0 flex-1 grid-cols-[minmax(0,1fr)] gap-10 pb-24">
         <header className="grid grid-cols-[minmax(0,1fr)] gap-4 pt-10">
-          <div className="flex flex-wrap items-start justify-between gap-4">
+          <div className="grid grid-cols-[minmax(0,1fr)] items-start gap-4 sm:grid-cols-[minmax(0,1fr)_auto]">
             <h1 className="min-w-0 flex-1 text-balance font-extrabold text-5xl leading-none tracking-tight sm:text-6xl">
               {guide.title}
             </h1>

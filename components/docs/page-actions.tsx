@@ -43,7 +43,7 @@ export function PageActions({
   const question = encodeURIComponent(`I am looking at ${markdown}. ${prompt}`);
 
   return (
-    <div className="flex shrink-0 items-center border border-line">
+    <div className="flex w-fit shrink-0 items-center border border-line">
       <button
         className="flex items-center gap-2 px-2.5 py-1.5 font-mono text-3xs text-muted-foreground uppercase tracking-terminal outline-none transition-colors hover:text-phosphor focus-visible:-outline-offset-2 focus-visible:outline-2 focus-visible:outline-phosphor-bright"
         onClick={copy}

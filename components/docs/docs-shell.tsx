@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 
-import { MobileNav } from "@/components/docs/mobile-nav";
 import { NavTree } from "@/components/docs/nav-tree";
 import { SiteHeader } from "@/components/docs/site-header";
 import { navSections } from "@/lib/sections";
@@ -10,7 +9,7 @@ export function DocsShell({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-svh">
-      <SiteHeader before={<MobileNav sections={sections} />} />
+      <SiteHeader />
 
       <div className="mx-auto flex w-full max-w-screen-2xl">
         {/* ScrollArea applies overflow too late for the initial nav reveal. */}

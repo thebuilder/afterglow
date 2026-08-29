@@ -13,7 +13,7 @@ export function HeaderNav({
   const pathname = usePathname();
 
   return (
-    <nav aria-label="Primary" className="flex items-center gap-4">
+    <nav aria-label="Primary" className="hidden items-center gap-4 md:flex">
       {links.map((link) => {
         const active = link.prefixes.some((prefix) =>
           pathname.startsWith(prefix)
