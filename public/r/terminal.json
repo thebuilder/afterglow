@@ -61,7 +61,6 @@
     "@afterglow/led",
     "@afterglow/eyebrow",
     "@afterglow/connector",
-    "@afterglow/glyph",
     "@afterglow/alarm-button",
     "@afterglow/terminal-window",
     "@afterglow/prompt"

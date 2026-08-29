@@ -40,7 +40,7 @@ items.
 | --- | --- |
 | `theme` | Tokens, typography, motion and CRT effects. Dark theme only. |
 | Primitives | `accordion` `alert` `alert-dialog` `avatar` `badge` `breadcrumb` `button` `card` `checkbox` `collapsible` `command` `dialog` `dropdown-menu` `empty` `input` `input-otp` `kbd` `label` `pagination` `popover` `progress` `radio-group` `resizable` `scroll-area` `select` `separator` `sheet` `skeleton` `slider` `spinner` `switch` `table` `tabs` `textarea` `toast` `toggle` `toggle-group` `tooltip` |
-| Terminal | `alarm-button` `boot-log` `connector` `eyebrow` `glyph` `led` `prompt` `scanlines` `screen` `terminal-window` |
+| Terminal | `alarm-button` `boot-log` `connector` `eyebrow` `led` `prompt` `scanlines` `screen` `terminal-window` |
 | Whole | `console` (a composed page), `terminal` (a style that installs the lot) |
 
 The primitives are shadcn components redrawn for Afterglow and built on

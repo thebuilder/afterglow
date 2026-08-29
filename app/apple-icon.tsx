@@ -1,5 +1,7 @@
 import { ImageResponse } from "next/og";
 
+import { palette } from "@/registry/terminal/theme.mjs";
+
 export const size = { height: 180, width: 180 };
 export const contentType = "image/png";
 
@@ -13,7 +15,7 @@ export default function AppleIcon() {
     <div
       style={{
         alignItems: "center",
-        background: "#05090a",
+        background: palette.void,
         display: "flex",
         height: "100%",
         justifyContent: "center",
@@ -35,12 +37,12 @@ export default function AppleIcon() {
       >
         <path
           d="M7 10 L14 16 L7 22"
-          stroke="#86fadd"
+          stroke={palette.phosphor}
           strokeLinecap="square"
           strokeLinejoin="miter"
           strokeWidth="5"
         />
-        <rect fill="#86fadd" height="4" width="10" x="18" y="20" />
+        <rect fill={palette.phosphor} height="4" width="10" x="18" y="20" />
       </svg>
     </div>,
     size

@@ -37,7 +37,7 @@ const buttonVariants = cva(
         outline:
           "border-line text-phosphor hover:border-line-strong hover:bg-accent/60 hover:text-phosphor-bright",
         signal:
-          "bg-signal text-white shadow-[inset_0_0_0_1px_rgb(255_255_255/0.12),0_0_18px_rgb(255_91_130/0.12)] hover:-translate-y-px hover:bg-signal-soft hover:shadow-glow-signal",
+          "bg-signal text-white shadow-signal-control hover:-translate-y-px hover:bg-signal-soft hover:shadow-glow-signal",
       },
     },
   }
