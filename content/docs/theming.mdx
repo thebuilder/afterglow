@@ -23,6 +23,27 @@ The theme supplies:
 
 Stock shadcn components can use the same semantic variables after the theme is installed.
 
+## Typeset rendered content
+
+The theme includes a `typeset` class for HTML or markdown output that does not carry component classes:
+
+```tsx
+<article className="typeset">{content}</article>
+```
+
+It styles headings, paragraphs, lists, links, code, quotes, rules, and tables with the theme's existing font and colour tokens. Four inherited variables control the reading width and rhythm:
+
+```css
+.release-notes {
+  --typeset-size: 16px;
+  --typeset-leading: 1.75;
+  --typeset-flow: 1.25em;
+  --typeset-measure: 70ch;
+}
+```
+
+Use the [Typeset builder](/typeset) to preview those values against a full specimen and copy the result.
+
 ## Change a token
 
 Edit the generated variables in your project's configured CSS file. Keep the semantic names used by components:
