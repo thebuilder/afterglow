@@ -1,5 +1,6 @@
 import { documentedParts } from "@/lib/doc";
 import { docFor } from "@/lib/docs";
+import { allGuides } from "@/lib/guides";
 import { sectionsWithItems } from "@/lib/sections";
 import { headingsFor } from "@/lib/toc";
 
@@ -14,7 +15,20 @@ export interface SearchRecord {
 }
 
 export function searchIndex(): SearchRecord[] {
-  const records: SearchRecord[] = [];
+  const records: SearchRecord[] = allGuides().flatMap((guide) => [
+    {
+      description: guide.description,
+      group: "Start",
+      title: guide.title,
+      url: guide.href,
+    },
+    ...guide.toc.map((heading) => ({
+      group: "Start",
+      parent: guide.title,
+      title: heading.label,
+      url: `${guide.href}#${heading.id}`,
+    })),
+  ]);
 
   for (const section of sectionsWithItems()) {
     for (const item of section.items) {

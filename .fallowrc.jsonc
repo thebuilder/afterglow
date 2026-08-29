@@ -20,6 +20,13 @@
       "exports": ["generateStaticParams", "alt", "size", "contentType"]
     }
   ],
+  // Next loads these through its config and the generated MDX modules.
+  "ignoreDependencies": [
+    "@mdx-js/loader",
+    "@mdx-js/react",
+    "@next/mdx",
+    "rehype-slug"
+  ],
   "duplicates": {
     // An example is the thing somebody copies, so it has to be a whole file:
     // its own imports, its own sample data, no helper next door that a reader

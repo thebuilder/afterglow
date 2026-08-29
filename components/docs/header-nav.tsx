@@ -8,27 +8,31 @@ import { cn } from "@/lib/utils";
 export function HeaderNav({
   links,
 }: {
-  links: { href: string; label: string; prefix: string }[];
+  links: { href: string; label: string; prefixes: string[] }[];
 }) {
   const pathname = usePathname();
 
   return (
-    <nav className="flex items-center gap-4">
-      {links.map((link) => (
-        <Link
-          aria-current={pathname.startsWith(link.prefix) ? "page" : undefined}
-          className={cn(
-            "font-mono font-semibold text-2xs uppercase tracking-terminal-lg outline-none transition-colors hover:text-phosphor focus-visible:text-phosphor",
-            pathname.startsWith(link.prefix)
-              ? "text-phosphor-bright"
-              : "text-muted-foreground"
-          )}
-          href={link.href}
-          key={link.href}
-        >
-          {link.label}
-        </Link>
-      ))}
+    <nav aria-label="Primary" className="flex items-center gap-4">
+      {links.map((link) => {
+        const active = link.prefixes.some((prefix) =>
+          pathname.startsWith(prefix)
+        );
+
+        return (
+          <Link
+            aria-current={active ? "page" : undefined}
+            className={cn(
+              "font-mono font-semibold text-2xs uppercase tracking-terminal-lg outline-none transition-colors hover:text-phosphor focus-visible:text-phosphor",
+              active ? "text-phosphor-bright" : "text-muted-foreground"
+            )}
+            href={link.href}
+            key={link.href}
+          >
+            {link.label}
+          </Link>
+        );
+      })}
     </nav>
   );
 }

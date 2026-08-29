@@ -4,12 +4,12 @@
   "title": "Eyebrow",
   "description": "The tracked-out line above a heading, with an optional block caret.",
   "registryDependencies": [
-    "@afterglow/theme"
+    "@afterglow/caret"
   ],
   "files": [
     {
       "path": "registry/terminal/components/eyebrow.tsx",
-      "content": "import type * as React from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nfunction Eyebrow({\n  className,\n  caret = false,\n  children,\n  ...props\n}: React.ComponentProps<\"p\"> & { caret?: boolean }) {\n  return (\n    <p\n      className={cn(\n        \"m-0 font-bold font-mono text-2xs text-phosphor uppercase leading-tight tracking-terminal-3xl\",\n        className\n      )}\n      data-slot=\"eyebrow\"\n      {...props}\n    >\n      {children}\n      {caret ? (\n        <span\n          aria-hidden=\"true\"\n          className=\"ml-[0.35em] inline-block h-[0.95em] w-[0.5em] animate-caret bg-phosphor align-[-0.12em]\"\n          data-slot=\"eyebrow-caret\"\n        />\n      ) : null}\n    </p>\n  );\n}\n\nexport { Eyebrow };\n",
+      "content": "import type * as React from \"react\";\n\nimport { cn } from \"@/lib/utils\";\nimport { Caret } from \"@/registry/terminal/components/caret\";\n\nfunction Eyebrow({\n  className,\n  caret = false,\n  children,\n  ...props\n}: React.ComponentProps<\"p\"> & { caret?: boolean }) {\n  return (\n    <p\n      className={cn(\n        \"m-0 font-bold font-mono text-2xs text-phosphor uppercase leading-tight tracking-terminal-3xl\",\n        className\n      )}\n      data-slot=\"eyebrow\"\n      {...props}\n    >\n      {children}\n      {caret ? <Caret className=\"ml-1\" data-slot=\"eyebrow-caret\" /> : null}\n    </p>\n  );\n}\n\nexport { Eyebrow };\n",
       "type": "registry:component"
     }
   ],

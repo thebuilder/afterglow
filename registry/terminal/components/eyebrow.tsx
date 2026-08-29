@@ -1,6 +1,7 @@
 import type * as React from "react";
 
 import { cn } from "@/lib/utils";
+import { Caret } from "@/registry/terminal/components/caret";
 
 function Eyebrow({
   className,
@@ -18,13 +19,7 @@ function Eyebrow({
       {...props}
     >
       {children}
-      {caret ? (
-        <span
-          aria-hidden="true"
-          className="ml-[0.35em] inline-block h-[0.95em] w-[0.5em] animate-caret bg-phosphor align-[-0.12em]"
-          data-slot="eyebrow-caret"
-        />
-      ) : null}
+      {caret ? <Caret className="ml-1" data-slot="eyebrow-caret" /> : null}
     </p>
   );
 }

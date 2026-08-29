@@ -1,3 +1,4 @@
+import { allGuides } from "@/lib/guides";
 import { itemsOfType, type RegistryItem } from "@/lib/registry";
 
 export interface Section {
@@ -29,11 +30,16 @@ const SECTIONS: Section[] = [
     types: ["registry:component"],
   },
   {
-    blurb:
-      "A complete registry preset and an operator console composed from the same parts.",
-    id: "whole",
-    title: "The whole thing",
-    types: ["registry:block", "registry:style"],
+    blurb: "Full-page compositions built from registry components.",
+    id: "blocks",
+    title: "Blocks",
+    types: ["registry:block"],
+  },
+  {
+    blurb: "Start a project with the theme and every component installed.",
+    id: "presets",
+    title: "Presets",
+    types: ["registry:style"],
   },
 ];
 
@@ -49,7 +55,7 @@ export function sectionsWithItems(): SectionWithItems[] {
 }
 
 export interface NavItem {
-  name: string;
+  href: string;
   title: string;
 }
 
@@ -60,14 +66,29 @@ export interface NavSection {
 }
 
 export function navSections(): NavSection[] {
-  return sectionsWithItems().map(({ id, title, items }) => ({
-    id,
-    items: items.map((item) => ({ name: item.name, title: item.title })),
-    title,
-  }));
+  return [
+    {
+      id: "start",
+      items: [
+        ...allGuides().map((guide) => ({
+          href: guide.href,
+          title: guide.navTitle,
+        })),
+        { href: "/components", title: "Components" },
+      ],
+      title: "Start",
+    },
+    ...sectionsWithItems().map(({ id, title, items }) => ({
+      id,
+      items: items.map((item) => ({
+        href: `/c/${item.name}`,
+        title: item.title,
+      })),
+      title,
+    })),
+  ];
 }
 
 export function docsEntry(): string {
-  const [first] = itemsOfType(...SECTIONS[0].types);
-  return `/c/${first.name}`;
+  return "/docs";
 }

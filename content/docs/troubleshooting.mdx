@@ -1,0 +1,53 @@
+## The component has no styles
+
+Install the shared theme:
+
+```bash
+npx shadcn@latest add @afterglow/theme
+```
+
+Check that `components.json` points to the CSS file loaded by the application. The CLI writes the theme into that file.
+
+## Registry dependencies do not resolve
+
+Use the namespaced item name:
+
+```bash
+npx shadcn@latest add @afterglow/dialog
+```
+
+Direct JSON URLs install the requested file but do not resolve dependencies between Afterglow registry items.
+
+## asChild does not exist
+
+Afterglow components use Base UI. Composition uses `render`:
+
+```tsx
+<Button nativeButton={false} render={<Link href="/logs" />}>
+  Open logs
+</Button>
+```
+
+## State selectors do not match
+
+Base UI exposes state through attributes such as `data-open`, `data-closed`, and `data-checked`.
+
+```tsx
+<div className="data-open:text-phosphor data-closed:text-phosphor-dim" />
+```
+
+Selectors written for `data-state="open"` will not match these components.
+
+## The registry URL returns 404
+
+Check the namespace entry in `components.json`:
+
+```json
+{
+  "registries": {
+    "@afterglow": "https://afterglow.thebuilder.dk/r/{name}.json"
+  }
+}
+```
+
+The item name must match the component page slug. Use `/components` or search the docs to find the exact name.

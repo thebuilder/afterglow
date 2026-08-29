@@ -1,0 +1,48 @@
+## Quick start
+
+Start a project with the complete Afterglow system:
+
+```bash
+npx shadcn@latest init https://afterglow.thebuilder.dk/r/terminal.json
+```
+
+The preset installs the shared theme and every component.
+
+## Install one component
+
+Add the Afterglow namespace to `components.json`:
+
+```json
+{
+  "registries": {
+    "@afterglow": "https://afterglow.thebuilder.dk/r/{name}.json"
+  }
+}
+```
+
+Then add a component by name:
+
+```bash
+npx shadcn@latest add @afterglow/button
+```
+
+The button declares the theme and Base UI packages it needs. The shadcn CLI resolves those dependencies during installation.
+
+## What you own
+
+The CLI copies the component source into your project and merges the theme into the CSS file configured in `components.json`. You can edit both after installation.
+
+Afterglow components use Base UI. Use the `render` prop when another element should provide the rendered tag:
+
+```tsx
+<Button nativeButton={false} render={<Link href="/status" />}>
+  View status
+</Button>
+```
+
+## Where to go next
+
+- Read [Installation](/docs/installation) for the full registry setup.
+- Read [Theming](/docs/theming) before changing the palette or typography.
+- Browse the [component index](/components) for live examples and install commands.
+- Check [Troubleshooting](/docs/troubleshooting) when styles or dependencies are missing.

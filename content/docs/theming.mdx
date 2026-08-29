@@ -1,0 +1,44 @@
+## Install the theme
+
+Every Afterglow component declares `@afterglow/theme` as a registry dependency. Installing a component through the namespace normally adds the theme for you.
+
+You can also install it directly:
+
+```bash
+npx shadcn@latest add @afterglow/theme
+```
+
+The shadcn CLI merges its variables, keyframes, and Tailwind theme entries into the CSS file configured in `components.json`.
+
+## What the theme controls
+
+The theme supplies:
+
+- the phosphor, signal, panel, status, and window palettes
+- monospace and sans-serif font stacks
+- square component radii
+- terminal tracking and small text sizes
+- stepped entrances, exits, carets, alarms, and scan effects
+- glow, panel, keyboard, slider, and window shadows
+
+Stock shadcn components can use the same semantic variables after the theme is installed.
+
+## Change a token
+
+Edit the generated variables in your project's configured CSS file. Keep the semantic names used by components:
+
+```css
+:root {
+  --phosphor: #9dffe7;
+  --signal: #ff6d94;
+  --void: #030707;
+}
+```
+
+Afterglow does not install font files. Change `--font-mono` or `--font-sans` if your project needs a bundled web font.
+
+## Dark by design
+
+Afterglow uses the same terminal palette for the shadcn light and dark variable sets. Switching the application to a light theme will not produce a light Afterglow interface.
+
+Create and maintain a separate light palette if the product requires one. Components should keep the same semantic token names so their styles continue to resolve.

@@ -10,6 +10,7 @@ import {
 import { useCallback } from "react";
 
 import { useCopied } from "@/components/docs/use-copied";
+import { HOMEPAGE } from "@/lib/registry";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -24,23 +25,27 @@ const ASSISTANTS = [
   { label: "Open in Claude", url: "https://claude.ai/new?q=" },
 ];
 
-export function PageActions({ name, url }: { name: string; url: string }) {
-  const markdown = `${url}/c/${name}.md`;
+export function PageActions({
+  markdownPath,
+  prompt,
+}: {
+  markdownPath: string;
+  prompt: string;
+}) {
+  const markdown = `${HOMEPAGE}${markdownPath}`;
 
   const read = useCallback(
-    () => fetch(`/c/${name}.md`).then((response) => response.text()),
-    [name]
+    () => fetch(markdownPath).then((response) => response.text()),
+    [markdownPath]
   );
   const { copied, copy } = useCopied(read);
 
-  const question = encodeURIComponent(
-    `I am looking at ${markdown}, one component from the afterglow shadcn registry. Read it and help me use the component.`
-  );
+  const question = encodeURIComponent(`I am looking at ${markdown}. ${prompt}`);
 
   return (
     <div className="flex shrink-0 items-center border border-line">
       <button
-        className="flex items-center gap-2 px-2.5 py-1.5 font-mono text-3xs text-muted-foreground uppercase tracking-terminal outline-none transition-colors hover:text-phosphor focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-phosphor-bright"
+        className="flex items-center gap-2 px-2.5 py-1.5 font-mono text-3xs text-muted-foreground uppercase tracking-terminal outline-none transition-colors hover:text-phosphor focus-visible:-outline-offset-2 focus-visible:outline-2 focus-visible:outline-phosphor-bright"
         onClick={copy}
         type="button"
       >
@@ -55,7 +60,7 @@ export function PageActions({ name, url }: { name: string; url: string }) {
       <DropdownMenu>
         <DropdownMenuTrigger
           aria-label="More ways to read this page"
-          className="grid h-full place-items-center border-line border-l px-1.5 py-1.5 text-phosphor-dim outline-none transition-colors hover:text-phosphor focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-phosphor-bright"
+          className="grid h-full place-items-center border-line border-l px-1.5 py-1.5 text-phosphor-dim outline-none transition-colors hover:text-phosphor focus-visible:-outline-offset-2 focus-visible:outline-2 focus-visible:outline-phosphor-bright"
         >
           <ChevronDownIcon className="size-3" />
         </DropdownMenuTrigger>
@@ -65,7 +70,7 @@ export function PageActions({ name, url }: { name: string; url: string }) {
               <CopyIcon />
               Copy markdown
             </DropdownMenuItem>
-            <DropdownMenuItem render={<a href={`/c/${name}.md`} />}>
+            <DropdownMenuItem render={<a href={markdownPath} />}>
               <FileTextIcon />
               View as markdown
             </DropdownMenuItem>

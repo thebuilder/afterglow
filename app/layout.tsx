@@ -5,10 +5,10 @@ import { HOMEPAGE } from "@/lib/registry";
 import { Scanlines } from "@/registry/terminal/components/scanlines";
 
 import "./globals.css";
-import "./site-palette.css";
+import "./site.css";
 
 const DESCRIPTION =
-  "Old-school terminal UI for shadcn. Phosphor green, pink signals, hairline borders and square corners. Install the registry or add components one at a time.";
+  "A complete terminal UI system for shadcn. Install the shared theme, Base UI components, and terminal-specific building blocks into your project.";
 const TITLE = "afterglow, terminal UI for shadcn";
 
 export const metadata: Metadata = {

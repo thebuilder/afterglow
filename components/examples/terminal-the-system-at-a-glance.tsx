@@ -23,9 +23,6 @@ export function TerminalTheSystemAtAGlance() {
 
       <div className="flex flex-wrap items-center gap-3">
         <Button size="sm">Mount</Button>
-        <Button size="sm" variant="signal">
-          Restart
-        </Button>
         <Button size="sm" variant="outline">
           Inspect
         </Button>
@@ -47,14 +44,17 @@ export function TerminalTheSystemAtAGlance() {
         </span>
       </div>
 
-      <Input defaultValue="node-04.local" />
+      <Label className="sr-only" htmlFor="system-address">
+        Node address
+      </Label>
+      <Input defaultValue="node-04.local" id="system-address" />
 
       <div className="grid gap-2">
         <div className="flex items-baseline justify-between font-mono text-2xs uppercase tracking-terminal">
           <span className="text-muted-foreground">Indexing</span>
           <span className="text-amber tabular-nums">68%</span>
         </div>
-        <Progress value={68} />
+        <Progress aria-label="Indexing" value={68} />
       </div>
 
       <div className="flex flex-wrap items-center gap-2 border-line border-t pt-4">

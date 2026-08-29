@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
+import { Caret } from "@/registry/terminal/components/caret";
 
 type BootTone = "default" | "dim" | "ok" | "warn" | "error";
 
@@ -79,10 +80,7 @@ function BootLog({
             <span className="shrink-0 text-phosphor-dim">{prefix}</span>
             <span className="min-w-0">{line.text}</span>
             {shown && index === printed - 1 && printed < total && (
-              <span
-                aria-hidden="true"
-                className="inline-block h-[1em] w-[0.5em] shrink-0 animate-caret self-center bg-phosphor"
-              />
+              <Caret className="self-center" />
             )}
           </li>
         );
