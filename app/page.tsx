@@ -28,6 +28,9 @@ const BENEFITS = [
   },
 ];
 
+const FOOTER_LINK_CLASS =
+  "font-medium text-phosphor underline decoration-line-strong underline-offset-4 transition-colors hover:text-phosphor-bright";
+
 export default function Home() {
   const sections = sectionsWithItems();
   const total = sections.reduce(
@@ -69,17 +72,6 @@ export default function Home() {
                 Browse components
               </Button>
             </div>
-            <p className="font-mono font-semibold text-2xs text-phosphor-dim uppercase tracking-terminal-xl">
-              By{" "}
-              <a
-                className="text-phosphor underline decoration-line-strong underline-offset-4 transition-colors hover:text-phosphor-bright"
-                href="https://thebuilder.dk"
-                rel="noopener"
-                target="_blank"
-              >
-                thebuilder
-              </a>
-            </p>
             <ThemePhosphorSelector />
           </div>
 
@@ -167,7 +159,7 @@ export default function Home() {
             </h2>
             <Prose>
               The setup guide covers the full preset, individual components,
-              theming, and the Base UI details that differ from Radix.
+              theming, and troubleshooting.
             </Prose>
           </div>
           <Button
@@ -184,10 +176,30 @@ export default function Home() {
 
         <footer className="grid grid-cols-[minmax(0,1fr)] gap-4">
           <Separator />
-          <Prose>
-            Afterglow is built on Base UI and installed through shadcn
-            registries.
-          </Prose>
+          <p className="max-w-prose text-pretty text-muted-foreground text-sm">
+            Afterglow is built on{" "}
+            <a className={FOOTER_LINK_CLASS} href="https://base-ui.com">
+              Base UI
+            </a>{" "}
+            and installed through{" "}
+            <a
+              className={FOOTER_LINK_CLASS}
+              href="https://ui.shadcn.com/docs/registry"
+            >
+              shadcn registries
+            </a>
+            . Made by{" "}
+            <a className={FOOTER_LINK_CLASS} href="https://thebuilder.dk">
+              thebuilder
+            </a>
+            , with the{" "}
+            <a
+              className={FOOTER_LINK_CLASS}
+              href="https://github.com/thebuilder/afterglow"
+            >
+              source on GitHub.
+            </a>
+          </p>
         </footer>
       </main>
     </>
