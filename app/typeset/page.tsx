@@ -31,7 +31,7 @@ export default function TypesetPage() {
   return (
     <div className="min-h-svh">
       <SiteHeader />
-      <main className="mx-auto grid max-w-screen-2xl gap-10 px-4 pb-20 sm:px-6">
+      <main className="mx-auto grid max-w-screen-2xl grid-cols-[minmax(0,1fr)] gap-10 px-4 pb-20 sm:px-6">
         <header className="grid max-w-3xl gap-5 pt-10">
           <h1 className="text-balance font-extrabold text-5xl leading-none tracking-tight sm:text-6xl">
             Typeset

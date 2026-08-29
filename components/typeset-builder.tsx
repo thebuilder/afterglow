@@ -232,8 +232,8 @@ export function TypesetBuilder() {
   const reset = useCallback(() => setSettings(DEFAULTS), []);
 
   return (
-    <div className="grid min-h-0 gap-5 lg:grid-cols-[13rem_minmax(0,1fr)] xl:grid-cols-[13rem_minmax(0,1fr)_18rem]">
-      <Card className="self-start lg:sticky lg:top-20">
+    <div className="grid min-h-0 min-w-0 gap-5 lg:grid-cols-[13rem_minmax(0,1fr)] xl:grid-cols-[13rem_minmax(0,1fr)_18rem]">
+      <Card className="min-w-0 self-start lg:sticky lg:top-20">
         <CardHeader>
           <CardTitle>Typeset controls</CardTitle>
           <CardDescription>

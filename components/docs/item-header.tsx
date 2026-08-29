@@ -19,7 +19,7 @@ export function ItemHeader({
 
   return (
     <header className="grid grid-cols-[minmax(0,1fr)] gap-4 pt-10">
-      <div className="flex flex-wrap items-start justify-between gap-4">
+      <div className="grid grid-cols-[minmax(0,1fr)] items-start gap-4 sm:grid-cols-[minmax(0,1fr)_auto]">
         <h1 className="min-w-0 flex-1 text-balance font-extrabold text-5xl leading-none tracking-tight sm:text-6xl">
           {item.title}
         </h1>

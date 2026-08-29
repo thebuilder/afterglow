@@ -50,8 +50,8 @@ export default function Home() {
             <Connector />
             <p className="max-w-prose text-pretty text-foreground/85 text-lg">
               Installed through shadcn, Afterglow adds Base UI components,
-              terminal-specific building blocks, and eight phosphor color themes.
-              The source stays in your codebase.
+              terminal-specific building blocks, and eight phosphor color
+              themes. The source stays in your codebase.
             </p>
             <div className="flex flex-wrap gap-3 pt-2">
               <Button

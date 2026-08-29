@@ -1,18 +1,22 @@
 import type { MDXComponents } from "mdx/types";
+import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
-    a: ({ className, ...props }) => (
-      <a
-        className={cn(
-          "text-phosphor underline decoration-line-strong underline-offset-4 transition-colors hover:text-phosphor-bright focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-phosphor-bright",
-          className
-        )}
-        {...props}
-      />
-    ),
+    a: ({ className, href, ...props }) => {
+      const linkClassName = cn(
+        "text-phosphor underline decoration-line-strong underline-offset-4 transition-colors hover:text-phosphor-bright focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-phosphor-bright",
+        className
+      );
+
+      return href?.startsWith("/") || href?.startsWith("#") ? (
+        <Link className={linkClassName} href={href} {...props} />
+      ) : (
+        <a className={linkClassName} href={href} {...props} />
+      );
+    },
     blockquote: ({ className, ...props }) => (
       <blockquote
         className={cn(
