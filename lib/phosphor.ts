@@ -15,6 +15,7 @@ export const PHOSPHORS = [
     label: "Magenta",
     value: "magenta",
   },
+  { color: phosphorPresets.red.phosphor, label: "Red", value: "red" },
   { color: phosphorPresets.grey.phosphor, label: "Grey", value: "grey" },
 ] as const;
 

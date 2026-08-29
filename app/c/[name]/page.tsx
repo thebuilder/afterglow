@@ -25,13 +25,15 @@ interface Params {
 const BUNDLE = 12;
 
 export function generateStaticParams() {
-  return allItems().map((item) => ({ name: item.name }));
+  return allItems()
+    .filter((item) => item.name !== "theme")
+    .map((item) => ({ name: item.name }));
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { name } = await params;
   const item = findItem(name);
-  if (!item) {
+  if (!item || item.name === "theme") {
     return {};
   }
 
@@ -60,7 +62,7 @@ export default async function ItemPage({ params }: Params) {
   const { name } = await params;
   const item = findItem(name);
 
-  if (!item) {
+  if (!item || item.name === "theme") {
     notFound();
   }
 
@@ -69,7 +71,7 @@ export default async function ItemPage({ params }: Params) {
   const notes = doc ? reference(doc) : undefined;
   const bundled = (item.registryDependencies ?? []).length > BUNDLE;
 
-  const items = allItems();
+  const items = allItems().filter((entry) => entry.name !== "theme");
   const index = items.findIndex((entry) => entry.name === item.name);
 
   return (

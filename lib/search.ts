@@ -32,6 +32,10 @@ export function searchIndex(): SearchRecord[] {
 
   for (const section of sectionsWithItems()) {
     for (const item of section.items) {
+      if (item.name === "theme") {
+        continue;
+      }
+
       const url = `/c/${item.name}`;
       const doc = docFor(item.name);
 

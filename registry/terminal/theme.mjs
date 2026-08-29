@@ -30,6 +30,11 @@ export const phosphorPresets = {
     "phosphor-bright": "#ffe1bd",
     "phosphor-dim": "#d48950",
   },
+  red: {
+    phosphor: "#ff9a9a",
+    "phosphor-bright": "#ffe0e0",
+    "phosphor-dim": "#b86f6f",
+  },
   yellow: {
     phosphor: "#f4e66d",
     "phosphor-bright": "#fff9c2",

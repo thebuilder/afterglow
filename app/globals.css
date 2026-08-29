@@ -308,6 +308,12 @@
   --phosphor-dim: #d48950;
 }
 
+:root[data-phosphor="red"] {
+  --phosphor: #ff9a9a;
+  --phosphor-bright: #ffe0e0;
+  --phosphor-dim: #b86f6f;
+}
+
 :root[data-phosphor="yellow"] {
   --phosphor: #f4e66d;
   --phosphor-bright: #fff9c2;

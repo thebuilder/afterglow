@@ -23,7 +23,7 @@ export function GalleryCard({ item }: { item: RegistryItem }) {
           <h3 className="font-medium font-mono text-phosphor-bright text-sm transition-colors group-hover:text-phosphor">
             <Link
               className="rounded-none outline-none after:absolute after:inset-0 focus-visible:text-phosphor"
-              href={`/c/${item.name}`}
+              href={item.name === "theme" ? "/docs/theming" : `/c/${item.name}`}
             >
               {item.title}
             </Link>
