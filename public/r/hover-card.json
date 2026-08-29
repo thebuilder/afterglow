@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hover-card",
+  "title": "Hover Card",
+  "description": "A bordered preview panel for a link, with one phosphor edge and room for interactive content.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "@afterglow/theme"
+  ],
+  "files": [
+    {
+      "path": "registry/terminal/ui/hover-card.tsx",
+      "content": "\"use client\";\n\nimport { PreviewCard as HoverCardPrimitive } from \"@base-ui/react/preview-card\";\n\nimport { cn } from \"@/lib/utils\";\n\nfunction HoverCard({ ...props }: HoverCardPrimitive.Root.Props) {\n  return <HoverCardPrimitive.Root data-slot=\"hover-card\" {...props} />;\n}\n\nfunction HoverCardTrigger({ ...props }: HoverCardPrimitive.Trigger.Props) {\n  return (\n    <HoverCardPrimitive.Trigger data-slot=\"hover-card-trigger\" {...props} />\n  );\n}\n\nfunction HoverCardContent({\n  className,\n  side = \"bottom\",\n  sideOffset = 6,\n  align = \"center\",\n  alignOffset = 0,\n  ...props\n}: HoverCardPrimitive.Popup.Props &\n  Pick<\n    HoverCardPrimitive.Positioner.Props,\n    \"align\" | \"alignOffset\" | \"side\" | \"sideOffset\"\n  >) {\n  return (\n    <HoverCardPrimitive.Portal>\n      <HoverCardPrimitive.Positioner\n        align={align}\n        alignOffset={alignOffset}\n        className=\"isolate z-50\"\n        side={side}\n        sideOffset={sideOffset}\n      >\n        <HoverCardPrimitive.Popup\n          className={cn(\n            \"w-72 origin-(--transform-origin) border border-line-strong border-l-2 border-l-phosphor bg-popover p-4 font-mono text-popover-foreground text-sm shadow-panel outline-none data-closed:animate-close data-open:animate-open\",\n            className\n          )}\n          data-slot=\"hover-card-content\"\n          {...props}\n        />\n      </HoverCardPrimitive.Positioner>\n    </HoverCardPrimitive.Portal>\n  );\n}\n\nexport { HoverCard, HoverCardContent, HoverCardTrigger };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

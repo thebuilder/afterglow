@@ -20,6 +20,8 @@ export function ExampleStage({
     <div
       className={cn(
         "relative isolate flex items-center justify-center overflow-hidden border border-line bg-panel-sunken",
+        // Sonner renders in place, so its fixed toaster stays in this stacking context.
+        item === "toast" && "z-10",
         clipped && "pointer-events-none h-40 px-4 py-4",
         !clipped &&
           item === "operator-dashboard" &&

@@ -1,4 +1,6 @@
+import { CalendarSingleDate } from "@/components/examples/calendar-single-date";
 import { CheckboxDefault } from "@/components/examples/checkbox-default";
+import { DatePickerBasic } from "@/components/examples/date-picker-basic";
 import { InputOtpSixDigits } from "@/components/examples/input-otp-six-digits";
 import { RadioGroupDefault } from "@/components/examples/radio-group-default";
 import { SelectDefault } from "@/components/examples/select-default";
@@ -10,11 +12,26 @@ import { ToggleVariants } from "@/components/examples/toggle-variants";
 import type { ExampleMap } from "@/lib/example";
 
 export const formExamples: ExampleMap = {
+  calendar: [
+    {
+      component: CalendarSingleDate,
+      description: "A controlled calendar with one selected day.",
+      name: "Single date",
+    },
+  ],
   checkbox: [
     {
       component: CheckboxDefault,
       description: "A square that fills with phosphor when checked.",
       name: "Default",
+    },
+  ],
+  "date-picker": [
+    {
+      component: DatePickerBasic,
+      description:
+        "An installable composition of the calendar, popover and button. Choosing a day closes the panel and updates the trigger.",
+      name: "Basic",
     },
   ],
   "input-otp": [

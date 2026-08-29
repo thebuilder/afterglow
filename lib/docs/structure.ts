@@ -98,6 +98,78 @@ export const structureDocs: DocMap = {
     upstream: [baseUi("collapsible")],
   },
 
+  "context-menu": {
+    notes: [
+      "A label has to sit inside a `ContextMenuGroup`. Base UI checks that relationship when the menu opens.",
+    ],
+    parts: [
+      {
+        name: "ContextMenu",
+        parts: [
+          { name: "ContextMenuTrigger" },
+          {
+            name: "ContextMenuContent",
+            parts: [
+              {
+                name: "ContextMenuGroup",
+                parts: [
+                  {
+                    name: "ContextMenuLabel",
+                    props: [
+                      { default: "false", name: "inset", type: "boolean" },
+                    ],
+                  },
+                  {
+                    name: "ContextMenuItem",
+                    parts: [{ name: "ContextMenuShortcut" }],
+                    props: [
+                      { default: "false", name: "inset", type: "boolean" },
+                      {
+                        default: '"default"',
+                        name: "variant",
+                        type: '"default" | "destructive"',
+                      },
+                    ],
+                  },
+                ],
+              },
+              { name: "ContextMenuCheckboxItem" },
+              {
+                name: "ContextMenuRadioGroup",
+                parts: [{ name: "ContextMenuRadioItem" }],
+              },
+              { name: "ContextMenuSeparator" },
+              {
+                name: "ContextMenuSub",
+                parts: [
+                  {
+                    name: "ContextMenuSubTrigger",
+                    props: [
+                      { default: "false", name: "inset", type: "boolean" },
+                    ],
+                  },
+                  { name: "ContextMenuSubContent" },
+                ],
+              },
+            ],
+            props: [
+              ...placement("start", "right", 0),
+              { default: "4", name: "alignOffset", type: "number" },
+            ],
+            summary:
+              "The portal, positioner and popup open at the pointer. Base UI keeps the panel inside the viewport.",
+          },
+        ],
+      },
+      {
+        name: "ContextMenuPortal",
+        summary:
+          "Exposes Base UI's portal for custom compositions. The content wrappers create their own portals.",
+      },
+    ],
+    upstream: [baseUi("context-menu")],
+  },
+
   "dropdown-menu": {
     notes: [
       "A label has to sit inside a `DropdownMenuGroup`. Base UI throws when it does not, and the throw arrives the first time the menu opens, long after it compiled.",
@@ -162,6 +234,25 @@ export const structureDocs: DocMap = {
       },
     ],
     upstream: [baseUi("menu")],
+  },
+
+  "hover-card": {
+    parts: [
+      {
+        name: "HoverCard",
+        parts: [
+          { name: "HoverCardTrigger" },
+          {
+            name: "HoverCardContent",
+            props: [
+              ...placement("center", "bottom", 6),
+              { default: "0", name: "alignOffset", type: "number" },
+            ],
+          },
+        ],
+      },
+    ],
+    upstream: [baseUi("preview-card")],
   },
 
   pagination: {

@@ -235,6 +235,8 @@ const THEME = {
   "animate-beam": "terminal-beam 1s var(--ease-terminal) both",
 
   "animate-caret": "terminal-caret 1.1s steps(1) infinite",
+
+  "animate-chart-in": "terminal-chart-in 260ms steps(6, end) both",
   "animate-close": "terminal-close 120ms steps(3, end) forwards",
 
   "animate-fade-in": "terminal-fade-in 140ms ease-out",
@@ -266,6 +268,8 @@ const THEME = {
   "animate-slide-out-top":
     "terminal-slide-out-top 170ms var(--ease-terminal) forwards",
   "animate-sweep": "terminal-sweep 1.15s ease-in-out infinite",
+  "animate-toast-in": "terminal-toast-in 180ms steps(3, end) both",
+  "animate-toast-out": "terminal-toast-out 100ms steps(2, end) forwards",
   "animate-type": "terminal-type 560ms steps(24) both",
 
   "ease-terminal": "cubic-bezier(0.2, 0.7, 0.3, 1)",
@@ -314,6 +318,10 @@ const REDUCED_MOTION_SELECTOR = Object.keys(THEME)
 const CSS = {
   ...PHOSPHOR_PRESET_CSS,
   ':root[data-phosphor]:not([data-phosphor="green"])': PHOSPHOR_SEMANTIC_CSS,
+  ":where(a, button, input, textarea, select, summary, [tabindex]):focus-visible":
+    {
+      "outline-style": "solid",
+    },
 
   "@keyframes terminal-alarm": {
     "0%, 100%": {
@@ -347,6 +355,10 @@ const CSS = {
   },
 
   "@keyframes terminal-caret": { "50%": { opacity: "0" } },
+  "@keyframes terminal-chart-in": {
+    from: { "clip-path": "inset(0 100% 0 0)", opacity: "0.35" },
+    to: { "clip-path": "inset(0)", opacity: "1" },
+  },
   "@keyframes terminal-close": {
     to: { opacity: "0", transform: "scale(0.98)" },
   },
@@ -416,6 +428,21 @@ const CSS = {
     from: { transform: "translateX(-110%)" },
 
     to: { transform: "translateX(300%)" },
+  },
+
+  "@keyframes terminal-toast-in": {
+    "0%": { filter: "brightness(1)", opacity: "0", transform: "none" },
+    "34%": { filter: "brightness(1.9)", opacity: "1", transform: "none" },
+    "67%": {
+      filter: "brightness(1.25)",
+      opacity: "0.35",
+      transform: "none",
+    },
+    "100%": { filter: "brightness(1)", opacity: "1", transform: "none" },
+  },
+  "@keyframes terminal-toast-out": {
+    from: { transform: "none" },
+    to: { filter: "brightness(1.5)", opacity: "0", transform: "none" },
   },
 
   "@keyframes terminal-type": {

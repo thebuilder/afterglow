@@ -2,7 +2,9 @@ import { AccordionDefault } from "@/components/examples/accordion-default";
 import { AvatarDefault } from "@/components/examples/avatar-default";
 import { BreadcrumbDefault } from "@/components/examples/breadcrumb-default";
 import { CollapsibleDefault } from "@/components/examples/collapsible-default";
+import { ContextMenuSystem } from "@/components/examples/context-menu-system-menu";
 import { DropdownMenuDefault } from "@/components/examples/dropdown-menu-default";
+import { HoverCardRelay } from "@/components/examples/hover-card-relay";
 import { PaginationDefault } from "@/components/examples/pagination-default";
 import { PopoverDefault } from "@/components/examples/popover-default";
 import { ResizableDefault } from "@/components/examples/resizable-default";
@@ -41,10 +43,26 @@ export const structureExamples: ExampleMap = {
       name: "Default",
     },
   ],
+  "context-menu": [
+    {
+      component: ContextMenuSystem,
+      description:
+        "Right click with a pointer or long press on touch. The menu includes a submenu, persistent choices and a destructive action.",
+      name: "System menu",
+    },
+  ],
   "dropdown-menu": [
     {
       component: DropdownMenuDefault,
       name: "Default",
+    },
+  ],
+  "hover-card": [
+    {
+      component: HoverCardRelay,
+      description:
+        "A compact equipment preview that stays open while the pointer crosses from the link into the card.",
+      name: "Relay",
     },
   ],
   pagination: [

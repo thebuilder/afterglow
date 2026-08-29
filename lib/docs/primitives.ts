@@ -83,6 +83,39 @@ export const primitiveDocs: DocMap = {
     ],
   },
 
+  chart: {
+    notes: [
+      "Recharts still owns the plot. These parts connect it to Afterglow's colours, tooltip, legend and mount motion.",
+    ],
+    parts: [
+      {
+        name: "ChartContainer",
+        parts: [
+          { name: "ChartStyle" },
+          {
+            name: "ChartTooltip",
+            parts: [{ name: "ChartTooltipContent" }],
+          },
+          {
+            name: "ChartLegend",
+            parts: [{ name: "ChartLegendContent" }],
+          },
+        ],
+        props: [
+          { name: "config", type: "ChartConfig" },
+          {
+            default: "{ width: 320, height: 200 }",
+            name: "initialDimension",
+            type: "{ width: number; height: number }",
+          },
+        ],
+        summary:
+          "Provides the series config and a responsive container. The chart draws in with a short stepped reveal when it mounts.",
+      },
+    ],
+    upstream: [{ href: "https://recharts.org", label: "Recharts" }],
+  },
+
   dialog: {
     parts: [
       {

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "date-picker",
+  "title": "Date Picker",
+  "description": "A calendar, popover and button composed into an installable single-date picker.",
+  "dependencies": [
+    "date-fns",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@afterglow/button",
+    "@afterglow/calendar",
+    "@afterglow/popover"
+  ],
+  "files": [
+    {
+      "path": "registry/terminal/blocks/date-picker.tsx",
+      "content": "\"use client\";\n\nimport { format } from \"date-fns\";\nimport { CalendarDaysIcon } from \"lucide-react\";\nimport { useCallback, useState } from \"react\";\n\nimport { Button } from \"@/registry/terminal/ui/button\";\nimport { Calendar } from \"@/registry/terminal/ui/calendar\";\nimport {\n  Popover,\n  PopoverContent,\n  PopoverTrigger,\n} from \"@/registry/terminal/ui/popover\";\n\nconst START_MONTH = new Date(1900, 0);\nconst END_MONTH = new Date(2100, 11);\n\nfunction DatePicker() {\n  const [date, setDate] = useState<Date>();\n  const [open, setOpen] = useState(false);\n\n  const selectDate = useCallback((nextDate: Date | undefined) => {\n    setDate(nextDate);\n    setOpen(false);\n  }, []);\n\n  return (\n    <Popover onOpenChange={setOpen} open={open}>\n      <PopoverTrigger\n        render={\n          <Button\n            className=\"w-64 justify-start data-[empty=true]:text-muted-foreground\"\n            data-empty={!date}\n            variant=\"outline\"\n          />\n        }\n      >\n        <CalendarDaysIcon />\n        {date ? format(date, \"PPP\") : \"Pick a date\"}\n      </PopoverTrigger>\n      <PopoverContent align=\"start\" className=\"w-auto p-0\">\n        <Calendar\n          autoFocus\n          captionLayout=\"dropdown\"\n          endMonth={END_MONTH}\n          mode=\"single\"\n          onSelect={selectDate}\n          selected={date}\n          startMonth={START_MONTH}\n        />\n      </PopoverContent>\n    </Popover>\n  );\n}\n\nexport { DatePicker };\n",
+      "type": "registry:component",
+      "target": "components/date-picker.tsx"
+    }
+  ],
+  "categories": [
+    "forms"
+  ],
+  "type": "registry:block"
+}

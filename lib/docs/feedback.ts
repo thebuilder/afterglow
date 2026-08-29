@@ -143,7 +143,7 @@ export const feedbackDocs: DocMap = {
       {
         name: "Toaster",
         summary:
-          "Mount once, near the root. Without it `toast` is called and nothing appears.",
+          "Mount once near the root. Each tone sets its own border, tint and icon, then blinks into place without sliding.",
       },
       {
         name: "toast",
