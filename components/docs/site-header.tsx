@@ -25,6 +25,7 @@ export function SiteHeader({
             label: "Components",
             prefixes: ["/components", "/c/"],
           },
+          { href: "/typeset", label: "Typeset", prefixes: ["/typeset"] },
         ]}
       />
       <div className="ml-auto flex min-w-0 items-center gap-4">
