@@ -10,3 +10,7 @@
   top: var(--site-header-height);
   height: calc(100svh - var(--site-header-height));
 }
+
+.list-square {
+  list-style-type: square;
+}
