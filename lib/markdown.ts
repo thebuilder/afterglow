@@ -8,6 +8,8 @@ import {
 } from "@/lib/doc";
 import { docFor } from "@/lib/docs";
 import { examplesFor } from "@/lib/examples";
+import { guideMarkdown } from "@/lib/guide-source";
+import { allGuides, guideMarkdownUrl } from "@/lib/guides";
 import {
   allItems,
   HOMEPAGE,
@@ -161,6 +163,13 @@ export function llmsIndex(): string {
     "",
     `Everything below, in one file: ${HOMEPAGE}/llms-full.txt`,
     "",
+    "## Guides",
+    "",
+    ...allGuides().map(
+      (guide) =>
+        `- [${guide.title}](${guideMarkdownUrl(guide)}): ${guide.description}`
+    ),
+    "",
     ...sectionsWithItems().flatMap((section) => [
       `## ${section.title}`,
       "",
@@ -176,8 +185,10 @@ export function llmsIndex(): string {
 }
 
 export function llmsFull(): string {
-  return `${allItems()
-    .map((item) => itemToMarkdown(item))
+  return `${[
+    ...allGuides().map((guide) => guideMarkdown(guide)),
+    ...allItems().map((item) => itemToMarkdown(item)),
+  ]
     .join("\n---\n\n")
     .trimEnd()}\n`;
 }

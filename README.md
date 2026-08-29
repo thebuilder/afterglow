@@ -56,16 +56,18 @@ The theme defines the variables used by stock shadcn components. Install one
 from `ui.shadcn.com` and it inherits Afterglow's square corners and phosphor
 palette.
 
-Every item has a page at `/c/<name>` with a live example, install commands,
-exports, composition, Afterglow-specific props and full source. The index is a
-gallery of all 51 items. Press `⌘K` from either view to search the docs.
+The authored guides start at `/docs`. Every registry item has a page at
+`/c/<name>` with a live example, install commands, exports, composition,
+Afterglow-specific props and full source. `/components` is the complete gallery.
+Press `⌘K` from any view to search the guides and component reference.
 
 ## For agents
 
 | | |
 | --- | --- |
 | `/llms.txt` | The annotated index. Start here. |
-| `/llms-full.txt` | Every page in one file, without the component sources. |
+| `/llms-full.txt` | Every guide and component page in one file, without the component sources. |
+| `/docs.md` | The getting-started guide. Other guides use `/docs/<name>.md`. |
 | `/c/<name>.md` | One page, with the source the CLI would install. |
 | `/r/<name>.json` | The registry item itself, file contents included. |
 

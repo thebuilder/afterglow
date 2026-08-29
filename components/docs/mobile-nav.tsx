@@ -20,7 +20,7 @@ export function MobileNav({ sections }: { sections: NavSection[] }) {
   return (
     <Sheet onOpenChange={setOpen} open={open}>
       <SheetTrigger
-        aria-label="Open the registry index"
+        aria-label="Open the documentation index"
         className="grid size-9 shrink-0 place-items-center border border-line text-phosphor-dim outline-none transition-colors hover:border-line-strong hover:text-phosphor-bright focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-phosphor-bright lg:hidden"
       >
         <MenuIcon className="size-4" />
@@ -30,10 +30,10 @@ export function MobileNav({ sections }: { sections: NavSection[] }) {
         side="left"
       >
         <SheetTitle className="px-6 font-bold font-mono text-2xs text-phosphor uppercase tracking-terminal-3xl">
-          Registry
+          Documentation
         </SheetTitle>
         <SheetDescription className="sr-only">
-          Every item in the afterglow registry, grouped by kind.
+          Guides and registry items, grouped by kind.
         </SheetDescription>
         <NavTree className="px-3" onNavigate={close} sections={sections} />
       </SheetContent>

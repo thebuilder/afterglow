@@ -11,7 +11,7 @@ export interface RegistryItem {
 }
 
 export const HOMEPAGE = registry.homepage;
-export const REGISTRY_NAME = registry.name;
+const REGISTRY_NAME = registry.name;
 
 const NAMESPACE = `@${REGISTRY_NAME}/`;
 

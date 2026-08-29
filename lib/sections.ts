@@ -1,3 +1,4 @@
+import { allGuides } from "@/lib/guides";
 import { itemsOfType, type RegistryItem } from "@/lib/registry";
 
 export interface Section {
@@ -49,7 +50,7 @@ export function sectionsWithItems(): SectionWithItems[] {
 }
 
 export interface NavItem {
-  name: string;
+  href: string;
   title: string;
 }
 
@@ -60,14 +61,29 @@ export interface NavSection {
 }
 
 export function navSections(): NavSection[] {
-  return sectionsWithItems().map(({ id, title, items }) => ({
-    id,
-    items: items.map((item) => ({ name: item.name, title: item.title })),
-    title,
-  }));
+  return [
+    {
+      id: "start",
+      items: [
+        { href: "/components", title: "Components" },
+        ...allGuides().map((guide) => ({
+          href: guide.href,
+          title: guide.navTitle,
+        })),
+      ],
+      title: "Start",
+    },
+    ...sectionsWithItems().map(({ id, title, items }) => ({
+      id,
+      items: items.map((item) => ({
+        href: `/c/${item.name}`,
+        title: item.title,
+      })),
+      title,
+    })),
+  ];
 }
 
 export function docsEntry(): string {
-  const [first] = itemsOfType(...SECTIONS[0].types);
-  return `/c/${first.name}`;
+  return "/docs";
 }

@@ -592,7 +592,7 @@
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
-      "description": "Six variants and five sizes in uppercase mono. Use `signal` for the primary action.",
+      "description": "Seven variants and five sizes in uppercase mono. `primary` is filled phosphor; `signal` marks urgent states.",
       "dependencies": [
         "@base-ui/react",
         "class-variance-authority"
