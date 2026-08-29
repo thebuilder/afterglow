@@ -5,11 +5,11 @@ import { Badge } from "@/registry/terminal/ui/badge";
 import { Button } from "@/registry/terminal/ui/button";
 import { Checkbox } from "@/registry/terminal/ui/checkbox";
 import { Input } from "@/registry/terminal/ui/input";
-import { Kbd } from "@/registry/terminal/ui/kbd";
 import { Label } from "@/registry/terminal/ui/label";
 import { Progress } from "@/registry/terminal/ui/progress";
 import { Spinner } from "@/registry/terminal/ui/spinner";
 import { Switch } from "@/registry/terminal/ui/switch";
+import { Toggle } from "@/registry/terminal/ui/toggle";
 
 export function TerminalTheSystemAtAGlance() {
   return (
@@ -38,10 +38,9 @@ export function TerminalTheSystemAtAGlance() {
           <Switch defaultChecked id="ex-sys-sw" size="sm" />
           <Label htmlFor="ex-sys-sw">Beacon</Label>
         </span>
-        <span className="flex items-center gap-1.5">
-          <Kbd glyph>⌘</Kbd>
-          <Kbd>K</Kbd>
-        </span>
+        <Toggle defaultPressed size="sm" variant="outline">
+          Trace
+        </Toggle>
       </div>
 
       <Label className="sr-only" htmlFor="system-address">
