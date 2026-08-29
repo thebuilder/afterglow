@@ -6,7 +6,6 @@ import { SiteHeader } from "@/components/docs/site-header";
 import { TerminalTheSystemAtAGlance } from "@/components/examples/terminal-the-system-at-a-glance";
 import { sectionsWithItems } from "@/lib/sections";
 import { Connector } from "@/registry/terminal/components/connector";
-import { Led } from "@/registry/terminal/components/led";
 import { Button } from "@/registry/terminal/ui/button";
 import { Separator } from "@/registry/terminal/ui/separator";
 
@@ -37,14 +36,7 @@ export default function Home() {
 
   return (
     <>
-      <SiteHeader
-        after={
-          <span className="hidden items-center gap-2 whitespace-nowrap font-mono text-4xs text-muted-foreground uppercase tracking-terminal md:flex">
-            <Led />
-            Registry online
-          </span>
-        }
-      />
+      <SiteHeader />
       <main className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)] gap-24 px-6 pb-24">
         <section className="grid items-center gap-12 pt-12 lg:grid-cols-5 lg:pt-20">
           <div className="grid grid-cols-[minmax(0,1fr)] gap-6 lg:col-span-3">
