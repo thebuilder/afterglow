@@ -164,12 +164,43 @@ function TypesetSpecimen() {
           </tr>
         </tbody>
       </table>
-      <hr />
       <h4>Apply it anywhere</h4>
       <p>
         The four variables inherit, so a page can set one rhythm while a nested
         chat transcript uses another.
       </p>
+      <h2>Operational notes</h2>
+      <p>
+        A typeset can sit inside a narrow activity feed or fill a documentation
+        column. The surrounding layout controls the available width, while the
+        measure keeps long lines readable.
+      </p>
+      <ol>
+        <li>Install the theme once through the Afterglow registry.</li>
+        <li>Wrap rendered content with the typeset class.</li>
+        <li>Override only the rhythm variables that the context needs.</li>
+      </ol>
+      <h3>Inherited settings</h3>
+      <p>
+        Set variables on a parent when several content regions should share the
+        same rhythm. A nested region can still override one value without
+        repeating the others.
+      </p>
+      <dl>
+        <dt>Measure</dt>
+        <dd>The longest allowed line before text wraps.</dd>
+        <dt>Leading</dt>
+        <dd>The distance between baselines within a text block.</dd>
+        <dt>Flow</dt>
+        <dd>The vertical distance between separate content blocks.</dd>
+      </dl>
+      <details>
+        <summary>Why use inherited variables?</summary>
+        <p>
+          They let the same rendered markup adapt to a page, panel, or message
+          without adding classes to every child element.
+        </p>
+      </details>
     </>
   );
 }

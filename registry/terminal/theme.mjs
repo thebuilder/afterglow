@@ -387,6 +387,17 @@ const CSS = {
         "margin-block-start": "0.75em",
         "text-align": "start",
       },
+      "& :where(dd)": {
+        color: "var(--muted-foreground)",
+        "margin-block-start": "0.25em",
+        "margin-inline-start": "1em",
+      },
+      "& :where(dt)": {
+        color: "var(--phosphor-bright)",
+        "font-family": "var(--font-mono)",
+        "font-weight": "600",
+        "margin-block-start": "0.75em",
+      },
       "& :where(h1, h2, h3, h4, h5, h6)": {
         color: "var(--phosphor-bright)",
         "font-family": "var(--font-heading)",
@@ -396,7 +407,7 @@ const CSS = {
         "margin-block-start": "calc(var(--typeset-flow) * 1.4)",
       },
       "& :where(h1, h2, h3, h4, h5, h6) + *": {
-        "margin-block-start": "0.75em",
+        "margin-block-start": "0.5em",
       },
       "& :where(h1)": { "font-size": "2em" },
       "& :where(h2)": { "font-size": "1.5em" },
@@ -456,6 +467,13 @@ const CSS = {
         color: "var(--phosphor-bright)",
         "font-weight": "600",
       },
+      "& :where(summary)": {
+        color: "var(--phosphor-bright)",
+        cursor: "pointer",
+        "font-family": "var(--font-mono)",
+        "font-weight": "600",
+      },
+      "& :where(summary)::marker": { color: "var(--phosphor)" },
       "& :where(table)": {
         "border-block-end": "1px solid var(--line)",
         "border-collapse": "collapse",
