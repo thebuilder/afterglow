@@ -9,6 +9,7 @@ export const PHOSPHORS = [
   },
   { color: phosphorPresets.yellow.phosphor, label: "Yellow", value: "yellow" },
   { color: phosphorPresets.cyan.phosphor, label: "Cyan", value: "cyan" },
+  { color: phosphorPresets.blue.phosphor, label: "Blue", value: "blue" },
   {
     color: phosphorPresets.magenta.phosphor,
     label: "Magenta",

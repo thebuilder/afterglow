@@ -277,6 +277,11 @@
     }
   },
   "css": {
+    ":root[data-phosphor=\"blue\"]": {
+      "--phosphor": "#78a9ff",
+      "--phosphor-bright": "#d7e5ff",
+      "--phosphor-dim": "#587db8"
+    },
     ":root[data-phosphor=\"cyan\"]": {
       "--phosphor": "#67e8f9",
       "--phosphor-bright": "#cffafe",

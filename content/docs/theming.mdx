@@ -31,7 +31,7 @@ Set `data-phosphor` on the root element to change the screen colour:
 <html data-phosphor="orange">
 ```
 
-The theme includes `green`, `orange`, `yellow`, `cyan`, `magenta`, and `grey`. Green is the default. Each preset remaps the phosphor ramp, panels, borders, focus rings, and semantic controls. Signal and status colours keep their existing meanings.
+The theme includes `green`, `orange`, `yellow`, `cyan`, `blue`, `magenta`, and `grey`. Green is the default. Each preset remaps the phosphor ramp, panels, borders, focus rings, and semantic controls. Signal and status colours keep their existing meanings.
 
 Afterglow only reads the attribute. Use any state library to manage it. The documentation site uses `next-themes` to apply the attribute before paint and store the selection:
 
@@ -44,7 +44,7 @@ import { ThemeProvider } from "next-themes";
   enableColorScheme={false}
   enableSystem={false}
   storageKey="afterglow-phosphor"
-  themes={["green", "orange", "yellow", "cyan", "magenta", "grey"]}
+  themes={["green", "orange", "yellow", "cyan", "blue", "magenta", "grey"]}
 >
   {children}
 </ThemeProvider>

@@ -1,5 +1,10 @@
 // Source for the generated globals and the theme entry in registry.json.
 export const phosphorPresets = {
+  blue: {
+    phosphor: "#78a9ff",
+    "phosphor-bright": "#d7e5ff",
+    "phosphor-dim": "#587db8",
+  },
   cyan: {
     phosphor: "#67e8f9",
     "phosphor-bright": "#cffafe",
