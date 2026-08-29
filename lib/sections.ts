@@ -65,11 +65,11 @@ export function navSections(): NavSection[] {
     {
       id: "start",
       items: [
-        { href: "/components", title: "Components" },
         ...allGuides().map((guide) => ({
           href: guide.href,
           title: guide.navTitle,
         })),
+        { href: "/components", title: "Components" },
       ],
       title: "Start",
     },
