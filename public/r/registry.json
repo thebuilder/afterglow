@@ -472,6 +472,14 @@
           "background-image": "repeating-linear-gradient(to bottom, transparent 0 3px, rgb(0 0 0 / 0.09) 3px 4px)",
           "mix-blend-mode": "multiply"
         },
+        "@utility terminal-caret": {
+          "background-color": "currentColor",
+          "display": "inline-block",
+          "flex-shrink": "0",
+          "height": "1em",
+          "vertical-align": "-0.125em",
+          "width": "0.5em"
+        },
         "@utility vignette": {
           "background-image": "radial-gradient(130% 100% at 50% 50%, transparent 52%, rgb(0 0 0 / 0.55) 100%)"
         }
@@ -1175,11 +1183,26 @@
       "title": "Boot Log",
       "description": "A self test that prints itself line by line, at its final height from the first frame.",
       "registryDependencies": [
-        "@afterglow/theme"
+        "@afterglow/caret"
       ],
       "files": [
         {
           "path": "registry/terminal/components/boot-log.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "caret",
+      "type": "registry:component",
+      "title": "Caret",
+      "description": "A blinking block that follows the surrounding font size.",
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/components/caret.tsx",
           "type": "registry:component"
         }
       ]
@@ -1205,7 +1228,7 @@
       "title": "Eyebrow",
       "description": "The tracked-out line above a heading, with an optional block caret.",
       "registryDependencies": [
-        "@afterglow/theme"
+        "@afterglow/caret"
       ],
       "files": [
         {
@@ -1235,7 +1258,7 @@
       "title": "Prompt",
       "description": "A shell line. Sigil, field and caret share one row with no border between them.",
       "registryDependencies": [
-        "@afterglow/theme"
+        "@afterglow/caret"
       ],
       "files": [
         {

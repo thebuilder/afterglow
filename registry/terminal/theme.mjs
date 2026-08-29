@@ -346,6 +346,14 @@ const CSS = {
       "repeating-linear-gradient(to bottom, transparent 0 3px, rgb(0 0 0 / 0.09) 3px 4px)",
     "mix-blend-mode": "multiply",
   },
+  "@utility terminal-caret": {
+    "background-color": "currentColor",
+    display: "inline-block",
+    "flex-shrink": "0",
+    height: "1em",
+    "vertical-align": "-0.125em",
+    width: "0.5em",
+  },
   "@utility vignette": {
     "background-image":
       "radial-gradient(130% 100% at 50% 50%, transparent 52%, rgb(0 0 0 / 0.55) 100%)",

@@ -489,6 +489,15 @@
   mix-blend-mode: multiply;
 }
 
+@utility terminal-caret {
+  background-color: currentColor;
+  display: inline-block;
+  flex-shrink: 0;
+  height: 1em;
+  vertical-align: -0.125em;
+  width: 0.5em;
+}
+
 @utility vignette {
   background-image: radial-gradient(130% 100% at 50% 50%, transparent 52%, rgb(0 0 0 / 0.55) 100%);
 }

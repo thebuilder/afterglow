@@ -1,5 +1,6 @@
 import { AlarmButtonDefault } from "@/components/examples/alarm-button-default";
 import { BootLogDefault } from "@/components/examples/boot-log-default";
+import { CaretSizes } from "@/components/examples/caret-sizes";
 import { ConnectorBothDirections } from "@/components/examples/connector-both-directions";
 import { EyebrowWithAndWithoutACaret } from "@/components/examples/eyebrow-with-and-without-a-caret";
 import { LedTones } from "@/components/examples/led-tones";
@@ -31,6 +32,14 @@ export const terminalExamples: ExampleMap = {
       description:
         "Every line is in the DOM from the first frame and the unprinted ones are merely invisible, so the block is its final height before anything animates.",
       name: "Default",
+    },
+  ],
+  caret: [
+    {
+      component: CaretSizes,
+      description:
+        "The block uses em dimensions, so it follows the surrounding font size.",
+      name: "Sizes",
     },
   ],
   connector: [

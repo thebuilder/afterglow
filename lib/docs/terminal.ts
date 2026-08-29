@@ -32,6 +32,17 @@ export const terminalDocs: DocMap = {
     ],
   },
 
+  caret: {
+    parts: [
+      {
+        name: "Caret",
+        props: [{ default: "true", name: "blink", type: "boolean" }],
+        summary:
+          "Its em dimensions follow the surrounding font size. Set `blink` to `false` to hold it on.",
+      },
+    ],
+  },
+
   connector: {
     parts: [
       {

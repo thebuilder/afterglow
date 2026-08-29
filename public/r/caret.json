@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "caret",
+  "title": "Caret",
+  "description": "A blinking block that follows the surrounding font size.",
+  "registryDependencies": [
+    "@afterglow/theme"
+  ],
+  "files": [
+    {
+      "path": "registry/terminal/components/caret.tsx",
+      "content": "import type * as React from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nfunction Caret({\n  blink = true,\n  className,\n  ...props\n}: React.ComponentProps<\"span\"> & { blink?: boolean }) {\n  return (\n    <span\n      aria-hidden=\"true\"\n      className={cn(\n        \"terminal-caret text-phosphor\",\n        blink && \"animate-caret\",\n        className\n      )}\n      data-slot=\"caret\"\n      {...props}\n    />\n  );\n}\n\nexport { Caret };\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:component"
+}
