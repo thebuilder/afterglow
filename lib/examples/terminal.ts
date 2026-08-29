@@ -13,6 +13,7 @@ import { TerminalWindowMacos } from "@/components/examples/terminal-window-macos
 import { TerminalWindowTerminal } from "@/components/examples/terminal-window-terminal";
 import { TerminalWindowWindows } from "@/components/examples/terminal-window-windows";
 import { ThemePalette } from "@/components/examples/theme-palette";
+import { ThemeScreenColors } from "@/components/examples/theme-screen-colors";
 
 import type { ExampleMap } from "@/lib/example";
 
@@ -123,6 +124,12 @@ export const terminalExamples: ExampleMap = {
       description:
         "Dark theme only. `:root` and `.dark` use identical token values.",
       name: "Palette",
+    },
+    {
+      component: ThemeScreenColors,
+      description:
+        "The docs selector remaps its phosphor variables for a live preview. The installed theme stays green until you edit those variables.",
+      name: "Screen colors",
     },
   ],
 };

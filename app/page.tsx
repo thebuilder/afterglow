@@ -4,6 +4,7 @@ import { CopyCommand } from "@/components/copy-command";
 import { Prose } from "@/components/docs/prose";
 import { SiteHeader } from "@/components/docs/site-header";
 import { ExampleStage } from "@/components/example-stage";
+import { ThemeScreenColors } from "@/components/examples/theme-screen-colors";
 import { examplesFor } from "@/lib/examples";
 import { HOMEPAGE, REGISTRY_NAME, type RegistryItem } from "@/lib/registry";
 import { sectionsWithItems } from "@/lib/sections";
@@ -91,6 +92,8 @@ export default function Home() {
               thebuilder
             </a>
           </p>
+
+          <ThemeScreenColors />
 
           <div className="grid max-w-2xl grid-cols-[minmax(0,1fr)] gap-3 pt-4">
             <CopyCommand

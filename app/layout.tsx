@@ -5,6 +5,7 @@ import { HOMEPAGE } from "@/lib/registry";
 import { Scanlines } from "@/registry/terminal/components/scanlines";
 
 import "./globals.css";
+import "./site-palette.css";
 
 const DESCRIPTION =
   "Old-school terminal UI for shadcn. Phosphor green, pink signals, hairline borders and square corners. Install the registry or add components one at a time.";
