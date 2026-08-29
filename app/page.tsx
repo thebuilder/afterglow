@@ -42,13 +42,13 @@ export default function Home() {
         <section className="grid items-center gap-12 pt-12 lg:grid-cols-5 lg:pt-20">
           <div className="grid grid-cols-[minmax(0,1fr)] gap-6 lg:col-span-3">
             <h1 className="text-balance font-extrabold text-5xl leading-none tracking-tight sm:text-6xl lg:text-7xl">
-              A complete terminal interface for shadcn
+              A complete terminal UI for the modern web
             </h1>
             <Connector />
             <p className="max-w-prose text-pretty text-foreground/85 text-lg">
-              Afterglow installs one dark theme, Base UI components, and
-              terminal-specific building blocks into your project. The source
-              stays in your codebase.
+              Installed through shadcn, Afterglow adds one dark theme, Base UI
+              components, and terminal-specific building blocks to your project.
+              The source stays in your codebase.
             </p>
             <div className="flex flex-wrap gap-3 pt-2">
               <Button
