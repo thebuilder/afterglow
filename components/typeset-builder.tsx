@@ -169,6 +169,7 @@ function TypesetSpecimen() {
         The four variables inherit, so a page can set one rhythm while a nested
         chat transcript uses another.
       </p>
+      <hr />
       <h2>Operational notes</h2>
       <p>
         A typeset can sit inside a narrow activity feed or fill a documentation
