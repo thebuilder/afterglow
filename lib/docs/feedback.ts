@@ -135,7 +135,16 @@ export const feedbackDocs: DocMap = {
   },
 
   spinner: {
-    parts: [{ name: "Spinner" }],
+    parts: [
+      {
+        name: "Spinner",
+        props: [
+          { default: '"pixel"', name: "variant", type: '"pixel" | "line"' },
+        ],
+        summary:
+          "`pixel` runs a lit cell around a 3x3 grid and sizes with the box. `line` cycles the four teletype glyphs and sizes with the text, so it sits on a line of output at whatever size that line is set in.",
+      },
+    ],
   },
 
   toast: {

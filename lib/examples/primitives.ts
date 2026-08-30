@@ -14,6 +14,7 @@ import { InputStates } from "@/components/examples/input-states";
 import { KbdLettersAndSymbols } from "@/components/examples/kbd-letters-and-symbols";
 import { LabelDefault } from "@/components/examples/label-default";
 import { ProgressDeterminateAndIndeterminate } from "@/components/examples/progress-determinate-and-indeterminate";
+import { ProgressSegmented } from "@/components/examples/progress-segmented";
 import { SeparatorBothOrientations } from "@/components/examples/separator-both-orientations";
 import { TableManifest } from "@/components/examples/table-manifest";
 import { TableStickyHeader } from "@/components/examples/table-sticky-header";
@@ -126,6 +127,12 @@ export const primitiveExamples: ExampleMap = {
       description:
         "`indeterminate` sweeps a segment and lets it leave at the far edge. That is the honest shape for a wait of unknown length. A bar creeping to ninety percent and stopping there is telling a lie.",
       name: "Determinate and indeterminate",
+    },
+    {
+      component: ProgressSegmented,
+      description:
+        "`cells` cuts the fill into blocks, which is how a front panel meter reads a number you are meant to glance at rather than read. The blocks are a mask over the same bar, so the sweep still runs underneath them.",
+      name: "Segmented",
     },
   ],
   separator: [

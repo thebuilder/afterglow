@@ -4,6 +4,7 @@ import { CommandPalette } from "@/components/examples/command-palette";
 import { EmptyDefault } from "@/components/examples/empty-default";
 import { SkeletonRows } from "@/components/examples/skeleton-rows";
 import { SpinnerSizes } from "@/components/examples/spinner-sizes";
+import { SpinnerVariants } from "@/components/examples/spinner-variants";
 import { ToastTones } from "@/components/examples/toast-tones";
 
 import type { ExampleMap } from "@/lib/example";
@@ -54,6 +55,12 @@ export const feedbackExamples: ExampleMap = {
       description:
         "A lit pixel travels through a 3x3 grid with a four-level trail behind it.",
       name: "Sizes",
+    },
+    {
+      component: SpinnerVariants,
+      description:
+        "`line` is the glyph a terminal has always spun while it waits. It follows the font rather than a box, so it can sit inside a line of output without being measured against it.",
+      name: "Variants",
     },
   ],
   toast: [
