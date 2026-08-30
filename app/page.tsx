@@ -3,29 +3,33 @@ import Link from "next/link";
 
 import { Prose } from "@/components/docs/prose";
 import { SiteHeader } from "@/components/docs/site-header";
+import { GalleryCard } from "@/components/gallery-card";
 import { Hero } from "@/components/hero/hero";
 import { PHOSPHORS } from "@/lib/phosphor";
-import { sectionsWithItems } from "@/lib/sections";
+import { findItem } from "@/lib/registry";
+import { itemCount, sectionsWithItems } from "@/lib/sections";
 import { Button } from "@/registry/terminal/ui/button";
 import { Separator } from "@/registry/terminal/ui/separator";
 
-const BENEFITS = [
-  {
-    description:
-      "Green, orange, yellow, cyan, blue, magenta, red and grey. The rest of the palette derives from the phosphor, and the alert colors shift to stay legible against it.",
-    title: "Eight phosphor themes",
-  },
-  {
-    description:
-      "Familiar shadcn composition, built on Base UI. The install writes the source into your project, so a component is a file you edit rather than a package you patch around.",
-    title: "Components you own",
-  },
-  {
-    description:
-      "Screens, scanlines, status lights, prompts, boot logs and window chrome. A general-purpose registry has no reason to ship any of them.",
-    title: "Terminal-specific parts",
-  },
+// Hand-picked to span the system: window chrome, a shell you can type in,
+// data, an overlay and a terminal-specific part. Each card runs that item's
+// own first example, so the page cannot drift from the registry.
+const SAMPLER = [
+  "terminal-window",
+  "calendar",
+  "chart",
+  "command",
+  "table",
+  "alarm-button",
 ];
+
+const SAMPLER_ITEMS = SAMPLER.map((name) => {
+  const item = findItem(name);
+  if (!item) {
+    throw new Error(`Sampler item '${name}' is not in the registry.`);
+  }
+  return item;
+});
 
 const FOOTER_LINK_CLASS =
   "font-medium text-phosphor underline decoration-line-strong underline-offset-4 transition-colors hover:text-phosphor-bright";
@@ -43,35 +47,10 @@ export default function Home() {
       <main className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)] gap-24 px-6 pb-24">
         <Hero items={total} phosphors={PHOSPHORS.length} />
 
-        <section className="grid grid-cols-[minmax(0,1fr)] gap-8">
-          <div className="grid max-w-3xl grid-cols-[minmax(0,1fr)] gap-4">
-            <h2 className="text-balance font-medium font-mono text-3xl text-phosphor-bright">
-              {total} registry items, one terminal system
-            </h2>
-            <Prose>
-              Install the complete preset or let registry dependencies pull in
-              only what each component needs.
-            </Prose>
-          </div>
-          <ul className="grid grid-cols-[minmax(0,1fr)] gap-y-8 border-line border-t pt-7 md:grid-cols-3 md:gap-y-0 md:border-t-0 md:pt-0">
-            {BENEFITS.map((benefit, index) => (
-              <li
-                className="grid grid-cols-[minmax(0,1fr)] content-start gap-3 border-line md:border-t md:border-l md:px-6 md:pt-8 md:first:border-l-0 md:first:pl-0 md:last:pr-0"
-                key={benefit.title}
-              >
-                <span
-                  aria-hidden="true"
-                  className="font-mono text-3xs text-phosphor-dim tabular-nums tracking-terminal"
-                >
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <h3 className="font-medium font-mono text-lg text-phosphor-bright">
-                  {benefit.title}
-                </h3>
-                <Prose>{benefit.description}</Prose>
-              </li>
-            ))}
-          </ul>
+        <section className="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+          {SAMPLER_ITEMS.map((item) => (
+            <GalleryCard item={item} key={item.name} />
+          ))}
         </section>
 
         <section className="grid grid-cols-[minmax(0,1fr)] gap-8">
@@ -95,10 +74,10 @@ export default function Home() {
             </Button>
           </div>
 
-          <div className="-mx-4 grid border-line border-t">
+          <div className="-mx-6 grid border-line border-t">
             {sections.map((section) => (
               <Link
-                className="group grid gap-2 border-line border-b px-4 py-5 outline-none transition-colors hover:bg-accent/30 focus-visible:bg-accent/30 active:bg-accent/40 sm:grid-cols-4 sm:items-baseline"
+                className="group grid gap-2 border-line border-b px-6 py-5 outline-none transition-colors hover:bg-accent/30 focus-visible:bg-accent/30 active:bg-accent/40 sm:grid-cols-4 sm:items-baseline"
                 href={`/components#${section.id}`}
                 key={section.id}
               >
@@ -107,7 +86,7 @@ export default function Home() {
                   <ChevronRightIcon className="size-4 shrink-0 text-phosphor-dim transition-transform group-hover:translate-x-0.5" />
                 </span>
                 <span className="font-mono text-3xs text-phosphor-dim tabular-nums uppercase tracking-terminal sm:col-start-2">
-                  {section.items.length} items
+                  {itemCount(section.items.length)}
                 </span>
                 <span className="max-w-prose text-pretty text-muted-foreground text-sm sm:col-span-2">
                   {section.blurb}

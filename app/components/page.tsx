@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Prose } from "@/components/docs/prose";
 import { GalleryCard } from "@/components/gallery-card";
 import { HOMEPAGE } from "@/lib/registry";
-import { sectionsWithItems } from "@/lib/sections";
+import { itemCount, sectionsWithItems } from "@/lib/sections";
 import { Connector } from "@/registry/terminal/components/connector";
 import { Separator } from "@/registry/terminal/ui/separator";
 
@@ -56,7 +56,7 @@ export default function ComponentsPage() {
                 {section.title}
               </h2>
               <span className="font-mono text-3xs text-phosphor-dim tabular-nums uppercase tracking-terminal">
-                {section.items.length} items
+                {itemCount(section.items.length)}
               </span>
             </div>
             <Connector />
