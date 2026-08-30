@@ -8,10 +8,12 @@ function Progress({
   className,
   value,
   indeterminate = false,
+  cells,
   ...props
 }: Omit<ProgressPrimitive.Root.Props, "value"> & {
   value?: number | null;
   indeterminate?: boolean;
+  cells?: number;
 }) {
   return (
     <ProgressPrimitive.Root
@@ -21,8 +23,21 @@ function Progress({
       {...props}
     >
       <ProgressPrimitive.Track
-        className="relative h-[3px] w-full overflow-hidden rounded-none bg-phosphor/10"
+        className={cn(
+          "relative w-full overflow-hidden rounded-none bg-phosphor/10",
+          cells ? "h-2" : "h-[3px]"
+        )}
         data-slot="progress-track"
+        // The blocks are cut out of the track rather than laid over it, so the
+        // fill underneath stays one continuous bar. Only the mask decides where
+        // the gaps fall, which is why the sweep survives being segmented.
+        style={
+          cells
+            ? {
+                maskImage: `repeating-linear-gradient(to right, #000 0 calc(100% / ${cells} - 2px), transparent calc(100% / ${cells} - 2px) calc(100% / ${cells}))`,
+              }
+            : undefined
+        }
       >
         {indeterminate ? (
           <div

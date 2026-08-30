@@ -183,9 +183,10 @@ export const primitiveDocs: DocMap = {
         props: [
           { name: "value", type: "number | null" },
           { default: "false", name: "indeterminate", type: "boolean" },
+          { name: "cells", type: "number" },
         ],
         summary:
-          "`indeterminate` is the sweep for work with no known length. It is a separate prop rather than a null `value`, because a bar at zero and a bar with no number are different things to look at.",
+          "`indeterminate` is the sweep for work with no known length. It is a separate prop rather than a null `value`, because a bar at zero and a bar with no number are different things to look at. `cells` cuts the bar into that many blocks, the way a front panel meter reads. The blocks are a mask over the same fill, so a segmented bar sweeps like a plain one.",
       },
     ],
     upstream: [baseUi("progress")],

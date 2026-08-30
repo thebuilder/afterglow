@@ -254,6 +254,7 @@
           "animate-close": "terminal-close 120ms steps(3, end) forwards",
           "animate-fade-in": "terminal-fade-in 140ms ease-out",
           "animate-fade-out": "terminal-fade-out 120ms ease-in forwards",
+          "animate-glyph": "terminal-glyph 800ms steps(4) infinite",
           "animate-led": "terminal-led 1.6s steps(2) infinite",
           "animate-line-in": "terminal-line-in 420ms var(--ease-terminal) both",
           "animate-open": "terminal-open 180ms steps(4, end)",
@@ -435,6 +436,11 @@
         "@keyframes terminal-fade-out": {
           "to": {
             "opacity": "0"
+          }
+        },
+        "@keyframes terminal-glyph": {
+          "to": {
+            "transform": "translateY(-100%)"
           }
         },
         "@keyframes terminal-led": {
@@ -786,7 +792,7 @@
           }
         },
         "@media (prefers-reduced-motion: reduce)": {
-          ".animate-alarm, .animate-beam, .animate-caret, .animate-chart-in, .animate-close, .animate-fade-in, .animate-fade-out, .animate-led, .animate-line-in, .animate-open, .animate-pixel, .animate-select-fold-in-down, .animate-select-fold-in-up, .animate-select-fold-out-down, .animate-select-fold-out-up, .animate-slide-in-bottom, .animate-slide-in-left, .animate-slide-in-right, .animate-slide-in-top, .animate-slide-out-bottom, .animate-slide-out-left, .animate-slide-out-right, .animate-slide-out-top, .animate-sweep, .animate-toast-in, .animate-toast-out, .animate-type": {
+          ".animate-alarm, .animate-beam, .animate-caret, .animate-chart-in, .animate-close, .animate-fade-in, .animate-fade-out, .animate-glyph, .animate-led, .animate-line-in, .animate-open, .animate-pixel, .animate-select-fold-in-down, .animate-select-fold-in-up, .animate-select-fold-out-down, .animate-select-fold-out-up, .animate-slide-in-bottom, .animate-slide-in-left, .animate-slide-in-right, .animate-slide-in-top, .animate-slide-out-bottom, .animate-slide-out-left, .animate-slide-out-right, .animate-slide-out-top, .animate-sweep, .animate-toast-in, .animate-toast-out, .animate-type": {
             "animation": "none !important"
           }
         },
