@@ -47,10 +47,22 @@ export default function Home() {
       <main className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)] gap-24 px-6 pb-24">
         <Hero items={total} phosphors={PHOSPHORS.length} />
 
-        <section className="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-          {SAMPLER_ITEMS.map((item) => (
-            <GalleryCard item={item} key={item.name} />
-          ))}
+        <section className="grid grid-cols-[minmax(0,1fr)] gap-8">
+          <div className="grid max-w-3xl grid-cols-[minmax(0,1fr)] gap-4">
+            <h2 className="text-balance font-medium font-mono text-3xl text-phosphor-bright">
+              {total} registry items, one terminal system
+            </h2>
+            <Prose>
+              Install the complete preset or let registry dependencies pull in
+              only what each component needs. Each card here is the component
+              itself, running.
+            </Prose>
+          </div>
+          <div className="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            {SAMPLER_ITEMS.map((item) => (
+              <GalleryCard item={item} key={item.name} />
+            ))}
+          </div>
         </section>
 
         <section className="grid grid-cols-[minmax(0,1fr)] gap-8">

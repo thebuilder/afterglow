@@ -238,18 +238,19 @@ export function HeroTerminal({ items }: { items: number }) {
       title="afterglow shell"
       variant="terminal"
     >
-      <div
-        className="hero-shell grid h-56 content-start overflow-y-auto p-4 font-mono text-xs lg:h-76"
-        ref={view}
-      >
-        <ShellOutput className="overflow-visible">
-          {transcript.map((line) => (
-            <TranscriptLine
-              caret={line.id === "install" && printed === 1}
-              key={line.id}
-              line={line}
-            />
-          ))}
+      {/* The prompt is pinned and the log grows upward into the space above it,
+          the way a shell fills a screen, so the caret never moves. */}
+      <div className="hero-shell flex h-56 flex-col p-4 font-mono text-xs lg:h-76">
+        <ShellOutput className="flex flex-col" ref={view}>
+          <div className="mt-auto">
+            {transcript.map((line) => (
+              <TranscriptLine
+                caret={line.id === "install" && printed === 1}
+                key={line.id}
+                line={line}
+              />
+            ))}
+          </div>
         </ShellOutput>
 
         {ready ? (
