@@ -3,33 +3,11 @@ import Link from "next/link";
 
 import { Prose } from "@/components/docs/prose";
 import { SiteHeader } from "@/components/docs/site-header";
-import { GalleryCard } from "@/components/gallery-card";
 import { Hero } from "@/components/hero/hero";
 import { PHOSPHORS } from "@/lib/phosphor";
-import { findItem } from "@/lib/registry";
 import { itemCount, sectionsWithItems } from "@/lib/sections";
 import { Button } from "@/registry/terminal/ui/button";
 import { Separator } from "@/registry/terminal/ui/separator";
-
-// Hand-picked to span the system: window chrome, a shell you can type in,
-// data, an overlay and a terminal-specific part. Each card runs that item's
-// own first example, so the page cannot drift from the registry.
-const SAMPLER = [
-  "terminal-window",
-  "calendar",
-  "chart",
-  "command",
-  "table",
-  "alarm-button",
-];
-
-const SAMPLER_ITEMS = SAMPLER.map((name) => {
-  const item = findItem(name);
-  if (!item) {
-    throw new Error(`Sampler item '${name}' is not in the registry.`);
-  }
-  return item;
-});
 
 const FOOTER_LINK_CLASS =
   "font-medium text-phosphor underline decoration-line-strong underline-offset-4 transition-colors hover:text-phosphor-bright";
@@ -46,24 +24,6 @@ export default function Home() {
       <SiteHeader />
       <main className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)] gap-24 px-6 pb-24">
         <Hero items={total} phosphors={PHOSPHORS.length} />
-
-        <section className="grid grid-cols-[minmax(0,1fr)] gap-8">
-          <div className="grid max-w-3xl grid-cols-[minmax(0,1fr)] gap-4">
-            <h2 className="text-balance font-medium font-mono text-3xl text-phosphor-bright">
-              {total} registry items, one terminal system
-            </h2>
-            <Prose>
-              Install the complete preset or let registry dependencies pull in
-              only what each component needs. Each card here is the component
-              itself, running.
-            </Prose>
-          </div>
-          <div className="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-            {SAMPLER_ITEMS.map((item) => (
-              <GalleryCard item={item} key={item.name} />
-            ))}
-          </div>
-        </section>
 
         <section className="grid grid-cols-[minmax(0,1fr)] gap-8">
           <div className="flex flex-wrap items-end justify-between gap-5">

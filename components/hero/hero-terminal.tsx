@@ -39,11 +39,7 @@ const PROMPT = ">";
 const COMMAND = "shadcn add @afterglow/preset";
 
 const OUTPUT: Entry[] = [
-  { text: "resolving registry ......... ok" },
-  { text: "theme.css merged ........... ok" },
-  { text: "base ui primitives ......... ok" },
-  { text: "terminal components ........ ok" },
-  { text: "tw-animate-css ............. not needed", tone: "warning" },
+  { text: "theme and components ....... ok" },
   { text: "source written to ./components", tone: "muted" },
 ];
 
