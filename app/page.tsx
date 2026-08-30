@@ -13,17 +13,17 @@ import { Separator } from "@/registry/terminal/ui/separator";
 const BENEFITS = [
   {
     description:
-      "Green, orange, yellow, cyan, blue, magenta, red, or grey, all using the same terminal geometry and motion.",
+      "Green, orange, yellow, cyan, blue, magenta, red and grey. The rest of the palette derives from the phosphor, and the alert colours shift to stay legible against it.",
     title: "Eight phosphor themes",
   },
   {
     description:
-      "Familiar shadcn composition backed by Base UI, with source copied into your own project.",
+      "Familiar shadcn composition, with Base UI underneath where you would expect Radix. The install writes the source into your project, so every component is a file you edit.",
     title: "Components you own",
   },
   {
     description:
-      "Screens, scanlines, status lights, prompts, boot logs, and window chrome extend the standard component set.",
+      "Screens, scanlines, status lights, prompts, boot logs and window chrome. A general-purpose registry has no reason to ship any of them.",
     title: "Terminal-specific parts",
   },
 ];
