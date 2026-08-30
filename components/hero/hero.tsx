@@ -17,7 +17,7 @@ export function Hero({
   phosphors: number;
 }) {
   return (
-    <section className="relative isolate overflow-hidden pt-8 pb-4 lg:pt-12 lg:pb-8">
+    <section className="-mx-6 relative isolate overflow-hidden px-6 pt-8 pb-4 lg:pt-12 lg:pb-8">
       <PhosphorField className="-z-10 opacity-70 [mask-image:radial-gradient(115%_100%_at_50%_28%,black_5%,transparent_72%)]" />
 
       <div className="grid grid-cols-[minmax(0,1fr)] gap-8">
@@ -68,7 +68,7 @@ export function Hero({
             <ThemePhosphorSelector />
           </div>
 
-          <div aria-hidden="true" className="lg:col-span-5" inert>
+          <div className="lg:col-span-5">
             <HeroTerminal items={items} />
           </div>
         </div>

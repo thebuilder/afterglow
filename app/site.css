@@ -17,6 +17,7 @@
 
 /* The hero prompt is the wordmark's chevron, so it takes the wordmark's color
    rather than the signal accent the shell ships with. */
-.hero-shell [data-slot="shell-command"] > span:first-child {
+.hero-shell [data-slot="shell-command"] > span:first-child,
+.hero-shell [data-slot="shell-prompt"] > span[aria-hidden="true"] {
   color: var(--phosphor);
 }

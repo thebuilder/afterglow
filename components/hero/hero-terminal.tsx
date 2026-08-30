@@ -1,20 +1,36 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { useEffect, useState, useSyncExternalStore } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
 
+import { PHOSPHOR_NAMES } from "@/lib/phosphor";
 import { Caret } from "@/registry/terminal/components/caret";
 import { Led } from "@/registry/terminal/components/led";
 import {
   ShellCommand,
   ShellLine,
   ShellOutput,
+  ShellPrompt,
 } from "@/registry/terminal/components/shell";
 import { TerminalWindow } from "@/registry/terminal/components/terminal-window";
 
+type Tone = "default" | "muted" | "warning" | "error";
+
 interface Entry {
   text: string;
-  tone?: "default" | "muted" | "warning";
+  tone?: Tone;
+}
+
+interface Line extends Entry {
+  duration?: number;
+  id: string;
+  typed?: boolean;
 }
 
 // The wordmark is a chevron followed by a cursor bar. The chevron is the
@@ -41,13 +57,73 @@ const LINES = OUTPUT.length + 1;
 // finished writing rather than racing the last wipe.
 const STEPS = LINES + 1;
 
-const emptySubscribe = () => () => undefined;
-const getClientSnapshot = (): boolean => true;
-const getServerSnapshot = (): boolean => false;
+const WORDS = /\s+/;
 
-export function HeroTerminal({ items }: { items: number }) {
+const HELP = [
+  "help              list commands",
+  "status            read node status",
+  "phosphor <name>   set the color preset",
+  "clear             wipe the transcript",
+];
+
+interface Console {
+  items: number;
+  phosphor: string;
+  setTheme: (value: string) => void;
+}
+
+function respond(name: string, argument: string, node: Console): Entry[] {
+  if (name === "help") {
+    return HELP.map((text) => ({ text, tone: "muted" as const }));
+  }
+  if (name === "status") {
+    return [
+      { text: "node-04     nominal" },
+      { text: `registry    ${node.items} items linked` },
+      { text: `phosphor    ${node.phosphor}` },
+    ];
+  }
+  if (name !== "phosphor") {
+    return [{ text: `sh: command not found: ${name}`, tone: "error" }];
+  }
+  if ((PHOSPHOR_NAMES as readonly string[]).includes(argument)) {
+    node.setTheme(argument);
+    return [{ text: `phosphor set to ${argument}`, tone: "muted" }];
+  }
+  return [
+    {
+      text: `phosphor: choose one of ${PHOSPHOR_NAMES.join(", ")}`,
+      tone: "warning",
+    },
+  ];
+}
+
+function TranscriptLine({ line, caret }: { line: Line; caret: boolean }) {
+  const motion: { className?: string; style?: React.CSSProperties } =
+    line.duration
+      ? {
+          className: "animate-type",
+          style: { animationDuration: `${line.duration}ms` },
+        }
+      : {};
+
+  if (line.typed) {
+    return (
+      <ShellCommand prompt={PROMPT} {...motion}>
+        {line.text}
+        {caret ? <Caret className="ml-1" /> : null}
+      </ShellCommand>
+    );
+  }
+  return (
+    <ShellLine tone={line.tone} {...motion}>
+      {line.text}
+    </ShellLine>
+  );
+}
+
+function useInstallProgress(): number {
   const [printed, setPrinted] = useState(1);
-  const ready = printed > LINES;
 
   useEffect(() => {
     if (printed >= STEPS) {
@@ -65,57 +141,126 @@ export function HeroTerminal({ items }: { items: number }) {
     return () => window.clearTimeout(timer);
   }, [printed]);
 
+  return printed;
+}
+
+function Readout({
+  ready,
+  items,
+  phosphor,
+}: {
+  ready: boolean;
+  items: number;
+  phosphor: string;
+}) {
+  return (
+    <>
+      <span className="flex items-center gap-2">
+        <Led pulse={!ready} tone={ready ? "ok" : "busy"} />
+        {ready ? "ready" : "installing"}
+      </span>
+      <span>{items} items</span>
+      <span>phosphor {phosphor}</span>
+    </>
+  );
+}
+
+const emptySubscribe = () => () => undefined;
+const getClientSnapshot = (): boolean => true;
+const getServerSnapshot = (): boolean => false;
+
+export function HeroTerminal({ items }: { items: number }) {
+  const printed = useInstallProgress();
+  const [session, setSession] = useState<readonly Line[]>([]);
+  const [cleared, setCleared] = useState(false);
+  const nextId = useRef(0);
+  const view = useRef<HTMLDivElement>(null);
+  const ready = printed > LINES;
+
   // The footer echoes the selector beside it, so it has to wait for the client.
   const mounted = useSyncExternalStore(
     emptySubscribe,
     getClientSnapshot,
     getServerSnapshot
   );
-  const { theme } = useTheme();
+  const { theme, setTheme } = useTheme();
   const phosphor = mounted ? (theme ?? "green") : "green";
+
+  const transcript: Line[] = cleared
+    ? [...session]
+    : [
+        { duration: TYPING, id: "install", text: COMMAND, typed: true },
+        ...OUTPUT.slice(0, printed - 1).map((line, index) => ({
+          duration: PRINTING,
+          id: `install-${index}`,
+          text: line.text,
+          tone: line.tone,
+        })),
+        ...session,
+      ];
+
+  // A terminal keeps the newest line in view rather than the oldest.
+  useEffect(() => {
+    const box = view.current;
+    if (transcript.length > 0) {
+      box?.scrollTo({ top: box.scrollHeight });
+    }
+  }, [transcript]);
+
+  const run = useCallback(
+    (input: string) => {
+      const [name = "", argument = ""] = input.toLowerCase().split(WORDS);
+      if (name === "clear") {
+        setSession([]);
+        setCleared(true);
+        return;
+      }
+
+      const lines = respond(name, argument, { items, phosphor, setTheme });
+      const first = nextId.current;
+      nextId.current += lines.length + 1;
+      setSession((current) => [
+        ...current,
+        { id: `run-${first}`, text: input, typed: true },
+        ...lines.map((line, index) => ({
+          ...line,
+          id: `run-${first}-${index}`,
+        })),
+      ]);
+    },
+    [items, phosphor, setTheme]
+  );
 
   return (
     <TerminalWindow
-      footer={
-        <>
-          <span className="flex items-center gap-2">
-            <Led pulse={!ready} tone={ready ? "ok" : "busy"} />
-            {ready ? "ready" : "installing"}
-          </span>
-          <span>{items} items</span>
-          <span>phosphor {phosphor}</span>
-        </>
-      }
+      footer={<Readout items={items} phosphor={phosphor} ready={ready} />}
       subtitle="node-04"
-      title="afterglow install"
+      title="afterglow shell"
       variant="terminal"
     >
-      <div className="grid min-h-56 content-start gap-4 p-4 font-mono text-xs lg:min-h-76">
-        <ShellOutput className="hero-shell">
-          <ShellCommand
-            className="animate-type"
-            prompt={PROMPT}
-            style={{ animationDuration: `${TYPING}ms` }}
-          >
-            {COMMAND}
-            {printed === 1 ? <Caret className="ml-1" /> : null}
-          </ShellCommand>
-          {OUTPUT.slice(0, printed - 1).map((line) => (
-            <ShellLine
-              className="animate-type"
-              key={line.text}
-              style={{ animationDuration: `${PRINTING}ms` }}
-              tone={line.tone}
-            >
-              {line.text}
-            </ShellLine>
+      <div
+        className="hero-shell grid h-56 content-start overflow-y-auto p-4 font-mono text-xs lg:h-76"
+        ref={view}
+      >
+        <ShellOutput className="overflow-visible">
+          {transcript.map((line) => (
+            <TranscriptLine
+              caret={line.id === "install" && printed === 1}
+              key={line.id}
+              line={line}
+            />
           ))}
-          {ready ? (
-            <ShellCommand prompt={PROMPT}>
-              <Caret />
-            </ShellCommand>
-          ) : null}
         </ShellOutput>
+
+        {ready ? (
+          <ShellPrompt
+            className="border-0 pt-0"
+            label="Afterglow shell"
+            onSubmit={run}
+            placeholder="type help"
+            prompt={PROMPT}
+          />
+        ) : null}
       </div>
     </TerminalWindow>
   );
