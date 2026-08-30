@@ -161,6 +161,47 @@ function useCommandKey(toggle: () => void) {
   }, [toggle]);
 }
 
+function useSearchViewport() {
+  useEffect(() => {
+    const root = document.documentElement;
+    const viewport = window.visualViewport;
+    const properties = {
+      height: "--site-search-viewport-height",
+      left: "--site-search-viewport-left",
+      top: "--site-search-viewport-top",
+      width: "--site-search-viewport-width",
+    } as const;
+
+    const update = () => {
+      root.style.setProperty(
+        properties.height,
+        `${viewport?.height ?? window.innerHeight}px`
+      );
+      root.style.setProperty(properties.left, `${viewport?.offsetLeft ?? 0}px`);
+      root.style.setProperty(properties.top, `${viewport?.offsetTop ?? 0}px`);
+      root.style.setProperty(
+        properties.width,
+        `${viewport?.width ?? window.innerWidth}px`
+      );
+    };
+
+    update();
+    window.addEventListener("resize", update);
+    viewport?.addEventListener("resize", update);
+    viewport?.addEventListener("scroll", update);
+
+    return () => {
+      window.removeEventListener("resize", update);
+      viewport?.removeEventListener("resize", update);
+      viewport?.removeEventListener("scroll", update);
+
+      for (const property of Object.values(properties)) {
+        root.style.removeProperty(property);
+      }
+    };
+  }, []);
+}
+
 function useSearchQuery() {
   const [query, setQuery] = useState("");
   const list = useRef<HTMLDivElement>(null);
@@ -214,6 +255,7 @@ export function DocsSearch({ className }: { className?: string }) {
   const [records, load] = useSearchIndex(open);
   const input = useRef<HTMLInputElement>(null);
 
+  useSearchViewport();
   useCommandKey(useCallback(() => setOpen((previous) => !previous), []));
 
   const grouped = useMemo(() => results(records, query), [query, records]);
@@ -247,6 +289,7 @@ export function DocsSearch({ className }: { className?: string }) {
       <Trigger className={className} onIntent={load} onOpen={openSearch} />
 
       <CommandDialog
+        className="site-search-dialog translate-x-0 translate-y-0 sm:-translate-x-1/2 sm:-translate-y-1/2"
         description="Search components and documentation."
         initialFocus={input}
         onOpenChange={onOpenChange}
@@ -260,9 +303,8 @@ export function DocsSearch({ className }: { className?: string }) {
           ref={input}
           value={query}
         />
-        {/* Fixed height prevents loading and result changes from resizing the dialog. */}
         <CommandList
-          className="h-80 [&>[cmdk-list-sizer]]:flex [&>[cmdk-list-sizer]]:min-h-full [&>[cmdk-list-sizer]]:flex-col"
+          className="min-h-0 flex-1 max-h-none sm:h-80 sm:flex-none sm:max-h-80 [&>[cmdk-list-sizer]]:flex [&>[cmdk-list-sizer]]:min-h-full [&>[cmdk-list-sizer]]:flex-col"
           ref={list}
         >
           {loading ? <Placeholder /> : null}
