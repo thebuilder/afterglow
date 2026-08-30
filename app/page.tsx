@@ -55,19 +55,25 @@ export default function Home() {
               only what each component needs.
             </Prose>
           </div>
-          <div className="grid gap-8 border-line border-t pt-8 md:grid-cols-3">
-            {BENEFITS.map((benefit) => (
-              <div
-                className="grid grid-cols-[minmax(0,1fr)] content-start gap-3"
+          <ul className="grid grid-cols-[minmax(0,1fr)] gap-y-7 md:grid-cols-3 md:gap-y-0">
+            {BENEFITS.map((benefit, index) => (
+              <li
+                className="grid grid-cols-[minmax(0,1fr)] content-start gap-3 border-line border-t pt-6 md:border-l md:px-6 md:pt-8 md:first:border-l-0 md:first:pl-0 md:last:pr-0"
                 key={benefit.title}
               >
+                <span
+                  aria-hidden="true"
+                  className="font-mono text-3xs text-phosphor-dim tabular-nums tracking-terminal"
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </span>
                 <h3 className="font-medium font-mono text-lg text-phosphor-bright">
                   {benefit.title}
                 </h3>
                 <Prose>{benefit.description}</Prose>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </section>
 
         <section className="grid grid-cols-[minmax(0,1fr)] gap-8">
