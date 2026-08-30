@@ -20,7 +20,7 @@
   left: calc(var(--site-search-viewport-left, 0px) + 1rem);
   width: calc(var(--site-search-viewport-width, 100vw) - 2rem);
   max-width: none;
-  height: calc(var(--site-search-viewport-height, 100dvh) - 2rem);
+  height: min(24rem, calc(var(--site-search-viewport-height, 100dvh) - 4rem));
   transform: none;
 }
 
