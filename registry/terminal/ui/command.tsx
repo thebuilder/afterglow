@@ -70,7 +70,7 @@ function CommandInput({
 }: React.ComponentProps<typeof CommandPrimitive.Input>) {
   return (
     <div
-      className="flex h-11 items-center gap-2.5 border-line border-b px-3 outline-none has-[:focus-visible]:-outline-offset-2 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-solid has-[:focus-visible]:outline-phosphor-bright"
+      className="flex h-11 items-center gap-2.5 border-line border-b px-3 transition-[border-color,box-shadow] duration-150 ease-terminal has-[:focus-visible]:border-line-strong has-[:focus-visible]:shadow-glow"
       data-slot="command-input-wrapper"
     >
       <SearchIcon className="size-4 shrink-0 text-phosphor" />
