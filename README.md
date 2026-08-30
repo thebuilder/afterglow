@@ -44,7 +44,7 @@ Registry dependencies resolve automatically, including the shared theme and requ
 
 **Terminal components** including screens, scanlines, prompts, boot logs, status lights, shell layouts, connectors, and terminal window chrome.
 
-**A shared theme** with square geometry, stepped motion, CRT effects, semantic colour tokens, and eight phosphor presets: `green`, `orange`, `yellow`, `cyan`, `blue`, `magenta`, `red`, and `grey`.
+**A shared theme** with square geometry, stepped motion, CRT effects, semantic color tokens, and eight phosphor presets: `green`, `orange`, `yellow`, `cyan`, `blue`, `magenta`, `red`, and `grey`.
 
 Browse the [component gallery](https://afterglow.thebuilder.dk/components) for live examples and install commands.
 
@@ -56,7 +56,7 @@ Green is the default. Set `data-phosphor` on the root element to switch palette:
 <html data-phosphor="orange">
 ```
 
-The preset updates the phosphor ramp together with related panels, borders, focus states, and semantic colours. Afterglow only reads the attribute, so you can manage it with your own state or theme library.
+The preset updates the phosphor ramp together with related panels, borders, focus states, and semantic colors. Afterglow only reads the attribute, so you can manage it with your own state or theme library.
 
 See the [theming guide](https://afterglow.thebuilder.dk/docs/theming) for `next-themes`, token overrides, typography, and the `typeset` utility.
 
@@ -66,10 +66,10 @@ Afterglow uses the shadcn registry and CLI for installation. It is not a shadcn 
 
 The theme uses standard shadcn semantic variables, so stock components installed from `ui.shadcn.com` can inherit the Afterglow palette and square geometry.
 
-Afterglow's own interactive primitives are built on Base UI. If you are moving code from a Radix-based shadcn component, two differences are worth knowing:
+Afterglow's own interactive primitives are built on Base UI, so two conventions apply:
 
-- Use Base UI's `render` prop where Radix-based components commonly use `asChild`.
-- Base UI exposes states such as `data-open`, `data-closed`, and `data-checked` instead of `data-state="..."`.
+- Compose with Base UI's `render` prop.
+- Read state from `data-open`, `data-closed`, and `data-checked`.
 
 See [Getting started](https://afterglow.thebuilder.dk/docs) and [Installation](https://afterglow.thebuilder.dk/docs/installation) for the full setup.
 

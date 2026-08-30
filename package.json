@@ -33,6 +33,7 @@
     "react": "^19.2.8",
     "react-day-picker": "^10.0.1",
     "react-dom": "^19.2.8",
+    "react-intersection-observer": "^11.0.1",
     "react-resizable-panels": "^4.12.3",
     "recharts": "^3.10.1",
     "rehype-slug": "^6.0.0",

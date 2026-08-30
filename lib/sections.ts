@@ -97,3 +97,7 @@ export function navSections(): NavSection[] {
 export function docsEntry(): string {
   return "/docs";
 }
+
+export function itemCount(total: number): string {
+  return `${total} ${total === 1 ? "item" : "items"}`;
+}

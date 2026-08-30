@@ -79,23 +79,30 @@ export async function InstallTabs({
   );
 }
 
-function CommandTab({ args }: { args: string }) {
+async function CommandTab({ args }: { args: string }) {
+  const commands = await Promise.all(
+    RUNNERS.map(async (runner) => {
+      const text = `${runner.command} ${args}`;
+      return { html: await highlight(text, "bash"), name: runner.name, text };
+    })
+  );
+
   return (
     <Tabs defaultValue="npm">
       <TabsList variant="line">
-        {RUNNERS.map((runner) => (
-          <TabsTrigger key={runner.name} value={runner.name}>
-            {runner.name}
+        {commands.map((command) => (
+          <TabsTrigger key={command.name} value={command.name}>
+            {command.name}
           </TabsTrigger>
         ))}
       </TabsList>
-      {RUNNERS.map((runner) => (
+      {commands.map((command) => (
         <TabsContent
           className="animate-none"
-          key={runner.name}
-          value={runner.name}
+          key={command.name}
+          value={command.name}
         >
-          <CopyCommand command={`${runner.command} ${args}`} />
+          <CopyCommand html={command.html} text={command.text} />
         </TabsContent>
       ))}
     </Tabs>

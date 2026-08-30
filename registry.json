@@ -965,7 +965,7 @@
       "name": "card",
       "type": "registry:ui",
       "title": "Card",
-      "description": "A panel with a coloured left edge. One `accent` property drives both the edge and the title.",
+      "description": "A panel with a colored left edge. One `accent` property drives both the edge and the title.",
       "registryDependencies": [
         "@afterglow/theme"
       ],
@@ -980,7 +980,7 @@
       "name": "chart",
       "type": "registry:ui",
       "title": "Chart",
-      "description": "Recharts wired to the five chart colours, terminal tooltip and stepped reveal.",
+      "description": "Recharts wired to the five chart colors, terminal tooltip and stepped reveal.",
       "dependencies": [
         "recharts"
       ],
@@ -1340,7 +1340,7 @@
       "name": "separator",
       "type": "registry:ui",
       "title": "Separator",
-      "description": "One pixel of the border colour, horizontal or vertical.",
+      "description": "One pixel of the border color, horizontal or vertical.",
       "dependencies": [
         "@base-ui/react"
       ],

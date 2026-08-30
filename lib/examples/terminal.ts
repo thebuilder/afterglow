@@ -105,7 +105,7 @@ export const terminalExamples: ExampleMap = {
     {
       component: TerminalTheSystemAtAGlance,
       description:
-        "A compact strip of the system's components, colours and hairline borders.",
+        "A compact strip of the system's components, colors and hairline borders.",
       name: "The system at a glance",
     },
   ],

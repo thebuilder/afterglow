@@ -3,30 +3,11 @@ import Link from "next/link";
 
 import { Prose } from "@/components/docs/prose";
 import { SiteHeader } from "@/components/docs/site-header";
-import { TerminalTheSystemAtAGlance } from "@/components/examples/terminal-the-system-at-a-glance";
-import { ThemePhosphorSelector } from "@/components/examples/theme-phosphor-selector";
-import { sectionsWithItems } from "@/lib/sections";
-import { Connector } from "@/registry/terminal/components/connector";
+import { Hero } from "@/components/hero/hero";
+import { PHOSPHORS } from "@/lib/phosphor";
+import { itemCount, sectionsWithItems } from "@/lib/sections";
 import { Button } from "@/registry/terminal/ui/button";
 import { Separator } from "@/registry/terminal/ui/separator";
-
-const BENEFITS = [
-  {
-    description:
-      "Green, orange, yellow, cyan, blue, magenta, red, or grey, all using the same terminal geometry and motion.",
-    title: "Eight phosphor themes",
-  },
-  {
-    description:
-      "Familiar shadcn composition backed by Base UI, with source copied into your own project.",
-    title: "Components you own",
-  },
-  {
-    description:
-      "Screens, scanlines, status lights, prompts, boot logs, and window chrome extend the standard component set.",
-    title: "Terminal-specific parts",
-  },
-];
 
 const FOOTER_LINK_CLASS =
   "font-medium text-phosphor underline decoration-line-strong underline-offset-4 transition-colors hover:text-phosphor-bright";
@@ -42,73 +23,7 @@ export default function Home() {
     <>
       <SiteHeader />
       <main className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)] gap-24 px-6 pb-24">
-        <section className="grid items-center gap-12 pt-12 lg:grid-cols-5 lg:pt-20">
-          <div className="grid grid-cols-[minmax(0,1fr)] gap-6 lg:col-span-3">
-            <h1 className="text-balance font-extrabold text-5xl leading-none tracking-tight sm:text-6xl lg:text-7xl">
-              A complete terminal UI for the modern web
-            </h1>
-            <Connector />
-            <p className="max-w-prose text-pretty text-foreground/85 text-lg">
-              Installed through shadcn, Afterglow adds Base UI components,
-              terminal-specific building blocks, and eight phosphor color
-              themes. The source stays in your codebase.
-            </p>
-            <div className="flex flex-wrap gap-3 pt-2">
-              <Button
-                nativeButton={false}
-                render={<Link href="/docs" />}
-                size="lg"
-                variant="primary"
-              >
-                Get started
-                <ChevronRightIcon />
-              </Button>
-              <Button
-                nativeButton={false}
-                render={<Link href="/components" />}
-                size="lg"
-                variant="outline"
-              >
-                Browse components
-              </Button>
-            </div>
-            <ThemePhosphorSelector />
-          </div>
-
-          <div
-            aria-hidden="true"
-            className="flex items-center justify-center lg:col-span-2"
-            inert
-          >
-            <TerminalTheSystemAtAGlance />
-          </div>
-        </section>
-
-        <section className="grid grid-cols-[minmax(0,1fr)] gap-8">
-          <div className="grid max-w-3xl grid-cols-[minmax(0,1fr)] gap-4">
-            <h2 className="text-balance font-medium font-mono text-3xl text-phosphor-bright">
-              {total} registry items, one terminal system
-            </h2>
-            <Connector />
-            <Prose>
-              Install the complete preset or let registry dependencies pull in
-              only what each component needs.
-            </Prose>
-          </div>
-          <div className="grid gap-8 border-line border-t pt-8 md:grid-cols-3">
-            {BENEFITS.map((benefit) => (
-              <div
-                className="grid grid-cols-[minmax(0,1fr)] content-start gap-3"
-                key={benefit.title}
-              >
-                <h3 className="font-medium font-mono text-lg text-phosphor-bright">
-                  {benefit.title}
-                </h3>
-                <Prose>{benefit.description}</Prose>
-              </div>
-            ))}
-          </div>
-        </section>
+        <Hero items={total} phosphors={PHOSPHORS.length} />
 
         <section className="grid grid-cols-[minmax(0,1fr)] gap-8">
           <div className="flex flex-wrap items-end justify-between gap-5">
@@ -131,18 +46,19 @@ export default function Home() {
             </Button>
           </div>
 
-          <div className="-mx-4 grid border-line border-t">
+          <div className="-mx-6 grid border-line border-t">
             {sections.map((section) => (
               <Link
-                className="group grid gap-2 border-line border-b px-4 py-5 outline-none transition-colors hover:bg-accent/30 focus-visible:bg-accent/30 sm:grid-cols-4 sm:items-baseline"
+                className="group grid gap-2 border-line border-b px-6 py-5 outline-none transition-colors hover:bg-accent/30 focus-visible:bg-accent/30 active:bg-accent/40 sm:grid-cols-4 sm:items-baseline"
                 href={`/components#${section.id}`}
                 key={section.id}
               >
-                <span className="font-medium font-mono text-lg text-phosphor-bright transition-colors group-hover:text-phosphor group-focus-visible:text-phosphor">
+                <span className="flex items-center gap-2 font-medium font-mono text-lg text-phosphor-bright transition-colors group-hover:text-phosphor group-focus-visible:text-phosphor">
                   {section.title}
+                  <ChevronRightIcon className="size-4 shrink-0 text-phosphor-dim transition-transform group-hover:translate-x-0.5" />
                 </span>
                 <span className="font-mono text-3xs text-phosphor-dim tabular-nums uppercase tracking-terminal sm:col-start-2">
-                  {section.items.length} items
+                  {itemCount(section.items.length)}
                 </span>
                 <span className="max-w-prose text-pretty text-muted-foreground text-sm sm:col-span-2">
                   {section.blurb}

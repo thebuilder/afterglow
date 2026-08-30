@@ -14,3 +14,54 @@
 .list-square {
   list-style-type: square;
 }
+
+/* The hero prompt is the wordmark's chevron, so it takes the wordmark's color
+   rather than the signal accent the shell ships with. */
+.hero-shell [data-slot="shell-command"] > span:first-child,
+.hero-shell [data-slot="shell-prompt"] > span[aria-hidden="true"] {
+  color: var(--phosphor);
+}
+
+/* Chrome makes an overflowing scroller keyboard-focusable so the log can be
+   read back, which lands a UA focus ring inside the window frame. Keep the
+   stop, draw it as the terminal's own hairline instead. */
+.hero-shell [data-slot="shell-output"] {
+  outline: none;
+}
+
+.hero-shell [data-slot="shell-output"]:focus-visible {
+  outline: 1px solid var(--line-strong);
+  outline-offset: -1px;
+}
+
+/* A text field shows focus with its caret. A ring around this one boxes the
+   prompt out of the transcript it is the last line of, so the sigil carries
+   it instead. */
+.hero-shell [data-slot="shell-prompt"] input:focus-visible {
+  outline: none;
+}
+
+.hero-shell [data-slot="shell-prompt"]:focus-within > span[aria-hidden="true"] {
+  color: var(--phosphor-bright);
+}
+
+/* Keep the prompt sigil on the same grid as the transcript's. Only the field
+   itself stays at 1rem, which is what stops iOS zooming the page on focus. */
+.hero-shell [data-slot="shell-prompt"] {
+  block-size: 1.25rem;
+  font-size: 0.75rem;
+}
+
+.hero-shell [data-slot="shell-prompt"] input {
+  block-size: 1.25rem;
+  font-size: 1rem;
+  /* iOS reads font-size to decide whether to zoom, so the box carries the
+     1.25rem pitch instead and the prompt stays on the transcript grid. */
+  line-height: 1.25rem;
+}
+
+@media (width >= 40rem) {
+  .hero-shell [data-slot="shell-prompt"] input {
+    font-size: 0.75rem;
+  }
+}

@@ -78,14 +78,14 @@ export const primitiveDocs: DocMap = {
           },
         ],
         summary:
-          "`accent` sets `--card-accent`, which drives the left edge, the title and the top rule. It is how a category gets a colour without a variant per category.",
+          "`accent` sets `--card-accent`, which drives the left edge, the title and the top rule. It is how a category gets a color without a variant per category.",
       },
     ],
   },
 
   chart: {
     notes: [
-      "Recharts still owns the plot. These parts connect it to Afterglow's colours, tooltip, legend and mount motion.",
+      "Recharts still owns the plot. These parts connect it to Afterglow's colors, tooltip, legend and mount motion.",
     ],
     parts: [
       {
