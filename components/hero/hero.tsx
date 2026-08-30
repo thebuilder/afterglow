@@ -24,9 +24,8 @@ export function Hero({
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2 border-line border-b pb-3 font-mono text-3xs text-phosphor-dim uppercase tracking-terminal-lg">
           <span className="flex items-center gap-2 text-phosphor">
             <Led pulse={false} />
-            afterglow
+            {items} registry items
           </span>
-          <span>{items} registry items</span>
           <span>{phosphors} phosphors</span>
           <span className="ml-auto hidden sm:inline">base ui + shadcn</span>
         </div>
@@ -46,7 +45,7 @@ export function Hero({
               terminal-specific building blocks, and eight phosphor color
               themes. The source stays in your codebase.
             </p>
-            <div className="flex flex-wrap gap-3 pt-2">
+            <div className="grid grid-cols-2 gap-3 pt-2 sm:flex sm:flex-wrap">
               <Button
                 nativeButton={false}
                 render={<Link href="/docs" />}
@@ -62,7 +61,7 @@ export function Hero({
                 size="lg"
                 variant="outline"
               >
-                Browse components
+                Components
               </Button>
             </div>
             <ThemePhosphorSelector />

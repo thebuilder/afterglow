@@ -21,3 +21,15 @@
 .hero-shell [data-slot="shell-prompt"] > span[aria-hidden="true"] {
   color: var(--phosphor);
 }
+
+/* Chrome makes an overflowing scroller keyboard-focusable so the log can be
+   read back, which lands a UA focus ring inside the window frame. Keep the
+   stop, draw it as the terminal's own hairline instead. */
+.hero-shell [data-slot="shell-output"] {
+  outline: none;
+}
+
+.hero-shell [data-slot="shell-output"]:focus-visible {
+  outline: 1px solid var(--line-strong);
+  outline-offset: -1px;
+}
