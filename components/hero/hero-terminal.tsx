@@ -31,11 +31,15 @@ const OUTPUT: Entry[] = [
   { text: "source written to ./components", tone: "muted" },
 ];
 
-// The command types itself, so it holds the line longer than the output the
-// shell then dumps in one burst.
+// A line's wipe runs for exactly as long as the step that mounted it, so one
+// line finishes writing as the next appears. The command types itself, so it
+// holds the line longer than the output the shell prints.
 const TYPING = 620;
-const PRINTING = 170;
-const TOTAL = OUTPUT.length + 1;
+const PRINTING = 200;
+const LINES = OUTPUT.length + 1;
+// One step past the last line, so the prompt comes back once the shell has
+// finished writing rather than racing the last wipe.
+const STEPS = LINES + 1;
 
 const emptySubscribe = () => () => undefined;
 const getClientSnapshot = (): boolean => true;
@@ -43,14 +47,14 @@ const getServerSnapshot = (): boolean => false;
 
 export function HeroTerminal({ items }: { items: number }) {
   const [printed, setPrinted] = useState(1);
-  const ready = printed >= TOTAL;
+  const ready = printed > LINES;
 
   useEffect(() => {
-    if (ready) {
+    if (printed >= STEPS) {
       return;
     }
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setPrinted(TOTAL);
+      setPrinted(STEPS);
       return;
     }
 
@@ -59,7 +63,7 @@ export function HeroTerminal({ items }: { items: number }) {
       printed === 1 ? TYPING : PRINTING
     );
     return () => window.clearTimeout(timer);
-  }, [printed, ready]);
+  }, [printed]);
 
   // The footer echoes the selector beside it, so it has to wait for the client.
   const mounted = useSyncExternalStore(
@@ -88,7 +92,11 @@ export function HeroTerminal({ items }: { items: number }) {
     >
       <div className="grid min-h-56 content-start gap-4 p-4 font-mono text-xs lg:min-h-76">
         <ShellOutput className="hero-shell">
-          <ShellCommand className="animate-type" prompt={PROMPT}>
+          <ShellCommand
+            className="animate-type"
+            prompt={PROMPT}
+            style={{ animationDuration: `${TYPING}ms` }}
+          >
             {COMMAND}
             {printed === 1 ? <Caret className="ml-1" /> : null}
           </ShellCommand>
@@ -96,6 +104,7 @@ export function HeroTerminal({ items }: { items: number }) {
             <ShellLine
               className="animate-type"
               key={line.text}
+              style={{ animationDuration: `${PRINTING}ms` }}
               tone={line.tone}
             >
               {line.text}
