@@ -161,6 +161,18 @@ function useCommandKey(toggle: () => void) {
   }, [toggle]);
 }
 
+function useSearchQuery() {
+  const [query, setQuery] = useState("");
+  const list = useRef<HTMLDivElement>(null);
+  const onQueryChange = useCallback((next: string) => {
+    setQuery(next);
+
+    list.current?.scrollTo({ top: 0 });
+  }, []);
+
+  return { list, onQueryChange, query, setQuery };
+}
+
 function Trigger({
   className,
   onOpen,
@@ -198,29 +210,26 @@ function Trigger({
 export function DocsSearch({ className }: { className?: string }) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
-  const [query, setQuery] = useState("");
+  const { list, onQueryChange, query, setQuery } = useSearchQuery();
   const [records, load] = useSearchIndex(open);
-  const list = useRef<HTMLDivElement>(null);
+  const input = useRef<HTMLInputElement>(null);
 
   useCommandKey(useCallback(() => setOpen((previous) => !previous), []));
 
   const grouped = useMemo(() => results(records, query), [query, records]);
 
-  const onQueryChange = useCallback((next: string) => {
-    setQuery(next);
-
-    list.current?.scrollTo({ top: 0 });
-  }, []);
-
   const openSearch = useCallback(() => setOpen(true), []);
 
-  const onOpenChange = useCallback((next: boolean) => {
-    setOpen(next);
+  const onOpenChange = useCallback(
+    (next: boolean) => {
+      setOpen(next);
 
-    if (!next) {
-      setQuery("");
-    }
-  }, []);
+      if (!next) {
+        setQuery("");
+      }
+    },
+    [setQuery]
+  );
 
   const go = useCallback(
     (url: string) => {
@@ -228,7 +237,7 @@ export function DocsSearch({ className }: { className?: string }) {
       setQuery("");
       router.push(url);
     },
-    [router]
+    [router, setQuery]
   );
 
   const loading = records.length === 0;
@@ -239,6 +248,7 @@ export function DocsSearch({ className }: { className?: string }) {
 
       <CommandDialog
         description="Search components and documentation."
+        initialFocus={input}
         onOpenChange={onOpenChange}
         open={open}
         shouldFilter={false}
@@ -247,6 +257,7 @@ export function DocsSearch({ className }: { className?: string }) {
         <CommandInput
           onValueChange={onQueryChange}
           placeholder="Search the registry"
+          ref={input}
           value={query}
         />
         {/* Fixed height prevents loading and result changes from resizing the dialog. */}

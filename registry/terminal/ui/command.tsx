@@ -35,6 +35,7 @@ function CommandDialog({
   children,
   className,
   filter,
+  initialFocus,
   shouldFilter,
   showCloseButton = false,
   ...props
@@ -44,6 +45,7 @@ function CommandDialog({
   className?: string;
 
   filter?: React.ComponentProps<typeof CommandPrimitive>["filter"];
+  initialFocus?: React.ComponentProps<typeof DialogContent>["initialFocus"];
   shouldFilter?: boolean;
   showCloseButton?: boolean;
 
@@ -57,6 +59,7 @@ function CommandDialog({
       </DialogHeader>
       <DialogContent
         className={cn("overflow-hidden p-0 sm:max-w-xl", className)}
+        initialFocus={initialFocus}
         showCloseButton={showCloseButton}
       >
         <Command
