@@ -3,8 +3,8 @@ import Link from "next/link";
 
 import { Prose } from "@/components/docs/prose";
 import { SiteHeader } from "@/components/docs/site-header";
-import { TerminalTheSystemAtAGlance } from "@/components/examples/terminal-the-system-at-a-glance";
-import { ThemePhosphorSelector } from "@/components/examples/theme-phosphor-selector";
+import { Hero } from "@/components/hero/hero";
+import { PHOSPHORS } from "@/lib/phosphor";
 import { sectionsWithItems } from "@/lib/sections";
 import { Connector } from "@/registry/terminal/components/connector";
 import { Button } from "@/registry/terminal/ui/button";
@@ -42,47 +42,7 @@ export default function Home() {
     <>
       <SiteHeader />
       <main className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)] gap-24 px-6 pb-24">
-        <section className="grid items-center gap-12 pt-12 lg:grid-cols-5 lg:pt-20">
-          <div className="grid grid-cols-[minmax(0,1fr)] gap-6 lg:col-span-3">
-            <h1 className="text-balance font-extrabold text-5xl leading-none tracking-tight sm:text-6xl lg:text-7xl">
-              A complete terminal UI for the modern web
-            </h1>
-            <Connector />
-            <p className="max-w-prose text-pretty text-foreground/85 text-lg">
-              Installed through shadcn, Afterglow adds Base UI components,
-              terminal-specific building blocks, and eight phosphor color
-              themes. The source stays in your codebase.
-            </p>
-            <div className="flex flex-wrap gap-3 pt-2">
-              <Button
-                nativeButton={false}
-                render={<Link href="/docs" />}
-                size="lg"
-                variant="primary"
-              >
-                Get started
-                <ChevronRightIcon />
-              </Button>
-              <Button
-                nativeButton={false}
-                render={<Link href="/components" />}
-                size="lg"
-                variant="outline"
-              >
-                Browse components
-              </Button>
-            </div>
-            <ThemePhosphorSelector />
-          </div>
-
-          <div
-            aria-hidden="true"
-            className="flex items-center justify-center lg:col-span-2"
-            inert
-          >
-            <TerminalTheSystemAtAGlance />
-          </div>
-        </section>
+        <Hero items={total} phosphors={PHOSPHORS.length} />
 
         <section className="grid grid-cols-[minmax(0,1fr)] gap-8">
           <div className="grid max-w-3xl grid-cols-[minmax(0,1fr)] gap-4">
