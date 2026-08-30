@@ -33,3 +33,30 @@
   outline: 1px solid var(--line-strong);
   outline-offset: -1px;
 }
+
+/* A text field shows focus with its caret. A ring around this one boxes the
+   prompt out of the transcript it is the last line of, so the sigil carries
+   it instead. */
+.hero-shell [data-slot="shell-prompt"] input:focus-visible {
+  outline: none;
+}
+
+.hero-shell [data-slot="shell-prompt"]:focus-within > span[aria-hidden="true"] {
+  color: var(--phosphor-bright);
+}
+
+/* Keep the prompt sigil on the same grid as the transcript's. Only the field
+   itself stays at 1rem, which is what stops iOS zooming the page on focus. */
+.hero-shell [data-slot="shell-prompt"] {
+  font-size: 0.75rem;
+}
+
+.hero-shell [data-slot="shell-prompt"] input {
+  font-size: 1rem;
+}
+
+@media (width >= 40rem) {
+  .hero-shell [data-slot="shell-prompt"] input {
+    font-size: 0.75rem;
+  }
+}
