@@ -20,6 +20,9 @@ export async function GET(
   }
 
   return new Response(guideMarkdown(guide), {
-    headers: { "content-type": "text/markdown; charset=utf-8" },
+    headers: {
+      "content-type": "text/markdown; charset=utf-8",
+      "x-robots-tag": "noindex",
+    },
   });
 }

@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
 import { HOMEPAGE } from "@/lib/registry";
+import { stripInlineMarkdown } from "@/lib/text";
 import { palette } from "@/registry/terminal/theme.mjs";
 
 export const OG_SIZE = { height: 630, width: 1200 };
@@ -97,7 +98,7 @@ const SUBSTITUTIONS: [RegExp, string][] = [
 function plain(text: string): string {
   return SUBSTITUTIONS.reduce(
     (result, [pattern, replacement]) => result.replace(pattern, replacement),
-    text
+    stripInlineMarkdown(text)
   );
 }
 

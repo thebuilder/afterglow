@@ -37,7 +37,7 @@ interface Line extends Entry {
 // The wordmark is a chevron followed by a cursor bar. The chevron is the
 // prompt, and the bar is the caret, which only rests on the line still waiting.
 const PROMPT = ">";
-const COMMAND = "shadcn add @afterglow/preset";
+const COMMAND = "shadcn add @afterglow/terminal";
 
 const OUTPUT: Entry[] = [
   { text: "resolving registry ......... ok" },

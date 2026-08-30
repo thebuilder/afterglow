@@ -10,7 +10,7 @@ export interface Section {
 
 const SECTIONS: Section[] = [
   {
-    blurb: "One dark palette, shared by every component.",
+    blurb: "One dark surface palette, with eight phosphor themes.",
     id: "theme",
     title: "Theme",
     types: ["registry:theme"],

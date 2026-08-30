@@ -9,6 +9,12 @@ import { docsEntry, navSections } from "@/lib/sections";
 export function SiteHeader() {
   return (
     <header className="site-header sticky top-0 z-40 flex items-center gap-3 border-line border-b bg-void/85 px-4 backdrop-blur-md sm:gap-6 sm:px-6">
+      <a
+        className="fixed top-2 left-2 z-50 -translate-y-20 border border-line-strong bg-void px-3 py-2 font-mono text-2xs text-phosphor-bright uppercase tracking-terminal transition-transform focus:translate-y-0"
+        href="#main-content"
+      >
+        Skip to content
+      </a>
       <MobileNav sections={navSections()} />
       <DocsWordmark />
       <HeaderNav

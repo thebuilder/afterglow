@@ -8,6 +8,7 @@ import Installation from "@/content/docs/installation.mdx";
 import Theming from "@/content/docs/theming.mdx";
 import Troubleshooting from "@/content/docs/troubleshooting.mdx";
 import { allGuides, findGuide } from "@/lib/guides";
+import { DEFAULT_SOCIAL_IMAGE, socialTitle } from "@/lib/metadata";
 import { HOMEPAGE } from "@/lib/registry";
 
 const CONTENT = {
@@ -45,15 +46,16 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   }
 
   const url = `${HOMEPAGE}${guide.href}`;
-  const socialTitle = `${guide.title}, Afterglow`;
+  const title = socialTitle(guide.title);
 
   return {
     alternates: { canonical: url },
     description: guide.description,
     openGraph: {
       description: guide.description,
+      images: [DEFAULT_SOCIAL_IMAGE],
       siteName: "Afterglow",
-      title: socialTitle,
+      title,
       type: "article",
       url,
     },
@@ -61,7 +63,8 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     twitter: {
       card: "summary_large_image",
       description: guide.description,
-      title: socialTitle,
+      images: [DEFAULT_SOCIAL_IMAGE],
+      title,
     },
   };
 }

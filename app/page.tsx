@@ -1,16 +1,22 @@
 import { ChevronRightIcon } from "lucide-react";
+import type { Metadata } from "next";
 import Link from "next/link";
 
 import { Prose } from "@/components/docs/prose";
 import { SiteHeader } from "@/components/docs/site-header";
 import { Hero } from "@/components/hero/hero";
 import { PHOSPHORS } from "@/lib/phosphor";
+import { HOMEPAGE } from "@/lib/registry";
 import { itemCount, sectionsWithItems } from "@/lib/sections";
 import { Button } from "@/registry/terminal/ui/button";
 import { Separator } from "@/registry/terminal/ui/separator";
 
 const FOOTER_LINK_CLASS =
   "font-medium text-phosphor underline decoration-line-strong underline-offset-4 transition-colors hover:text-phosphor-bright";
+
+export const metadata: Metadata = {
+  alternates: { canonical: HOMEPAGE },
+};
 
 export default function Home() {
   const sections = sectionsWithItems();
@@ -22,7 +28,11 @@ export default function Home() {
   return (
     <>
       <SiteHeader />
-      <main className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)] gap-24 px-6 pb-24">
+      <main
+        className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)] gap-24 px-6 pb-24"
+        id="main-content"
+        tabIndex={-1}
+      >
         <Hero items={total} phosphors={PHOSPHORS.length} />
 
         <section className="grid grid-cols-[minmax(0,1fr)] gap-8">
