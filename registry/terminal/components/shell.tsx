@@ -153,7 +153,7 @@ function ShellPrompt({
   return (
     <form
       className={cn(
-        "flex items-baseline gap-2 border-line border-t pt-3 text-base focus-within:border-line-strong sm:text-xs",
+        "group/shell-prompt flex items-baseline gap-2 border-line border-t pt-3 text-base focus-within:border-line-strong sm:text-xs",
         className
       )}
       data-slot="shell-prompt"
@@ -163,14 +163,17 @@ function ShellPrompt({
       <label className="sr-only" htmlFor={id}>
         {label}
       </label>
-      <span aria-hidden="true" className="shrink-0 text-signal">
+      <span
+        aria-hidden="true"
+        className="shrink-0 text-signal group-has-[:focus-visible]/shell-prompt:text-phosphor-bright"
+      >
         {prompt}
       </span>
       <input
         autoCapitalize="off"
         autoComplete="off"
         autoCorrect="off"
-        className="min-w-0 flex-1 border-0 bg-transparent p-0 font-mono text-phosphor-bright caret-phosphor-bright outline-none placeholder:text-phosphor-dim selection:bg-signal selection:text-white"
+        className="min-w-0 flex-1 border-0 bg-transparent p-0 font-mono text-phosphor-bright caret-phosphor-bright outline-none placeholder:text-phosphor-dim selection:bg-signal selection:text-white focus-visible:outline-0"
         id={id}
         onChange={updateValue}
         onKeyDown={recallCommand}

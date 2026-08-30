@@ -57,7 +57,7 @@ function Prompt({
       </span>
       <input
         autoComplete="off"
-        className="min-w-0 flex-1 border-0 bg-transparent p-0 text-phosphor-bright caret-phosphor-bright outline-none placeholder:text-phosphor-dim selection:bg-signal selection:text-white"
+        className="min-w-0 flex-1 border-0 bg-transparent p-0 text-phosphor-bright caret-phosphor-bright outline-none placeholder:text-phosphor-dim selection:bg-signal selection:text-white focus-visible:outline-0"
         id={id}
         onChange={change}
         placeholder={placeholder}

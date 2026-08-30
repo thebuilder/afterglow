@@ -34,13 +34,6 @@
   outline-offset: -1px;
 }
 
-/* A text field shows focus with its caret. A ring around this one boxes the
-   prompt out of the transcript it is the last line of, so the sigil carries
-   it instead. */
-.hero-shell [data-slot="shell-prompt"] input:focus-visible {
-  outline: none;
-}
-
 .hero-shell [data-slot="shell-prompt"]:focus-within > span[aria-hidden="true"] {
   color: var(--phosphor-bright);
 }
