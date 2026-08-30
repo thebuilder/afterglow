@@ -8,6 +8,7 @@ import {
   useState,
   useSyncExternalStore,
 } from "react";
+import { useInView } from "react-intersection-observer";
 
 import { PHOSPHOR_NAMES } from "@/lib/phosphor";
 import { Caret } from "@/registry/terminal/components/caret";
@@ -122,11 +123,17 @@ function TranscriptLine({ line, caret }: { line: Line; caret: boolean }) {
   );
 }
 
-function useInstallProgress(): number {
+// The terminal sits below the fold on a phone, so the install would play out
+// to an empty room and be over before anyone scrolled to it.
+function useInstallProgress() {
+  const { inView, ref } = useInView({
+    rootMargin: "-15% 0px",
+    triggerOnce: true,
+  });
   const [printed, setPrinted] = useState(1);
 
   useEffect(() => {
-    if (printed >= STEPS) {
+    if (!inView || printed >= STEPS) {
       return;
     }
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -139,9 +146,9 @@ function useInstallProgress(): number {
       printed === 1 ? TYPING : PRINTING
     );
     return () => window.clearTimeout(timer);
-  }, [printed]);
+  }, [inView, printed]);
 
-  return printed;
+  return { printed, ref };
 }
 
 function Readout({
@@ -170,7 +177,7 @@ const getClientSnapshot = (): boolean => true;
 const getServerSnapshot = (): boolean => false;
 
 export function HeroTerminal({ items }: { items: number }) {
-  const printed = useInstallProgress();
+  const { printed, ref: onscreen } = useInstallProgress();
   const [session, setSession] = useState<readonly Line[]>([]);
   const [cleared, setCleared] = useState(false);
   const nextId = useRef(0);
@@ -240,7 +247,10 @@ export function HeroTerminal({ items }: { items: number }) {
     >
       {/* The prompt is pinned and the log grows upward into the space above it,
           the way a shell fills a screen, so the caret never moves. */}
-      <div className="hero-shell flex flex-col p-4 font-mono text-xs">
+      <div
+        className="hero-shell flex flex-col p-4 font-mono text-xs"
+        ref={onscreen}
+      >
         <ShellOutput
           className="flex h-40 flex-none flex-col lg:h-60"
           ref={view}
