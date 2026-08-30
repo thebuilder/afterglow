@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "card",
   "title": "Card",
-  "description": "A panel with a coloured left edge. One `accent` property drives both the edge and the title.",
+  "description": "A panel with a colored left edge. One `accent` property drives both the edge and the title.",
   "registryDependencies": [
     "@afterglow/theme"
   ],

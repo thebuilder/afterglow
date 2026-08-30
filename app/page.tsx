@@ -13,12 +13,12 @@ import { Separator } from "@/registry/terminal/ui/separator";
 const BENEFITS = [
   {
     description:
-      "Green, orange, yellow, cyan, blue, magenta, red and grey. The rest of the palette derives from the phosphor, and the alert colours shift to stay legible against it.",
+      "Green, orange, yellow, cyan, blue, magenta, red and grey. The rest of the palette derives from the phosphor, and the alert colors shift to stay legible against it.",
     title: "Eight phosphor themes",
   },
   {
     description:
-      "Familiar shadcn composition, with Base UI underneath where you would expect Radix. The install writes the source into your project, so every component is a file you edit.",
+      "Familiar shadcn composition, built on Base UI. The install writes the source into your project, so a component is a file you edit rather than a package you patch around.",
     title: "Components you own",
   },
   {

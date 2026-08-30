@@ -13,7 +13,7 @@ export const feedbackExamples: ExampleMap = {
     {
       component: AlertVariants,
       description:
-        "Four tones. The left edge and icon carry the colour while the text stays phosphor green.",
+        "Four tones. The left edge and icon carry the color while the text stays phosphor green.",
       name: "Variants",
     },
   ],

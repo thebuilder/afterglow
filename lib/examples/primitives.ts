@@ -56,7 +56,7 @@ export const primitiveExamples: ExampleMap = {
     {
       component: CardAccent,
       description:
-        "One property drives the left edge and the title, so a category gets a colour without a variant per category.",
+        "One property drives the left edge and the title, so a category gets a color without a variant per category.",
       name: "Accent",
     },
     {
@@ -76,7 +76,7 @@ export const primitiveExamples: ExampleMap = {
     {
       component: ChartChannelLoad,
       description:
-        "Square bars compare traffic in both directions without introducing another colour scale.",
+        "Square bars compare traffic in both directions without introducing another color scale.",
       name: "Channel load",
     },
     {
