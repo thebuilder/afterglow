@@ -39,13 +39,10 @@ export async function Hero({
 
         <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
           <div className="grid grid-cols-[minmax(0,1fr)] content-start gap-6 lg:col-span-7">
-            <p className="font-bold font-mono text-3xs text-phosphor uppercase tracking-terminal-3xl">
-              React component system
-            </p>
             <h1 className="text-balance font-extrabold text-5xl leading-none tracking-tight [text-shadow:0_0_32px_color-mix(in_oklab,var(--phosphor)_26%,transparent)] sm:text-6xl lg:text-7xl">
               A complete terminal UI for the modern web
               <Caret
-                blink={false}
+                blink
                 className="ml-2 h-[0.72em] w-[0.3em] text-phosphor [vertical-align:0]"
               />
             </h1>
@@ -62,7 +59,7 @@ export async function Hero({
                 size="lg"
                 variant="primary"
               >
-                Install Afterglow
+                Get started
                 <ChevronRightIcon />
               </Button>
               <Button
@@ -71,7 +68,7 @@ export async function Hero({
                 size="lg"
                 variant="outline"
               >
-                Browse components
+                Components
               </Button>
             </div>
             <ThemePhosphorSelector />
