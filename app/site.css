@@ -53,6 +53,9 @@
 
 .hero-shell [data-slot="shell-prompt"] input {
   font-size: 1rem;
+  /* iOS reads font-size to decide whether to zoom, so the line box carries
+     the 1.25rem pitch instead and the prompt stays on the transcript grid. */
+  line-height: 1.25rem;
 }
 
 @media (width >= 40rem) {

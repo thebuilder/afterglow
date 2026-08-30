@@ -240,8 +240,11 @@ export function HeroTerminal({ items }: { items: number }) {
     >
       {/* The prompt is pinned and the log grows upward into the space above it,
           the way a shell fills a screen, so the caret never moves. */}
-      <div className="hero-shell flex h-56 flex-col p-4 font-mono text-xs lg:h-76">
-        <ShellOutput className="flex flex-col" ref={view}>
+      <div className="hero-shell flex flex-col p-4 font-mono text-xs">
+        <ShellOutput
+          className="flex h-40 flex-none flex-col lg:h-60"
+          ref={view}
+        >
           <div className="mt-auto">
             {transcript.map((line) => (
               <TranscriptLine
@@ -255,7 +258,7 @@ export function HeroTerminal({ items }: { items: number }) {
 
         {ready ? (
           <ShellPrompt
-            className="border-0 pt-0"
+            className="min-h-5 border-0 pt-0"
             label="Afterglow shell"
             onSubmit={run}
             placeholder="type help"
