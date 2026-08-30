@@ -83,16 +83,20 @@ export const feedbackDocs: DocMap = {
       {
         name: "CommandDialog",
         props: [
-          { default: '"Command palette"', name: "title", type: "string" },
+          { default: '"Command Palette"', name: "title", type: "string" },
           {
-            default: '"Search for a command to run."',
+            default: '"Search for a command to run..."',
             name: "description",
             type: "string",
+          },
+          {
+            name: "initialFocus",
+            type: "boolean | RefObject<HTMLElement | null> | function",
           },
           { default: "false", name: "showCloseButton", type: "boolean" },
         ],
         summary:
-          "The same palette in a dialog. `title` and `description` are its accessible name, read out rather than drawn, so they are worth setting to what the palette actually searches.",
+          "A dialog shell for a nested `Command`. `title` and `description` are its accessible name, read out rather than drawn, so set them to what the palette searches.",
       },
     ],
     upstream: [{ href: "https://cmdk.paco.me", label: "cmdk" }],

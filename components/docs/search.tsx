@@ -15,6 +15,7 @@ import {
 import type { SearchRecord } from "@/lib/search";
 import { cn } from "@/lib/utils";
 import {
+  Command,
   CommandDialog,
   CommandEmpty,
   CommandGroup,
@@ -294,33 +295,38 @@ export function DocsSearch({ className }: { className?: string }) {
         initialFocus={input}
         onOpenChange={onOpenChange}
         open={open}
-        shouldFilter={false}
         title="Search the registry"
       >
-        <CommandInput
-          onValueChange={onQueryChange}
-          placeholder="Search the registry"
-          ref={input}
-          value={query}
-        />
-        <CommandList
-          className="min-h-0 flex-1 max-h-none sm:h-80 sm:flex-none sm:max-h-80 [&>[cmdk-list-sizer]]:flex [&>[cmdk-list-sizer]]:min-h-full [&>[cmdk-list-sizer]]:flex-col"
-          ref={list}
+        <Command
+          className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group]]:px-1 [&_[cmdk-input-wrapper]]:h-11"
+          label="Search the registry"
+          shouldFilter={false}
         >
-          {loading ? <Placeholder /> : null}
-          {loading || grouped.length > 0 ? null : (
-            <CommandEmpty className="flex flex-1 items-center justify-center py-0">
-              Nothing matches that.
-            </CommandEmpty>
-          )}
-          {grouped.map(([group, rows]) => (
-            <CommandGroup heading={group} key={group}>
-              {rows.map((record) => (
-                <Result key={record.url} onSelect={go} record={record} />
-              ))}
-            </CommandGroup>
-          ))}
-        </CommandList>
+          <CommandInput
+            onValueChange={onQueryChange}
+            placeholder="Search the registry"
+            ref={input}
+            value={query}
+          />
+          <CommandList
+            className="min-h-0 flex-1 max-h-none sm:h-80 sm:flex-none sm:max-h-80 [&>[cmdk-list-sizer]]:flex [&>[cmdk-list-sizer]]:min-h-full [&>[cmdk-list-sizer]]:flex-col"
+            ref={list}
+          >
+            {loading ? <Placeholder /> : null}
+            {loading || grouped.length > 0 ? null : (
+              <CommandEmpty className="flex flex-1 items-center justify-center py-0">
+                Nothing matches that.
+              </CommandEmpty>
+            )}
+            {grouped.map(([group, rows]) => (
+              <CommandGroup heading={group} key={group}>
+                {rows.map((record) => (
+                  <Result key={record.url} onSelect={go} record={record} />
+                ))}
+              </CommandGroup>
+            ))}
+          </CommandList>
+        </Command>
       </CommandDialog>
     </>
   );

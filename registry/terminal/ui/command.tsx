@@ -30,13 +30,11 @@ function Command({
 }
 
 function CommandDialog({
-  title = "Command palette",
-  description = "Search for a command to run.",
+  title = "Command Palette",
+  description = "Search for a command to run...",
   children,
   className,
-  filter,
   initialFocus,
-  shouldFilter,
   showCloseButton = false,
   ...props
 }: Omit<React.ComponentProps<typeof Dialog>, "children"> & {
@@ -44,12 +42,10 @@ function CommandDialog({
   description?: string;
   className?: string;
 
-  filter?: React.ComponentProps<typeof CommandPrimitive>["filter"];
   initialFocus?: React.ComponentProps<typeof DialogContent>["initialFocus"];
-  shouldFilter?: boolean;
   showCloseButton?: boolean;
 
-  children?: React.ReactNode;
+  children: React.ReactNode;
 }) {
   return (
     <Dialog {...props}>
@@ -62,14 +58,7 @@ function CommandDialog({
         initialFocus={initialFocus}
         showCloseButton={showCloseButton}
       >
-        <Command
-          className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group]]:px-1 [&_[cmdk-input-wrapper]]:h-11"
-          filter={filter}
-          label={title}
-          shouldFilter={shouldFilter}
-        >
-          {children}
-        </Command>
+        {children}
       </DialogContent>
     </Dialog>
   );

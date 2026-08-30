@@ -5,6 +5,7 @@ import { useCallback, useState } from "react";
 
 import { Button } from "@/registry/terminal/ui/button";
 import {
+  Command,
   CommandDialog,
   CommandEmpty,
   CommandGroup,
@@ -33,39 +34,41 @@ export function CommandPalette() {
         </KbdGroup>
       </p>
       <CommandDialog onOpenChange={setOpen} open={isOpen}>
-        <CommandInput placeholder="Type a command or search a volume." />
-        <CommandList>
-          <CommandEmpty>No results.</CommandEmpty>
-          <CommandGroup heading="Volumes">
-            <CommandItem>
-              <FolderIcon />
-              /core
-              <CommandShortcut>18 442</CommandShortcut>
-            </CommandItem>
-            <CommandItem>
-              <FolderIcon />
-              /archive
-              <CommandShortcut>4 011</CommandShortcut>
-            </CommandItem>
-            <CommandItem>
-              <FileIcon />
-              notes.txt
-              <CommandShortcut>2 KB</CommandShortcut>
-            </CommandItem>
-          </CommandGroup>
-          <CommandGroup heading="Actions">
-            <CommandItem>
-              <PowerIcon />
-              Restart spool
-              <CommandShortcut>⇧R</CommandShortcut>
-            </CommandItem>
-            <CommandItem disabled>
-              <TerminalIcon />
-              Attach console
-              <CommandShortcut>⇧C</CommandShortcut>
-            </CommandItem>
-          </CommandGroup>
-        </CommandList>
+        <Command className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group]]:px-1 [&_[cmdk-input-wrapper]]:h-11">
+          <CommandInput placeholder="Type a command or search a volume." />
+          <CommandList>
+            <CommandEmpty>No results.</CommandEmpty>
+            <CommandGroup heading="Volumes">
+              <CommandItem>
+                <FolderIcon />
+                /core
+                <CommandShortcut>18 442</CommandShortcut>
+              </CommandItem>
+              <CommandItem>
+                <FolderIcon />
+                /archive
+                <CommandShortcut>4 011</CommandShortcut>
+              </CommandItem>
+              <CommandItem>
+                <FileIcon />
+                notes.txt
+                <CommandShortcut>2 KB</CommandShortcut>
+              </CommandItem>
+            </CommandGroup>
+            <CommandGroup heading="Actions">
+              <CommandItem>
+                <PowerIcon />
+                Restart spool
+                <CommandShortcut>⇧R</CommandShortcut>
+              </CommandItem>
+              <CommandItem disabled>
+                <TerminalIcon />
+                Attach console
+                <CommandShortcut>⇧C</CommandShortcut>
+              </CommandItem>
+            </CommandGroup>
+          </CommandList>
+        </Command>
       </CommandDialog>
     </div>
   );
