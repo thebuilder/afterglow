@@ -256,15 +256,19 @@ export function HeroTerminal({ items }: { items: number }) {
           </div>
         </ShellOutput>
 
-        {ready ? (
-          <ShellPrompt
-            className="min-h-5 border-0 pt-0"
-            label="Afterglow shell"
-            onSubmit={run}
-            placeholder="type help"
-            prompt={PROMPT}
-          />
-        ) : null}
+        {/* The row is held open through the install so the window opens at the
+            height it keeps, rather than growing a line when the prompt lands. */}
+        <div className="min-h-5">
+          {ready ? (
+            <ShellPrompt
+              className="min-h-5 border-0 pt-0"
+              label="Afterglow shell"
+              onSubmit={run}
+              placeholder="type help"
+              prompt={PROMPT}
+            />
+          ) : null}
+        </div>
       </div>
     </TerminalWindow>
   );
