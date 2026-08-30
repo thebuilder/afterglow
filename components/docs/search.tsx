@@ -15,6 +15,7 @@ import {
 import type { SearchRecord } from "@/lib/search";
 import { cn } from "@/lib/utils";
 import {
+  Command,
   CommandDialog,
   CommandEmpty,
   CommandGroup,
@@ -161,6 +162,59 @@ function useCommandKey(toggle: () => void) {
   }, [toggle]);
 }
 
+function useSearchViewport() {
+  useEffect(() => {
+    const root = document.documentElement;
+    const viewport = window.visualViewport;
+    const properties = {
+      height: "--site-search-viewport-height",
+      left: "--site-search-viewport-left",
+      top: "--site-search-viewport-top",
+      width: "--site-search-viewport-width",
+    } as const;
+
+    const update = () => {
+      root.style.setProperty(
+        properties.height,
+        `${viewport?.height ?? window.innerHeight}px`
+      );
+      root.style.setProperty(properties.left, `${viewport?.offsetLeft ?? 0}px`);
+      root.style.setProperty(properties.top, `${viewport?.offsetTop ?? 0}px`);
+      root.style.setProperty(
+        properties.width,
+        `${viewport?.width ?? window.innerWidth}px`
+      );
+    };
+
+    update();
+    window.addEventListener("resize", update);
+    viewport?.addEventListener("resize", update);
+    viewport?.addEventListener("scroll", update);
+
+    return () => {
+      window.removeEventListener("resize", update);
+      viewport?.removeEventListener("resize", update);
+      viewport?.removeEventListener("scroll", update);
+
+      for (const property of Object.values(properties)) {
+        root.style.removeProperty(property);
+      }
+    };
+  }, []);
+}
+
+function useSearchQuery() {
+  const [query, setQuery] = useState("");
+  const list = useRef<HTMLDivElement>(null);
+  const onQueryChange = useCallback((next: string) => {
+    setQuery(next);
+
+    list.current?.scrollTo({ top: 0 });
+  }, []);
+
+  return { list, onQueryChange, query, setQuery };
+}
+
 function Trigger({
   className,
   onOpen,
@@ -198,29 +252,27 @@ function Trigger({
 export function DocsSearch({ className }: { className?: string }) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
-  const [query, setQuery] = useState("");
+  const { list, onQueryChange, query, setQuery } = useSearchQuery();
   const [records, load] = useSearchIndex(open);
-  const list = useRef<HTMLDivElement>(null);
+  const input = useRef<HTMLInputElement>(null);
 
+  useSearchViewport();
   useCommandKey(useCallback(() => setOpen((previous) => !previous), []));
 
   const grouped = useMemo(() => results(records, query), [query, records]);
 
-  const onQueryChange = useCallback((next: string) => {
-    setQuery(next);
-
-    list.current?.scrollTo({ top: 0 });
-  }, []);
-
   const openSearch = useCallback(() => setOpen(true), []);
 
-  const onOpenChange = useCallback((next: boolean) => {
-    setOpen(next);
+  const onOpenChange = useCallback(
+    (next: boolean) => {
+      setOpen(next);
 
-    if (!next) {
-      setQuery("");
-    }
-  }, []);
+      if (!next) {
+        setQuery("");
+      }
+    },
+    [setQuery]
+  );
 
   const go = useCallback(
     (url: string) => {
@@ -228,7 +280,7 @@ export function DocsSearch({ className }: { className?: string }) {
       setQuery("");
       router.push(url);
     },
-    [router]
+    [router, setQuery]
   );
 
   const loading = records.length === 0;
@@ -238,36 +290,43 @@ export function DocsSearch({ className }: { className?: string }) {
       <Trigger className={className} onIntent={load} onOpen={openSearch} />
 
       <CommandDialog
+        className="site-search-dialog translate-x-0 translate-y-0 sm:-translate-x-1/2 sm:-translate-y-1/2"
         description="Search components and documentation."
+        initialFocus={input}
         onOpenChange={onOpenChange}
         open={open}
-        shouldFilter={false}
         title="Search the registry"
       >
-        <CommandInput
-          onValueChange={onQueryChange}
-          placeholder="Search the registry"
-          value={query}
-        />
-        {/* Fixed height prevents loading and result changes from resizing the dialog. */}
-        <CommandList
-          className="h-80 [&>[cmdk-list-sizer]]:flex [&>[cmdk-list-sizer]]:min-h-full [&>[cmdk-list-sizer]]:flex-col"
-          ref={list}
+        <Command
+          className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group]]:px-1 [&_[cmdk-input-wrapper]]:h-11"
+          label="Search the registry"
+          shouldFilter={false}
         >
-          {loading ? <Placeholder /> : null}
-          {loading || grouped.length > 0 ? null : (
-            <CommandEmpty className="flex flex-1 items-center justify-center py-0">
-              Nothing matches that.
-            </CommandEmpty>
-          )}
-          {grouped.map(([group, rows]) => (
-            <CommandGroup heading={group} key={group}>
-              {rows.map((record) => (
-                <Result key={record.url} onSelect={go} record={record} />
-              ))}
-            </CommandGroup>
-          ))}
-        </CommandList>
+          <CommandInput
+            onValueChange={onQueryChange}
+            placeholder="Search the registry"
+            ref={input}
+            value={query}
+          />
+          <CommandList
+            className="min-h-0 flex-1 max-h-none sm:h-80 sm:flex-none sm:max-h-80 [&>[cmdk-list-sizer]]:flex [&>[cmdk-list-sizer]]:min-h-full [&>[cmdk-list-sizer]]:flex-col"
+            ref={list}
+          >
+            {loading ? <Placeholder /> : null}
+            {loading || grouped.length > 0 ? null : (
+              <CommandEmpty className="flex flex-1 items-center justify-center py-0">
+                Nothing matches that.
+              </CommandEmpty>
+            )}
+            {grouped.map(([group, rows]) => (
+              <CommandGroup heading={group} key={group}>
+                {rows.map((record) => (
+                  <Result key={record.url} onSelect={go} record={record} />
+                ))}
+              </CommandGroup>
+            ))}
+          </CommandList>
+        </Command>
       </CommandDialog>
     </>
   );

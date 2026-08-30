@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { Prose } from "@/components/docs/prose";
 import { GalleryCard } from "@/components/gallery-card";
+import { DEFAULT_SOCIAL_IMAGE, socialTitle } from "@/lib/metadata";
 import { HOMEPAGE } from "@/lib/registry";
 import { itemCount, sectionsWithItems } from "@/lib/sections";
 import { Connector } from "@/registry/terminal/components/connector";
@@ -15,8 +16,9 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   openGraph: {
     description: DESCRIPTION,
+    images: [DEFAULT_SOCIAL_IMAGE],
     siteName: "Afterglow",
-    title: "Components, Afterglow",
+    title: socialTitle("Components"),
     type: "website",
     url: `${HOMEPAGE}/components`,
   },
@@ -24,7 +26,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     description: DESCRIPTION,
-    title: "Components, Afterglow",
+    images: [DEFAULT_SOCIAL_IMAGE],
+    title: socialTitle("Components"),
   },
 };
 

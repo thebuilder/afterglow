@@ -12,7 +12,7 @@ export function CopyCommand({
 }) {
   return (
     <div
-      className={cn("border border-line bg-panel-sunken", className)}
+      className={cn("min-w-0 border border-line bg-panel-sunken", className)}
       data-slot="copy-command"
     >
       <Highlighted html={html} label={`Copy: ${text}`} text={text} />

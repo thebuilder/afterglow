@@ -13,9 +13,11 @@ import { ItemIncludes } from "@/components/item-includes";
 import { nests, reference } from "@/lib/doc";
 import { docFor } from "@/lib/docs";
 import { examplesFor } from "@/lib/examples";
+import { socialTitle } from "@/lib/metadata";
 import { allItems, findItem, HOMEPAGE } from "@/lib/registry";
 import { slug } from "@/lib/slug";
 import { packagesFor, sourcesFor } from "@/lib/source";
+import { stripInlineMarkdown } from "@/lib/text";
 import { headingsFor } from "@/lib/toc";
 
 interface Params {
@@ -37,23 +39,24 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     return {};
   }
 
-  const socialTitle = `${item.title}, afterglow`;
+  const description = stripInlineMarkdown(item.description);
+  const title = socialTitle(item.title);
 
   return {
     alternates: { canonical: `${HOMEPAGE}/c/${item.name}` },
-    description: item.description,
+    description,
     openGraph: {
-      description: item.description,
-      siteName: "afterglow",
-      title: socialTitle,
+      description,
+      siteName: "Afterglow",
+      title,
       type: "website",
       url: `${HOMEPAGE}/c/${item.name}`,
     },
     title: item.title,
     twitter: {
       card: "summary_large_image",
-      description: item.description,
-      title: socialTitle,
+      description,
+      title,
     },
   };
 }

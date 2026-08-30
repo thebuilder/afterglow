@@ -1,23 +1,30 @@
 import { notFound } from "next/navigation";
 import { OG_CONTENT_TYPE, OG_SIZE, ogImage } from "@/lib/og";
-import { allItems, findItem } from "@/lib/registry";
+import { findItem } from "@/lib/registry";
 
-export const alt = "An Afterglow component for shadcn";
-export const size = OG_SIZE;
-export const contentType = OG_CONTENT_TYPE;
-
-export function generateStaticParams() {
-  return allItems()
-    .filter((item) => item.name !== "theme")
-    .map((item) => ({ name: item.name }));
-}
-
-export default async function Image({
+export function generateImageMetadata({
   params,
 }: {
-  params: Promise<{ name: string }>;
+  params: { name: string };
 }) {
-  const { name } = await params;
+  const item = findItem(params.name);
+
+  if (!item || item.name === "theme") {
+    return [];
+  }
+
+  return [
+    {
+      alt: `${item.title} component from the Afterglow terminal UI library`,
+      contentType: OG_CONTENT_TYPE,
+      id: item.name,
+      size: OG_SIZE,
+    },
+  ];
+}
+
+export default async function Image({ id }: { id: Promise<string | number> }) {
+  const name = String(await id);
   const item = findItem(name);
 
   if (!item || item.name === "theme") {

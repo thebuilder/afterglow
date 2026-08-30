@@ -30,12 +30,11 @@ function Command({
 }
 
 function CommandDialog({
-  title = "Command palette",
-  description = "Search for a command to run.",
+  title = "Command Palette",
+  description = "Search for a command to run...",
   children,
   className,
-  filter,
-  shouldFilter,
+  initialFocus,
   showCloseButton = false,
   ...props
 }: Omit<React.ComponentProps<typeof Dialog>, "children"> & {
@@ -43,11 +42,10 @@ function CommandDialog({
   description?: string;
   className?: string;
 
-  filter?: React.ComponentProps<typeof CommandPrimitive>["filter"];
-  shouldFilter?: boolean;
+  initialFocus?: React.ComponentProps<typeof DialogContent>["initialFocus"];
   showCloseButton?: boolean;
 
-  children?: React.ReactNode;
+  children: React.ReactNode;
 }) {
   return (
     <Dialog {...props}>
@@ -57,16 +55,10 @@ function CommandDialog({
       </DialogHeader>
       <DialogContent
         className={cn("overflow-hidden p-0 sm:max-w-xl", className)}
+        initialFocus={initialFocus}
         showCloseButton={showCloseButton}
       >
-        <Command
-          className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group]]:px-1 [&_[cmdk-input-wrapper]]:h-11"
-          filter={filter}
-          label={title}
-          shouldFilter={shouldFilter}
-        >
-          {children}
-        </Command>
+        {children}
       </DialogContent>
     </Dialog>
   );
@@ -78,13 +70,13 @@ function CommandInput({
 }: React.ComponentProps<typeof CommandPrimitive.Input>) {
   return (
     <div
-      className="flex h-11 items-center gap-2.5 border-line border-b px-3"
+      className="flex h-11 items-center gap-2.5 border-line border-b px-3 transition-[border-color,box-shadow] duration-150 ease-terminal has-[:focus-visible]:border-line-strong has-[:focus-visible]:shadow-glow"
       data-slot="command-input-wrapper"
     >
       <SearchIcon className="size-4 shrink-0 text-phosphor" />
       <CommandPrimitive.Input
         className={cn(
-          "flex h-10 w-full rounded-none bg-transparent py-3 font-mono text-base text-phosphor-bright caret-phosphor-bright outline-none placeholder:text-phosphor-dim disabled:cursor-not-allowed disabled:opacity-40 md:text-sm",
+          "flex h-10 w-full rounded-none bg-transparent py-3 font-mono text-base text-phosphor-bright caret-phosphor-bright outline-none placeholder:text-phosphor-dim focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-40 md:text-sm",
           className
         )}
         data-slot="command-input"

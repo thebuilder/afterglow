@@ -10,8 +10,8 @@ import "./globals.css";
 import "./site.css";
 
 const DESCRIPTION =
-  "A complete terminal UI system for shadcn. Install the shared theme, Base UI components, and terminal-specific building blocks into your project.";
-const TITLE = "afterglow, terminal UI for shadcn";
+  "Install terminal-inspired React components through the shadcn CLI. Built on Base UI, with CRT effects and eight phosphor themes. The source stays in your codebase.";
+const TITLE = "Afterglow | Terminal UI for shadcn projects";
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   variable: "--afterglow-font-mono",
@@ -24,18 +24,17 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  alternates: { canonical: HOMEPAGE },
   description: DESCRIPTION,
 
   metadataBase: new URL(HOMEPAGE),
   openGraph: {
     description: DESCRIPTION,
-    siteName: "afterglow",
+    siteName: "Afterglow",
     title: TITLE,
     type: "website",
     url: HOMEPAGE,
   },
-  title: { default: TITLE, template: "%s, afterglow" },
+  title: { default: TITLE, template: "%s | Afterglow" },
   twitter: {
     card: "summary_large_image",
     description: DESCRIPTION,

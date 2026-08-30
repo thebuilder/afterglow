@@ -318,6 +318,10 @@ const REDUCED_MOTION_SELECTOR = Object.keys(THEME)
 
 const CSS = {
   ...PHOSPHOR_PRESET_CSS,
+  ':is([data-slot="input"], [data-slot="textarea"], [data-slot="checkbox"], [data-slot="radio-group-item"], [data-slot="switch"], [data-slot="select-trigger"], [data-slot="command-input"], [data-slot="input-otp"]):focus-visible, :is([data-slot="prompt"], [data-slot="shell-prompt"]) input:focus-visible':
+    {
+      "outline-style": "none",
+    },
   ':root[data-phosphor]:not([data-phosphor="green"])': PHOSPHOR_SEMANTIC_CSS,
   ":where(a, button, input, textarea, select, summary, [tabindex]):focus-visible":
     {

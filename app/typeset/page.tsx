@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Prose } from "@/components/docs/prose";
 import { SiteHeader } from "@/components/docs/site-header";
 import { TypesetBuilder } from "@/components/typeset-builder";
+import { DEFAULT_SOCIAL_IMAGE, socialTitle } from "@/lib/metadata";
 import { HOMEPAGE } from "@/lib/registry";
 import { Connector } from "@/registry/terminal/components/connector";
 
@@ -14,8 +15,9 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   openGraph: {
     description: DESCRIPTION,
+    images: [DEFAULT_SOCIAL_IMAGE],
     siteName: "Afterglow",
-    title: "Typeset, Afterglow",
+    title: socialTitle("Typeset"),
     type: "website",
     url: `${HOMEPAGE}/typeset`,
   },
@@ -23,7 +25,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     description: DESCRIPTION,
-    title: "Typeset, Afterglow",
+    images: [DEFAULT_SOCIAL_IMAGE],
+    title: socialTitle("Typeset"),
   },
 };
 
@@ -31,7 +34,11 @@ export default function TypesetPage() {
   return (
     <div className="min-h-svh">
       <SiteHeader />
-      <main className="mx-auto grid max-w-screen-2xl grid-cols-[minmax(0,1fr)] gap-10 px-4 pb-20 sm:px-6">
+      <main
+        className="mx-auto grid max-w-screen-2xl grid-cols-[minmax(0,1fr)] gap-10 px-4 pb-20 sm:px-6"
+        id="main-content"
+        tabIndex={-1}
+      >
         <header className="grid max-w-3xl gap-5 pt-10">
           <h1 className="text-balance font-extrabold text-5xl leading-none tracking-tight sm:text-6xl">
             Typeset
