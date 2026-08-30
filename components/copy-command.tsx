@@ -1,29 +1,21 @@
-import { CopyButton } from "@/components/docs/copy-button";
+import { Highlighted } from "@/components/docs/highlighted";
 import { cn } from "@/lib/utils";
 
 export function CopyCommand({
-  command,
   className,
+  html,
+  text,
 }: {
-  command: string;
   className?: string;
+  html: string;
+  text: string;
 }) {
   return (
     <div
-      className={cn(
-        "flex min-w-0 items-center gap-3 border border-line bg-panel-sunken py-2 pr-2 pl-3",
-        className
-      )}
+      className={cn("border border-line bg-panel-sunken", className)}
+      data-slot="copy-command"
     >
-      <code className="min-w-0 flex-1 overflow-x-auto whitespace-nowrap font-mono text-phosphor text-xs">
-        <span className="select-none text-phosphor-dim">$ </span>
-        {command}
-      </code>
-      <CopyButton
-        className="border-line"
-        label={`Copy: ${command}`}
-        text={command}
-      />
+      <Highlighted html={html} label={`Copy: ${text}`} text={text} />
     </div>
   );
 }

@@ -21,7 +21,7 @@ export function Hero({
       <PhosphorField className="-z-10 opacity-70 [mask-image:radial-gradient(115%_100%_at_50%_28%,black_5%,transparent_72%)]" />
 
       <div className="grid grid-cols-[minmax(0,1fr)] gap-8">
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-2 border-line border-b pb-3 font-mono text-3xs text-phosphor-dim uppercase tracking-terminal-lg">
+        <div className="hidden flex-wrap items-center gap-x-6 gap-y-2 border-line border-b pb-3 font-mono text-3xs text-phosphor-dim uppercase tracking-terminal-lg sm:flex">
           <span className="flex items-center gap-2 text-phosphor">
             <Led pulse={false} />
             {items} registry items
