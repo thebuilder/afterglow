@@ -78,13 +78,13 @@ function CommandInput({
 }: React.ComponentProps<typeof CommandPrimitive.Input>) {
   return (
     <div
-      className="flex h-11 items-center gap-2.5 border-line border-b px-3"
+      className="flex h-11 items-center gap-2.5 border-line border-b px-3 outline-none has-[:focus-visible]:-outline-offset-2 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-solid has-[:focus-visible]:outline-phosphor-bright"
       data-slot="command-input-wrapper"
     >
       <SearchIcon className="size-4 shrink-0 text-phosphor" />
       <CommandPrimitive.Input
         className={cn(
-          "flex h-10 w-full rounded-none bg-transparent py-3 font-mono text-base text-phosphor-bright caret-phosphor-bright outline-none placeholder:text-phosphor-dim disabled:cursor-not-allowed disabled:opacity-40 md:text-sm",
+          "flex h-10 w-full rounded-none bg-transparent py-3 font-mono text-base text-phosphor-bright caret-phosphor-bright outline-none placeholder:text-phosphor-dim focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-40 md:text-sm",
           className
         )}
         data-slot="command-input"
