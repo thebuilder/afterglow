@@ -6,7 +6,6 @@ import { SiteHeader } from "@/components/docs/site-header";
 import { Hero } from "@/components/hero/hero";
 import { PHOSPHORS } from "@/lib/phosphor";
 import { sectionsWithItems } from "@/lib/sections";
-import { Connector } from "@/registry/terminal/components/connector";
 import { Button } from "@/registry/terminal/ui/button";
 import { Separator } from "@/registry/terminal/ui/separator";
 
@@ -49,16 +48,15 @@ export default function Home() {
             <h2 className="text-balance font-medium font-mono text-3xl text-phosphor-bright">
               {total} registry items, one terminal system
             </h2>
-            <Connector />
             <Prose>
               Install the complete preset or let registry dependencies pull in
               only what each component needs.
             </Prose>
           </div>
-          <ul className="grid grid-cols-[minmax(0,1fr)] gap-y-7 md:grid-cols-3 md:gap-y-0">
+          <ul className="grid grid-cols-[minmax(0,1fr)] gap-y-8 border-line border-t pt-7 md:grid-cols-3 md:gap-y-0 md:border-t-0 md:pt-0">
             {BENEFITS.map((benefit, index) => (
               <li
-                className="grid grid-cols-[minmax(0,1fr)] content-start gap-3 border-line border-t pt-6 md:border-l md:px-6 md:pt-8 md:first:border-l-0 md:first:pl-0 md:last:pr-0"
+                className="grid grid-cols-[minmax(0,1fr)] content-start gap-3 border-line md:border-t md:border-l md:px-6 md:pt-8 md:first:border-l-0 md:first:pl-0 md:last:pr-0"
                 key={benefit.title}
               >
                 <span
@@ -100,12 +98,13 @@ export default function Home() {
           <div className="-mx-4 grid border-line border-t">
             {sections.map((section) => (
               <Link
-                className="group grid gap-2 border-line border-b px-4 py-5 outline-none transition-colors hover:bg-accent/30 focus-visible:bg-accent/30 sm:grid-cols-4 sm:items-baseline"
+                className="group grid gap-2 border-line border-b px-4 py-5 outline-none transition-colors hover:bg-accent/30 focus-visible:bg-accent/30 active:bg-accent/40 sm:grid-cols-4 sm:items-baseline"
                 href={`/components#${section.id}`}
                 key={section.id}
               >
-                <span className="font-medium font-mono text-lg text-phosphor-bright transition-colors group-hover:text-phosphor group-focus-visible:text-phosphor">
+                <span className="flex items-center gap-2 font-medium font-mono text-lg text-phosphor-bright transition-colors group-hover:text-phosphor group-focus-visible:text-phosphor">
                   {section.title}
+                  <ChevronRightIcon className="size-4 shrink-0 text-phosphor-dim transition-transform group-hover:translate-x-0.5" />
                 </span>
                 <span className="font-mono text-3xs text-phosphor-dim tabular-nums uppercase tracking-terminal sm:col-start-2">
                   {section.items.length} items
