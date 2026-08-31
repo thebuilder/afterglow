@@ -6,8 +6,6 @@ import { EyebrowWithAndWithoutACaret } from "@/components/examples/eyebrow-with-
 import { LedTones } from "@/components/examples/led-tones";
 import { OperatorDashboardFullPage } from "@/components/examples/operator-dashboard-full-page";
 import { PromptDefault } from "@/components/examples/prompt-default";
-import { ScanlinesWithAndWithout } from "@/components/examples/scanlines-with-and-without";
-import { ScreenDefault } from "@/components/examples/screen-default";
 import { ShellInteractive } from "@/components/examples/shell-interactive";
 import { TerminalTheSystemAtAGlance } from "@/components/examples/terminal-the-system-at-a-glance";
 import { TerminalWindowMacos } from "@/components/examples/terminal-window-macos";
@@ -77,20 +75,6 @@ export const terminalExamples: ExampleMap = {
   prompt: [
     {
       component: PromptDefault,
-      name: "Default",
-    },
-  ],
-  scanlines: [
-    {
-      component: ScanlinesWithAndWithout,
-      description:
-        "The lines multiply rather than overlay, so they darken what is under them instead of laying a grey film on top.",
-      name: "With and without",
-    },
-  ],
-  screen: [
-    {
-      component: ScreenDefault,
       name: "Default",
     },
   ],

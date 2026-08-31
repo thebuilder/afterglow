@@ -3,9 +3,11 @@ import { itemsOfType, type RegistryItem } from "@/lib/registry";
 
 export interface Section {
   blurb: string;
+  categories?: string[];
   id: string;
   title: string;
   types: string[];
+  without?: string[];
 }
 
 const SECTIONS: Section[] = [
@@ -24,10 +26,25 @@ const SECTIONS: Section[] = [
   },
   {
     blurb:
-      "CRT-specific components for scanlines, screens, status lights, prompts, boot logs and window chrome.",
+      "CRT-specific components for status lights, prompts, boot logs and window chrome.",
     id: "terminal",
     title: "Terminal",
     types: ["registry:component"],
+    without: ["effects"],
+  },
+  {
+    blurb:
+      "The glass and the things that go wrong behind it: scanlines, screens, and text that types, scrambles or breaks up.",
+    categories: ["effects"],
+    id: "effects",
+    title: "Effects",
+    types: ["registry:component"],
+  },
+  {
+    blurb: "The checks a component has to make for itself.",
+    id: "hooks",
+    title: "Hooks",
+    types: ["registry:hook"],
   },
   {
     blurb: "Installable compositions built from registry components.",
@@ -47,10 +64,22 @@ export interface SectionWithItems extends Section {
   items: RegistryItem[];
 }
 
+function inSection(item: RegistryItem, section: Section): boolean {
+  const categories = item.categories ?? [];
+
+  if (section.categories) {
+    return section.categories.some((name) => categories.includes(name));
+  }
+
+  return !section.without?.some((name) => categories.includes(name));
+}
+
 export function sectionsWithItems(): SectionWithItems[] {
   return SECTIONS.map((section) => ({
     ...section,
-    items: itemsOfType(...section.types),
+    items: itemsOfType(...section.types).filter((item) =>
+      inSection(item, section)
+    ),
   }));
 }
 

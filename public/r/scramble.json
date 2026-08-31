@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scramble",
+  "title": "Scramble",
+  "description": "Text resolving out of glyph soup, left to right. On mount, on hover, or when it scrolls into view.",
+  "registryDependencies": [
+    "@afterglow/use-reduced-motion"
+  ],
+  "files": [
+    {
+      "path": "registry/terminal/components/scramble.tsx",
+      "content": "\"use client\";\n\nimport type * as React from \"react\";\nimport { useCallback, useEffect, useState } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\nimport { useReducedMotion } from \"@/registry/terminal/hooks/use-reduced-motion\";\n\nconst GLYPHS = \"!<>-_\\\\/[]{}=+*^?#|\";\n\nfunction scrambled(text: string, resolved: number, charset: string): string {\n  let out = \"\";\n\n  for (let index = 0; index < text.length; index += 1) {\n    const character = text[index];\n    out +=\n      index < resolved || character === \" \"\n        ? character\n        : charset[Math.floor(Math.random() * charset.length)];\n  }\n\n  return out;\n}\n\nfunction Scramble({\n  charset = GLYPHS,\n  className,\n  rate = 0.55,\n  speed = 34,\n  text,\n  trigger = \"mount\",\n  ...props\n}: Omit<React.ComponentProps<\"span\">, \"children\"> & {\n  charset?: string;\n  rate?: number;\n  speed?: number;\n  text: string;\n  trigger?: \"mount\" | \"hover\" | \"view\";\n}) {\n  const reduced = useReducedMotion();\n  const [element, setElement] = useState<HTMLSpanElement | null>(null);\n  const [runs, setRuns] = useState(trigger === \"mount\" ? 1 : 0);\n  const [shown, setShown] = useState(text);\n\n  const start = useCallback(() => setRuns((count) => count + 1), []);\n\n  useEffect(() => {\n    setShown(text);\n    setRuns(trigger === \"mount\" ? 1 : 0);\n  }, [text, trigger]);\n\n  useEffect(() => {\n    if (runs === 0 || reduced) {\n      setShown(text);\n      return;\n    }\n\n    let resolved = 0;\n    const timer = window.setInterval(() => {\n      resolved += rate;\n      if (resolved >= text.length) {\n        window.clearInterval(timer);\n        setShown(text);\n        return;\n      }\n      setShown(scrambled(text, resolved, charset));\n    }, speed);\n\n    return () => window.clearInterval(timer);\n  }, [charset, rate, reduced, runs, speed, text]);\n\n  useEffect(() => {\n    if (trigger !== \"view\" || !element) {\n      return;\n    }\n\n    const observer = new IntersectionObserver((entries) => {\n      if (entries[0]?.isIntersecting) {\n        start();\n        observer.disconnect();\n      }\n    });\n    observer.observe(element);\n\n    return () => observer.disconnect();\n  }, [element, start, trigger]);\n\n  return (\n    <span\n      className={cn(\"font-mono\", className)}\n      data-slot=\"scramble\"\n      onPointerEnter={trigger === \"hover\" ? start : undefined}\n      ref={setElement}\n      {...props}\n    >\n      <span className=\"sr-only\">{text}</span>\n      <span aria-hidden=\"true\" className=\"select-none\">\n        {shown}\n      </span>\n    </span>\n  );\n}\n\nexport { Scramble };\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "effects"
+  ],
+  "type": "registry:component"
+}

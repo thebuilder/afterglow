@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "typewriter",
+  "title": "Typewriter",
+  "description": "A line that types itself one character at a time, at its finished width from the first frame.",
+  "registryDependencies": [
+    "@afterglow/caret",
+    "@afterglow/use-reduced-motion"
+  ],
+  "files": [
+    {
+      "path": "registry/terminal/components/typewriter.tsx",
+      "content": "\"use client\";\n\nimport type * as React from \"react\";\nimport { useEffect, useRef, useState } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\nimport { Caret } from \"@/registry/terminal/components/caret\";\nimport { useReducedMotion } from \"@/registry/terminal/hooks/use-reduced-motion\";\n\nfunction Typewriter({\n  caret = true,\n  className,\n  jitter = 0.45,\n  loop = false,\n  loopDelay = 1800,\n  onDone,\n  speed = 55,\n  startDelay = 0,\n  text,\n  ...props\n}: Omit<React.ComponentProps<\"span\">, \"children\"> & {\n  caret?: boolean;\n  jitter?: number;\n  loop?: boolean;\n  loopDelay?: number;\n  onDone?: () => void;\n  speed?: number;\n  startDelay?: number;\n  text: string;\n}) {\n  const reduced = useReducedMotion();\n  const [printed, setPrinted] = useState(0);\n  const [source, setSource] = useState(text);\n  const finished = useRef(onDone);\n\n  if (source !== text) {\n    setSource(text);\n    setPrinted(0);\n  }\n\n  const total = text.length;\n  const done = printed >= total;\n\n  useEffect(() => {\n    finished.current = onDone;\n  }, [onDone]);\n\n  useEffect(() => {\n    if (reduced) {\n      setPrinted(total);\n      return;\n    }\n    if (done) {\n      return;\n    }\n    const spread = speed * (1 + (Math.random() - 0.5) * 2 * jitter);\n    const delay = Math.max(8, printed === 0 ? startDelay + spread : spread);\n    const timer = window.setTimeout(\n      () => setPrinted((count) => count + 1),\n      delay\n    );\n    return () => window.clearTimeout(timer);\n  }, [done, jitter, printed, reduced, speed, startDelay, total]);\n\n  useEffect(() => {\n    if (!done) {\n      return;\n    }\n    finished.current?.();\n    if (!loop || reduced) {\n      return;\n    }\n    const restart = window.setTimeout(() => setPrinted(0), loopDelay);\n    return () => window.clearTimeout(restart);\n  }, [done, loop, loopDelay, reduced]);\n\n  return (\n    <span\n      className={cn(\"font-mono\", className)}\n      data-slot=\"typewriter\"\n      {...props}\n    >\n      <span data-slot=\"typewriter-printed\">{text.slice(0, printed)}</span>\n      {caret ? <Caret data-slot=\"typewriter-caret\" /> : null}\n      <span className=\"opacity-0\" data-slot=\"typewriter-pending\">\n        {text.slice(printed)}\n      </span>\n    </span>\n  );\n}\n\nexport { Typewriter };\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "effects"
+  ],
+  "type": "registry:component"
+}
