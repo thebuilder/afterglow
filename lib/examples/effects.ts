@@ -1,6 +1,6 @@
 import { GlitchDefault } from "@/components/examples/glitch-default";
 import { GrainDefault } from "@/components/examples/grain-default";
-import { ScanlinesWithAndWithout } from "@/components/examples/scanlines-with-and-without";
+import { ScanlinesDefault } from "@/components/examples/scanlines-default";
 import { ScrambleDefault } from "@/components/examples/scramble-default";
 import { ScreenDefault } from "@/components/examples/screen-default";
 import { TypewriterDefault } from "@/components/examples/typewriter-default";
@@ -27,10 +27,10 @@ export const effectExamples: ExampleMap = {
   ],
   scanlines: [
     {
-      component: ScanlinesWithAndWithout,
+      component: ScanlinesDefault,
       description:
         "The lines multiply, so they can only darken what is already lit. Over a black panel the change is about two values in 255.",
-      name: "With and without",
+      name: "Default",
     },
   ],
   scramble: [
