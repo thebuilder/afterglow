@@ -3,16 +3,10 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
 
-// A variant with a body behaves like a key on a panel: it lifts under the
-// cursor, then seats a pixel below rest when pressed, losing its glow as it
-// goes down. `ghost` and `link` have no body to move, and `ghost` fills dense
-// grids like calendar days where a per-cell lift would be noise.
 const keyTravel =
   "hover:-translate-y-px active:translate-y-px active:shadow-none";
 
 const buttonVariants = cva(
-  // The press is instant and the release eases, so the button answers the
-  // mouse down rather than catching up to it.
   "inline-flex shrink-0 items-center justify-center gap-2 rounded-none border border-transparent font-mono font-bold uppercase whitespace-nowrap outline-none transition-[background-color,border-color,color,box-shadow,translate] duration-150 ease-terminal active:transition-none focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-phosphor-bright disabled:pointer-events-none disabled:opacity-40 data-disabled:pointer-events-none data-disabled:opacity-40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     defaultVariants: { size: "default", variant: "default" },
