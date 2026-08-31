@@ -9,8 +9,6 @@ import { docsEntry, navSections } from "@/lib/sections";
 export function SiteHeader() {
   return (
     <>
-      {/* Outside the header, because backdrop-filter makes the header the
-          containing block for a fixed child and traps the link inside it. */}
       <a
         className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:border focus:border-line-strong focus:bg-void focus:px-3 focus:py-2 focus:font-mono focus:text-2xs focus:text-phosphor-bright focus:uppercase focus:tracking-terminal"
         href="#main-content"
