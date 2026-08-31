@@ -3,10 +3,13 @@ import { notFound } from "next/navigation";
 
 import { GuidePage } from "@/components/docs/guide-page";
 import { ThemeGuidePreview } from "@/components/docs/theme-guide-preview";
+import { ExamplePreview } from "@/components/example-preview";
 import GettingStarted from "@/content/docs/getting-started.mdx";
 import Installation from "@/content/docs/installation.mdx";
+import Motion from "@/content/docs/motion.mdx";
 import Theming from "@/content/docs/theming.mdx";
 import Troubleshooting from "@/content/docs/troubleshooting.mdx";
+import { examplesFor } from "@/lib/examples";
 import { allGuides, findGuide } from "@/lib/guides";
 import { DEFAULT_SOCIAL_IMAGE, socialTitle } from "@/lib/metadata";
 import { HOMEPAGE } from "@/lib/registry";
@@ -14,6 +17,7 @@ import { HOMEPAGE } from "@/lib/registry";
 const CONTENT = {
   "getting-started": GettingStarted,
   installation: Installation,
+  motion: Motion,
   theming: Theming,
   troubleshooting: Troubleshooting,
 } as const;
@@ -79,8 +83,14 @@ export default async function GuideRoute({ params }: Params) {
     notFound();
   }
 
+  const motion =
+    name === "motion"
+      ? examplesFor("theme").find((example) => example.name === "Motion")
+      : undefined;
+
   return (
     <GuidePage guide={guide}>
+      {motion ? <ExamplePreview example={motion} item="theme" /> : null}
       {name === "theming" ? <ThemeGuidePreview /> : null}
       <Content />
     </GuidePage>

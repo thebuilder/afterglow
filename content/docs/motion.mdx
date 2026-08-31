@@ -1,0 +1,125 @@
+## How Afterglow animates
+
+Afterglow ships its own keyframes in the theme, so the tokens below work as soon as the theme is
+installed and there is no animation library to add.
+
+The easing is `steps()` far more often than a curve. A machine that redraws in character cells
+cannot land between two positions, so a panel that eases open on a spline reads as the wrong
+machine. Curves are kept for the few things that really do travel: sheets, sliders, the beam.
+
+## Entrances and exits
+
+Anything that opens needs a closing half. Base UI defers unmount while an animation or transition is
+still running, so a component with only an entrance vanishes instead of leaving.
+
+```tsx
+<PopoverContent className="animate-open data-closed:animate-close" />
+```
+
+- `animate-open` and `animate-close` for popovers, dialogs and menus
+- `animate-fade-in` and `animate-fade-out` for anything that should not move
+- `animate-slide-in-top`, `-bottom`, `-left`, `-right` for sheets and drawers, with a matching `animate-slide-out-*` for each edge
+- `animate-select-fold-in-up` and `-down` for a list unfolding from its trigger, with `animate-select-fold-out-up` and `-down` for the exit
+- `animate-toast-in` and `animate-toast-out` for a notice blinking into place
+
+## Ambient motion
+
+These loop. They belong on one element at a time, not on a panel full of them.
+
+- `animate-caret` blinks a block cursor on a one-second beat
+- `animate-led` holds a status lamp between two brightness levels
+- `animate-alarm` gives two flashes and a rest, the way a warning lamp blinks
+- `animate-pixel` steps a lit cell through four brightness levels
+- `animate-glyph` pulls a strip of glyphs up one line at a time
+- `animate-sweep` travels a highlight left to right
+- `animate-flicker` is mains hum on the cathode
+- `animate-jitter` is sub-pixel horizontal instability
+- `animate-roll` is a vertical hold that never quite locks
+
+## A tube misbehaving
+
+`animate-flicker`, `animate-jitter` and `animate-roll` are ambient and need nothing but the class.
+The other two take a little composition.
+
+### Channel separation
+
+`animate-glitch` clips an element into bands that jump on steps. One copy on its own reads as
+flickering chunks. What you want is the same bands on two colour-separated copies pulled in opposite
+directions, which is what a tube losing convergence actually does.
+
+`--glitch-shift` sets how far each copy travels, so the two share one keyframe:
+
+```tsx
+<span className="relative inline-block text-phosphor-bright">
+  SIGNAL LOST
+  <span
+    aria-hidden="true"
+    className="absolute inset-0 animate-glitch text-signal"
+    style={{ "--glitch-shift": "3px" } as CSSProperties}
+  >
+    SIGNAL LOST
+  </span>
+  <span
+    aria-hidden="true"
+    className="absolute inset-0 animate-glitch text-azure"
+    style={{ "--glitch-shift": "-3px" } as CSSProperties}
+  >
+    SIGNAL LOST
+  </span>
+</span>
+```
+
+The `glitch` component does this for you, including for a whole subtree.
+
+### Losing the raster
+
+A tube does not fade out. It squashes the picture to a line, holds it for a beat, then lets the line
+shrink to a point and die. That takes two elements, because the picture and the line it collapses to
+are not the same thing.
+
+```tsx
+<div className="relative isolate overflow-hidden bg-void">
+  <div className="animate-power-off">{children}</div>
+  <span
+    aria-hidden="true"
+    className="absolute inset-x-0 top-1/2 h-0.5 animate-power-line-out bg-linear-to-r from-transparent via-phosphor-bright to-transparent shadow-glow-line"
+  />
+</div>
+```
+
+`animate-power-on` and `animate-power-line-in` are the way back up. The picture carries a delay so
+the line strikes before the raster opens behind it.
+
+Both halves finish dark. If you build your own out of these, make sure yours do too: an exit that
+ends at any opacity above zero leaves a lit bar on screen and reads as stuck rather than off.
+
+## Reduced motion
+
+Every token above is switched off under `prefers-reduced-motion: reduce`. That is not a list anyone
+maintains. The selector is generated from the token names, so a class named `animate-*` is covered
+the moment it exists.
+
+Motion you drive from JavaScript is not, because there is no class for the theme to find. Check the
+query yourself:
+
+```tsx
+const reduced = useReducedMotion();
+```
+
+`use-reduced-motion` is a registry item. `typewriter`, `scramble`, `glitch` and `grain` all depend on
+it, and print or paint their finished state in one step when the query matches.
+
+## Changing the timing
+
+Duration lives in the token. Override `animation-duration` on the element and the keyframes stay put
+while the timing moves:
+
+```tsx
+<span className="animate-flicker" style={{ animationDuration: "1200ms" }} />
+```
+
+Reach for `style` here rather than Tailwind's `duration-*`. That utility sets `transition-duration`,
+not `animation-duration`, so it changes nothing about a keyframe animation and fails silently. The
+same goes for `delay-*` and `ease-*`, which are transition properties too.
+
+To change a duration everywhere, edit the token in `theme.mjs` and run `pnpm registry:build`.

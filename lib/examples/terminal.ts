@@ -13,6 +13,7 @@ import { TerminalTheSystemAtAGlance } from "@/components/examples/terminal-the-s
 import { TerminalWindowMacos } from "@/components/examples/terminal-window-macos";
 import { TerminalWindowTerminal } from "@/components/examples/terminal-window-terminal";
 import { TerminalWindowWindows } from "@/components/examples/terminal-window-windows";
+import { ThemeMotion } from "@/components/examples/theme-motion";
 import { ThemePalette } from "@/components/examples/theme-palette";
 import { ThemePhosphorSelector } from "@/components/examples/theme-phosphor-selector";
 
@@ -141,6 +142,12 @@ export const terminalExamples: ExampleMap = {
       description:
         "Sets `data-phosphor` on the root. The docs site stores the selection with `next-themes`, and the installed CSS supplies each preset.",
       name: "Phosphor selector",
+    },
+    {
+      component: ThemeMotion,
+      description:
+        "The five effects the theme adds for a tube misbehaving, running together. Every one is switched off under `prefers-reduced-motion`.",
+      name: "Motion",
     },
   ],
 };
