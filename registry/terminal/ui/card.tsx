@@ -12,7 +12,7 @@ function Card({
   return (
     <div
       className={cn(
-        "relative isolate flex flex-col gap-4 rounded-none border border-line border-l-2 border-l-[var(--card-accent,var(--phosphor))] bg-card/90 py-5 text-card-foreground backdrop-blur-md transition-[border-color,background-color] duration-[260ms] ease-terminal",
+        "relative isolate flex flex-col gap-4 rounded-none border border-line border-l-2 border-l-[var(--card-accent,var(--phosphor))] bg-card/90 py-5 text-card-foreground backdrop-blur-md transition duration-[260ms] ease-terminal",
         "hover:border-line-strong hover:border-l-[var(--card-accent,var(--phosphor))] hover:bg-card",
         className
       )}

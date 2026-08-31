@@ -45,7 +45,7 @@ function InputOTPSlot({
   return (
     <div
       className={cn(
-        "relative flex size-9 items-center justify-center rounded-none bg-panel-sunken font-mono text-phosphor-bright text-sm outline-none transition-[background-color,box-shadow]",
+        "relative flex size-9 items-center justify-center rounded-none bg-panel-sunken font-mono text-phosphor-bright text-sm outline-none transition",
         "data-[active=true]:z-10 data-[active=true]:bg-accent data-[active=true]:shadow-[inset_0_0_0_1px_var(--phosphor)]",
         "aria-invalid:shadow-[inset_0_0_0_1px_var(--destructive)]",
         className

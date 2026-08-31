@@ -4,8 +4,14 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex shrink-0 items-center justify-center gap-2 rounded-none border border-transparent font-mono font-bold uppercase whitespace-nowrap outline-none transition-[background-color,border-color,color,box-shadow,transform] duration-150 ease-terminal focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-phosphor-bright disabled:pointer-events-none disabled:opacity-40 data-disabled:pointer-events-none data-disabled:opacity-40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "inline-flex shrink-0 items-center justify-center gap-2 rounded-none border border-transparent font-mono font-bold uppercase whitespace-nowrap outline-none transition duration-150 ease-terminal active:transition-none focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-phosphor-bright disabled:pointer-events-none disabled:opacity-40 data-disabled:pointer-events-none data-disabled:opacity-40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
+    compoundVariants: [
+      {
+        class: "hover:-translate-y-px active:translate-y-px active:shadow-none",
+        variant: ["default", "destructive", "outline", "primary", "signal"],
+      },
+    ],
     defaultVariants: { size: "default", variant: "default" },
     variants: {
       size: {
@@ -17,17 +23,18 @@ const buttonVariants = cva(
       },
       variant: {
         default:
-          "border-line bg-secondary text-phosphor hover:-translate-y-px hover:border-line-strong hover:bg-accent hover:text-phosphor-bright hover:shadow-glow",
+          "border-line bg-secondary text-phosphor hover:border-line-strong hover:bg-accent hover:text-phosphor-bright hover:shadow-glow active:bg-accent active:text-phosphor",
         destructive:
-          "border-destructive bg-destructive/15 text-destructive hover:bg-destructive hover:text-white",
-        ghost: "text-muted-foreground hover:bg-accent/50 hover:text-phosphor",
-        link: "text-phosphor underline-offset-4 hover:underline",
+          "border-destructive bg-destructive/15 text-destructive hover:bg-destructive hover:text-white active:bg-destructive/70 active:text-white",
+        ghost:
+          "text-muted-foreground hover:bg-accent/50 hover:text-phosphor active:bg-accent active:text-phosphor-bright",
+        link: "text-phosphor underline-offset-4 hover:underline active:text-phosphor-bright",
         outline:
-          "border-line text-phosphor hover:border-line-strong hover:bg-accent/60 hover:text-phosphor-bright",
+          "border-line text-phosphor hover:border-line-strong hover:bg-accent/60 hover:text-phosphor-bright active:border-line active:bg-accent/80 active:text-phosphor",
         primary:
-          "border-primary bg-primary text-primary-foreground shadow-glow hover:-translate-y-px hover:bg-phosphor-bright hover:shadow-glow",
+          "border-primary bg-primary text-primary-foreground shadow-glow hover:bg-phosphor-bright hover:shadow-glow-strong active:bg-primary",
         signal:
-          "bg-signal text-void shadow-signal-control hover:-translate-y-px hover:bg-signal-soft hover:shadow-glow-signal",
+          "bg-signal text-void shadow-signal-control hover:bg-signal-soft hover:shadow-glow-signal active:bg-signal",
       },
     },
   }

@@ -42,7 +42,7 @@ function Prompt({
   return (
     <form
       className={cn(
-        "flex items-center gap-2 border border-line bg-panel-sunken px-3 py-2 font-mono text-base transition-[border-color,box-shadow] duration-150 ease-terminal focus-within:border-line-strong focus-within:shadow-glow md:text-sm",
+        "flex items-center gap-2 border border-line bg-panel-sunken px-3 py-2 font-mono text-base transition duration-150 ease-terminal focus-within:border-line-strong focus-within:shadow-glow md:text-sm",
         className
       )}
       data-slot="prompt"
