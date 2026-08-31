@@ -969,6 +969,10 @@
           "background-image": "repeating-linear-gradient(to bottom, transparent 0 3px, rgb(0 0 0 / 0.09) 3px 4px)",
           "mix-blend-mode": "multiply"
         },
+        "@utility screen-grille": {
+          "background-image": "repeating-linear-gradient(to right, rgb(255 40 40 / 0.3) 0 1px, rgb(40 255 90 / 0.3) 1px 2px, rgb(60 90 255 / 0.3) 2px 3px)",
+          "mix-blend-mode": "overlay"
+        },
         "@utility terminal-caret": {
           "background-color": "currentColor",
           "display": "inline-block",
@@ -978,7 +982,7 @@
           "width": "0.5em"
         },
         "@utility vignette": {
-          "background-image": "radial-gradient(130% 100% at 50% 50%, transparent 52%, rgb(0 0 0 / 0.55) 100%)"
+          "background-image": "radial-gradient(110% 110% at 50% 50%, transparent 45%, rgb(0 0 0 / 0.6) 100%)"
         }
       }
     },
@@ -1861,12 +1865,13 @@
       "name": "screen",
       "type": "registry:component",
       "title": "Screen",
-      "description": "A framed CRT surface with scanlines and curved-screen falloff.",
+      "description": "A framed CRT surface. Scanlines and falloff by default, with the grille, bloom, roll bar and grain opt in.",
       "categories": [
         "effects"
       ],
       "registryDependencies": [
-        "@afterglow/scanlines"
+        "@afterglow/scanlines",
+        "@afterglow/grain"
       ],
       "files": [
         {
@@ -2039,7 +2044,9 @@
         "@afterglow/prompt",
         "@afterglow/use-reduced-motion",
         "@afterglow/typewriter",
-        "@afterglow/scramble"
+        "@afterglow/scramble",
+        "@afterglow/grain",
+        "@afterglow/glitch"
       ],
       "files": []
     },
@@ -2091,6 +2098,42 @@
       "files": [
         {
           "path": "registry/terminal/components/scramble.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "grain",
+      "type": "registry:component",
+      "title": "Grain",
+      "description": "Tube noise over anything. A static filter by default, or a capped canvas loop that pauses off screen.",
+      "categories": [
+        "effects"
+      ],
+      "registryDependencies": [
+        "@afterglow/use-reduced-motion"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/components/grain.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "glitch",
+      "type": "registry:component",
+      "title": "Glitch",
+      "description": "Channel separation over a subtree. Two colour-shifted copies clipped into bands that jump on steps.",
+      "categories": [
+        "effects"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/components/glitch.tsx",
           "type": "registry:component"
         }
       ]

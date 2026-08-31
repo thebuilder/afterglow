@@ -2,14 +2,15 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "screen",
   "title": "Screen",
-  "description": "A framed CRT surface with scanlines and curved-screen falloff.",
+  "description": "A framed CRT surface. Scanlines and falloff by default, with the grille, bloom, roll bar and grain opt in.",
   "registryDependencies": [
-    "@afterglow/scanlines"
+    "@afterglow/scanlines",
+    "@afterglow/grain"
   ],
   "files": [
     {
       "path": "registry/terminal/components/screen.tsx",
-      "content": "import type * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\nimport { Scanlines } from \"@/registry/terminal/components/scanlines\";\n\nfunction Screen({\n  className,\n  children,\n  vignette = true,\n  density = \"fine\",\n  ...props\n}: React.ComponentProps<\"div\"> & {\n  vignette?: boolean;\n  density?: \"fine\" | \"soft\";\n}) {\n  return (\n    <div\n      className={cn(\n        \"relative isolate overflow-hidden border border-line bg-void\",\n        className\n      )}\n      data-slot=\"screen\"\n      {...props}\n    >\n      {children}\n      <Scanlines density={density} vignette={vignette} />\n    </div>\n  );\n}\n\nexport { Screen };\n",
+      "content": "import type * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\nimport { Grain } from \"@/registry/terminal/components/grain\";\nimport { Scanlines } from \"@/registry/terminal/components/scanlines\";\n\nfunction Screen({\n  bloom = false,\n  children,\n  className,\n  density = \"fine\",\n  grain = false,\n  grille = false,\n  roll = false,\n  vignette = true,\n  ...props\n}: React.ComponentProps<\"div\"> & {\n  bloom?: boolean;\n  density?: \"fine\" | \"soft\";\n  grain?: boolean;\n  grille?: boolean;\n  roll?: boolean;\n  vignette?: boolean;\n}) {\n  return (\n    <div\n      className={cn(\n        \"relative isolate overflow-hidden border border-line bg-void\",\n        className\n      )}\n      data-slot=\"screen\"\n      {...props}\n    >\n      {children}\n      {bloom ? (\n        <div\n          aria-hidden=\"true\"\n          className=\"pointer-events-none absolute inset-0 z-90 opacity-70 backdrop-blur-[9px] backdrop-brightness-[1.4] backdrop-saturate-[1.4] mix-blend-screen\"\n          data-slot=\"screen-bloom\"\n        />\n      ) : null}\n      {grille ? (\n        <div\n          aria-hidden=\"true\"\n          className=\"screen-grille pointer-events-none absolute inset-0 z-100\"\n          data-slot=\"screen-grille\"\n        />\n      ) : null}\n      {roll ? (\n        <div\n          aria-hidden=\"true\"\n          className=\"pointer-events-none absolute inset-x-0 z-100 h-1/2 animate-roll bg-linear-to-b from-transparent via-white/15 to-transparent mix-blend-screen\"\n          data-slot=\"screen-roll\"\n        />\n      ) : null}\n      {grain ? <Grain animated className=\"z-100\" /> : null}\n      <Scanlines density={density} vignette={vignette} />\n    </div>\n  );\n}\n\nexport { Screen };\n",
       "type": "registry:component"
     }
   ],

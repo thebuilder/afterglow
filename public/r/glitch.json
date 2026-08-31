@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "glitch",
+  "title": "Glitch",
+  "description": "Channel separation over a subtree. Two colour-shifted copies clipped into bands that jump on steps.",
+  "registryDependencies": [
+    "@afterglow/theme"
+  ],
+  "files": [
+    {
+      "path": "registry/terminal/components/glitch.tsx",
+      "content": "import type * as React from \"react\";\nimport type { CSSProperties } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nfunction Glitch({\n  active = true,\n  children,\n  className,\n  shift = 3,\n  ...props\n}: React.ComponentProps<\"span\"> & {\n  active?: boolean;\n  shift?: number;\n}) {\n  return (\n    <span\n      className={cn(\"relative isolate inline-block\", className)}\n      data-slot=\"glitch\"\n      {...props}\n    >\n      {children}\n      {active ? (\n        <>\n          <span\n            aria-hidden=\"true\"\n            className=\"pointer-events-none absolute inset-0 animate-glitch text-signal mix-blend-screen\"\n            data-slot=\"glitch-layer\"\n            inert\n            style={{ \"--glitch-shift\": `${shift}px` } as CSSProperties}\n          >\n            {children}\n          </span>\n          <span\n            aria-hidden=\"true\"\n            className=\"pointer-events-none absolute inset-0 animate-glitch text-azure mix-blend-screen\"\n            data-slot=\"glitch-layer\"\n            inert\n            style={{ \"--glitch-shift\": `${-shift}px` } as CSSProperties}\n          >\n            {children}\n          </span>\n        </>\n      ) : null}\n    </span>\n  );\n}\n\nexport { Glitch };\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "effects"
+  ],
+  "type": "registry:component"
+}

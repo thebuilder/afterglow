@@ -3,6 +3,43 @@ import type { DocMap } from "@/lib/doc";
 const TRIGGERS = '"mount" | "hover" | "view"';
 
 export const effectDocs: DocMap = {
+  glitch: {
+    notes: [
+      "The two layers are `inert`, `aria-hidden` clones of the children, so a subtree with a link or a field in it keeps one of each in the focus order.",
+      "The layers inherit `color`. Anything drawn in `currentColor` takes the separation; a subtree with colours of its own reads as a ghost of itself instead.",
+    ],
+    parts: [
+      {
+        name: "Glitch",
+        props: [
+          { default: "true", name: "active", type: "boolean" },
+          { default: "3", name: "shift", type: "number" },
+        ],
+        summary:
+          "Wraps children and runs `animate-glitch` over two colour-separated copies of them. `shift` is how far each one travels, in pixels, in opposite directions.",
+      },
+    ],
+  },
+
+  grain: {
+    notes: [
+      "The blend is `screen`, so the noise reads in the blacks. Over a light surface it all but disappears; raise `opacity` to bring it back.",
+      "`animated` caps its frame rate at `fps`, stops painting while it is off screen, and falls back to the static filter under reduced motion.",
+    ],
+    parts: [
+      {
+        name: "Grain",
+        props: [
+          { default: "false", name: "animated", type: "boolean" },
+          { default: "24", name: "fps", type: "number" },
+          { default: "0.13", name: "opacity", type: "number" },
+        ],
+        summary:
+          "An absolutely positioned overlay for the element it sits in. Static by default, which is one `feTurbulence` paint and no JavaScript.",
+      },
+    ],
+  },
+
   scanlines: {
     parts: [
       {
@@ -40,15 +77,23 @@ export const effectDocs: DocMap = {
   },
 
   screen: {
+    notes: [
+      "Every layer darkens or tints what is under it, so none of them show over an empty black panel. They need lit content to act on.",
+      "`bloom` blurs and brightens what is behind it, so lit content spills into the dark around it. It is one backdrop filter over the whole surface, not a second copy of the children.",
+    ],
     parts: [
       {
         name: "Screen",
         props: [
           { default: "true", name: "vignette", type: "boolean" },
           { default: '"fine"', name: "density", type: '"fine" | "soft"' },
+          { default: "false", name: "grille", type: "boolean" },
+          { default: "false", name: "bloom", type: "boolean" },
+          { default: "false", name: "roll", type: "boolean" },
+          { default: "false", name: "grain", type: "boolean" },
         ],
         summary:
-          "A bordered surface with the scanlines and the falloff already on it. Pass children; it draws the glass over them.",
+          "A bordered surface with the scanlines and the falloff already on it. The aperture grille, the bloom, the hold bar and the grain are opt in.",
       },
     ],
   },

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "grain",
+  "title": "Grain",
+  "description": "Tube noise over anything. A static filter by default, or a capped canvas loop that pauses off screen.",
+  "registryDependencies": [
+    "@afterglow/use-reduced-motion"
+  ],
+  "files": [
+    {
+      "path": "registry/terminal/components/grain.tsx",
+      "content": "\"use client\";\n\nimport type * as React from \"react\";\nimport { useEffect, useState } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\nimport { useReducedMotion } from \"@/registry/terminal/hooks/use-reduced-motion\";\n\nconst WIDTH = 220;\nconst HEIGHT = 124;\n\nconst STATIC_NOISE =\n  \"url(\\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='3' type='fractalNoise'/%3E%3C/filter%3E%3Crect filter='url(%23g)' height='100%25' width='100%25'/%3E%3C/svg%3E\\\")\";\n\nfunction Grain({\n  animated = false,\n  className,\n  fps = 24,\n  opacity = 0.13,\n  ...props\n}: React.ComponentProps<\"div\"> & {\n  animated?: boolean;\n  fps?: number;\n  opacity?: number;\n}) {\n  const reduced = useReducedMotion();\n  const [canvas, setCanvas] = useState<HTMLCanvasElement | null>(null);\n  const running = animated && !reduced;\n\n  useEffect(() => {\n    if (!(running && canvas)) {\n      return;\n    }\n\n    const context = canvas.getContext(\"2d\");\n    if (!context) {\n      return;\n    }\n\n    const image = context.createImageData(WIDTH, HEIGHT);\n    const { data } = image;\n    const step = 1000 / fps;\n    let frame = 0;\n    let last = 0;\n    let visible = true;\n\n    const paint = (now: number) => {\n      frame = requestAnimationFrame(paint);\n      if (!visible || now - last < step) {\n        return;\n      }\n      last = now;\n      for (let index = 0; index < WIDTH * HEIGHT; index += 1) {\n        const value = Math.trunc(Math.random() * 255);\n        data[index * 4] = value;\n        data[index * 4 + 1] = value;\n        data[index * 4 + 2] = value;\n        data[index * 4 + 3] = 255;\n      }\n      context.putImageData(image, 0, 0);\n    };\n\n    const observer = new IntersectionObserver((entries) => {\n      visible = entries[0]?.isIntersecting ?? true;\n    });\n    observer.observe(canvas);\n    frame = requestAnimationFrame(paint);\n\n    return () => {\n      cancelAnimationFrame(frame);\n      observer.disconnect();\n    };\n  }, [canvas, fps, running]);\n\n  return (\n    <div\n      aria-hidden=\"true\"\n      className={cn(\n        \"pointer-events-none absolute inset-0 mix-blend-screen\",\n        className\n      )}\n      data-slot=\"grain\"\n      style={{\n        backgroundImage: running ? undefined : STATIC_NOISE,\n        opacity,\n      }}\n      {...props}\n    >\n      {running ? (\n        <canvas\n          className=\"block size-full [image-rendering:pixelated]\"\n          height={HEIGHT}\n          ref={setCanvas}\n          width={WIDTH}\n        />\n      ) : null}\n    </div>\n  );\n}\n\nexport { Grain };\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "effects"
+  ],
+  "type": "registry:component"
+}
