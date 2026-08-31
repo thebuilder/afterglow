@@ -13,6 +13,7 @@ const GROUPS: { title: string; types: string[] }[] = [
   { title: "Theme", types: ["registry:theme"] },
   { title: "Primitives", types: ["registry:ui"] },
   { title: "Terminal", types: ["registry:component"] },
+  { title: "Hooks", types: ["registry:hook"] },
   { title: "Blocks", types: ["registry:block"] },
 ];
 

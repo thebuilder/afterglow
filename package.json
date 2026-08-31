@@ -12,7 +12,7 @@
     "fix": "ultracite fix",
     "health": "fallow health",
     "lint": "ultracite check",
-    "registry:build": "node scripts/check-descriptions.mjs && node --import ./scripts/alias.mjs scripts/check-docs.mjs && node scripts/build-globals.mjs && shadcn build",
+    "registry:build": "node scripts/check-descriptions.mjs && node --import ./scripts/alias.mjs scripts/check-docs.mjs && node scripts/build-globals.mjs && node scripts/build-preset.mjs && shadcn build",
     "start": "next start",
     "typecheck": "tsc --noEmit"
   },

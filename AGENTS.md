@@ -27,12 +27,18 @@ that documents it.
 
 ## Architecture Notes
 
-### Two things are generated. Do not edit them by hand.
+### Three things are generated. Do not edit them by hand.
 
 - `app/globals.css` and the `theme` item's `cssVars`/`css` in `registry.json`
   are both written by `scripts/build-globals.mjs` from
   `registry/terminal/theme.mjs`. Change a token there and run
   `pnpm registry:build`.
+- The `terminal` preset's `registryDependencies` and `dependencies` in
+  `registry.json` are written by `scripts/build-preset.mjs` from the rest of the
+  manifest. The preset is the theme and every component, so there is nothing to
+  decide, and a hand-kept copy of that list only falls behind. Blocks are left
+  out, because they are compositions of the parts and a new project has no use
+  for an operator dashboard.
 - `public/r/*.json` is `shadcn build` output.
 
 Biome is configured to ignore all three.
@@ -79,7 +85,7 @@ import the site's own modules instead of re-deriving what they know.
 - A new item needs five things: the file, an entry in `registry.json`, at least
   one example under `components/examples/`, an entry in one of the
   `lib/examples/*.ts` maps keyed by its name, and an entry in the matching
-  `lib/docs/*.ts` map. Missing the fourth throws at render rather than shipping
+  `lib/docs/*.ts` map. The preset picks it up on its own. Missing the fourth throws at render rather than shipping
   a blank card; missing the fifth fails `pnpm registry:build`. The two map files
   are named alike on purpose, so both edits are in the same place.
 - Items are ordered alphabetically within their type in `registry.json`, and
