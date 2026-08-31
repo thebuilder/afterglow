@@ -241,11 +241,22 @@ const THEME = {
 
   "animate-fade-in": "terminal-fade-in 140ms ease-out",
   "animate-fade-out": "terminal-fade-out 120ms ease-in forwards",
+  "animate-flicker": "terminal-flicker 3.7s steps(1) infinite",
+  "animate-glitch": "terminal-glitch 1.9s steps(1) infinite",
   "animate-glyph": "terminal-glyph 800ms steps(4) infinite",
+  "animate-jitter": "terminal-jitter 260ms steps(1) infinite",
   "animate-led": "terminal-led 1.6s steps(2) infinite",
   "animate-line-in": "terminal-line-in 420ms var(--ease-terminal) both",
   "animate-open": "terminal-open 180ms steps(4, end)",
   "animate-pixel": "terminal-pixel 800ms linear infinite",
+
+  "animate-power-line-in":
+    "terminal-power-line-in 590ms var(--ease-terminal) both",
+  "animate-power-line-out":
+    "terminal-power-line-out 620ms var(--ease-terminal) both",
+  "animate-power-off": "terminal-power-off 260ms var(--ease-terminal) both",
+  "animate-power-on": "terminal-power-on 440ms var(--ease-terminal) 150ms both",
+  "animate-roll": "terminal-roll 6.5s linear infinite",
 
   "animate-select-fold-in-down":
     "terminal-select-fold-in-down 140ms steps(4, end)",
@@ -285,6 +296,8 @@ const THEME = {
     "0 0 18px color-mix(in srgb, var(--phosphor) 18%, transparent)",
   "shadow-glow-destructive":
     "0 0 18px color-mix(in srgb, var(--destructive) 20%, transparent)",
+  "shadow-glow-line":
+    "0 0 16px 1px color-mix(in srgb, var(--phosphor) 55%, transparent)",
   "shadow-glow-progress":
     "0 0 12px color-mix(in srgb, var(--phosphor) 50%, transparent)",
   "shadow-glow-signal":
@@ -372,7 +385,42 @@ const CSS = {
   // A column of glyphs pulled up one line at a time. Stepping a strip is how a
   // teletype cycled a character, and it keeps the frames exact where animating
   // `content` would leave them to the browser.
+  "@keyframes terminal-flicker": {
+    "0%, 100%": { filter: "brightness(1)" },
+    "6%": { filter: "brightness(1.07)" },
+    "7%": { filter: "brightness(0.93)" },
+    "9%": { filter: "brightness(1.02)" },
+    "38%": { filter: "brightness(1)" },
+    "41%": { filter: "brightness(0.9)" },
+    "42%": { filter: "brightness(1.06)" },
+    "44%": { filter: "brightness(1)" },
+    "71%": { filter: "brightness(1.04)" },
+    "72%": { filter: "brightness(0.96)" },
+  },
+  "@keyframes terminal-glitch": {
+    "0%, 100%": { "clip-path": "inset(100% 0 0 0)", transform: "none" },
+    "4%": {
+      "clip-path": "inset(14% 0 62% 0)",
+      transform: "translateX(var(--glitch-shift, 3px))",
+    },
+    "8%": {
+      "clip-path": "inset(58% 0 26% 0)",
+      transform: "translateX(calc(var(--glitch-shift, 3px) * -0.7))",
+    },
+    "11%": { "clip-path": "inset(100% 0 0 0)", transform: "none" },
+    "46%": {
+      "clip-path": "inset(34% 0 48% 0)",
+      transform: "translateX(calc(var(--glitch-shift, 3px) * 1.3))",
+    },
+    "49%": { "clip-path": "inset(100% 0 0 0)", transform: "none" },
+  },
   "@keyframes terminal-glyph": { to: { transform: "translateY(-100%)" } },
+  "@keyframes terminal-jitter": {
+    "0%": { transform: "translateX(0)" },
+    "25%": { transform: "translateX(0.6px)" },
+    "50%": { transform: "translateX(-0.4px)" },
+    "75%": { transform: "translateX(0.3px)" },
+  },
   "@keyframes terminal-led": { "50%": { opacity: "0.45" } },
   "@keyframes terminal-line-in": {
     from: {
@@ -397,6 +445,53 @@ const CSS = {
     "37.5%, 100%": { opacity: "0.16" },
   },
 
+  "@keyframes terminal-power-line-in": {
+    "0%": { opacity: "0", transform: "scaleX(0.04)" },
+    "22%": { opacity: "1", transform: "scaleX(1)" },
+    "40%": { opacity: "1", transform: "scaleX(1)" },
+    "100%": { opacity: "0", transform: "scaleX(1)" },
+  },
+  "@keyframes terminal-power-line-out": {
+    "0%": { opacity: "0", transform: "scaleX(1)" },
+    "22%": { opacity: "1", transform: "scaleX(1)" },
+    "55%": { opacity: "1", transform: "scaleX(1)" },
+    "100%": { opacity: "0", transform: "scaleX(0.04)" },
+  },
+  "@keyframes terminal-power-off": {
+    "0%": {
+      filter: "brightness(1)",
+      opacity: "1",
+      transform: "scale(1, 1)",
+    },
+    "60%": {
+      filter: "brightness(2.4)",
+      opacity: "1",
+      transform: "scale(1.04, 0.06)",
+    },
+    "85%": {
+      filter: "brightness(3)",
+      opacity: "1",
+      transform: "scale(1.06, 0.008)",
+    },
+    "100%": {
+      filter: "brightness(3)",
+      opacity: "0",
+      transform: "scale(1.06, 0.006)",
+    },
+  },
+  "@keyframes terminal-power-on": {
+    "0%": {
+      filter: "brightness(2.6)",
+      opacity: "1",
+      transform: "scale(1.06, 0.006)",
+    },
+    "35%": { filter: "brightness(1.9)", transform: "scale(1.03, 0.09)" },
+    "100%": { filter: "brightness(1)", transform: "scale(1, 1)" },
+  },
+  "@keyframes terminal-roll": {
+    from: { transform: "translateY(-120%)" },
+    to: { transform: "translateY(240%)" },
+  },
   "@keyframes terminal-select-fold-in-down": {
     from: { "clip-path": "inset(0 0 100% 0)" },
   },

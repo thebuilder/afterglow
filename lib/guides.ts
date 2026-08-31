@@ -65,6 +65,24 @@ const GUIDES: Guide[] = [
   },
   {
     description:
+      "The keyframes the theme installs, how to compose the glitch and power-off effects, and how reduced motion is handled.",
+    href: "/docs/motion",
+    markdownHref: "/docs/motion.md",
+    navTitle: "Motion",
+    slug: "motion",
+    source: "motion.mdx",
+    title: "Motion",
+    toc: [
+      { id: "how-afterglow-animates", label: "How Afterglow animates" },
+      { id: "entrances-and-exits", label: "Entrances and exits" },
+      { id: "ambient-motion", label: "Ambient motion" },
+      { id: "a-tube-misbehaving", label: "A tube misbehaving" },
+      { id: "reduced-motion", label: "Reduced motion" },
+      { id: "changing-the-timing", label: "Changing the timing" },
+    ],
+  },
+  {
+    description:
       "Fix missing styles, registry dependency errors, and the Base UI differences that matter when using Afterglow.",
     href: "/docs/troubleshooting",
     markdownHref: "/docs/troubleshooting.md",
