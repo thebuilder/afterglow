@@ -1,4 +1,5 @@
 import type { Example, ExampleMap } from "@/lib/example";
+import { effectExamples } from "@/lib/examples/effects";
 import { feedbackExamples } from "@/lib/examples/feedback";
 import { formExamples } from "@/lib/examples/forms";
 import { primitiveExamples } from "@/lib/examples/primitives";
@@ -8,6 +9,7 @@ import { slug } from "@/lib/slug";
 
 const EXAMPLES: ExampleMap = {
   ...terminalExamples,
+  ...effectExamples,
   ...primitiveExamples,
   ...formExamples,
   ...feedbackExamples,

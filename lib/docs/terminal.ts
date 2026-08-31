@@ -122,35 +122,6 @@ export const terminalDocs: DocMap = {
     ],
   },
 
-  scanlines: {
-    parts: [
-      {
-        name: "Scanlines",
-        props: [
-          { default: '"fine"', name: "density", type: '"fine" | "soft"' },
-          { default: "false", name: "vignette", type: "boolean" },
-          { default: "false", name: "fixed", type: "boolean" },
-        ],
-        summary:
-          "Goes inside anything with a positioning context. `fixed` puts it over the whole document instead. `fine` is 2px on 1px and starts eating letterforms at page scale, which is what `soft` is for.",
-      },
-    ],
-  },
-
-  screen: {
-    parts: [
-      {
-        name: "Screen",
-        props: [
-          { default: '"fine"', name: "density", type: '"fine" | "soft"' },
-          { default: "true", name: "vignette", type: "boolean" },
-        ],
-        summary:
-          "The frame, glass and corner darkening in one. Use `Scanlines` alone when the underlying element already has a frame.",
-      },
-    ],
-  },
-
   shell: {
     parts: [
       {

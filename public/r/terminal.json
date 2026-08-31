@@ -64,7 +64,10 @@
     "@afterglow/connector",
     "@afterglow/alarm-button",
     "@afterglow/terminal-window",
-    "@afterglow/prompt"
+    "@afterglow/prompt",
+    "@afterglow/use-reduced-motion",
+    "@afterglow/typewriter",
+    "@afterglow/scramble"
   ],
   "files": [],
   "type": "registry:style"

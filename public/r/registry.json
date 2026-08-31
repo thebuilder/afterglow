@@ -2036,9 +2036,64 @@
         "@afterglow/connector",
         "@afterglow/alarm-button",
         "@afterglow/terminal-window",
-        "@afterglow/prompt"
+        "@afterglow/prompt",
+        "@afterglow/use-reduced-motion",
+        "@afterglow/typewriter",
+        "@afterglow/scramble"
       ],
       "files": []
+    },
+    {
+      "name": "use-reduced-motion",
+      "type": "registry:hook",
+      "title": "Use Reduced Motion",
+      "description": "Reads the reduced-motion query and re-reads it when the setting changes, for the effects CSS cannot switch off.",
+      "categories": [
+        "effects"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/hooks/use-reduced-motion.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "typewriter",
+      "type": "registry:component",
+      "title": "Typewriter",
+      "description": "A line that types itself one character at a time, at its finished width from the first frame.",
+      "categories": [
+        "effects"
+      ],
+      "registryDependencies": [
+        "@afterglow/caret",
+        "@afterglow/use-reduced-motion"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/components/typewriter.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "scramble",
+      "type": "registry:component",
+      "title": "Scramble",
+      "description": "Text resolving out of glyph soup, left to right. On mount, on hover, or when it scrolls into view.",
+      "categories": [
+        "effects"
+      ],
+      "registryDependencies": [
+        "@afterglow/use-reduced-motion"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/components/scramble.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
