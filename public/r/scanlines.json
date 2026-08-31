@@ -2,14 +2,14 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "scanlines",
   "title": "Scanlines",
-  "description": "The glass. Two densities, an optional vignette, and a multiply blend.",
+  "description": "The glass. Two densities, a multiply blend, and a fixed mode for putting a whole page behind one sheet.",
   "registryDependencies": [
     "@afterglow/theme"
   ],
   "files": [
     {
       "path": "registry/terminal/components/scanlines.tsx",
-      "content": "import type * as React from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nfunction Scanlines({\n  className,\n  density = \"fine\",\n  vignette = false,\n  fixed = false,\n  ...props\n}: React.ComponentProps<\"div\"> & {\n  density?: \"fine\" | \"soft\";\n  vignette?: boolean;\n  fixed?: boolean;\n}) {\n  return (\n    <>\n      <div\n        aria-hidden=\"true\"\n        className={cn(\n          \"pointer-events-none z-100 inset-0\",\n          fixed ? \"fixed\" : \"absolute\",\n          density === \"fine\" ? \"scanlines\" : \"scanlines-soft\",\n          className\n        )}\n        data-slot=\"scanlines\"\n        {...props}\n      />\n      {vignette ? (\n        <div\n          aria-hidden=\"true\"\n          className={cn(\n            \"vignette pointer-events-none z-100 inset-0\",\n            fixed ? \"fixed\" : \"absolute\"\n          )}\n          data-slot=\"scanlines-vignette\"\n        />\n      ) : null}\n    </>\n  );\n}\n\nexport { Scanlines };\n",
+      "content": "import type * as React from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nfunction Scanlines({\n  className,\n  density = \"fine\",\n  fixed = false,\n  ...props\n}: React.ComponentProps<\"div\"> & {\n  density?: \"fine\" | \"soft\";\n  fixed?: boolean;\n}) {\n  return (\n    <div\n      aria-hidden=\"true\"\n      className={cn(\n        \"pointer-events-none z-100 inset-0\",\n        fixed ? \"fixed\" : \"absolute\",\n        density === \"fine\" ? \"scanlines\" : \"scanlines-soft\",\n        className\n      )}\n      data-slot=\"scanlines\"\n      {...props}\n    />\n  );\n}\n\nexport { Scanlines };\n",
       "type": "registry:component"
     }
   ],

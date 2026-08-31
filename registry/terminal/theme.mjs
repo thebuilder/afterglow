@@ -760,6 +760,11 @@ const CSS = {
       "repeating-linear-gradient(to bottom, transparent 0 3px, rgb(0 0 0 / 0.09) 3px 4px)",
     "mix-blend-mode": "multiply",
   },
+  "@utility screen-grille": {
+    "background-image":
+      "repeating-linear-gradient(to right, rgb(255 90 90 / 0.55) 0 1px, rgb(90 255 120 / 0.55) 1px 2px, rgb(90 120 255 / 0.55) 2px 3px)",
+    "mix-blend-mode": "multiply",
+  },
   "@utility terminal-caret": {
     "background-color": "currentColor",
     display: "inline-block",
@@ -767,10 +772,6 @@ const CSS = {
     height: "1em",
     "vertical-align": "-0.125em",
     width: "0.5em",
-  },
-  "@utility vignette": {
-    "background-image":
-      "radial-gradient(130% 100% at 50% 50%, transparent 52%, rgb(0 0 0 / 0.55) 100%)",
   },
 };
 

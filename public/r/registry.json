@@ -969,6 +969,10 @@
           "background-image": "repeating-linear-gradient(to bottom, transparent 0 3px, rgb(0 0 0 / 0.09) 3px 4px)",
           "mix-blend-mode": "multiply"
         },
+        "@utility screen-grille": {
+          "background-image": "repeating-linear-gradient(to right, rgb(255 90 90 / 0.55) 0 1px, rgb(90 255 120 / 0.55) 1px 2px, rgb(90 120 255 / 0.55) 2px 3px)",
+          "mix-blend-mode": "multiply"
+        },
         "@utility terminal-caret": {
           "background-color": "currentColor",
           "display": "inline-block",
@@ -976,9 +980,6 @@
           "height": "1em",
           "vertical-align": "-0.125em",
           "width": "0.5em"
-        },
-        "@utility vignette": {
-          "background-image": "radial-gradient(130% 100% at 50% 50%, transparent 52%, rgb(0 0 0 / 0.55) 100%)"
         }
       }
     },
@@ -1843,7 +1844,7 @@
       "name": "scanlines",
       "type": "registry:component",
       "title": "Scanlines",
-      "description": "The glass. Two densities, an optional vignette, and a multiply blend.",
+      "description": "The glass. Two densities, a multiply blend, and a fixed mode for putting a whole page behind one sheet.",
       "categories": [
         "effects"
       ],
@@ -1861,12 +1862,13 @@
       "name": "screen",
       "type": "registry:component",
       "title": "Screen",
-      "description": "A framed CRT surface with scanlines and curved-screen falloff.",
+      "description": "A framed CRT surface. Scanlines by default, with the aperture grille, bloom, roll bar and grain opt in.",
       "categories": [
         "effects"
       ],
       "registryDependencies": [
-        "@afterglow/scanlines"
+        "@afterglow/scanlines",
+        "@afterglow/grain"
       ],
       "files": [
         {
@@ -2039,7 +2041,9 @@
         "@afterglow/prompt",
         "@afterglow/use-reduced-motion",
         "@afterglow/typewriter",
-        "@afterglow/scramble"
+        "@afterglow/scramble",
+        "@afterglow/grain",
+        "@afterglow/glitch"
       ],
       "files": []
     },
@@ -2091,6 +2095,42 @@
       "files": [
         {
           "path": "registry/terminal/components/scramble.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "grain",
+      "type": "registry:component",
+      "title": "Grain",
+      "description": "Tube noise over anything. A static filter by default, or a capped canvas loop that pauses off screen.",
+      "categories": [
+        "effects"
+      ],
+      "registryDependencies": [
+        "@afterglow/use-reduced-motion"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/components/grain.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "glitch",
+      "type": "registry:component",
+      "title": "Glitch",
+      "description": "Channel separation over a subtree. Two colour-shifted copies clipped into bands that jump on steps.",
+      "categories": [
+        "effects"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/components/glitch.tsx",
           "type": "registry:component"
         }
       ]

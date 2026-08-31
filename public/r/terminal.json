@@ -67,7 +67,9 @@
     "@afterglow/prompt",
     "@afterglow/use-reduced-motion",
     "@afterglow/typewriter",
-    "@afterglow/scramble"
+    "@afterglow/scramble",
+    "@afterglow/grain",
+    "@afterglow/glitch"
   ],
   "files": [],
   "type": "registry:style"

@@ -1,10 +1,9 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, Inter } from "next/font/google";
-
+import { SiteGlass } from "@/components/docs/site-glass";
 import { PhosphorProvider } from "@/components/phosphor-provider";
 import { HOMEPAGE } from "@/lib/registry";
-import { Scanlines } from "@/registry/terminal/components/scanlines";
 
 import "./globals.css";
 import "./site.css";
@@ -54,7 +53,7 @@ export default function RootLayout({
       <body className="relative isolate min-h-svh antialiased">
         <PhosphorProvider>
           {children}
-          <Scanlines density="soft" fixed vignette />
+          <SiteGlass />
           <Analytics />
         </PhosphorProvider>
       </body>

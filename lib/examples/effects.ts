@@ -1,4 +1,6 @@
-import { ScanlinesWithAndWithout } from "@/components/examples/scanlines-with-and-without";
+import { GlitchDefault } from "@/components/examples/glitch-default";
+import { GrainDefault } from "@/components/examples/grain-default";
+import { ScanlinesDefault } from "@/components/examples/scanlines-default";
 import { ScrambleDefault } from "@/components/examples/scramble-default";
 import { ScreenDefault } from "@/components/examples/screen-default";
 import { TypewriterDefault } from "@/components/examples/typewriter-default";
@@ -7,12 +9,28 @@ import { UseReducedMotionDefault } from "@/components/examples/use-reduced-motio
 import type { ExampleMap } from "@/lib/example";
 
 export const effectExamples: ExampleMap = {
+  glitch: [
+    {
+      component: GlitchDefault,
+      description:
+        "Wraps a string or a whole panel. The clones are inert and aria-hidden, so a link or a button inside it stays a single tab stop.",
+      name: "Default",
+    },
+  ],
+  grain: [
+    {
+      component: GrainDefault,
+      description:
+        "Static by default, which costs one paint. Turn on `animated` for a capped canvas loop that stops while it is off screen.",
+      name: "Default",
+    },
+  ],
   scanlines: [
     {
-      component: ScanlinesWithAndWithout,
+      component: ScanlinesDefault,
       description:
-        "The lines multiply rather than overlay, so they darken what is under them instead of laying a grey film on top.",
-      name: "With and without",
+        "The lines multiply, so they can only darken what is already lit. Over a black panel the change is about two values in 255.",
+      name: "Default",
     },
   ],
   scramble: [
@@ -26,6 +44,8 @@ export const effectExamples: ExampleMap = {
   screen: [
     {
       component: ScreenDefault,
+      description:
+        "The scanlines and the falloff are on by default. The grille, bloom, hold bar and grain are opt in, and stack in that order under the glass.",
       name: "Default",
     },
   ],

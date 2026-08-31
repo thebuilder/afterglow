@@ -3,14 +3,17 @@
 import { useTheme } from "next-themes";
 import { useSyncExternalStore } from "react";
 
+import { setSiteGlass, useSiteGlass } from "@/components/docs/site-glass";
 import { PHOSPHORS } from "@/lib/phosphor";
 import {
   DropdownMenu,
+  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuLabel,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/registry/terminal/ui/dropdown-menu";
 
@@ -25,6 +28,7 @@ export function PhosphorMenu() {
     getServerSnapshot
   );
   const { setTheme, theme } = useTheme();
+  const glass = useSiteGlass();
   const selected = mounted ? theme : "green";
   const active =
     PHOSPHORS.find((phosphor) => phosphor.value === selected) ?? PHOSPHORS[0];
@@ -32,7 +36,7 @@ export function PhosphorMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
-        aria-label={`Phosphor preset: ${active.label}`}
+        aria-label={`Display: ${active.label} phosphor`}
         className="grid size-9 shrink-0 place-items-center border border-line bg-panel-sunken outline-none transition-colors hover:border-line-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-phosphor-bright"
       >
         <span
@@ -63,6 +67,16 @@ export function PhosphorMenu() {
               </DropdownMenuRadioItem>
             ))}
           </DropdownMenuRadioGroup>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuLabel>Glass</DropdownMenuLabel>
+          <DropdownMenuCheckboxItem
+            checked={glass}
+            onCheckedChange={setSiteGlass}
+          >
+            Scanlines
+          </DropdownMenuCheckboxItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
