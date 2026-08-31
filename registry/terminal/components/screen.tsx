@@ -11,7 +11,6 @@ function Screen({
   grain = false,
   grille = false,
   roll = false,
-  vignette = true,
   ...props
 }: React.ComponentProps<"div"> & {
   bloom?: boolean;
@@ -19,7 +18,6 @@ function Screen({
   grain?: boolean;
   grille?: boolean;
   roll?: boolean;
-  vignette?: boolean;
 }) {
   return (
     <div
@@ -34,7 +32,7 @@ function Screen({
       {bloom ? (
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-90 opacity-70 backdrop-blur-[9px] backdrop-brightness-[1.4] backdrop-saturate-[1.4] mix-blend-screen"
+          className="pointer-events-none absolute inset-0 z-90 opacity-35 mix-blend-screen [backdrop-filter:contrast(2.4)_brightness(1.2)_blur(10px)]"
           data-slot="screen-bloom"
         />
       ) : null}
@@ -53,7 +51,7 @@ function Screen({
         />
       ) : null}
       {grain ? <Grain animated className="z-100" /> : null}
-      <Scanlines density={density} vignette={vignette} />
+      <Scanlines density={density} />
     </div>
   );
 }

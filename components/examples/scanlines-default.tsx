@@ -35,11 +35,9 @@ const WEDGE = [
 
 export function ScanlinesDefault() {
   const linesId = useId();
-  const vignetteId = useId();
   const glassId = useId();
   const [lines, setLines] = useState(true);
   const [density, setDensity] = useState<Density>("fine");
-  const [vignette, setVignette] = useState(true);
   const pageGlass = useSiteGlass();
 
   const pick = useCallback((value: unknown) => {
@@ -68,14 +66,6 @@ export function ScanlinesDefault() {
         </div>
         <div className="flex items-center gap-3">
           <Switch
-            checked={vignette}
-            id={vignetteId}
-            onCheckedChange={setVignette}
-          />
-          <Label htmlFor={vignetteId}>Vignette</Label>
-        </div>
-        <div className="flex items-center gap-3">
-          <Switch
             checked={pageGlass}
             id={glassId}
             onCheckedChange={setSiteGlass}
@@ -97,7 +87,7 @@ export function ScanlinesDefault() {
             ))}
           </div>
         </div>
-        {lines ? <Scanlines density={density} vignette={vignette} /> : null}
+        {lines ? <Scanlines density={density} /> : null}
       </div>
 
       <p className="max-w-prose text-muted-foreground text-sm">

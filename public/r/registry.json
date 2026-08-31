@@ -980,9 +980,6 @@
           "height": "1em",
           "vertical-align": "-0.125em",
           "width": "0.5em"
-        },
-        "@utility vignette": {
-          "background-image": "radial-gradient(110% 110% at 50% 50%, transparent 45%, rgb(0 0 0 / 0.6) 100%)"
         }
       }
     },
@@ -1847,7 +1844,7 @@
       "name": "scanlines",
       "type": "registry:component",
       "title": "Scanlines",
-      "description": "The glass. Two densities, an optional vignette, and a multiply blend.",
+      "description": "The glass. Two densities, a multiply blend, and a fixed mode for putting a whole page behind one sheet.",
       "categories": [
         "effects"
       ],
@@ -1865,7 +1862,7 @@
       "name": "screen",
       "type": "registry:component",
       "title": "Screen",
-      "description": "A framed CRT surface. Scanlines and falloff by default, with the grille, bloom, roll bar and grain opt in.",
+      "description": "A framed CRT surface. Scanlines by default, with the aperture grille, bloom, roll bar and grain opt in.",
       "categories": [
         "effects"
       ],

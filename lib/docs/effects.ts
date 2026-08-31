@@ -46,7 +46,6 @@ export const effectDocs: DocMap = {
         name: "Scanlines",
         props: [
           { default: '"fine"', name: "density", type: '"fine" | "soft"' },
-          { default: "false", name: "vignette", type: "boolean" },
           { default: "false", name: "fixed", type: "boolean" },
         ],
         summary:
@@ -80,13 +79,12 @@ export const effectDocs: DocMap = {
     notes: [
       "Every layer darkens or tints what is under it, so none of them show over an empty black panel. They need lit content to act on.",
       "`grille` is a mask rather than a tint. It blocks two of the three channels under each stripe, so lit areas take the striping and black stays black.",
-      "`bloom` blurs and brightens what is behind it, so lit content spills into the dark around it. It is one backdrop filter over the whole surface, not a second copy of the children.",
+      "`bloom` crushes the darks before it blurs, so black stays black under the screen blend and text keeps its contrast while lit areas spill into the dark around them.",
     ],
     parts: [
       {
         name: "Screen",
         props: [
-          { default: "true", name: "vignette", type: "boolean" },
           { default: '"fine"', name: "density", type: '"fine" | "soft"' },
           { default: "false", name: "grille", type: "boolean" },
           { default: "false", name: "bloom", type: "boolean" },
@@ -94,7 +92,7 @@ export const effectDocs: DocMap = {
           { default: "false", name: "grain", type: "boolean" },
         ],
         summary:
-          "A bordered surface with the scanlines and the falloff already on it. The aperture grille, the bloom, the hold bar and the grain are opt in.",
+          "A bordered surface with the scanlines already on it. The aperture grille, the bloom, the hold bar and the grain are opt in.",
       },
     ],
   },

@@ -22,16 +22,13 @@ export function ScreenDefault() {
   const grilleId = useId();
   const rollId = useId();
   const grainId = useId();
-  const vignetteId = useId();
 
   const [bloom, setBloom] = useState(true);
   const [grille, setGrille] = useState(true);
   const [roll, setRoll] = useState(true);
   const [grain, setGrain] = useState(true);
-  const [vignette, setVignette] = useState(true);
 
   const layers: [string, boolean, (on: boolean) => void, string][] = [
-    ["Vignette", vignette, setVignette, vignetteId],
     ["Grille", grille, setGrille, grilleId],
     ["Bloom", bloom, setBloom, bloomId],
     ["Roll", roll, setRoll, rollId],
@@ -55,7 +52,6 @@ export function ScreenDefault() {
         grain={grain}
         grille={grille}
         roll={roll}
-        vignette={vignette}
       >
         <div className="grid grid-cols-7">
           {BARS.map((bar) => (
@@ -69,7 +65,7 @@ export function ScreenDefault() {
       </Screen>
 
       <p className="max-w-prose text-muted-foreground text-sm">
-        Every layer darkens or tints what is under it, so all five need lit
+        Every layer darkens or tints what is under it, so all four need lit
         content to act on.
       </p>
     </div>

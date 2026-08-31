@@ -773,10 +773,6 @@ const CSS = {
     "vertical-align": "-0.125em",
     width: "0.5em",
   },
-  "@utility vignette": {
-    "background-image":
-      "radial-gradient(110% 110% at 50% 50%, transparent 45%, rgb(0 0 0 / 0.6) 100%)",
-  },
 };
 
 export const palette = PALETTE;

@@ -63,7 +63,7 @@ export function OperatorDashboard({
 
   return (
     <div className={cn("relative isolate bg-void", className)} {...props}>
-      <Scanlines density="soft" vignette />
+      <Scanlines density="soft" />
 
       <header className="flex items-center justify-between gap-6 border-line border-b px-6 py-4">
         <div className="flex items-baseline gap-3">
