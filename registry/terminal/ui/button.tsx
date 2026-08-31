@@ -3,8 +3,17 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
 
+// A variant with a body behaves like a key on a panel: it lifts under the
+// cursor, then seats a pixel below rest when pressed, losing its glow as it
+// goes down. `ghost` and `link` have no body to move, and `ghost` fills dense
+// grids like calendar days where a per-cell lift would be noise.
+const keyTravel =
+  "hover:-translate-y-px active:translate-y-px active:shadow-none";
+
 const buttonVariants = cva(
-  "inline-flex shrink-0 items-center justify-center gap-2 rounded-none border border-transparent font-mono font-bold uppercase whitespace-nowrap outline-none transition-[background-color,border-color,color,box-shadow,transform] duration-150 ease-terminal focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-phosphor-bright disabled:pointer-events-none disabled:opacity-40 data-disabled:pointer-events-none data-disabled:opacity-40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  // The press is instant and the release eases, so the button answers the
+  // mouse down rather than catching up to it.
+  "inline-flex shrink-0 items-center justify-center gap-2 rounded-none border border-transparent font-mono font-bold uppercase whitespace-nowrap outline-none transition-[background-color,border-color,color,box-shadow,translate] duration-150 ease-terminal active:transition-none focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-phosphor-bright disabled:pointer-events-none disabled:opacity-40 data-disabled:pointer-events-none data-disabled:opacity-40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     defaultVariants: { size: "default", variant: "default" },
     variants: {
@@ -16,18 +25,14 @@ const buttonVariants = cva(
         sm: "h-8 gap-1.5 px-2.5 text-2xs tracking-terminal",
       },
       variant: {
-        default:
-          "border-line bg-secondary text-phosphor hover:-translate-y-px hover:border-line-strong hover:bg-accent hover:text-phosphor-bright hover:shadow-glow",
-        destructive:
-          "border-destructive bg-destructive/15 text-destructive hover:bg-destructive hover:text-white",
-        ghost: "text-muted-foreground hover:bg-accent/50 hover:text-phosphor",
-        link: "text-phosphor underline-offset-4 hover:underline",
-        outline:
-          "border-line text-phosphor hover:border-line-strong hover:bg-accent/60 hover:text-phosphor-bright",
-        primary:
-          "border-primary bg-primary text-primary-foreground shadow-glow hover:-translate-y-px hover:bg-phosphor-bright hover:shadow-glow",
-        signal:
-          "bg-signal text-void shadow-signal-control hover:-translate-y-px hover:bg-signal-soft hover:shadow-glow-signal",
+        default: `border-line bg-secondary text-phosphor hover:border-line-strong hover:bg-accent hover:text-phosphor-bright hover:shadow-glow active:bg-accent active:text-phosphor ${keyTravel}`,
+        destructive: `border-destructive bg-destructive/15 text-destructive hover:bg-destructive hover:text-white active:bg-destructive/70 active:text-white ${keyTravel}`,
+        ghost:
+          "text-muted-foreground hover:bg-accent/50 hover:text-phosphor active:bg-accent active:text-phosphor-bright",
+        link: "text-phosphor underline-offset-4 hover:underline active:text-phosphor-bright",
+        outline: `border-line text-phosphor hover:border-line-strong hover:bg-accent/60 hover:text-phosphor-bright active:border-line active:bg-accent/80 active:text-phosphor ${keyTravel}`,
+        primary: `border-primary bg-primary text-primary-foreground shadow-glow hover:bg-phosphor-bright hover:shadow-glow-strong active:bg-primary ${keyTravel}`,
+        signal: `bg-signal text-void shadow-signal-control hover:bg-signal-soft hover:shadow-glow-signal active:bg-signal ${keyTravel}`,
       },
     },
   }
