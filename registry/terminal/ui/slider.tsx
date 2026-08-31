@@ -47,7 +47,7 @@ function Slider({
     >
       <SliderPrimitive.Control className="relative flex touch-none select-none items-center data-[orientation=horizontal]:h-full data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-44 data-[orientation=vertical]:w-full data-[orientation=vertical]:flex-col">
         <SliderPrimitive.Track
-          className="relative grow overflow-hidden rounded-none bg-phosphor/10 transition-[background-color,box-shadow] group-hover/slider:bg-phosphor/20 group-focus-within/slider:bg-phosphor/20 group-focus-within/slider:shadow-glow-slider-track data-[orientation=horizontal]:h-1 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1"
+          className="relative grow overflow-hidden rounded-none bg-phosphor/10 transition group-hover/slider:bg-phosphor/20 group-focus-within/slider:bg-phosphor/20 group-focus-within/slider:shadow-glow-slider-track data-[orientation=horizontal]:h-1 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1"
           data-slot="slider-track"
         >
           <SliderPrimitive.Indicator
@@ -57,7 +57,7 @@ function Slider({
         </SliderPrimitive.Track>
         {Array.from({ length: thumbs }, (_, index) => (
           <SliderPrimitive.Thumb
-            className="block shrink-0 rounded-none border border-phosphor bg-void shadow-glow-slider outline-none transition-[background-color,border-color,box-shadow] before:absolute before:content-[''] group-hover/slider:border-phosphor-bright group-hover/slider:bg-panel-raised group-hover/slider:shadow-glow-slider-hover has-[:focus-visible]:border-phosphor-bright has-[:focus-visible]:bg-panel-raised has-[:focus-visible]:shadow-glow-slider-hover has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-solid has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-phosphor-bright data-[orientation=horizontal]:h-4 data-[orientation=horizontal]:w-2 data-[orientation=horizontal]:before:-inset-x-3 data-[orientation=horizontal]:before:-inset-y-2 data-[orientation=vertical]:h-2 data-[orientation=vertical]:w-4 data-[orientation=vertical]:before:-inset-x-2 data-[orientation=vertical]:before:-inset-y-3"
+            className="block shrink-0 rounded-none border border-phosphor bg-void shadow-glow-slider outline-none transition before:absolute before:content-[''] group-hover/slider:border-phosphor-bright group-hover/slider:bg-panel-raised group-hover/slider:shadow-glow-slider-hover has-[:focus-visible]:border-phosphor-bright has-[:focus-visible]:bg-panel-raised has-[:focus-visible]:shadow-glow-slider-hover has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-solid has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-phosphor-bright data-[orientation=horizontal]:h-4 data-[orientation=horizontal]:w-2 data-[orientation=horizontal]:before:-inset-x-3 data-[orientation=horizontal]:before:-inset-y-2 data-[orientation=vertical]:h-2 data-[orientation=vertical]:w-4 data-[orientation=vertical]:before:-inset-x-2 data-[orientation=vertical]:before:-inset-y-3"
             data-slot="slider-thumb"
             // biome-ignore lint/suspicious/noArrayIndexKey: the thumb index is its position.
             key={index}

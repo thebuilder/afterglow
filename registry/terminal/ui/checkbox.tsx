@@ -9,7 +9,7 @@ function Checkbox({ className, ...props }: CheckboxPrimitive.Root.Props) {
   return (
     <CheckboxPrimitive.Root
       className={cn(
-        "peer size-4 shrink-0 rounded-none border border-input bg-panel-sunken outline-none transition-[background-color,border-color,box-shadow]",
+        "peer size-4 shrink-0 rounded-none border border-input bg-panel-sunken outline-none transition",
         "focus-visible:border-line-strong focus-visible:shadow-glow",
         "data-disabled:cursor-not-allowed data-disabled:opacity-40",
         "aria-invalid:border-destructive",

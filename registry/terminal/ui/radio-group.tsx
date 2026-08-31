@@ -19,7 +19,7 @@ function RadioGroupItem({ className, ...props }: RadioPrimitive.Root.Props) {
   return (
     <RadioPrimitive.Root
       className={cn(
-        "aspect-square size-4 shrink-0 rounded-full border border-input bg-panel-sunken text-phosphor outline-none transition-[border-color,box-shadow]",
+        "aspect-square size-4 shrink-0 rounded-full border border-input bg-panel-sunken text-phosphor outline-none transition",
         "focus-visible:border-line-strong focus-visible:shadow-glow",
         "data-disabled:cursor-not-allowed data-disabled:opacity-40",
         "aria-invalid:border-destructive",
