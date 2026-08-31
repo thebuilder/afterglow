@@ -79,6 +79,7 @@ export const effectDocs: DocMap = {
   screen: {
     notes: [
       "Every layer darkens or tints what is under it, so none of them show over an empty black panel. They need lit content to act on.",
+      "`grille` is a mask rather than a tint. It blocks two of the three channels under each stripe, so lit areas take the striping and black stays black.",
       "`bloom` blurs and brightens what is behind it, so lit content spills into the dark around it. It is one backdrop filter over the whole surface, not a second copy of the children.",
     ],
     parts: [
