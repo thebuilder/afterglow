@@ -8,31 +8,35 @@ import { docsEntry, navSections } from "@/lib/sections";
 
 export function SiteHeader() {
   return (
-    <header className="site-header sticky top-0 z-40 flex items-center gap-3 border-line border-b bg-void/85 px-4 backdrop-blur-md sm:gap-6 sm:px-6">
+    <>
+      {/* Outside the header, because backdrop-filter makes the header the
+          containing block for a fixed child and traps the link inside it. */}
       <a
-        className="fixed top-2 left-2 z-50 -translate-y-20 border border-line-strong bg-void px-3 py-2 font-mono text-2xs text-phosphor-bright uppercase tracking-terminal transition-transform focus:translate-y-0"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:border focus:border-line-strong focus:bg-void focus:px-3 focus:py-2 focus:font-mono focus:text-2xs focus:text-phosphor-bright focus:uppercase focus:tracking-terminal"
         href="#main-content"
       >
         Skip to content
       </a>
-      <MobileNav sections={navSections()} />
-      <DocsWordmark />
-      <HeaderNav
-        links={[
-          { href: docsEntry(), label: "Docs", prefixes: ["/docs"] },
-          {
-            href: "/components",
-            label: "Components",
-            prefixes: ["/components", "/c/"],
-          },
-          { href: "/typeset", label: "Typeset", prefixes: ["/typeset"] },
-        ]}
-      />
-      <div className="ml-auto flex min-w-0 items-center gap-3 sm:gap-4">
-        <PhosphorMenu />
-        <DocsSearch />
-        <SourceLink />
-      </div>
-    </header>
+      <header className="site-header sticky top-0 z-40 flex items-center gap-3 border-line border-b bg-void/85 px-4 backdrop-blur-md sm:gap-6 sm:px-6">
+        <MobileNav sections={navSections()} />
+        <DocsWordmark />
+        <HeaderNav
+          links={[
+            { href: docsEntry(), label: "Docs", prefixes: ["/docs"] },
+            {
+              href: "/components",
+              label: "Components",
+              prefixes: ["/components", "/c/"],
+            },
+            { href: "/typeset", label: "Typeset", prefixes: ["/typeset"] },
+          ]}
+        />
+        <div className="ml-auto flex min-w-0 items-center gap-3 sm:gap-4">
+          <PhosphorMenu />
+          <DocsSearch />
+          <SourceLink />
+        </div>
+      </header>
+    </>
   );
 }
