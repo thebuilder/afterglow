@@ -23,8 +23,8 @@
     "@shikijs/rehype": "^4.4.3",
     "@vercel/analytics": "^2.0.1",
     "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
+    "cn": "^0.2.4",
     "date-fns": "^4.4.0",
     "input-otp": "^1.5.0",
     "lucide-react": "^1.34.0",
@@ -38,8 +38,7 @@
     "recharts": "^3.10.1",
     "rehype-slug": "^6.0.0",
     "shiki": "^4.4.3",
-    "sonner": "^2.0.8",
-    "tailwind-merge": "^3.6.0"
+    "sonner": "^2.0.8"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.9",
