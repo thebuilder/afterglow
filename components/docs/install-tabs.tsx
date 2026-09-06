@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { CopyCommand } from "@/components/copy-command";
 import { CodeBlock } from "@/components/docs/code-block";
 import { Step, Steps } from "@/components/docs/steps";
@@ -22,6 +24,8 @@ export async function InstallTabs({
 }) {
   const args = installArgs(item);
   const sourceFirst = item.type === "registry:block";
+  const registryDependencies = item.registryDependencies ?? [];
+  const registryStep = registryDependencies.length > 0 ? 1 : 0;
 
   if (sources.length === 0) {
     return <CommandTab args={args} />;
@@ -46,8 +50,28 @@ export async function InstallTabs({
 
       <TabsContent className="animate-none pt-2" value="manual">
         <Steps>
+          {registryStep ? (
+            <Step index={1} title="Install the required registry items.">
+              <p className="text-muted-foreground text-sm">
+                <Link
+                  className="underline underline-offset-4"
+                  href="/docs/installation#configure-the-namespace"
+                >
+                  Configure the Afterglow namespace
+                </Link>{" "}
+                first. This command also installs the shared theme and nested
+                dependencies.
+              </p>
+              <CommandTab
+                args={`shadcn@latest add ${registryDependencies.join(" ")}`}
+              />
+            </Step>
+          ) : null}
           {dependencies ? (
-            <Step index={1} title="Install the following dependencies.">
+            <Step
+              index={registryStep + 1}
+              title="Install the following dependencies."
+            >
               <CodeBlock
                 html={dependencies}
                 text={`npm install ${packages.join(" ")}`}
@@ -55,7 +79,7 @@ export async function InstallTabs({
             </Step>
           ) : null}
           <Step
-            index={dependencies ? 2 : 1}
+            index={registryStep + (dependencies ? 2 : 1)}
             title="Copy the following into your project."
           >
             <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
@@ -70,7 +94,7 @@ export async function InstallTabs({
             </div>
           </Step>
           <Step
-            index={dependencies ? 3 : 2}
+            index={registryStep + (dependencies ? 3 : 2)}
             title="Update the import paths to match your project."
           />
         </Steps>

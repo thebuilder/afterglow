@@ -326,7 +326,12 @@ const THEME = {
 
 const REDUCED_MOTION_SELECTOR = Object.keys(THEME)
   .filter((key) => key.startsWith("animate-"))
-  .map((key) => `.${key}`)
+  .flatMap((key) => [
+    `.${key}`,
+    `.data-open\\:${key}`,
+    `.data-closed\\:${key}`,
+    `.after\\:${key}::after`,
+  ])
   .join(", ");
 
 const CSS = {

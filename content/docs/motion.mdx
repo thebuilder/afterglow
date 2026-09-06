@@ -96,8 +96,8 @@ ends at any opacity above zero leaves a lit bar on screen and reads as stuck rat
 ## Reduced motion
 
 Every token above is switched off under `prefers-reduced-motion: reduce`. That is not a list anyone
-maintains. The selector is generated from the token names, so a class named `animate-*` is covered
-the moment it exists.
+maintains. The selectors are generated from the token names and cover plain classes,
+`data-open:`, `data-closed:`, and `after:` variants used by the components.
 
 Motion you drive from JavaScript is not, because there is no class for the theme to find. Check the
 query yourself:
@@ -122,4 +122,8 @@ Reach for `style` here rather than Tailwind's `duration-*`. That utility sets `t
 not `animation-duration`, so it changes nothing about a keyframe animation and fails silently. The
 same goes for `delay-*` and `ease-*`, which are transition properties too.
 
-To change a duration everywhere, edit the token in `theme.mjs` and run `pnpm registry:build`.
+To change a duration throughout your application, edit its `--animate-*` declaration in the
+`@theme inline` block of your stylesheet. For example, change the duration in `--animate-flicker`.
+
+When contributing to the Afterglow registry itself, edit `registry/terminal/theme.mjs` and run
+`pnpm registry:build` to regenerate the theme.
