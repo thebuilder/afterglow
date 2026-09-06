@@ -320,8 +320,8 @@ export function TypesetBuilder() {
           <CardHeader>
             <CardTitle>Use this typeset</CardTitle>
             <CardDescription>
-              The class ships with the theme. Existing Afterglow projects
-              already have it after rebuilding the registry item.
+              The class ships with the Afterglow theme. Install the theme once,
+              then add the class to your content.
             </CardDescription>
           </CardHeader>
           <CardContent className="grid gap-5">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { cn } from "@/lib/utils";
 import { Caret } from "@/registry/terminal/components/caret";
@@ -38,10 +38,15 @@ function BootLog({
 }) {
   const [printed, setPrinted] = useState(0);
   const total = lines.length;
+  const done = printed >= total;
+  const finished = useRef(onComplete);
 
   useEffect(() => {
-    if (printed >= total) {
-      onComplete?.();
+    finished.current = onComplete;
+  }, [onComplete]);
+
+  useEffect(() => {
+    if (done) {
       return;
     }
 
@@ -51,9 +56,15 @@ function BootLog({
       return;
     }
 
-    const timer = window.setTimeout(() => setPrinted((n) => n + 1), interval);
+    const timer = window.setTimeout(() => setPrinted(printed + 1), interval);
     return () => window.clearTimeout(timer);
-  }, [printed, total, interval, onComplete]);
+  }, [printed, total, interval, done]);
+
+  useEffect(() => {
+    if (done) {
+      finished.current?.();
+    }
+  }, [done]);
 
   return (
     <ol

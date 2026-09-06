@@ -326,7 +326,12 @@ const THEME = {
 
 const REDUCED_MOTION_SELECTOR = Object.keys(THEME)
   .filter((key) => key.startsWith("animate-"))
-  .map((key) => `.${key}`)
+  .flatMap((key) => [
+    `.${key}`,
+    `.data-open\\:${key}`,
+    `.data-closed\\:${key}`,
+    `.after\\:${key}::after`,
+  ])
   .join(", ");
 
 const CSS = {
@@ -771,7 +776,7 @@ const CSS = {
     "flex-shrink": "0",
     height: "1em",
     "vertical-align": "-0.125em",
-    width: "0.5em",
+    width: "1ch",
   },
 };
 

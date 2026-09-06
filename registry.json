@@ -957,7 +957,7 @@
           }
         },
         "@media (prefers-reduced-motion: reduce)": {
-          ".animate-alarm, .animate-beam, .animate-caret, .animate-chart-in, .animate-close, .animate-fade-in, .animate-fade-out, .animate-flicker, .animate-glitch, .animate-glyph, .animate-jitter, .animate-led, .animate-line-in, .animate-open, .animate-pixel, .animate-power-line-in, .animate-power-line-out, .animate-power-off, .animate-power-on, .animate-roll, .animate-select-fold-in-down, .animate-select-fold-in-up, .animate-select-fold-out-down, .animate-select-fold-out-up, .animate-slide-in-bottom, .animate-slide-in-left, .animate-slide-in-right, .animate-slide-in-top, .animate-slide-out-bottom, .animate-slide-out-left, .animate-slide-out-right, .animate-slide-out-top, .animate-sweep, .animate-toast-in, .animate-toast-out, .animate-type": {
+          ".animate-alarm, .data-open\\:animate-alarm, .data-closed\\:animate-alarm, .after\\:animate-alarm::after, .animate-beam, .data-open\\:animate-beam, .data-closed\\:animate-beam, .after\\:animate-beam::after, .animate-caret, .data-open\\:animate-caret, .data-closed\\:animate-caret, .after\\:animate-caret::after, .animate-chart-in, .data-open\\:animate-chart-in, .data-closed\\:animate-chart-in, .after\\:animate-chart-in::after, .animate-close, .data-open\\:animate-close, .data-closed\\:animate-close, .after\\:animate-close::after, .animate-fade-in, .data-open\\:animate-fade-in, .data-closed\\:animate-fade-in, .after\\:animate-fade-in::after, .animate-fade-out, .data-open\\:animate-fade-out, .data-closed\\:animate-fade-out, .after\\:animate-fade-out::after, .animate-flicker, .data-open\\:animate-flicker, .data-closed\\:animate-flicker, .after\\:animate-flicker::after, .animate-glitch, .data-open\\:animate-glitch, .data-closed\\:animate-glitch, .after\\:animate-glitch::after, .animate-glyph, .data-open\\:animate-glyph, .data-closed\\:animate-glyph, .after\\:animate-glyph::after, .animate-jitter, .data-open\\:animate-jitter, .data-closed\\:animate-jitter, .after\\:animate-jitter::after, .animate-led, .data-open\\:animate-led, .data-closed\\:animate-led, .after\\:animate-led::after, .animate-line-in, .data-open\\:animate-line-in, .data-closed\\:animate-line-in, .after\\:animate-line-in::after, .animate-open, .data-open\\:animate-open, .data-closed\\:animate-open, .after\\:animate-open::after, .animate-pixel, .data-open\\:animate-pixel, .data-closed\\:animate-pixel, .after\\:animate-pixel::after, .animate-power-line-in, .data-open\\:animate-power-line-in, .data-closed\\:animate-power-line-in, .after\\:animate-power-line-in::after, .animate-power-line-out, .data-open\\:animate-power-line-out, .data-closed\\:animate-power-line-out, .after\\:animate-power-line-out::after, .animate-power-off, .data-open\\:animate-power-off, .data-closed\\:animate-power-off, .after\\:animate-power-off::after, .animate-power-on, .data-open\\:animate-power-on, .data-closed\\:animate-power-on, .after\\:animate-power-on::after, .animate-roll, .data-open\\:animate-roll, .data-closed\\:animate-roll, .after\\:animate-roll::after, .animate-select-fold-in-down, .data-open\\:animate-select-fold-in-down, .data-closed\\:animate-select-fold-in-down, .after\\:animate-select-fold-in-down::after, .animate-select-fold-in-up, .data-open\\:animate-select-fold-in-up, .data-closed\\:animate-select-fold-in-up, .after\\:animate-select-fold-in-up::after, .animate-select-fold-out-down, .data-open\\:animate-select-fold-out-down, .data-closed\\:animate-select-fold-out-down, .after\\:animate-select-fold-out-down::after, .animate-select-fold-out-up, .data-open\\:animate-select-fold-out-up, .data-closed\\:animate-select-fold-out-up, .after\\:animate-select-fold-out-up::after, .animate-slide-in-bottom, .data-open\\:animate-slide-in-bottom, .data-closed\\:animate-slide-in-bottom, .after\\:animate-slide-in-bottom::after, .animate-slide-in-left, .data-open\\:animate-slide-in-left, .data-closed\\:animate-slide-in-left, .after\\:animate-slide-in-left::after, .animate-slide-in-right, .data-open\\:animate-slide-in-right, .data-closed\\:animate-slide-in-right, .after\\:animate-slide-in-right::after, .animate-slide-in-top, .data-open\\:animate-slide-in-top, .data-closed\\:animate-slide-in-top, .after\\:animate-slide-in-top::after, .animate-slide-out-bottom, .data-open\\:animate-slide-out-bottom, .data-closed\\:animate-slide-out-bottom, .after\\:animate-slide-out-bottom::after, .animate-slide-out-left, .data-open\\:animate-slide-out-left, .data-closed\\:animate-slide-out-left, .after\\:animate-slide-out-left::after, .animate-slide-out-right, .data-open\\:animate-slide-out-right, .data-closed\\:animate-slide-out-right, .after\\:animate-slide-out-right::after, .animate-slide-out-top, .data-open\\:animate-slide-out-top, .data-closed\\:animate-slide-out-top, .after\\:animate-slide-out-top::after, .animate-sweep, .data-open\\:animate-sweep, .data-closed\\:animate-sweep, .after\\:animate-sweep::after, .animate-toast-in, .data-open\\:animate-toast-in, .data-closed\\:animate-toast-in, .after\\:animate-toast-in::after, .animate-toast-out, .data-open\\:animate-toast-out, .data-closed\\:animate-toast-out, .after\\:animate-toast-out::after, .animate-type, .data-open\\:animate-type, .data-closed\\:animate-type, .after\\:animate-type::after": {
             "animation": "none !important"
           }
         },
@@ -979,7 +979,7 @@
           "flex-shrink": "0",
           "height": "1em",
           "vertical-align": "-0.125em",
-          "width": "0.5em"
+          "width": "1ch"
         }
       }
     },
@@ -1172,7 +1172,8 @@
       "title": "Checkbox",
       "description": "`[ ]` and `[x]`. A square that fills with the beam when it is on.",
       "dependencies": [
-        "@base-ui/react"
+        "@base-ui/react",
+        "lucide-react"
       ],
       "registryDependencies": [
         "@afterglow/theme"
@@ -1496,7 +1497,8 @@
       "title": "Select",
       "description": "A trigger that reads as a field, and a list whose chosen row carries a lit left edge.",
       "dependencies": [
-        "@base-ui/react"
+        "@base-ui/react",
+        "lucide-react"
       ],
       "registryDependencies": [
         "@afterglow/theme"
