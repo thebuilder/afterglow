@@ -776,7 +776,7 @@ const CSS = {
     "flex-shrink": "0",
     height: "1em",
     "vertical-align": "-0.125em",
-    width: "0.5em",
+    width: "1ch",
   },
 };
 
