@@ -43,7 +43,7 @@ export async function Hero({
               A complete terminal UI for the modern web
               <Caret
                 blink
-                className="ml-2 h-[0.72em] text-phosphor [vertical-align:0]"
+                className="ml-2 h-[0.72em] w-[0.8ch] text-phosphor [vertical-align:0]"
               />
             </h1>
             <Connector />
