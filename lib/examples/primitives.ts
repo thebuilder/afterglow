@@ -5,9 +5,14 @@ import { ButtonWithAnIconAndDisabled } from "@/components/examples/button-with-a
 import { CardAccent } from "@/components/examples/card-accent";
 import { CardDefault } from "@/components/examples/card-default";
 import { CardStripe } from "@/components/examples/card-stripe";
+import { CardTrace } from "@/components/examples/card-trace";
+import { CardWithoutAnAccent } from "@/components/examples/card-without-an-accent";
 import { ChartChannelLoad } from "@/components/examples/chart-channel-load";
 import { ChartSignalHistory } from "@/components/examples/chart-signal-history";
 import { ChartVolumeShare } from "@/components/examples/chart-volume-share";
+import { CodeBlockDefault } from "@/components/examples/code-block-default";
+import { CodeBlockLanguages } from "@/components/examples/code-block-languages";
+import { CodeBlockWithATitle } from "@/components/examples/code-block-with-a-title";
 import { DialogDefault } from "@/components/examples/dialog-default";
 import { InputDefault } from "@/components/examples/input-default";
 import { InputStates } from "@/components/examples/input-states";
@@ -66,6 +71,18 @@ export const primitiveExamples: ExampleMap = {
         "`CardAccent` runs the accent across the first third of the card's top rule. Use it on the one card that has to be read first.",
       name: "Stripe",
     },
+    {
+      component: CardTrace,
+      description:
+        "With `trace`, hovering a card sends its accent around the other three edges, and leaving brings it back the way it came. In a grid, one panel lights up while the others hold still.",
+      name: "Trace",
+    },
+    {
+      component: CardWithoutAnAccent,
+      description:
+        "`accent={false}` drops the left edge and leaves the title in the card's own color. Use it where no panel in a grid is the one to read first.",
+      name: "Without an accent",
+    },
   ],
   chart: [
     {
@@ -85,6 +102,24 @@ export const primitiveExamples: ExampleMap = {
       description:
         "A compact ring chart for part-to-whole data, with the same token-driven legend and tooltip.",
       name: "Volume share",
+    },
+  ],
+  "code-block": [
+    {
+      component: CodeBlockDefault,
+      name: "Default",
+    },
+    {
+      component: CodeBlockWithATitle,
+      description:
+        "A `title` puts the file name above the code and names the copy button after it.",
+      name: "With a title",
+    },
+    {
+      component: CodeBlockLanguages,
+      description:
+        "The highlighter loads five grammars up front, and the theme maps all of them onto the phosphor tokens. A shell command and a stylesheet come out of the same palette.",
+      name: "Languages",
     },
   ],
   dialog: [

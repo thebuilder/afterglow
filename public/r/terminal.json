@@ -15,6 +15,7 @@
     "react-day-picker",
     "react-resizable-panels",
     "recharts",
+    "shiki",
     "sonner",
     "tailwind-merge"
   ],
@@ -31,6 +32,7 @@
     "@afterglow/card",
     "@afterglow/chart",
     "@afterglow/checkbox",
+    "@afterglow/code-block",
     "@afterglow/collapsible",
     "@afterglow/command",
     "@afterglow/context-menu",
@@ -73,6 +75,7 @@
     "@afterglow/screen",
     "@afterglow/shell",
     "@afterglow/terminal-window",
+    "@afterglow/use-copied",
     "@afterglow/use-reduced-motion",
     "@afterglow/typewriter",
     "@afterglow/scramble",

@@ -1,28 +1,25 @@
 import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
 
-import { CopyCommand } from "@/components/copy-command";
 import { ThemePhosphorSelector } from "@/components/examples/theme-phosphor-selector";
 import { HeroTerminal } from "@/components/hero/hero-terminal";
 import { PhosphorField } from "@/components/hero/phosphor-field";
-import { highlight } from "@/lib/code";
 import { HOMEPAGE } from "@/lib/registry";
 import { Caret } from "@/registry/terminal/components/caret";
 import { Connector } from "@/registry/terminal/components/connector";
 import { Led } from "@/registry/terminal/components/led";
 import { Button } from "@/registry/terminal/ui/button";
+import { CodeBlock } from "@/registry/terminal/ui/code-block";
 
 const INSTALL_COMMAND = `npx shadcn@latest init ${HOMEPAGE}/r/terminal.json`;
 
-export async function Hero({
+export function Hero({
   items,
   phosphors,
 }: {
   items: number;
   phosphors: number;
 }) {
-  const installHtml = await highlight(INSTALL_COMMAND, "bash");
-
   return (
     <section className="relative left-1/2 isolate w-screen -translate-x-1/2 overflow-hidden pt-8 pb-4 lg:pt-12 lg:pb-8">
       <PhosphorField className="-z-10 opacity-70 [mask-image:radial-gradient(115%_100%_at_50%_28%,black_5%,transparent_72%)]" />
@@ -88,7 +85,12 @@ export async function Hero({
               Start a project with every Afterglow item.
             </p>
           </div>
-          <CopyCommand html={installHtml} text={INSTALL_COMMAND} />
+          <CodeBlock
+            className="min-w-0"
+            code={INSTALL_COMMAND}
+            label={`Copy: ${INSTALL_COMMAND}`}
+            lang="bash"
+          />
         </div>
       </div>
     </section>

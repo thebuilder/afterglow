@@ -46,6 +46,9 @@ export const primitiveDocs: DocMap = {
   },
 
   card: {
+    notes: [
+      "`trace` sends the accent around the card on hover, or when something inside it takes focus. It runs across the top, down the right and back along the bottom, and leaving runs the same three in reverse. A card without an accent has nothing to send, so it ignores `trace`.",
+    ],
     parts: [
       {
         name: "Card",
@@ -53,7 +56,7 @@ export const primitiveDocs: DocMap = {
           {
             name: "CardAccent",
             summary:
-              "The top rule, with the card's accent running its first third. Goes first, inside `Card` and above `CardHeader`.",
+              "The top rule, with the card's accent running its first third. The rest of it is the border's color and lifts with the border on hover. Goes first, inside `Card` and above `CardHeader`.",
           },
           {
             name: "CardHeader",
@@ -74,11 +77,12 @@ export const primitiveDocs: DocMap = {
           {
             default: "var(--phosphor)",
             name: "accent",
-            type: "string",
+            type: "string | false",
           },
+          { default: "false", name: "trace", type: "boolean" },
         ],
         summary:
-          "`accent` sets `--card-accent`, which drives the left edge, the title and the top rule. It is how a category gets a color without a variant per category.",
+          "`accent` sets `--card-accent`, which drives the left edge, the title and the top rule. It is how a category gets a color without a variant per category. `accent={false}` drops the edge and leaves the title in the card's own color, for a grid of panels where none of them is the one to read first.",
       },
     ],
   },
@@ -114,6 +118,41 @@ export const primitiveDocs: DocMap = {
       },
     ],
     upstream: [{ href: "https://recharts.org", label: "Recharts" }],
+  },
+
+  "code-block": {
+    notes: [
+      "The highlighter runs on the server, so `CodeBlock` is an async component and Shiki never reaches the browser. Only the copy button ships as client code.",
+      "Shiki writes the theme's CSS variables onto the tokens instead of hex, so a block follows whichever phosphor the page is set to.",
+      "`CODE_LANGUAGES` in `lib/shiki.ts` is the set of grammars the highlighter loads, and `lang` takes its type from that list. Add a language there before you pass it.",
+    ],
+    parts: [
+      {
+        name: "CodeBlock",
+        parts: [
+          {
+            name: "CodeBlockTitle",
+            summary:
+              "The file name or caption above the code. `CodeBlock` renders one when you pass a `title`.",
+          },
+          {
+            name: "CodeBlockBody",
+            parts: [{ name: "CodeBlockCopy" }],
+            summary:
+              "The highlighted code and the copy button. Use it directly when you already hold Shiki's HTML, which is what a site that highlights once at build time will have.",
+          },
+        ],
+        props: [
+          { name: "code", type: "string" },
+          { default: '"tsx"', name: "lang", type: "CodeLanguage" },
+          { name: "title", type: "string" },
+          { name: "label", type: "string" },
+        ],
+        summary:
+          "Highlights `code` and draws it in a bordered panel. `label` names the copy button for a screen reader, and defaults to the title.",
+      },
+    ],
+    upstream: [{ href: "https://shiki.style", label: "Shiki" }],
   },
 
   dialog: {

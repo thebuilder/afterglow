@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-copied",
+  "title": "Use Copied",
+  "description": "Writes a string to the clipboard and holds a `copied` flag for two seconds, so a control can confirm the copy.",
+  "files": [
+    {
+      "path": "registry/terminal/hooks/use-copied.ts",
+      "content": "\"use client\";\n\nimport { useCallback, useEffect, useState } from \"react\";\n\nconst RESET_AFTER = 2000;\n\nfunction useCopied(source: string | (() => string | Promise<string>)): {\n  copied: boolean;\n  copy: () => void;\n} {\n  const [copied, setCopied] = useState(false);\n\n  useEffect(() => {\n    if (!copied) {\n      return;\n    }\n    const timer = window.setTimeout(() => setCopied(false), RESET_AFTER);\n    return () => window.clearTimeout(timer);\n  }, [copied]);\n\n  const copy = useCallback(() => {\n    Promise.resolve(typeof source === \"function\" ? source() : source)\n      .then((text) => navigator.clipboard.writeText(text))\n      .then(() => setCopied(true))\n      // A denied or unfocused clipboard leaves the control as it was, rather\n      // than rejecting where the caller has nothing to catch it with.\n      .catch(() => setCopied(false));\n  }, [source]);\n\n  return { copied, copy };\n}\n\nexport { useCopied };\n",
+      "type": "registry:hook"
+    }
+  ],
+  "type": "registry:hook"
+}

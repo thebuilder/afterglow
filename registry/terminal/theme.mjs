@@ -753,8 +753,72 @@ const CSS = {
     [REDUCED_MOTION_SELECTOR]: {
       animation: "none !important",
     },
+    // The traced border still appears on hover, it just arrives at once. The
+    // hover rules set a transition of their own, so this has to outrank them.
+    ".card-trace::before, .card-trace::after": {
+      transition: "none !important",
+    },
+  },
+  "@property --card-trace-bottom": {
+    inherits: "false",
+    "initial-value": "0%",
+    syntax: '"<length-percentage>"',
+  },
+  "@property --card-trace-right": {
+    inherits: "false",
+    "initial-value": "0%",
+    syntax: '"<length-percentage>"',
   },
 
+  // Registered so they can be transitioned. The card's traced border is three
+  // background sizes growing in turn, and an unregistered custom property jumps
+  // from 0% to 100% instead of animating.
+  "@property --card-trace-top": {
+    inherits: "false",
+    "initial-value": "0%",
+    syntax: '"<length-percentage>"',
+  },
+
+  // The accent leaves the left edge and draws the other three in turn, across
+  // the top, down the right, back along the bottom. Each pseudo-element carries
+  // two gradients, because two elements is all a card gets and the edges need
+  // four. Leaving runs the same three in reverse, so the accent retreats the
+  // way it came rather than the whole outline fading at once.
+  "@utility card-trace": {
+    "&::after": {
+      "background-position": "100% 0, 100% 100%",
+      "background-size":
+        "2px var(--card-trace-right), var(--card-trace-bottom) 2px",
+      transition:
+        "--card-trace-right 35ms linear 110ms, --card-trace-bottom 110ms linear",
+    },
+    "&::before": {
+      "background-position": "0 0, 0 0",
+      "background-size": "2px 100%, var(--card-trace-top) 2px",
+      transition: "--card-trace-top 110ms linear 145ms",
+    },
+    "&::before, &::after": {
+      "background-image":
+        "linear-gradient(currentColor, currentColor), linear-gradient(currentColor, currentColor)",
+      "background-repeat": "no-repeat",
+      color: "var(--card-accent, var(--phosphor))",
+      content: '""',
+      filter: "drop-shadow(0 0 4px)",
+      inset: "-1px -1px -1px -2px",
+      "pointer-events": "none",
+      position: "absolute",
+    },
+    "&:is(:hover, :focus-within)::after": {
+      "--card-trace-bottom": "100%",
+      "--card-trace-right": "100%",
+      transition:
+        "--card-trace-right 45ms linear 140ms, --card-trace-bottom 140ms linear 185ms",
+    },
+    "&:is(:hover, :focus-within)::before": {
+      "--card-trace-top": "100%",
+      transition: "--card-trace-top 140ms linear",
+    },
+  },
   "@utility scanlines": {
     "background-image":
       "repeating-linear-gradient(to bottom, transparent 0 2px, rgb(0 0 0 / 0.16) 2px 3px)",

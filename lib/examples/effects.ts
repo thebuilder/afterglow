@@ -4,6 +4,7 @@ import { ScanlinesDefault } from "@/components/examples/scanlines-default";
 import { ScrambleDefault } from "@/components/examples/scramble-default";
 import { ScreenDefault } from "@/components/examples/screen-default";
 import { TypewriterDefault } from "@/components/examples/typewriter-default";
+import { UseCopiedDefault } from "@/components/examples/use-copied-default";
 import { UseReducedMotionDefault } from "@/components/examples/use-reduced-motion-default";
 
 import type { ExampleMap } from "@/lib/example";
@@ -54,6 +55,14 @@ export const effectExamples: ExampleMap = {
       component: TypewriterDefault,
       description:
         "Each character lands at a slightly different interval. An even cadence reads as a wipe; set `jitter` to `0` on the component to see the difference.",
+      name: "Default",
+    },
+  ],
+  "use-copied": [
+    {
+      component: UseCopiedDefault,
+      description:
+        "Pass a function instead of a string when the text is not in hand yet. The site's own copy-page button passes one that fetches the page as markdown first.",
       name: "Default",
     },
   ],
