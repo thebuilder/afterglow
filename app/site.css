@@ -77,3 +77,36 @@
     font-size: 0.75rem;
   }
 }
+
+/* Each row draws its own elbow, so the runs stay continuous at any leading.
+   The spine sits half a character in, under the parent's first letter. */
+.composition-tree > li {
+  position: relative;
+  padding-left: 4ch;
+}
+
+.composition-tree > li::before,
+.composition-tree > li::after {
+  position: absolute;
+  left: 0.5ch;
+  content: "";
+  border-color: currentColor;
+  opacity: 0.6;
+}
+
+.composition-tree > li::before {
+  top: 0;
+  bottom: 0;
+  border-left-width: 1px;
+}
+
+.composition-tree > li:last-child::before {
+  bottom: auto;
+  height: 0.5lh;
+}
+
+.composition-tree > li::after {
+  top: 0.5lh;
+  width: 3ch;
+  border-top-width: 1px;
+}
