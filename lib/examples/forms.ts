@@ -1,5 +1,15 @@
 import { CalendarSingleDate } from "@/components/examples/calendar-single-date";
 import { CheckboxDefault } from "@/components/examples/checkbox-default";
+import { ComboboxAutoHighlight } from "@/components/examples/combobox-auto-highlight";
+import { ComboboxBasic } from "@/components/examples/combobox-basic";
+import { ComboboxClearButton } from "@/components/examples/combobox-clear-button";
+import { ComboboxCustomItems } from "@/components/examples/combobox-custom-items";
+import { ComboboxDisabled } from "@/components/examples/combobox-disabled";
+import { ComboboxGroups } from "@/components/examples/combobox-groups";
+import { ComboboxInputGroup } from "@/components/examples/combobox-input-group";
+import { ComboboxInvalid } from "@/components/examples/combobox-invalid";
+import { ComboboxMultiple } from "@/components/examples/combobox-multiple";
+import { ComboboxPopup } from "@/components/examples/combobox-popup";
 import { DatePickerBasic } from "@/components/examples/date-picker-basic";
 import { InputOtpSixDigits } from "@/components/examples/input-otp-six-digits";
 import { RadioGroupDefault } from "@/components/examples/radio-group-default";
@@ -24,6 +34,64 @@ export const formExamples: ExampleMap = {
       component: CheckboxDefault,
       description: "A square that fills with phosphor when checked.",
       name: "Default",
+    },
+  ],
+  combobox: [
+    {
+      component: ComboboxBasic,
+      description: "A field that filters a flat list as you type.",
+      name: "Basic",
+    },
+    {
+      component: ComboboxMultiple,
+      description:
+        "With `multiple`, each choice becomes a chip beside the input. The list anchors to the whole chip row.",
+      name: "Multiple",
+    },
+    {
+      component: ComboboxClearButton,
+      description:
+        "`showClear` swaps the chevron for a button that empties the field.",
+      name: "Clear button",
+    },
+    {
+      component: ComboboxGroups,
+      description:
+        "Each `ComboboxGroup` takes its own `items` and renders them through a `ComboboxCollection`.",
+      name: "Groups",
+    },
+    {
+      component: ComboboxCustomItems,
+      description:
+        "The items are objects, so `itemToStringValue` picks the string the filter matches against.",
+      name: "Custom items",
+    },
+    {
+      component: ComboboxInvalid,
+      description: "`aria-invalid` on the input turns the whole field red.",
+      name: "Invalid",
+    },
+    {
+      component: ComboboxDisabled,
+      name: "Disabled",
+    },
+    {
+      component: ComboboxAutoHighlight,
+      description:
+        "`autoHighlight` lights the first match as you type, so Enter picks it.",
+      name: "Auto highlight",
+    },
+    {
+      component: ComboboxPopup,
+      description:
+        "A button opens the list, and the search field moves inside the popup.",
+      name: "Popup",
+    },
+    {
+      component: ComboboxInputGroup,
+      description:
+        "An `InputGroupAddon` passed to `ComboboxInput` puts an icon in front of the text. `alignOffset` pulls the list back so it starts under the icon.",
+      name: "Input group",
     },
   ],
   "date-picker": [

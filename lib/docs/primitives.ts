@@ -157,6 +157,36 @@ export const primitiveDocs: DocMap = {
     parts: [{ name: "Input" }],
   },
 
+  "input-group": {
+    notes: [
+      "Put each `InputGroupAddon` after the control in the markup and move it with `align`. Tab order then reaches the field before anything in the addon.",
+    ],
+    parts: [
+      {
+        name: "InputGroup",
+        parts: [
+          { name: "InputGroupInput" },
+          { name: "InputGroupTextarea" },
+          {
+            name: "InputGroupAddon",
+            parts: [{ name: "InputGroupText" }, { name: "InputGroupButton" }],
+            props: [
+              {
+                default: '"inline-start"',
+                name: "align",
+                type: '"inline-start" | "inline-end" | "block-start" | "block-end"',
+              },
+            ],
+            summary:
+              "A click on the addon outside any button focuses the control.",
+          },
+        ],
+        summary:
+          'Draws the border, and reads focus and `aria-invalid` off whichever child has `data-slot="input-group-control"`.',
+      },
+    ],
+  },
+
   kbd: {
     parts: [
       {
