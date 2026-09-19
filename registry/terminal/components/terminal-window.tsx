@@ -1,11 +1,7 @@
 "use client";
 
-import {
-  type PointerEvent as ReactPointerEvent,
-  useCallback,
-  useRef,
-  useState,
-} from "react";
+import { useCallback, useRef, useState } from "react";
+import type { PointerEvent as ReactPointerEvent } from "react";
 
 import { cn } from "@/lib/utils";
 

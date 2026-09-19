@@ -16,7 +16,7 @@ const DECAY = 0.05;
 const DOT = 2;
 const MAX_DPR = 2;
 const PHOSPHOR_FALLBACK = [134, 250, 221] as const;
-const HEX = /^#([\da-f]{2})([\da-f]{2})([\da-f]{2})$/i;
+const HEX = /^#([\da-f]{2})([\da-f]{2})([\da-f]{2})$/iu;
 
 const GRID =
   "[background-image:radial-gradient(circle_at_1px_1px,var(--phosphor-dim)_1px,transparent_0)] [background-size:15px_15px]";

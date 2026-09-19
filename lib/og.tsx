@@ -1,5 +1,5 @@
 import { readFile } from "node:fs/promises";
-import { join } from "node:path";
+import path from "node:path";
 
 import { ImageResponse } from "next/og";
 
@@ -19,8 +19,8 @@ const VOID = palette.void;
 
 async function fonts() {
   const [regular, bold] = await Promise.all([
-    readFile(join(process.cwd(), "assets/ibm-plex-mono-latin-400.woff")),
-    readFile(join(process.cwd(), "assets/ibm-plex-mono-latin-700.woff")),
+    readFile(path.join(process.cwd(), "assets/ibm-plex-mono-latin-400.woff")),
+    readFile(path.join(process.cwd(), "assets/ibm-plex-mono-latin-700.woff")),
   ]);
 
   return [
@@ -53,7 +53,6 @@ function Scanlines() {
     >
       {Array.from({ length: Math.ceil(OG_SIZE.height / 4) }, (_, row) => (
         <div
-          // biome-ignore lint/suspicious/noArrayIndexKey: the row index is the position.
           key={row}
           style={{
             background: "rgba(134,250,221,0.05)",
@@ -87,19 +86,20 @@ function Prompt({ size }: { size: number }) {
 }
 
 const SUBSTITUTIONS: [RegExp, string][] = [
-  [/`/g, ""],
-  [/⌘/g, "Cmd"],
-  [/⇧/g, "Shift"],
-  [/↵/g, "Enter"],
-  [/•/g, "o"],
-  [/▋/g, "block"],
+  [/`/gu, ""],
+  [/⌘/gu, "Cmd"],
+  [/⇧/gu, "Shift"],
+  [/↵/gu, "Enter"],
+  [/•/gu, "o"],
+  [/▋/gu, "block"],
 ];
 
 function plain(text: string): string {
-  return SUBSTITUTIONS.reduce(
-    (result, [pattern, replacement]) => result.replace(pattern, replacement),
-    stripInlineMarkdown(text)
-  );
+  let result = stripInlineMarkdown(text);
+  for (const [pattern, replacement] of SUBSTITUTIONS) {
+    result = result.replaceAll(pattern, replacement);
+  }
+  return result;
 }
 
 export async function ogImage({

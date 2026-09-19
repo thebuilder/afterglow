@@ -1,5 +1,6 @@
 import { Prose } from "@/components/docs/prose";
-import { documentedParts, type ItemDoc, type PartDoc } from "@/lib/doc";
+import { documentedParts } from "@/lib/doc";
+import type { ItemDoc, PartDoc } from "@/lib/doc";
 import { cn } from "@/lib/utils";
 
 export function ApiReference({ doc }: { doc: ItemDoc }) {
@@ -31,7 +32,7 @@ export function ApiReference({ doc }: { doc: ItemDoc }) {
               </a>
             </span>
           ))}
-          {"'s API, documented there."}
+          &apos;s API, documented there.
         </p>
       ) : null}
     </div>

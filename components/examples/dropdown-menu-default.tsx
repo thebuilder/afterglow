@@ -1,4 +1,5 @@
 import { CopyIcon, EllipsisIcon, SettingsIcon, Trash2Icon } from "lucide-react";
+
 import { Button } from "@/registry/terminal/ui/button";
 import {
   DropdownMenu,

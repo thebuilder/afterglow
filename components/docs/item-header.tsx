@@ -2,7 +2,8 @@ import Link from "next/link";
 
 import { PageActions } from "@/components/docs/page-actions";
 import { Prose } from "@/components/docs/prose";
-import { internalName, isInternal, type RegistryItem } from "@/lib/registry";
+import { internalName, isInternal } from "@/lib/registry";
+import type { RegistryItem } from "@/lib/registry";
 import { Connector } from "@/registry/terminal/components/connector";
 import { Badge } from "@/registry/terminal/ui/badge";
 

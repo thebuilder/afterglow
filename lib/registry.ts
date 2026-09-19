@@ -28,7 +28,7 @@ const items = registry.items as RegistryItem[];
 export function itemsOfType(...types: string[]): RegistryItem[] {
   return items
     .filter((item) => types.includes(item.type))
-    .sort((a, b) => a.name.localeCompare(b.name));
+    .toSorted((a, b) => a.name.localeCompare(b.name));
 }
 
 export function allItems(): RegistryItem[] {

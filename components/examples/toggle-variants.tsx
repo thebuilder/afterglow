@@ -1,4 +1,5 @@
 import { AlignLeftIcon, BoldIcon, ItalicIcon } from "lucide-react";
+
 import { Toggle } from "@/registry/terminal/ui/toggle";
 
 export function ToggleVariants() {

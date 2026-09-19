@@ -18,7 +18,6 @@ import { SliderSingleAndRange } from "@/components/examples/slider-single-and-ra
 import { SwitchSizes } from "@/components/examples/switch-sizes";
 import { ToggleGroupJoined } from "@/components/examples/toggle-group-joined";
 import { ToggleVariants } from "@/components/examples/toggle-variants";
-
 import type { ExampleMap } from "@/lib/example";
 
 export const formExamples: ExampleMap = {

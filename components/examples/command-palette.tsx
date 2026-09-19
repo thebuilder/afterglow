@@ -17,8 +17,8 @@ import {
 import { Kbd, KbdGroup } from "@/registry/terminal/ui/kbd";
 
 export function CommandPalette() {
-  const [isOpen, setOpen] = useState(false);
-  const open = useCallback(() => setOpen(true), []);
+  const [isOpen, setIsOpen] = useState(false);
+  const open = useCallback(() => setIsOpen(true), []);
 
   return (
     <div className="grid justify-items-center gap-4">
@@ -33,8 +33,8 @@ export function CommandPalette() {
           <Kbd>K</Kbd>
         </KbdGroup>
       </p>
-      <CommandDialog onOpenChange={setOpen} open={isOpen}>
-        <Command className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group]]:px-1 [&_[cmdk-input-wrapper]]:h-11">
+      <CommandDialog onOpenChange={setIsOpen} open={isOpen}>
+        <Command>
           <CommandInput placeholder="Type a command or search a volume." />
           <CommandList>
             <CommandEmpty>No results.</CommandEmpty>

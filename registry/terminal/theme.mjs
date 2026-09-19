@@ -294,6 +294,7 @@ const THEME = {
 
   "shadow-glow":
     "0 0 18px color-mix(in srgb, var(--phosphor) 18%, transparent)",
+  "shadow-glow-current": "0 0 8px currentColor",
   "shadow-glow-destructive":
     "0 0 18px color-mix(in srgb, var(--destructive) 20%, transparent)",
   "shadow-glow-line":
@@ -325,13 +326,16 @@ const THEME = {
 };
 
 const REDUCED_MOTION_SELECTOR = Object.keys(THEME)
-  .filter((key) => key.startsWith("animate-"))
-  .flatMap((key) => [
-    `.${key}`,
-    `.data-open\\:${key}`,
-    `.data-closed\\:${key}`,
-    `.after\\:${key}::after`,
-  ])
+  .flatMap((key) =>
+    key.startsWith("animate-")
+      ? [
+          `.${key}`,
+          `.data-open\\:${key}`,
+          `.data-closed\\:${key}`,
+          `.after\\:${key}::after`,
+        ]
+      : []
+  )
   .join(", ");
 
 const CSS = {

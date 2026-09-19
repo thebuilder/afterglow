@@ -1,6 +1,7 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, Inter } from "next/font/google";
+
 import { SiteGlass } from "@/components/docs/site-glass";
 import { PhosphorProvider } from "@/components/phosphor-provider";
 import { HOMEPAGE } from "@/lib/registry";

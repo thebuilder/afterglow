@@ -1,4 +1,5 @@
 import { ChevronsUpDownIcon } from "lucide-react";
+
 import { Button } from "@/registry/terminal/ui/button";
 import {
   Collapsible,

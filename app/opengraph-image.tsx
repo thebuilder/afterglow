@@ -1,9 +1,8 @@
-import { OG_CONTENT_TYPE, OG_SIZE, ogImage } from "@/lib/og";
+import { ogImage } from "@/lib/og";
 import { allItems } from "@/lib/registry";
 
 export const alt = "Afterglow, terminal UI components for shadcn projects";
-export const size = OG_SIZE;
-export const contentType = OG_CONTENT_TYPE;
+export { OG_SIZE as size, OG_CONTENT_TYPE as contentType } from "@/lib/og";
 
 export default function Image() {
   return ogImage({

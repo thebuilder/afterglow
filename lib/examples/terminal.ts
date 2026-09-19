@@ -14,7 +14,6 @@ import { TerminalWindowWindows } from "@/components/examples/terminal-window-win
 import { ThemeMotion } from "@/components/examples/theme-motion";
 import { ThemePalette } from "@/components/examples/theme-palette";
 import { ThemePhosphorSelector } from "@/components/examples/theme-phosphor-selector";
-
 import type { ExampleMap } from "@/lib/example";
 
 export const terminalExamples: ExampleMap = {

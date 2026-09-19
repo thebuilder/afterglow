@@ -41,7 +41,7 @@ that documents it.
   for an operator dashboard.
 - `public/r/*.json` is `shadcn build` output.
 
-Biome is configured to ignore all three.
+The formatter is configured to ignore all three.
 
 ### An example is a file, and the file is what you are shown.
 
@@ -164,6 +164,12 @@ not catch it.
 - Comments say why, not what, and are worth writing where a decision would
   otherwise read as an accident.
 - Never use em dashes, in code, comments or prose. Commas or full stops instead.
+- `@shadcn/lint` checks that the site and the examples use the registry the
+  way a consumer would. Its policy is in `oxlint.config.ts`. A finding names
+  the variant to use or the file to change. Reach for a variant first, then a
+  theme token. Add a contract only when a part is a box the page fills, and
+  say why beside it. The registry is exempt, since it is what the rules
+  protect.
 - Run any prose through the `unslop` skill before committing it. That covers
   registry item descriptions, example descriptions, the site's copy, this file
   and the README, all of which are read by people evaluating the registry. Two

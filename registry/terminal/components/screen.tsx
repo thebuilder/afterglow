@@ -1,4 +1,5 @@
 import type * as React from "react";
+
 import { cn } from "@/lib/utils";
 import { Grain } from "@/registry/terminal/components/grain";
 import { Scanlines } from "@/registry/terminal/components/scanlines";

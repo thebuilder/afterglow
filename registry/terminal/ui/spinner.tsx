@@ -65,7 +65,6 @@ function Spinner({
 
               step === -1 ? "opacity-[0.16]" : "animate-pixel"
             )}
-            // biome-ignore lint/suspicious/noArrayIndexKey: the cell index is its position.
             key={index}
             style={
               step === -1

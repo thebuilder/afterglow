@@ -1,7 +1,8 @@
 import Link from "next/link";
 
 import { Step, Steps } from "@/components/docs/steps";
-import { installArgs, type RegistryItem, RUNNERS } from "@/lib/registry";
+import { installArgs, RUNNERS } from "@/lib/registry";
+import type { RegistryItem } from "@/lib/registry";
 import type { Source } from "@/lib/source";
 import { CodeBlock } from "@/registry/terminal/ui/code-block";
 import {

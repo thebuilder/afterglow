@@ -1,4 +1,5 @@
-import { baseUi, type DocMap, type PropDoc } from "@/lib/doc";
+import { baseUi } from "@/lib/doc";
+import type { DocMap, PropDoc } from "@/lib/doc";
 
 function placement(align: string, side: string, offset: number): PropDoc[] {
   return [

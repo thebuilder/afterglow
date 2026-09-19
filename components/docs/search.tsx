@@ -3,6 +3,7 @@
 import { defaultFilter } from "cmdk";
 import { SearchIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
+import type { CSSProperties } from "react";
 import {
   useCallback,
   useEffect,
@@ -38,11 +39,13 @@ const FLOOR = 0.01;
 
 const LIMIT = 40;
 
-const WORDS = /\s+/;
+const WORDS = /\s+/u;
 
-const APPLE_DEVICE = /Mac|iPhone|iPad|iPod/;
+const APPLE_DEVICE = /Mac|iPhone|iPad|iPod/u;
 
-const subscribeToPlatform = () => () => undefined;
+const subscribeToPlatform = () => () => {
+  // Nothing to tear down: the platform does not change after hydration.
+};
 
 type ShortcutModifier = "Ctrl" | "⌘";
 
@@ -106,7 +109,7 @@ function results(records: SearchRecord[], query: string) {
     ? records
         .map((record) => ({ record, score: score(record, term, words) }))
         .filter((row) => row.score > FLOOR)
-        .sort((a, b) => b.score - a.score)
+        .toSorted((a, b) => b.score - a.score)
         .slice(0, LIMIT)
         .map((row) => row.record)
     : records.filter((record) => !record.parent);
@@ -134,7 +137,6 @@ function useSearchIndex() {
   const pending = useRef<boolean>(false);
 
   const load = useCallback(() => {
-    // biome-ignore lint/suspicious/noUnnecessaryConditions: Intent and click events share this in-flight flag.
     if (pending.current || status === "ready") {
       return;
     }
@@ -150,7 +152,7 @@ function useSearchIndex() {
       })
       .then((loaded: SearchRecord[]) => {
         if (!Array.isArray(loaded)) {
-          throw new Error("Invalid search index");
+          throw new TypeError("Invalid search index");
         }
         setRecords(loaded);
         setStatus("ready");
@@ -317,11 +319,7 @@ export function DocsSearch({ className }: { className?: string }) {
         open={open}
         title="Search the registry"
       >
-        <Command
-          className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group]]:px-1 [&_[cmdk-input-wrapper]]:h-11"
-          label="Search the registry"
-          shouldFilter={false}
-        >
+        <Command label="Search the registry" shouldFilter={false}>
           <CommandInput
             onValueChange={onQueryChange}
             placeholder="Search the registry"
@@ -389,7 +387,10 @@ function Placeholder() {
     <div aria-hidden="true" className="p-1">
       {PLACEHOLDER_ROWS.map((width) => (
         <div className="flex h-9 items-center px-2" key={width}>
-          <Skeleton className="h-3" style={{ width: `${width}%` }} />
+          <Skeleton
+            className="h-3 w-(--width)"
+            style={{ "--width": `${width}%` } as CSSProperties}
+          />
         </div>
       ))}
     </div>

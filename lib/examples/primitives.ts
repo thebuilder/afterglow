@@ -40,7 +40,6 @@ import { TableStickyHeader } from "@/components/examples/table-sticky-header";
 import { TabsLine } from "@/components/examples/tabs-line";
 import { TabsSegment } from "@/components/examples/tabs-segment";
 import { TextareaDefault } from "@/components/examples/textarea-default";
-
 import type { ExampleMap } from "@/lib/example";
 
 export const primitiveExamples: ExampleMap = {

@@ -80,6 +80,6 @@ export function compositionOf(parts: PartDoc[]): string {
 export function baseUi(component: string): Upstream {
   return {
     href: `https://base-ui.com/react/components/${component}`,
-    label: `Base UI ${component.replace(/-/g, " ")}`,
+    label: `Base UI ${component.replaceAll("-", " ")}`,
   };
 }

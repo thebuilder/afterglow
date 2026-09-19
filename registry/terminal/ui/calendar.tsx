@@ -5,14 +5,10 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
 } from "lucide-react";
-import { type ComponentProps, useEffect, useRef } from "react";
-import {
-  type CustomComponents,
-  type DayButton,
-  DayPicker,
-  getDefaultClassNames,
-  type Locale,
-} from "react-day-picker";
+import { useEffect, useRef } from "react";
+import type { ComponentProps } from "react";
+import { DayPicker, getDefaultClassNames } from "react-day-picker";
+import type { CustomComponents, DayButton, Locale } from "react-day-picker";
 
 import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "@/registry/terminal/ui/button";

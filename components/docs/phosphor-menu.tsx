@@ -1,6 +1,7 @@
 "use client";
 
 import { useTheme } from "next-themes";
+import type { CSSProperties } from "react";
 import { useSyncExternalStore } from "react";
 
 import { setSiteGlass, useSiteGlass } from "@/components/docs/site-glass";
@@ -17,7 +18,9 @@ import {
   DropdownMenuTrigger,
 } from "@/registry/terminal/ui/dropdown-menu";
 
-const emptySubscribe = () => () => undefined;
+const emptySubscribe = () => () => {
+  // Nothing to tear down: the snapshot never changes after hydration.
+};
 const getClientSnapshot = (): boolean => true;
 const getServerSnapshot = (): boolean => false;
 
@@ -41,8 +44,8 @@ export function PhosphorMenu() {
       >
         <span
           aria-hidden="true"
-          className="size-3.5 shadow-[0_0_8px_currentColor]"
-          style={{ backgroundColor: active.color, color: active.color }}
+          className="size-3.5 bg-(--swatch) text-(--swatch) shadow-glow-current"
+          style={{ "--swatch": active.color } as CSSProperties}
         />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-40">
@@ -51,17 +54,13 @@ export function PhosphorMenu() {
           <DropdownMenuRadioGroup onValueChange={setTheme} value={selected}>
             {PHOSPHORS.map((phosphor) => (
               <DropdownMenuRadioItem
-                className="capitalize"
                 key={phosphor.value}
                 value={phosphor.value}
               >
                 <span
                   aria-hidden="true"
-                  className="size-3 shadow-[0_0_7px_currentColor]"
-                  style={{
-                    backgroundColor: phosphor.color,
-                    color: phosphor.color,
-                  }}
+                  className="size-3 bg-(--swatch) text-(--swatch) shadow-glow-current"
+                  style={{ "--swatch": phosphor.color } as CSSProperties}
                 />
                 {phosphor.label}
               </DropdownMenuRadioItem>

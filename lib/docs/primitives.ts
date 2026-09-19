@@ -1,4 +1,5 @@
-import { baseUi, type DocMap } from "@/lib/doc";
+import { baseUi } from "@/lib/doc";
+import type { DocMap } from "@/lib/doc";
 
 export const primitiveDocs: DocMap = {
   badge: {
