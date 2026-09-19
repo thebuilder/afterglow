@@ -1,8 +1,10 @@
-import type { ThemeRegistrationRaw } from "shiki";
+import type { BundledLanguage, ThemeRegistrationRaw } from "shiki";
+import { codeToHtml } from "shiki";
 
-export const CODE_LANGUAGES = ["bash", "css", "html", "json", "tsx"] as const;
-
-export const AFTERGLOW_CODE_THEME: ThemeRegistrationRaw = {
+// Shiki writes colors straight onto the tokens, so the theme hands it variable
+// references instead of hex. A code block then follows the phosphor the page is
+// set to, rather than carrying a second palette of its own.
+export const CODE_THEME: ThemeRegistrationRaw = {
   colors: {
     "editor.background": "var(--panel-sunken)",
     "editor.foreground": "var(--phosphor)",
@@ -71,3 +73,12 @@ export const AFTERGLOW_CODE_THEME: ThemeRegistrationRaw = {
   ],
   type: "dark",
 };
+
+// Shiki's shorthand keeps one highlighter for the process and loads a grammar
+// the first time a block asks for it.
+export function highlightCode(
+  code: string,
+  lang: BundledLanguage
+): Promise<string> {
+  return codeToHtml(code, { lang, theme: CODE_THEME });
+}

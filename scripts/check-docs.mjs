@@ -55,11 +55,17 @@ for (const item of registry.items) {
     continue;
   }
 
-  const sources = (item.files ?? []).map((file) =>
-    readFileSync(file.path, "utf8")
-  );
+  const sources = (item.files ?? []).map((file) => ({
+    content: readFileSync(file.path, "utf8"),
+    type: file.type,
+  }));
 
-  const exported = sources.flatMap(exportsOf).sort();
+  // A part is something the caller renders. A registry:lib file is a helper the
+  // components import, so its exports are not parts and are not documented.
+  const exported = sources
+    .filter((file) => file.type !== "registry:lib")
+    .flatMap((file) => exportsOf(file.content))
+    .sort();
   const documented = flatten(doc.parts)
     .map((part) => part.name)
     .sort();
@@ -79,9 +85,9 @@ for (const item of registry.items) {
   }
 
   const upstream = (doc.upstream ?? []).map((link) => link.href).join(" ");
-  const unlinked = baseUiOf(sources.join("\n")).filter(
-    (module) => !upstream.includes(`/components/${module}`)
-  );
+  const unlinked = baseUiOf(
+    sources.map((file) => file.content).join("\n")
+  ).filter((module) => !upstream.includes(`/components/${module}`));
 
   if (unlinked.length > 0 && upstream === "") {
     problems.push(

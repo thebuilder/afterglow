@@ -1,8 +1,8 @@
 "use client";
 
 import { ChevronRightIcon } from "lucide-react";
+import type { ReactNode } from "react";
 
-import { Highlighted } from "@/components/docs/highlighted";
 import { cn } from "@/lib/utils";
 import {
   Collapsible,
@@ -11,15 +11,15 @@ import {
 } from "@/registry/terminal/ui/collapsible";
 
 export function ExampleSource({
+  children,
   className,
   file,
-  html,
-  text,
 }: {
+  // The highlighted body is rendered on the server and passed in, which keeps
+  // Shiki out of the bundle this client component pulls.
+  children: ReactNode;
   className?: string;
   file: string;
-  html: string;
-  text: string;
 }) {
   return (
     <Collapsible
@@ -33,12 +33,7 @@ export function ExampleSource({
         <span className="truncate normal-case tracking-normal">{file}</span>
       </CollapsibleTrigger>
       <CollapsibleContent className="h-(--collapsible-panel-height) overflow-hidden transition-[height] duration-200 ease-terminal data-ending-style:h-0 data-starting-style:h-0">
-        <Highlighted
-          className="border-line border-t"
-          html={html}
-          label={`Copy ${file}`}
-          text={text}
-        />
+        {children}
       </CollapsibleContent>
     </Collapsible>
   );

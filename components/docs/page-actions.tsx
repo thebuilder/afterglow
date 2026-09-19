@@ -9,8 +9,8 @@ import {
 } from "lucide-react";
 import { useCallback } from "react";
 
-import { useCopied } from "@/components/docs/use-copied";
 import { HOMEPAGE } from "@/lib/registry";
+import { useCopied } from "@/registry/terminal/hooks/use-copied";
 import {
   DropdownMenu,
   DropdownMenuContent,

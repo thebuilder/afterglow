@@ -1,11 +1,9 @@
 import Link from "next/link";
 
-import { CopyCommand } from "@/components/copy-command";
-import { CodeBlock } from "@/components/docs/code-block";
 import { Step, Steps } from "@/components/docs/steps";
-import { highlight } from "@/lib/code";
 import { installArgs, type RegistryItem, RUNNERS } from "@/lib/registry";
 import type { Source } from "@/lib/source";
+import { CodeBlock } from "@/registry/terminal/ui/code-block";
 import {
   Tabs,
   TabsContent,
@@ -13,7 +11,7 @@ import {
   TabsTrigger,
 } from "@/registry/terminal/ui/tabs";
 
-export async function InstallTabs({
+export function InstallTabs({
   item,
   packages,
   sources,
@@ -31,10 +29,8 @@ export async function InstallTabs({
     return <CommandTab args={args} />;
   }
 
-  const dependencies =
-    packages.length > 0
-      ? await highlight(`npm install ${packages.join(" ")}`, "bash")
-      : null;
+  const install =
+    packages.length > 0 ? `npm install ${packages.join(" ")}` : null;
 
   return (
     <Tabs defaultValue={sourceFirst ? "manual" : "command"}>
@@ -67,34 +63,30 @@ export async function InstallTabs({
               />
             </Step>
           ) : null}
-          {dependencies ? (
+          {install ? (
             <Step
               index={registryStep + 1}
               title="Install the following dependencies."
             >
-              <CodeBlock
-                html={dependencies}
-                text={`npm install ${packages.join(" ")}`}
-              />
+              <CodeBlock code={install} lang="bash" />
             </Step>
           ) : null}
           <Step
-            index={registryStep + (dependencies ? 2 : 1)}
+            index={registryStep + (install ? 2 : 1)}
             title="Copy the following into your project."
           >
             <div className="grid grid-cols-[minmax(0,1fr)] gap-4">
               {sources.map((source) => (
                 <CodeBlock
-                  html={source.html}
+                  code={source.text}
                   key={source.path}
-                  text={source.text}
                   title={source.path}
                 />
               ))}
             </div>
           </Step>
           <Step
-            index={registryStep + (dependencies ? 3 : 2)}
+            index={registryStep + (install ? 3 : 2)}
             title="Update the import paths to match your project."
           />
         </Steps>
@@ -103,13 +95,11 @@ export async function InstallTabs({
   );
 }
 
-async function CommandTab({ args }: { args: string }) {
-  const commands = await Promise.all(
-    RUNNERS.map(async (runner) => {
-      const text = `${runner.command} ${args}`;
-      return { html: await highlight(text, "bash"), name: runner.name, text };
-    })
-  );
+function CommandTab({ args }: { args: string }) {
+  const commands = RUNNERS.map((runner) => ({
+    name: runner.name,
+    text: `${runner.command} ${args}`,
+  }));
 
   return (
     <Tabs defaultValue="npm">
@@ -126,7 +116,12 @@ async function CommandTab({ args }: { args: string }) {
           key={command.name}
           value={command.name}
         >
-          <CopyCommand html={command.html} text={command.text} />
+          <CodeBlock
+            className="min-w-0"
+            code={command.text}
+            label={`Copy: ${command.text}`}
+            lang="bash"
+          />
         </TabsContent>
       ))}
     </Tabs>

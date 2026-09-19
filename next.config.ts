@@ -1,7 +1,7 @@
 import createMDX from "@next/mdx";
 import type { NextConfig } from "next";
 
-import { AFTERGLOW_CODE_THEME, CODE_LANGUAGES } from "./lib/shiki-theme";
+import { CODE_THEME } from "./registry/terminal/lib/shiki";
 
 const withMDX = createMDX({
   options: {
@@ -9,8 +9,8 @@ const withMDX = createMDX({
       [
         "@shikijs/rehype",
         {
-          langs: [...CODE_LANGUAGES],
-          theme: AFTERGLOW_CODE_THEME,
+          langs: ["bash", "css", "html", "json", "tsx"],
+          theme: CODE_THEME,
         },
       ],
       "rehype-slug",

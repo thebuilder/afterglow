@@ -46,6 +46,9 @@ export const primitiveDocs: DocMap = {
   },
 
   card: {
+    notes: [
+      "A card has no hover of its own, because a hover promises a click and most cards are not one. Put a `CardLink` in it and the card becomes the link's target. Hovering or tabbing to it then sends the accent across the top, down the right and back along the bottom, and leaving runs the same three in reverse. A link card with `accent={false}` has nothing to send, and its hairline lifts instead.",
+    ],
     parts: [
       {
         name: "Card",
@@ -53,17 +56,26 @@ export const primitiveDocs: DocMap = {
           {
             name: "CardAccent",
             summary:
-              "The top rule, with the card's accent running its first third. Goes first, inside `Card` and above `CardHeader`.",
+              "The card's top edge, with the accent running its first third. It lies over the border on the trace's path, so a link card's trace finishes it in the accent. Place it inside `Card`.",
           },
           {
             name: "CardHeader",
             parts: [
-              { name: "CardTitle" },
+              {
+                name: "CardTitle",
+                parts: [
+                  {
+                    name: "CardLink",
+                    summary:
+                      'An anchor stretched over the whole card, so the card is the target and the title is what a screen reader hears. Pass `render` for a router link: `render={<Link href="/x" />}`. Anything else interactive in the card needs `relative z-10` to stay above it, as `CardAction` has.',
+                  },
+                ],
+              },
               { name: "CardDescription" },
               {
                 name: "CardAction",
                 summary:
-                  "A control in the header's top right. The header switches to a two-column grid when one is present.",
+                  "A control in the header's top right. The header switches to a two-column grid when one is present. It sits above a `CardLink`'s stretch, so it stays clickable in a card that is also a link.",
               },
             ],
           },
@@ -74,11 +86,11 @@ export const primitiveDocs: DocMap = {
           {
             default: "var(--phosphor)",
             name: "accent",
-            type: "string",
+            type: "string | false",
           },
         ],
         summary:
-          "`accent` sets `--card-accent`, which drives the left edge, the title and the top rule. It is how a category gets a color without a variant per category.",
+          "`accent` sets `--card-accent`, which drives the left edge, the title and the top rule. It is how a category gets a color without a variant per category. `accent={false}` drops the edge and leaves the title in the card's own color, for a grid of panels where none of them is the one to read first.",
       },
     ],
   },
@@ -114,6 +126,41 @@ export const primitiveDocs: DocMap = {
       },
     ],
     upstream: [{ href: "https://recharts.org", label: "Recharts" }],
+  },
+
+  "code-block": {
+    notes: [
+      "The highlighter runs on the server, so `CodeBlock` is an async component and Shiki never reaches the browser. Only the copy button ships as client code.",
+      "Shiki writes the theme's CSS variables onto the tokens instead of hex, so a block follows whichever phosphor the page is set to.",
+      "`lang` takes any language Shiki bundles. Its grammar loads the first time a block asks for it.",
+    ],
+    parts: [
+      {
+        name: "CodeBlock",
+        parts: [
+          {
+            name: "CodeBlockTitle",
+            summary:
+              "The file name or caption above the code. `CodeBlock` renders one when you pass a `title`.",
+          },
+          {
+            name: "CodeBlockBody",
+            parts: [{ name: "CodeBlockCopy" }],
+            summary:
+              "The highlighted code and the copy button. Use it directly when you already hold Shiki's HTML, which is what a site that highlights once at build time will have.",
+          },
+        ],
+        props: [
+          { name: "code", type: "string" },
+          { default: '"tsx"', name: "lang", type: "BundledLanguage" },
+          { name: "title", type: "string" },
+          { name: "label", type: "string" },
+        ],
+        summary:
+          "Highlights `code` and draws it in a bordered panel. `label` names the copy button for a screen reader, and defaults to the title.",
+      },
+    ],
+    upstream: [{ href: "https://shiki.style", label: "Shiki" }],
   },
 
   dialog: {

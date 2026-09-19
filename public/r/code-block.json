@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "code-block",
+  "title": "Code Block",
+  "description": "Shiki wired to the phosphor palette, with a copy button. Takes a string of code and highlights it on the server.",
+  "dependencies": [
+    "lucide-react",
+    "shiki"
+  ],
+  "registryDependencies": [
+    "@afterglow/theme",
+    "@afterglow/use-copied"
+  ],
+  "files": [
+    {
+      "path": "registry/terminal/lib/shiki.ts",
+      "content": "import type { BundledLanguage, ThemeRegistrationRaw } from \"shiki\";\nimport { codeToHtml } from \"shiki\";\n\n// Shiki writes colors straight onto the tokens, so the theme hands it variable\n// references instead of hex. A code block then follows the phosphor the page is\n// set to, rather than carrying a second palette of its own.\nexport const CODE_THEME: ThemeRegistrationRaw = {\n  colors: {\n    \"editor.background\": \"var(--panel-sunken)\",\n    \"editor.foreground\": \"var(--phosphor)\",\n  },\n  name: \"afterglow\",\n  settings: [\n    {\n      scope: [\"comment\", \"punctuation.definition.comment\"],\n      settings: {\n        fontStyle: \"italic\",\n        foreground: \"var(--phosphor-dim)\",\n      },\n    },\n    {\n      scope: [\"string\", \"constant.character\", \"punctuation.definition.string\"],\n      settings: { foreground: \"var(--warning)\" },\n    },\n    {\n      scope: [\n        \"keyword\",\n        \"storage\",\n        \"storage.type\",\n        \"keyword.control\",\n        \"keyword.operator.new\",\n        \"keyword.operator.expression\",\n        \"variable.language\",\n      ],\n      settings: { foreground: \"var(--signal)\" },\n    },\n    {\n      scope: [\n        \"constant.numeric\",\n        \"constant.language\",\n        \"constant.language.boolean\",\n      ],\n      settings: { foreground: \"var(--violet)\" },\n    },\n    {\n      scope: [\n        \"entity.name.type\",\n        \"entity.name.class\",\n        \"entity.name.tag\",\n        \"support.type\",\n        \"support.class\",\n        \"support.type.primitive\",\n      ],\n      settings: { foreground: \"var(--info)\" },\n    },\n    {\n      scope: [\n        \"entity.name.function\",\n        \"support.function\",\n        \"meta.function-call.generic\",\n      ],\n      settings: { foreground: \"var(--phosphor-bright)\" },\n    },\n    {\n      scope: [\n        \"punctuation\",\n        \"meta.brace\",\n        \"keyword.operator\",\n        \"entity.other.attribute-name\",\n      ],\n      settings: { foreground: \"var(--muted-foreground)\" },\n    },\n  ],\n  type: \"dark\",\n};\n\n// Shiki's shorthand keeps one highlighter for the process and loads a grammar\n// the first time a block asks for it.\nexport function highlightCode(\n  code: string,\n  lang: BundledLanguage\n): Promise<string> {\n  return codeToHtml(code, { lang, theme: CODE_THEME });\n}\n",
+      "type": "registry:lib"
+    },
+    {
+      "path": "registry/terminal/ui/code-block.tsx",
+      "content": "import type * as React from \"react\";\nimport type { BundledLanguage } from \"shiki\";\nimport { cn } from \"@/lib/utils\";\n\nimport { highlightCode } from \"@/registry/terminal/lib/shiki\";\nimport { CodeBlockCopy } from \"@/registry/terminal/ui/code-block-copy\";\n\nasync function CodeBlock({\n  className,\n  code,\n  label,\n  lang = \"tsx\",\n  title,\n  ...props\n}: Omit<React.ComponentProps<\"figure\">, \"children\"> & {\n  code: string;\n  label?: string;\n  lang?: BundledLanguage;\n  title?: string;\n}) {\n  const text = code.trimEnd();\n\n  return (\n    <figure\n      className={cn(\"border border-line bg-panel-sunken\", className)}\n      data-slot=\"code-block\"\n      {...props}\n    >\n      {title ? <CodeBlockTitle>{title}</CodeBlockTitle> : null}\n      <CodeBlockBody\n        html={await highlightCode(text, lang)}\n        label={label ?? (title ? `Copy ${title}` : undefined)}\n        text={text}\n      />\n    </figure>\n  );\n}\n\nfunction CodeBlockTitle({\n  className,\n  ...props\n}: React.ComponentProps<\"figcaption\">) {\n  return (\n    <figcaption\n      className={cn(\n        \"border-line border-b px-3 py-2 font-mono text-2xs text-phosphor-dim tracking-terminal-xs\",\n        className\n      )}\n      data-slot=\"code-block-title\"\n      {...props}\n    />\n  );\n}\n\nfunction CodeBlockBody({\n  className,\n  html,\n  label,\n  text,\n  ...props\n}: Omit<React.ComponentProps<\"div\">, \"children\"> & {\n  html: string;\n  label?: string;\n  text: string;\n}) {\n  return (\n    <div\n      className={cn(\"relative\", className)}\n      data-slot=\"code-block-body\"\n      {...props}\n    >\n      <div\n        className=\"[&_pre]:!bg-transparent overflow-x-auto py-3.5 pr-12 pl-4 font-mono text-xs leading-relaxed [&_pre]:outline-none\"\n        // biome-ignore lint/security/noDangerouslySetInnerHtml: Shiki output for code the caller passed in.\n        dangerouslySetInnerHTML={{ __html: html }}\n      />\n      <CodeBlockCopy\n        className=\"absolute top-2.5 right-2.5\"\n        label={label}\n        text={text}\n      />\n    </div>\n  );\n}\n\nexport { CodeBlock, CodeBlockBody, CodeBlockTitle };\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/terminal/ui/code-block-copy.tsx",
+      "content": "\"use client\";\n\nimport { CheckIcon, CopyIcon } from \"lucide-react\";\nimport type * as React from \"react\";\n\nimport { cn } from \"@/lib/utils\";\nimport { useCopied } from \"@/registry/terminal/hooks/use-copied\";\n\nfunction CodeBlockCopy({\n  className,\n  label = \"Copy the code\",\n  text,\n  ...props\n}: Omit<React.ComponentProps<\"button\">, \"children\"> & {\n  label?: string;\n  text: string;\n}) {\n  const { copied, copy } = useCopied(text);\n\n  return (\n    <button\n      aria-label={copied ? \"Copied\" : label}\n      className={cn(\n        \"grid size-7 shrink-0 place-items-center border border-line bg-panel-sunken text-phosphor-dim outline-none transition-colors hover:border-line-strong hover:text-phosphor-bright focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-phosphor-bright\",\n        className\n      )}\n      data-slot=\"code-block-copy\"\n      onClick={copy}\n      type=\"button\"\n      {...props}\n    >\n      {copied ? (\n        <CheckIcon className=\"size-3.5 text-phosphor\" />\n      ) : (\n        <CopyIcon className=\"size-3.5\" />\n      )}\n    </button>\n  );\n}\n\nexport { CodeBlockCopy };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
