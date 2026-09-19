@@ -336,7 +336,7 @@ const REDUCED_MOTION_SELECTOR = Object.keys(THEME)
 
 const CSS = {
   ...PHOSPHOR_PRESET_CSS,
-  ':is([data-slot="input"], [data-slot="textarea"], [data-slot="checkbox"], [data-slot="radio-group-item"], [data-slot="switch"], [data-slot="select-trigger"], [data-slot="command-input"], [data-slot="input-otp"]):focus-visible, :is([data-slot="prompt"], [data-slot="shell-prompt"]) input:focus-visible':
+  ':is([data-slot="input"], [data-slot="textarea"], [data-slot="checkbox"], [data-slot="radio-group-item"], [data-slot="switch"], [data-slot="select-trigger"], [data-slot="command-input"], [data-slot="input-otp"], [data-slot="card-link"]):focus-visible, :is([data-slot="prompt"], [data-slot="shell-prompt"]) input:focus-visible':
     {
       "outline-style": "none",
     },
@@ -779,44 +779,51 @@ const CSS = {
     syntax: '"<length-percentage>"',
   },
 
-  // The accent leaves the left edge and draws the other three in turn, across
-  // the top, down the right, back along the bottom. Each pseudo-element carries
-  // two gradients, because two elements is all a card gets and the edges need
-  // four. Leaving runs the same three in reverse, so the accent retreats the
-  // way it came rather than the whole outline fading at once.
+  // Once a card holds a `CardLink`, the accent leaves the left edge and draws
+  // the other three in turn, across the top, down the right and back along
+  // the bottom. Leaving runs the same three in reverse, so the accent retreats
+  // the way it came. It answers the link rather than the card, because a hover
+  // promises a click, and a control raised over the link does not light it.
+  // A card without a link keeps its plain border and none of this.
+  //
+  // Each pseudo-element carries two gradients, because two elements is all a
+  // card gets and the edges need four. The left gradient sits on the card's
+  // own accent border, so the resting edge glows with the rest of the trace.
   "@utility card-trace": {
-    "&::after": {
-      "background-position": "100% 0, 100% 100%",
-      "background-size":
-        "2px var(--card-trace-right), var(--card-trace-bottom) 2px",
-      transition:
-        "--card-trace-right 35ms linear 110ms, --card-trace-bottom 110ms linear",
-    },
-    "&::before": {
-      "background-position": "0 0, 0 0",
-      "background-size": "2px 100%, var(--card-trace-top) 2px",
-      transition: "--card-trace-top 110ms linear 145ms",
-    },
-    "&::before, &::after": {
-      "background-image":
-        "linear-gradient(currentColor, currentColor), linear-gradient(currentColor, currentColor)",
-      "background-repeat": "no-repeat",
-      color: "var(--card-accent, var(--phosphor))",
-      content: '""',
-      filter: "drop-shadow(0 0 4px)",
-      inset: "-1px -1px -1px -2px",
-      "pointer-events": "none",
-      position: "absolute",
-    },
-    "&:is(:hover, :focus-within)::after": {
+    '&:has([data-slot="card-link"]:is(:hover, :focus-visible))::after': {
       "--card-trace-bottom": "100%",
       "--card-trace-right": "100%",
       transition:
         "--card-trace-right 45ms linear 140ms, --card-trace-bottom 140ms linear 185ms",
     },
-    "&:is(:hover, :focus-within)::before": {
+    '&:has([data-slot="card-link"]:is(:hover, :focus-visible))::before': {
       "--card-trace-top": "100%",
       transition: "--card-trace-top 140ms linear",
+    },
+    '&:has([data-slot="card-link"])': {
+      "&::after": {
+        "background-position": "100% 0, 100% 100%",
+        "background-size":
+          "2px var(--card-trace-right), var(--card-trace-bottom) 2px",
+        transition:
+          "--card-trace-right 35ms linear 110ms, --card-trace-bottom 110ms linear",
+      },
+      "&::before": {
+        "background-position": "0 0, 0 0",
+        "background-size": "2px 100%, var(--card-trace-top) 2px",
+        transition: "--card-trace-top 110ms linear 145ms",
+      },
+      "&::before, &::after": {
+        "background-image":
+          "linear-gradient(currentColor, currentColor), linear-gradient(currentColor, currentColor)",
+        "background-repeat": "no-repeat",
+        color: "var(--card-accent, var(--phosphor))",
+        content: '""',
+        filter: "drop-shadow(0 0 4px)",
+        inset: "-1px -1px -1px -2px",
+        "pointer-events": "none",
+        position: "absolute",
+      },
     },
   },
   "@utility scanlines": {

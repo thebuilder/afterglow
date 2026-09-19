@@ -351,7 +351,7 @@
           "--phosphor-dim": "#b4a753",
           "--warning": "#ff9d4d"
         },
-        ":is([data-slot=\"input\"], [data-slot=\"textarea\"], [data-slot=\"checkbox\"], [data-slot=\"radio-group-item\"], [data-slot=\"switch\"], [data-slot=\"select-trigger\"], [data-slot=\"command-input\"], [data-slot=\"input-otp\"]):focus-visible, :is([data-slot=\"prompt\"], [data-slot=\"shell-prompt\"]) input:focus-visible": {
+        ":is([data-slot=\"input\"], [data-slot=\"textarea\"], [data-slot=\"checkbox\"], [data-slot=\"radio-group-item\"], [data-slot=\"switch\"], [data-slot=\"select-trigger\"], [data-slot=\"command-input\"], [data-slot=\"input-otp\"], [data-slot=\"card-link\"]):focus-visible, :is([data-slot=\"prompt\"], [data-slot=\"shell-prompt\"]) input:focus-visible": {
           "outline-style": "none"
         },
         ":root[data-phosphor]:not([data-phosphor=\"green\"])": {
@@ -980,34 +980,36 @@
           "syntax": "\"<length-percentage>\""
         },
         "@utility card-trace": {
-          "&::after": {
-            "background-position": "100% 0, 100% 100%",
-            "background-size": "2px var(--card-trace-right), var(--card-trace-bottom) 2px",
-            "transition": "--card-trace-right 35ms linear 110ms, --card-trace-bottom 110ms linear"
-          },
-          "&::before": {
-            "background-position": "0 0, 0 0",
-            "background-size": "2px 100%, var(--card-trace-top) 2px",
-            "transition": "--card-trace-top 110ms linear 145ms"
-          },
-          "&::before, &::after": {
-            "background-image": "linear-gradient(currentColor, currentColor), linear-gradient(currentColor, currentColor)",
-            "background-repeat": "no-repeat",
-            "color": "var(--card-accent, var(--phosphor))",
-            "content": "\"\"",
-            "filter": "drop-shadow(0 0 4px)",
-            "inset": "-1px -1px -1px -2px",
-            "pointer-events": "none",
-            "position": "absolute"
-          },
-          "&:is(:hover, :focus-within)::after": {
+          "&:has([data-slot=\"card-link\"]:is(:hover, :focus-visible))::after": {
             "--card-trace-bottom": "100%",
             "--card-trace-right": "100%",
             "transition": "--card-trace-right 45ms linear 140ms, --card-trace-bottom 140ms linear 185ms"
           },
-          "&:is(:hover, :focus-within)::before": {
+          "&:has([data-slot=\"card-link\"]:is(:hover, :focus-visible))::before": {
             "--card-trace-top": "100%",
             "transition": "--card-trace-top 140ms linear"
+          },
+          "&:has([data-slot=\"card-link\"])": {
+            "&::after": {
+              "background-position": "100% 0, 100% 100%",
+              "background-size": "2px var(--card-trace-right), var(--card-trace-bottom) 2px",
+              "transition": "--card-trace-right 35ms linear 110ms, --card-trace-bottom 110ms linear"
+            },
+            "&::before": {
+              "background-position": "0 0, 0 0",
+              "background-size": "2px 100%, var(--card-trace-top) 2px",
+              "transition": "--card-trace-top 110ms linear 145ms"
+            },
+            "&::before, &::after": {
+              "background-image": "linear-gradient(currentColor, currentColor), linear-gradient(currentColor, currentColor)",
+              "background-repeat": "no-repeat",
+              "color": "var(--card-accent, var(--phosphor))",
+              "content": "\"\"",
+              "filter": "drop-shadow(0 0 4px)",
+              "inset": "-1px -1px -1px -2px",
+              "pointer-events": "none",
+              "position": "absolute"
+            }
           }
         },
         "@utility scanlines": {
@@ -1186,7 +1188,10 @@
       "name": "card",
       "type": "registry:ui",
       "title": "Card",
-      "description": "A panel with a colored left edge, or none. `accent` drives the edge and the title, `trace` sends it around on hover.",
+      "description": "A panel with a colored left edge, or `accent={false}` for none. With a `CardLink`, the edge traces the card on hover.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
       "registryDependencies": [
         "@afterglow/theme"
       ],

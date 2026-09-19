@@ -3,9 +3,10 @@ import { ButtonSizes } from "@/components/examples/button-sizes";
 import { ButtonVariants } from "@/components/examples/button-variants";
 import { ButtonWithAnIconAndDisabled } from "@/components/examples/button-with-an-icon-and-disabled";
 import { CardAccent } from "@/components/examples/card-accent";
+import { CardAsALink } from "@/components/examples/card-as-a-link";
 import { CardDefault } from "@/components/examples/card-default";
 import { CardStripe } from "@/components/examples/card-stripe";
-import { CardTrace } from "@/components/examples/card-trace";
+import { CardWithAnAction } from "@/components/examples/card-with-an-action";
 import { CardWithoutAnAccent } from "@/components/examples/card-without-an-accent";
 import { ChartChannelLoad } from "@/components/examples/chart-channel-load";
 import { ChartSignalHistory } from "@/components/examples/chart-signal-history";
@@ -60,6 +61,12 @@ export const primitiveExamples: ExampleMap = {
       name: "Default",
     },
     {
+      component: CardWithAnAction,
+      description:
+        "`CardAction` puts a control in the header's top right, level with the title. The header becomes two columns when it has one, so the title and description wrap beside the control and never run under it.",
+      name: "With an action",
+    },
+    {
       component: CardAccent,
       description:
         "One property drives the left edge and the title, so a category gets a color without a variant per category.",
@@ -68,14 +75,14 @@ export const primitiveExamples: ExampleMap = {
     {
       component: CardStripe,
       description:
-        "`CardAccent` runs the accent across the first third of the card's top rule. Use it on the one card that has to be read first.",
+        "`CardAccent` runs the accent across the first third of the card's top edge. Use it on the one card that has to be read first.",
       name: "Stripe",
     },
     {
-      component: CardTrace,
+      component: CardAsALink,
       description:
-        "With `trace`, hovering a card sends its accent around the other three edges, and leaving brings it back the way it came. In a grid, one panel lights up while the others hold still.",
-      name: "Trace",
+        "A card does not react to the pointer until it holds a `CardLink`, which stretches over the whole card. Then hovering it, or tabbing to it, sends the accent around the other three edges, and the trace finishes a stripe in the same color.",
+      name: "As a link",
     },
     {
       component: CardWithoutAnAccent,

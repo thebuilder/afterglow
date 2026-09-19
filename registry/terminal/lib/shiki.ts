@@ -1,11 +1,5 @@
-import type { Highlighter, ThemeRegistrationRaw } from "shiki";
-import { createHighlighter } from "shiki";
-
-// The grammars the highlighter loads up front. Shiki compiles every one of
-// these on first use, so add a language when you need it rather than in case.
-export const CODE_LANGUAGES = ["bash", "css", "html", "json", "tsx"] as const;
-
-export type CodeLanguage = (typeof CODE_LANGUAGES)[number];
+import type { BundledLanguage, ThemeRegistrationRaw } from "shiki";
+import { codeToHtml } from "shiki";
 
 // Shiki writes colors straight onto the tokens, so the theme hands it variable
 // references instead of hex. A code block then follows the phosphor the page is
@@ -80,20 +74,11 @@ export const CODE_THEME: ThemeRegistrationRaw = {
   type: "dark",
 };
 
-let pending: Promise<Highlighter> | undefined;
-
-function highlighter(): Promise<Highlighter> {
-  pending ??= createHighlighter({
-    langs: [...CODE_LANGUAGES],
-    themes: [CODE_THEME],
-  });
-  return pending;
-}
-
-export async function highlightCode(
+// Shiki's shorthand keeps one highlighter for the process and loads a grammar
+// the first time a block asks for it.
+export function highlightCode(
   code: string,
-  lang: CodeLanguage
+  lang: BundledLanguage
 ): Promise<string> {
-  const shiki = await highlighter();
-  return shiki.codeToHtml(code, { lang, theme: "afterglow" });
+  return codeToHtml(code, { lang, theme: CODE_THEME });
 }

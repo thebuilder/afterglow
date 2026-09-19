@@ -1,9 +1,8 @@
 import type * as React from "react";
+import type { BundledLanguage } from "shiki";
 import { cn } from "@/lib/utils";
-import {
-  type CodeLanguage,
-  highlightCode,
-} from "@/registry/terminal/lib/shiki";
+
+import { highlightCode } from "@/registry/terminal/lib/shiki";
 import { CodeBlockCopy } from "@/registry/terminal/ui/code-block-copy";
 
 async function CodeBlock({
@@ -16,7 +15,7 @@ async function CodeBlock({
 }: Omit<React.ComponentProps<"figure">, "children"> & {
   code: string;
   label?: string;
-  lang?: CodeLanguage;
+  lang?: BundledLanguage;
   title?: string;
 }) {
   const text = code.trimEnd();
