@@ -351,7 +351,7 @@
   --warning: #ff9d4d;
 }
 
-:is([data-slot="input"], [data-slot="textarea"], [data-slot="checkbox"], [data-slot="radio-group-item"], [data-slot="switch"], [data-slot="select-trigger"], [data-slot="command-input"], [data-slot="input-otp"], [data-slot="card-link"]):focus-visible, :is([data-slot="prompt"], [data-slot="shell-prompt"]) input:focus-visible {
+:is([data-slot="input"], [data-slot="textarea"], [data-slot="checkbox"], [data-slot="radio-group-item"], [data-slot="switch"], [data-slot="select-trigger"], [data-slot="command-input"], [data-slot="input-group-control"], [data-slot="combobox-chip-input"], [data-slot="input-otp"], [data-slot="card-link"]):focus-visible, :is([data-slot="prompt"], [data-slot="shell-prompt"]) input:focus-visible {
   outline-style: none;
 }
 

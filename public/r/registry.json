@@ -351,7 +351,7 @@
           "--phosphor-dim": "#b4a753",
           "--warning": "#ff9d4d"
         },
-        ":is([data-slot=\"input\"], [data-slot=\"textarea\"], [data-slot=\"checkbox\"], [data-slot=\"radio-group-item\"], [data-slot=\"switch\"], [data-slot=\"select-trigger\"], [data-slot=\"command-input\"], [data-slot=\"input-otp\"], [data-slot=\"card-link\"]):focus-visible, :is([data-slot=\"prompt\"], [data-slot=\"shell-prompt\"]) input:focus-visible": {
+        ":is([data-slot=\"input\"], [data-slot=\"textarea\"], [data-slot=\"checkbox\"], [data-slot=\"radio-group-item\"], [data-slot=\"switch\"], [data-slot=\"select-trigger\"], [data-slot=\"command-input\"], [data-slot=\"input-group-control\"], [data-slot=\"combobox-chip-input\"], [data-slot=\"input-otp\"], [data-slot=\"card-link\"]):focus-visible, :is([data-slot=\"prompt\"], [data-slot=\"shell-prompt\"]) input:focus-visible": {
           "outline-style": "none"
         },
         ":root[data-phosphor]:not([data-phosphor=\"green\"])": {
@@ -1286,6 +1286,26 @@
       ]
     },
     {
+      "name": "combobox",
+      "type": "registry:ui",
+      "title": "Combobox",
+      "description": "A text field that filters its list as you type. With `multiple` set, each pick becomes a chip in the field.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme",
+        "@afterglow/input-group"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/combobox.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "command",
       "type": "registry:ui",
       "title": "Command",
@@ -1408,6 +1428,27 @@
       "files": [
         {
           "path": "registry/terminal/ui/input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "Input Group",
+      "description": "Icons, text and buttons inside a field's border. The whole group glows while the control in it has focus.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@afterglow/theme",
+        "@afterglow/button",
+        "@afterglow/input",
+        "@afterglow/textarea"
+      ],
+      "files": [
+        {
+          "path": "registry/terminal/ui/input-group.tsx",
           "type": "registry:ui"
         }
       ]
@@ -2092,6 +2133,7 @@
         "@afterglow/checkbox",
         "@afterglow/code-block",
         "@afterglow/collapsible",
+        "@afterglow/combobox",
         "@afterglow/command",
         "@afterglow/context-menu",
         "@afterglow/dialog",
@@ -2099,6 +2141,7 @@
         "@afterglow/empty",
         "@afterglow/hover-card",
         "@afterglow/input",
+        "@afterglow/input-group",
         "@afterglow/input-otp",
         "@afterglow/kbd",
         "@afterglow/label",

@@ -16,6 +16,19 @@ import { CodeBlockLanguages } from "@/components/examples/code-block-languages";
 import { CodeBlockWithATitle } from "@/components/examples/code-block-with-a-title";
 import { DialogDefault } from "@/components/examples/dialog-default";
 import { InputDefault } from "@/components/examples/input-default";
+import { InputGroupBlockEnd } from "@/components/examples/input-group-block-end";
+import { InputGroupBlockStart } from "@/components/examples/input-group-block-start";
+import { InputGroupButtonExample } from "@/components/examples/input-group-button";
+import { InputGroupCustomInput } from "@/components/examples/input-group-custom-input";
+import { InputGroupDefault } from "@/components/examples/input-group-default";
+import { InputGroupDropdown } from "@/components/examples/input-group-dropdown";
+import { InputGroupIcon } from "@/components/examples/input-group-icon";
+import { InputGroupInlineEnd } from "@/components/examples/input-group-inline-end";
+import { InputGroupInlineStart } from "@/components/examples/input-group-inline-start";
+import { InputGroupKbd } from "@/components/examples/input-group-kbd";
+import { InputGroupSpinner } from "@/components/examples/input-group-spinner";
+import { InputGroupTextExample } from "@/components/examples/input-group-text";
+import { InputGroupTextareaExample } from "@/components/examples/input-group-textarea";
 import { InputStates } from "@/components/examples/input-states";
 import { KbdLettersAndSymbols } from "@/components/examples/kbd-letters-and-symbols";
 import { LabelDefault } from "@/components/examples/label-default";
@@ -147,6 +160,72 @@ export const primitiveExamples: ExampleMap = {
     {
       component: InputStates,
       name: "States",
+    },
+  ],
+  "input-group": [
+    {
+      component: InputGroupDefault,
+      name: "Default",
+    },
+    {
+      component: InputGroupInlineStart,
+      description:
+        '`align="inline-start"` puts the addon before the text. It is the default.',
+      name: "Inline start",
+    },
+    {
+      component: InputGroupInlineEnd,
+      description: '`align="inline-end"` puts it after.',
+      name: "Inline end",
+    },
+    {
+      component: InputGroupBlockStart,
+      description:
+        '`align="block-start"` stacks the addon above the control, as a header.',
+      name: "Block start",
+    },
+    {
+      component: InputGroupBlockEnd,
+      description: '`align="block-end"` stacks it below, as a footer.',
+      name: "Block end",
+    },
+    {
+      component: InputGroupIcon,
+      name: "Icon",
+    },
+    {
+      component: InputGroupTextExample,
+      name: "Text",
+    },
+    {
+      component: InputGroupButtonExample,
+      description:
+        "`InputGroupButton` is a ghost button cut down to fit inside the field. The info button is itself the popover trigger, passed to `PopoverTrigger` through `render`.",
+      name: "Button",
+    },
+    {
+      component: InputGroupKbd,
+      name: "Kbd",
+    },
+    {
+      component: InputGroupDropdown,
+      name: "Dropdown",
+    },
+    {
+      component: InputGroupSpinner,
+      name: "Spinner",
+    },
+    {
+      component: InputGroupTextareaExample,
+      description:
+        "A header and footer around a textarea, split off by a border on each addon.",
+      name: "Textarea",
+    },
+    {
+      component: InputGroupCustomInput,
+      description:
+        'Any control can sit in the group. Give it `data-slot="input-group-control"` and the group lights up when it has focus. This one is a plain textarea that grows with `field-sizing-content`.',
+      name: "Custom input",
     },
   ],
   kbd: [

@@ -48,6 +48,22 @@
       }
     },
     {
+      // A click on an addon's padding focuses the field, the way a click on a
+      // label would. It is a mouse shortcut to a control the keyboard already
+      // reaches by tabbing, so there is no key handler to add and the addon is
+      // right to stay out of the tab order.
+      "includes": ["registry/terminal/ui/input-group.tsx"],
+      "linter": {
+        "rules": {
+          "a11y": {
+            "noNoninteractiveElementInteractions": "off",
+            "noStaticElementInteractions": "off",
+            "useKeyWithClickEvents": "off"
+          }
+        }
+      }
+    },
+    {
       // One re-export, so `toast` and `Toaster` arrive from the same module and
       // a consumer does not have to know that half of this component is sonner.
       // A barrel is a file that re-exports a directory; this is a convenience.
