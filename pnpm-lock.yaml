@@ -26,12 +26,12 @@ importers:
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
-      clsx:
-        specifier: ^2.1.1
-        version: 2.1.1
       cmdk:
         specifier: ^1.1.1
         version: 1.1.1(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      cn:
+        specifier: ^0.3.0
+        version: 0.3.0
       date-fns:
         specifier: ^4.4.0
         version: 4.4.0
@@ -74,9 +74,6 @@ importers:
       sonner:
         specifier: ^2.0.8
         version: 2.0.8(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      tailwind-merge:
-        specifier: ^3.6.0
-        version: 3.6.0
     devDependencies:
       '@biomejs/biome':
         specifier: ^2.5.12
@@ -1421,6 +1418,11 @@ packages:
 
   cn@0.2.5:
     resolution: {integrity: sha512-OCjZtMeQfXbI4Es1+EIjkd77gvWzaE689gD8KhfexlqjClC06qR1MQBR+Z35ZMSPNEBWyHiItW1Soy0UvwNv9w==}
+    engines: {node: '>=20'}
+    hasBin: true
+
+  cn@0.3.0:
+    resolution: {integrity: sha512-qRoU0ARrZD3Bbj1wKFftEKxPjSnzTEdFkf22NVhW+zU9D/wajhoP+qUZ5DChhhSOBCH1onV12hrmGqfu1+5Z2Q==}
     engines: {node: '>=20'}
     hasBin: true
 
@@ -2976,9 +2978,6 @@ packages:
     os: [darwin, linux, win32, freebsd, openbsd, netbsd, sunos, android]
     hasBin: true
 
-  tailwind-merge@3.6.0:
-    resolution: {integrity: sha512-uxL7qAVQriqRQPAyK3pj66VqskWqoZ37PW94jwOTwNfq/z9oyu1V+eqrZqtR2+fCiXdYOZe/Modt8GtvqNzu+w==}
-
   tailwindcss@4.3.3:
     resolution: {integrity: sha512-gOhV3P7ufE62QDGg1zVaTgCR+EtPv92k2nIhVcVKcLmxT1sUBsQGhnZj175j+MqRt4zLF7ic+sCYjfhxMxj7YQ==}
 
@@ -4345,6 +4344,8 @@ snapshots:
       - '@types/react-dom'
 
   cn@0.2.5: {}
+
+  cn@0.3.0: {}
 
   code-block-writer@13.0.3: {}
 
@@ -6164,8 +6165,6 @@ snapshots:
       '@babel/core': 7.29.7
 
   systeminformation@5.33.8: {}
-
-  tailwind-merge@3.6.0: {}
 
   tailwindcss@4.3.3: {}
 

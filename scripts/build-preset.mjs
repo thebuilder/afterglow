@@ -16,8 +16,10 @@ const INCLUDED_TYPES = [
 ];
 
 // shadcn writes the `cn` helper itself rather than shipping it as an item, so
-// the two packages it needs belong to no entry in the manifest.
-const HELPER_PACKAGES = ["clsx", "tailwind-merge"];
+// the package it needs belongs to no entry in the manifest. Since shadcn 4.21
+// that helper re-exports the `cn` package; older releases scaffolded clsx and
+// tailwind-merge, but a project that old already has both installed.
+const HELPER_PACKAGES = ["cn"];
 
 const registry = JSON.parse(await readFile(REGISTRY, "utf8"));
 

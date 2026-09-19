@@ -7,8 +7,8 @@
   "dependencies": [
     "@base-ui/react",
     "class-variance-authority",
-    "clsx",
     "cmdk",
+    "cn",
     "date-fns",
     "input-otp",
     "lucide-react",
@@ -16,8 +16,7 @@
     "react-resizable-panels",
     "recharts",
     "shiki",
-    "sonner",
-    "tailwind-merge"
+    "sonner"
   ],
   "registryDependencies": [
     "@afterglow/theme",
