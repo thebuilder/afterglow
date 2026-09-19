@@ -3,13 +3,32 @@ import { ButtonSizes } from "@/components/examples/button-sizes";
 import { ButtonVariants } from "@/components/examples/button-variants";
 import { ButtonWithAnIconAndDisabled } from "@/components/examples/button-with-an-icon-and-disabled";
 import { CardAccent } from "@/components/examples/card-accent";
+import { CardAsALink } from "@/components/examples/card-as-a-link";
 import { CardDefault } from "@/components/examples/card-default";
 import { CardStripe } from "@/components/examples/card-stripe";
+import { CardWithAnAction } from "@/components/examples/card-with-an-action";
+import { CardWithoutAnAccent } from "@/components/examples/card-without-an-accent";
 import { ChartChannelLoad } from "@/components/examples/chart-channel-load";
 import { ChartSignalHistory } from "@/components/examples/chart-signal-history";
 import { ChartVolumeShare } from "@/components/examples/chart-volume-share";
+import { CodeBlockDefault } from "@/components/examples/code-block-default";
+import { CodeBlockLanguages } from "@/components/examples/code-block-languages";
+import { CodeBlockWithATitle } from "@/components/examples/code-block-with-a-title";
 import { DialogDefault } from "@/components/examples/dialog-default";
 import { InputDefault } from "@/components/examples/input-default";
+import { InputGroupBlockEnd } from "@/components/examples/input-group-block-end";
+import { InputGroupBlockStart } from "@/components/examples/input-group-block-start";
+import { InputGroupButtonExample } from "@/components/examples/input-group-button";
+import { InputGroupCustomInput } from "@/components/examples/input-group-custom-input";
+import { InputGroupDefault } from "@/components/examples/input-group-default";
+import { InputGroupDropdown } from "@/components/examples/input-group-dropdown";
+import { InputGroupIcon } from "@/components/examples/input-group-icon";
+import { InputGroupInlineEnd } from "@/components/examples/input-group-inline-end";
+import { InputGroupInlineStart } from "@/components/examples/input-group-inline-start";
+import { InputGroupKbd } from "@/components/examples/input-group-kbd";
+import { InputGroupSpinner } from "@/components/examples/input-group-spinner";
+import { InputGroupTextExample } from "@/components/examples/input-group-text";
+import { InputGroupTextareaExample } from "@/components/examples/input-group-textarea";
 import { InputStates } from "@/components/examples/input-states";
 import { KbdLettersAndSymbols } from "@/components/examples/kbd-letters-and-symbols";
 import { LabelDefault } from "@/components/examples/label-default";
@@ -55,6 +74,12 @@ export const primitiveExamples: ExampleMap = {
       name: "Default",
     },
     {
+      component: CardWithAnAction,
+      description:
+        "`CardAction` puts a control in the header's top right, level with the title. The header becomes two columns when it has one, so the title and description wrap beside the control and never run under it.",
+      name: "With an action",
+    },
+    {
       component: CardAccent,
       description:
         "One property drives the left edge and the title, so a category gets a color without a variant per category.",
@@ -63,8 +88,20 @@ export const primitiveExamples: ExampleMap = {
     {
       component: CardStripe,
       description:
-        "`CardAccent` runs the accent across the first third of the card's top rule. Use it on the one card that has to be read first.",
+        "`CardAccent` runs the accent across the first third of the card's top edge. Use it on the one card that has to be read first.",
       name: "Stripe",
+    },
+    {
+      component: CardAsALink,
+      description:
+        "A card does not react to the pointer until it holds a `CardLink`, which stretches over the whole card. Then hovering it, or tabbing to it, sends the accent around the other three edges, and the trace finishes a stripe in the same color.",
+      name: "As a link",
+    },
+    {
+      component: CardWithoutAnAccent,
+      description:
+        "`accent={false}` drops the left edge and leaves the title in the card's own color. Use it where no panel in a grid is the one to read first.",
+      name: "Without an accent",
     },
   ],
   chart: [
@@ -87,6 +124,24 @@ export const primitiveExamples: ExampleMap = {
       name: "Volume share",
     },
   ],
+  "code-block": [
+    {
+      component: CodeBlockDefault,
+      name: "Default",
+    },
+    {
+      component: CodeBlockWithATitle,
+      description:
+        "A `title` puts the file name above the code and names the copy button after it.",
+      name: "With a title",
+    },
+    {
+      component: CodeBlockLanguages,
+      description:
+        "The highlighter loads five grammars up front, and the theme maps all of them onto the phosphor tokens. A shell command and a stylesheet come out of the same palette.",
+      name: "Languages",
+    },
+  ],
   dialog: [
     {
       component: DialogDefault,
@@ -105,6 +160,72 @@ export const primitiveExamples: ExampleMap = {
     {
       component: InputStates,
       name: "States",
+    },
+  ],
+  "input-group": [
+    {
+      component: InputGroupDefault,
+      name: "Default",
+    },
+    {
+      component: InputGroupInlineStart,
+      description:
+        '`align="inline-start"` puts the addon before the text. It is the default.',
+      name: "Inline start",
+    },
+    {
+      component: InputGroupInlineEnd,
+      description: '`align="inline-end"` puts it after.',
+      name: "Inline end",
+    },
+    {
+      component: InputGroupBlockStart,
+      description:
+        '`align="block-start"` stacks the addon above the control, as a header.',
+      name: "Block start",
+    },
+    {
+      component: InputGroupBlockEnd,
+      description: '`align="block-end"` stacks it below, as a footer.',
+      name: "Block end",
+    },
+    {
+      component: InputGroupIcon,
+      name: "Icon",
+    },
+    {
+      component: InputGroupTextExample,
+      name: "Text",
+    },
+    {
+      component: InputGroupButtonExample,
+      description:
+        "`InputGroupButton` is a ghost button cut down to fit inside the field. The info button is itself the popover trigger, passed to `PopoverTrigger` through `render`.",
+      name: "Button",
+    },
+    {
+      component: InputGroupKbd,
+      name: "Kbd",
+    },
+    {
+      component: InputGroupDropdown,
+      name: "Dropdown",
+    },
+    {
+      component: InputGroupSpinner,
+      name: "Spinner",
+    },
+    {
+      component: InputGroupTextareaExample,
+      description:
+        "A header and footer around a textarea, split off by a border on each addon.",
+      name: "Textarea",
+    },
+    {
+      component: InputGroupCustomInput,
+      description:
+        'Any control can sit in the group. Give it `data-slot="input-group-control"` and the group lights up when it has focus. This one is a plain textarea that grows with `field-sizing-content`.',
+      name: "Custom input",
     },
   ],
   kbd: [

@@ -4,7 +4,8 @@
   "title": "Select",
   "description": "A trigger that reads as a field, and a list whose chosen row carries a lit left edge.",
   "dependencies": [
-    "@base-ui/react"
+    "@base-ui/react",
+    "lucide-react"
   ],
   "registryDependencies": [
     "@afterglow/theme"

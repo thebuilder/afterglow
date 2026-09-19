@@ -16,7 +16,7 @@ Start a project with the complete Afterglow preset:
 npx shadcn@latest init https://afterglow.thebuilder.dk/r/terminal.json
 ```
 
-This installs the theme, interface primitives, terminal components, and composed blocks.
+This installs the theme, interface primitives, terminal components, and hooks. Add composed blocks separately with the commands below.
 
 ## Add individual components
 
@@ -34,6 +34,7 @@ Then install one or more components:
 
 ```bash
 npx shadcn@latest add @afterglow/button @afterglow/scanlines
+npx shadcn@latest add @afterglow/date-picker
 ```
 
 Registry dependencies resolve automatically, including the shared theme and required packages.

@@ -4,7 +4,8 @@
   "title": "Checkbox",
   "description": "`[ ]` and `[x]`. A square that fills with the beam when it is on.",
   "dependencies": [
-    "@base-ui/react"
+    "@base-ui/react",
+    "lucide-react"
   ],
   "registryDependencies": [
     "@afterglow/theme"

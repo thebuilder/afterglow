@@ -4,7 +4,6 @@ import { ChevronRightIcon, RotateCcwIcon, ShuffleIcon } from "lucide-react";
 import Link from "next/link";
 import { useCallback, useMemo, useState } from "react";
 
-import { CopyButton } from "@/components/docs/copy-button";
 import { Button } from "@/registry/terminal/ui/button";
 import {
   Card,
@@ -13,6 +12,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/registry/terminal/ui/card";
+import { CodeBlockCopy } from "@/registry/terminal/ui/code-block-copy";
 import {
   Select,
   SelectContent,
@@ -304,7 +304,7 @@ export function TypesetBuilder() {
             <span className="font-mono text-2xs text-muted-foreground tracking-terminal-xs">
               Custom values
             </span>
-            <CopyButton label="Copy custom typeset CSS" text={css} />
+            <CodeBlockCopy label="Copy custom typeset CSS" text={css} />
           </div>
           <pre className="overflow-x-auto p-4 font-mono text-phosphor text-xs leading-relaxed">
             <code>{css}</code>
@@ -320,8 +320,8 @@ export function TypesetBuilder() {
           <CardHeader>
             <CardTitle>Use this typeset</CardTitle>
             <CardDescription>
-              The class ships with the theme. Existing Afterglow projects
-              already have it after rebuilding the registry item.
+              The class ships with the Afterglow theme. Install the theme once,
+              then add the class to your content.
             </CardDescription>
           </CardHeader>
           <CardContent className="grid gap-5">
@@ -333,7 +333,7 @@ export function TypesetBuilder() {
                 <code className="min-w-0 break-all whitespace-pre-wrap font-mono text-phosphor-bright text-xs leading-5">
                   {INSTALL_COMMAND}
                 </code>
-                <CopyButton
+                <CodeBlockCopy
                   label="Copy theme install command"
                   text={INSTALL_COMMAND}
                 />
@@ -348,7 +348,7 @@ export function TypesetBuilder() {
                 <code className="min-w-0 break-all whitespace-pre-wrap font-mono text-phosphor-bright text-xs leading-5">
                   {USAGE}
                 </code>
-                <CopyButton label="Copy typeset markup" text={USAGE} />
+                <CodeBlockCopy label="Copy typeset markup" text={USAGE} />
               </div>
             </section>
 

@@ -1,22 +1,21 @@
 "use client";
 
 import { CheckIcon, CopyIcon } from "lucide-react";
-import { useCallback } from "react";
+import type * as React from "react";
 
-import { useCopied } from "@/components/docs/use-copied";
 import { cn } from "@/lib/utils";
+import { useCopied } from "@/registry/terminal/hooks/use-copied";
 
-export function CopyButton({
+function CodeBlockCopy({
   className,
-  label,
+  label = "Copy the code",
   text,
-}: {
-  className?: string;
-  label: string;
+  ...props
+}: Omit<React.ComponentProps<"button">, "children"> & {
+  label?: string;
   text: string;
 }) {
-  const read = useCallback(() => Promise.resolve(text), [text]);
-  const { copied, copy } = useCopied(read);
+  const { copied, copy } = useCopied(text);
 
   return (
     <button
@@ -25,8 +24,10 @@ export function CopyButton({
         "grid size-7 shrink-0 place-items-center border border-line bg-panel-sunken text-phosphor-dim outline-none transition-colors hover:border-line-strong hover:text-phosphor-bright focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-phosphor-bright",
         className
       )}
+      data-slot="code-block-copy"
       onClick={copy}
       type="button"
+      {...props}
     >
       {copied ? (
         <CheckIcon className="size-3.5 text-phosphor" />
@@ -36,3 +37,5 @@ export function CopyButton({
     </button>
   );
 }
+
+export { CodeBlockCopy };

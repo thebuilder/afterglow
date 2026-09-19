@@ -121,6 +121,20 @@ export const effectDocs: DocMap = {
     ],
   },
 
+  "use-copied": {
+    notes: [
+      "Takes either the string to copy or a function returning it, which may be async. A function is re-read on every click, so a value that changes does not need the hook to be re-created.",
+      "`copied` clears itself two seconds later. A clipboard the browser denies, which is what happens when the document is not focused, leaves the flag alone instead of rejecting.",
+    ],
+    parts: [
+      {
+        name: "useCopied",
+        summary:
+          "Returns `{ copied, copy }`. Wire `copy` to the control's `onClick` and read `copied` to swap its icon or label.",
+      },
+    ],
+  },
+
   "use-reduced-motion": {
     notes: [
       "The theme already switches off every `animate-*` class under `prefers-reduced-motion`. Reach for this only for motion driven from JavaScript, which CSS cannot cover.",

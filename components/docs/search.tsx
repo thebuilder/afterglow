@@ -126,26 +126,42 @@ function results(records: SearchRecord[], query: string) {
   return [...groups];
 }
 
-function useSearchIndex(open: boolean): [SearchRecord[], () => void] {
+type SearchStatus = "idle" | "loading" | "ready" | "error";
+
+function useSearchIndex() {
   const [records, setRecords] = useState<SearchRecord[]>([]);
+  const [status, setStatus] = useState<SearchStatus>("idle");
+  const pending = useRef<boolean>(false);
 
   const load = useCallback(() => {
-    if (records.length > 0) {
+    // biome-ignore lint/suspicious/noUnnecessaryConditions: Intent and click events share this in-flight flag.
+    if (pending.current || status === "ready") {
       return;
     }
 
+    pending.current = true;
+    setStatus("loading");
     fetch("/search-index.json")
-      .then((response) => response.json())
-      .then((loaded: SearchRecord[]) => setRecords(loaded));
-  }, [records.length]);
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Search index request failed");
+        }
+        return response.json();
+      })
+      .then((loaded: SearchRecord[]) => {
+        if (!Array.isArray(loaded)) {
+          throw new Error("Invalid search index");
+        }
+        setRecords(loaded);
+        setStatus("ready");
+      })
+      .catch(() => setStatus("error"))
+      .finally(() => {
+        pending.current = false;
+      });
+  }, [status]);
 
-  useEffect(() => {
-    if (open) {
-      load();
-    }
-  }, [load, open]);
-
-  return [records, load];
+  return { load, records, status };
 }
 
 function useCommandKey(toggle: () => void) {
@@ -253,26 +269,32 @@ export function DocsSearch({ className }: { className?: string }) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const { list, onQueryChange, query, setQuery } = useSearchQuery();
-  const [records, load] = useSearchIndex(open);
+  const { records, load, status } = useSearchIndex();
   const input = useRef<HTMLInputElement>(null);
 
   useSearchViewport();
-  useCommandKey(useCallback(() => setOpen((previous) => !previous), []));
 
   const grouped = useMemo(() => results(records, query), [query, records]);
 
-  const openSearch = useCallback(() => setOpen(true), []);
+  const openSearch = useCallback(() => {
+    load();
+    setOpen(true);
+  }, [load]);
 
   const onOpenChange = useCallback(
     (next: boolean) => {
       setOpen(next);
 
-      if (!next) {
+      if (next) {
+        load();
+      } else {
         setQuery("");
       }
     },
-    [setQuery]
+    [load, setQuery]
   );
+
+  useCommandKey(useCallback(() => onOpenChange(!open), [onOpenChange, open]));
 
   const go = useCallback(
     (url: string) => {
@@ -282,8 +304,6 @@ export function DocsSearch({ className }: { className?: string }) {
     },
     [router, setQuery]
   );
-
-  const loading = records.length === 0;
 
   return (
     <>
@@ -312,12 +332,11 @@ export function DocsSearch({ className }: { className?: string }) {
             className="min-h-0 flex-1 max-h-none sm:h-80 sm:flex-none sm:max-h-80 [&>[cmdk-list-sizer]]:flex [&>[cmdk-list-sizer]]:min-h-full [&>[cmdk-list-sizer]]:flex-col"
             ref={list}
           >
-            {loading ? <Placeholder /> : null}
-            {loading || grouped.length > 0 ? null : (
-              <CommandEmpty className="flex flex-1 items-center justify-center py-0">
-                Nothing matches that.
-              </CommandEmpty>
-            )}
+            <SearchFeedback
+              empty={grouped.length === 0}
+              onRetry={load}
+              status={status}
+            />
             {grouped.map(([group, rows]) => (
               <CommandGroup heading={group} key={group}>
                 {rows.map((record) => (
@@ -330,6 +349,37 @@ export function DocsSearch({ className }: { className?: string }) {
       </CommandDialog>
     </>
   );
+}
+
+function SearchFeedback({
+  empty,
+  onRetry,
+  status,
+}: {
+  empty: boolean;
+  onRetry: () => void;
+  status: SearchStatus;
+}) {
+  if (status === "idle" || status === "loading") {
+    return <Placeholder />;
+  }
+  if (status === "error") {
+    return (
+      <div className="grid gap-3 p-4">
+        <p className="text-muted-foreground text-sm" role="status">
+          Search could not load. Try again.
+        </p>
+        <CommandItem onSelect={onRetry} value="retry-search">
+          Retry search
+        </CommandItem>
+      </div>
+    );
+  }
+  return empty ? (
+    <CommandEmpty className="flex flex-1 items-center justify-center py-0">
+      Nothing matches that.
+    </CommandEmpty>
+  ) : null;
 }
 
 const PLACEHOLDER_ROWS = [40, 28, 34, 24, 44, 30, 36, 26];

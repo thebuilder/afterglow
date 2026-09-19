@@ -326,12 +326,17 @@ const THEME = {
 
 const REDUCED_MOTION_SELECTOR = Object.keys(THEME)
   .filter((key) => key.startsWith("animate-"))
-  .map((key) => `.${key}`)
+  .flatMap((key) => [
+    `.${key}`,
+    `.data-open\\:${key}`,
+    `.data-closed\\:${key}`,
+    `.after\\:${key}::after`,
+  ])
   .join(", ");
 
 const CSS = {
   ...PHOSPHOR_PRESET_CSS,
-  ':is([data-slot="input"], [data-slot="textarea"], [data-slot="checkbox"], [data-slot="radio-group-item"], [data-slot="switch"], [data-slot="select-trigger"], [data-slot="command-input"], [data-slot="input-otp"]):focus-visible, :is([data-slot="prompt"], [data-slot="shell-prompt"]) input:focus-visible':
+  ':is([data-slot="input"], [data-slot="textarea"], [data-slot="checkbox"], [data-slot="radio-group-item"], [data-slot="switch"], [data-slot="select-trigger"], [data-slot="command-input"], [data-slot="input-group-control"], [data-slot="combobox-chip-input"], [data-slot="input-otp"], [data-slot="card-link"]):focus-visible, :is([data-slot="prompt"], [data-slot="shell-prompt"]) input:focus-visible':
     {
       "outline-style": "none",
     },
@@ -748,8 +753,79 @@ const CSS = {
     [REDUCED_MOTION_SELECTOR]: {
       animation: "none !important",
     },
+    // The traced border still appears on hover, it just arrives at once. The
+    // hover rules set a transition of their own, so this has to outrank them.
+    ".card-trace::before, .card-trace::after": {
+      transition: "none !important",
+    },
+  },
+  "@property --card-trace-bottom": {
+    inherits: "false",
+    "initial-value": "0%",
+    syntax: '"<length-percentage>"',
+  },
+  "@property --card-trace-right": {
+    inherits: "false",
+    "initial-value": "0%",
+    syntax: '"<length-percentage>"',
   },
 
+  // Registered so they can be transitioned. The card's traced border is three
+  // background sizes growing in turn, and an unregistered custom property jumps
+  // from 0% to 100% instead of animating.
+  "@property --card-trace-top": {
+    inherits: "false",
+    "initial-value": "0%",
+    syntax: '"<length-percentage>"',
+  },
+
+  // Once a card holds a `CardLink`, the accent leaves the left edge and draws
+  // the other three in turn, across the top, down the right and back along
+  // the bottom. Leaving runs the same three in reverse, so the accent retreats
+  // the way it came. It answers the link rather than the card, because a hover
+  // promises a click, and a control raised over the link does not light it.
+  // A card without a link keeps its plain border and none of this.
+  //
+  // Each pseudo-element carries two gradients, because two elements is all a
+  // card gets and the edges need four. The left gradient sits on the card's
+  // own accent border, so the resting edge glows with the rest of the trace.
+  "@utility card-trace": {
+    '&:has([data-slot="card-link"]:is(:hover, :focus-visible))::after': {
+      "--card-trace-bottom": "100%",
+      "--card-trace-right": "100%",
+      transition:
+        "--card-trace-right 45ms linear 140ms, --card-trace-bottom 140ms linear 185ms",
+    },
+    '&:has([data-slot="card-link"]:is(:hover, :focus-visible))::before': {
+      "--card-trace-top": "100%",
+      transition: "--card-trace-top 140ms linear",
+    },
+    '&:has([data-slot="card-link"])': {
+      "&::after": {
+        "background-position": "100% 0, 100% 100%",
+        "background-size":
+          "2px var(--card-trace-right), var(--card-trace-bottom) 2px",
+        transition:
+          "--card-trace-right 35ms linear 110ms, --card-trace-bottom 110ms linear",
+      },
+      "&::before": {
+        "background-position": "0 0, 0 0",
+        "background-size": "2px 100%, var(--card-trace-top) 2px",
+        transition: "--card-trace-top 110ms linear 145ms",
+      },
+      "&::before, &::after": {
+        "background-image":
+          "linear-gradient(currentColor, currentColor), linear-gradient(currentColor, currentColor)",
+        "background-repeat": "no-repeat",
+        color: "var(--card-accent, var(--phosphor))",
+        content: '""',
+        filter: "drop-shadow(0 0 4px)",
+        inset: "-1px -1px -1px -2px",
+        "pointer-events": "none",
+        position: "absolute",
+      },
+    },
+  },
   "@utility scanlines": {
     "background-image":
       "repeating-linear-gradient(to bottom, transparent 0 2px, rgb(0 0 0 / 0.16) 2px 3px)",
@@ -771,7 +847,7 @@ const CSS = {
     "flex-shrink": "0",
     height: "1em",
     "vertical-align": "-0.125em",
-    width: "0.5em",
+    width: "1ch",
   },
 };
 

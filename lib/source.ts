@@ -1,8 +1,6 @@
 import { readFile } from "node:fs/promises";
 import { basename, join } from "node:path";
 
-import { highlight } from "@/lib/code";
-
 interface BuiltFile {
   content: string;
   path: string;
@@ -23,7 +21,6 @@ const DESTINATIONS: Record<string, string> = {
 };
 
 export interface Source {
-  html: string;
   path: string;
   text: string;
 }
@@ -51,13 +48,10 @@ async function built(name: string): Promise<BuiltItem> {
 export async function sourcesFor(name: string): Promise<Source[]> {
   const item = await built(name);
 
-  return Promise.all(
-    (item.files ?? []).map(async (file) => ({
-      html: await highlight(file.content, "tsx"),
-      path: destination(file),
-      text: file.content,
-    }))
-  );
+  return (item.files ?? []).map((file) => ({
+    path: destination(file),
+    text: file.content,
+  }));
 }
 
 export async function packagesFor(name: string): Promise<string[]> {
@@ -75,5 +69,5 @@ export async function exampleSource(file: string): Promise<Source> {
     );
   });
 
-  return { html: await highlight(content, "tsx"), path: file, text: content };
+  return { path: file, text: content };
 }
