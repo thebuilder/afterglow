@@ -1,5 +1,5 @@
 import { readFile } from "node:fs/promises";
-import { basename, join } from "node:path";
+import path from "node:path";
 
 interface BuiltFile {
   content: string;
@@ -31,7 +31,7 @@ function destination(file: BuiltFile): string {
   }
 
   const directory = DESTINATIONS[file.type];
-  const name = basename(file.path);
+  const name = path.basename(file.path);
 
   return directory ? `${directory}/${name}` : name;
 }
@@ -39,8 +39,8 @@ function destination(file: BuiltFile): string {
 async function built(name: string): Promise<BuiltItem> {
   // The built item is the exact source shadcn installs.
   const raw = await readFile(
-    join(process.cwd(), "public", "r", `${name}.json`),
-    "utf8"
+    path.join(process.cwd(), "public", "r", `${name}.json`),
+    "utf-8"
   );
   return JSON.parse(raw) as BuiltItem;
 }
@@ -61,9 +61,9 @@ export async function packagesFor(name: string): Promise<string[]> {
 
 export async function exampleSource(file: string): Promise<Source> {
   // Literal directory segments keep Next's file trace inside examples.
-  const path = join(process.cwd(), "components", "examples", file);
+  const location = path.join(process.cwd(), "components", "examples", file);
 
-  const content = await readFile(path, "utf8").catch(() => {
+  const content = await readFile(location, "utf-8").catch(() => {
     throw new Error(
       `No example file at components/examples/${file}. An example's file is named after the item and the example, so rename one to match the other.`
     );

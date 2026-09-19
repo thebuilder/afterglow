@@ -1,5 +1,6 @@
 import { allGuides } from "@/lib/guides";
-import { itemsOfType, type RegistryItem } from "@/lib/registry";
+import { itemsOfType } from "@/lib/registry";
+import type { RegistryItem } from "@/lib/registry";
 
 export interface Section {
   blurb: string;

@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 
 const LIMIT = 120;
 
-const registry = JSON.parse(readFileSync("registry.json", "utf8"));
+const registry = JSON.parse(readFileSync("registry.json", "utf-8"));
 
 const tooLong = registry.items
   .filter((item) => item.description.length > LIMIT)

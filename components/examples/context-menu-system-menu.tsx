@@ -7,7 +7,8 @@ import {
   RefreshCwIcon,
   Trash2Icon,
 } from "lucide-react";
-import { type KeyboardEvent, useState } from "react";
+import { useState } from "react";
+import type { KeyboardEvent } from "react";
 
 import {
   ContextMenu,

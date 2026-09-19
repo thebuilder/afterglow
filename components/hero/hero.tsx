@@ -36,6 +36,7 @@ export function Hero({
 
         <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
           <div className="grid grid-cols-[minmax(0,1fr)] content-start gap-6 lg:col-span-7">
+            {/* oxlint-disable-next-line shadcn/no-arbitrary-values -- the hero glow is a one-off; the theme has no text-shadow scale to put it on. */}
             <h1 className="text-balance font-extrabold text-5xl leading-none tracking-tight [text-shadow:0_0_32px_color-mix(in_oklab,var(--phosphor)_26%,transparent)] sm:text-6xl lg:text-7xl">
               A complete terminal UI for the modern web
               <Caret

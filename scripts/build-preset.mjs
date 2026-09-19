@@ -1,19 +1,18 @@
 import { readFile, writeFile } from "node:fs/promises";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import path from "node:path";
 
-const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
-const REGISTRY = join(ROOT, "registry.json");
+const ROOT = path.join(import.meta.dirname, "..");
+const REGISTRY = path.join(ROOT, "registry.json");
 
 // The preset is the theme and every component, so a new project starts with the
 // parts. Blocks are compositions of those parts, and nobody wants a whole
 // operator dashboard in an empty project.
-const INCLUDED_TYPES = [
+const INCLUDED_TYPES = new Set([
   "registry:theme",
   "registry:ui",
   "registry:component",
   "registry:hook",
-];
+]);
 
 // shadcn writes the `cn` helper itself rather than shipping it as an item, so
 // the package it needs belongs to no entry in the manifest. Since shadcn 4.21
@@ -21,7 +20,7 @@ const INCLUDED_TYPES = [
 // tailwind-merge, but a project that old already has both installed.
 const HELPER_PACKAGES = ["cn"];
 
-const registry = JSON.parse(await readFile(REGISTRY, "utf8"));
+const registry = JSON.parse(await readFile(REGISTRY, "utf-8"));
 
 const presets = registry.items.filter((item) => item.type === "registry:style");
 
@@ -32,9 +31,7 @@ if (presets.length !== 1) {
 }
 
 const [preset] = presets;
-const included = registry.items.filter((item) =>
-  INCLUDED_TYPES.includes(item.type)
-);
+const included = registry.items.filter((item) => INCLUDED_TYPES.has(item.type));
 
 preset.registryDependencies = included.map(
   (item) => `@${registry.name}/${item.name}`
@@ -44,7 +41,7 @@ preset.dependencies = [
     ...HELPER_PACKAGES,
     ...included.flatMap((item) => item.dependencies ?? []),
   ]),
-].sort();
+].toSorted();
 
 await writeFile(REGISTRY, `${JSON.stringify(registry, null, 2)}\n`);
 

@@ -8,10 +8,6 @@ import { Button } from "@/registry/terminal/ui/button";
 
 const CYCLE = 2600;
 
-function shift(value: string): CSSProperties {
-  return { "--glitch-shift": value } as CSSProperties;
-}
-
 function Cell({
   children,
   className,
@@ -65,14 +61,14 @@ export function ThemeMotion() {
             <span
               aria-hidden="true"
               className="absolute inset-0 animate-glitch text-signal"
-              style={shift("3px")}
+              style={{ "--glitch-shift": "3px" } as CSSProperties}
             >
               SIGNAL LOST
             </span>
             <span
               aria-hidden="true"
               className="absolute inset-0 animate-glitch text-azure"
-              style={shift("-3px")}
+              style={{ "--glitch-shift": "-3px" } as CSSProperties}
             >
               SIGNAL LOST
             </span>

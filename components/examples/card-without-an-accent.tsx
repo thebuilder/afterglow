@@ -15,8 +15,8 @@ export function CardWithoutAnAccent() {
           <CardDescription>Last written 6 days ago.</CardDescription>
         </CardHeader>
         <CardContent className="text-muted-foreground text-sm">
-          A hairline box on all four sides, with the title in the card's own
-          color.
+          A hairline box on all four sides, with the title in the card&apos;s
+          own color.
         </CardContent>
       </Card>
       <Card accent={false}>

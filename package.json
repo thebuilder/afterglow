@@ -41,18 +41,20 @@
     "sonner": "^2.0.8"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.12",
     "@mdx-js/loader": "^3.1.1",
+    "@shadcn/lint": "0.1.1",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/mdx": "^2.0.14",
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",
     "fallow": "^3.22.0",
+    "oxfmt": "0.68.0",
+    "oxlint": "1.83.0",
     "shadcn": "^4.21.0",
     "tailwindcss": "^4.3.3",
     "typescript": "^7.0.2",
-    "ultracite": "7.11.0"
+    "ultracite": "7.12.0"
   },
   "packageManager": "pnpm@10.33.0"
 }

@@ -1,4 +1,5 @@
 import { SettingsIcon } from "lucide-react";
+
 import { Button } from "@/registry/terminal/ui/button";
 import {
   Tooltip,

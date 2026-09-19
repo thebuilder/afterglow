@@ -3,13 +3,13 @@
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
 
 import {
-  type ChartConfig,
   ChartContainer,
   ChartLegend,
   ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
 } from "@/registry/terminal/ui/chart";
+import type { ChartConfig } from "@/registry/terminal/ui/chart";
 
 const CHANNELS = [
   { channel: "COM", inbound: 31, outbound: 18 },

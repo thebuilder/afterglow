@@ -35,7 +35,7 @@ export function Toc({
           }
         }
 
-        const lit = entries.filter((entry) => seen.has(entry.id)).at(-1);
+        const lit = entries.findLast((entry) => seen.has(entry.id));
         if (lit) {
           setActive(lit.id);
         }
@@ -65,7 +65,7 @@ export function Toc({
           <li key={entry.id}>
             <a
               className={cn(
-                "block border-l-2 border-transparent py-1.5 pr-3 pl-[calc(0.75rem-2px)] text-xs outline-none transition-colors",
+                "block border-l-2 border-transparent py-1.5 pr-3 pl-2.5 text-xs outline-none transition-colors",
                 active === entry.id
                   ? "border-phosphor text-phosphor-bright"
                   : "text-muted-foreground hover:border-line-strong hover:text-phosphor focus-visible:border-line-strong focus-visible:text-phosphor"

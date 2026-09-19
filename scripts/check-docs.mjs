@@ -1,15 +1,16 @@
 import { readFileSync } from "node:fs";
+
 import { flatten } from "../lib/doc.ts";
 import { allDocs } from "../lib/docs.ts";
 
-const NOT_A_PART = /Variants$/;
+const NOT_A_PART = /Variants$/u;
 
-const TYPE_EXPORTS = /export\s+type\s*\{[^}]*\}\s*;?/g;
-const EXPORT_BLOCK = /export\s*\{([^}]*)\}/g;
-const RENAMED = /\s+as\s+/;
-const DECLARED = /export\s+(?:const|function|class)\s+(\w+)/g;
-const DEFAULT_EXPORT = /export\s+default/;
-const BASE_UI_IMPORT = /from\s+"@base-ui\/react\/([\w-]+)"/g;
+const TYPE_EXPORTS = /export\s+type\s*\{[^}]*\}\s*;?/gu;
+const EXPORT_BLOCK = /export\s*\{([^}]*)\}/gu;
+const RENAMED = /\s+as\s+/u;
+const DECLARED = /export\s+(?:const|function|class)\s+(\w+)/gu;
+const DEFAULT_EXPORT = /export\s+default/u;
+const BASE_UI_IMPORT = /from\s+"@base-ui\/react\/([\w-]+)"/gu;
 
 function exportsOf(source) {
   const values = source.replace(TYPE_EXPORTS, "");
@@ -43,7 +44,7 @@ function baseUiOf(source) {
   ].filter((module) => !HELPERS.has(module));
 }
 
-const registry = JSON.parse(readFileSync("registry.json", "utf8"));
+const registry = JSON.parse(readFileSync("registry.json", "utf-8"));
 const docs = allDocs();
 const problems = [];
 
@@ -56,7 +57,7 @@ for (const item of registry.items) {
   }
 
   const sources = (item.files ?? []).map((file) => ({
-    content: readFileSync(file.path, "utf8"),
+    content: readFileSync(file.path, "utf-8"),
     type: file.type,
   }));
 
@@ -65,10 +66,10 @@ for (const item of registry.items) {
   const exported = sources
     .filter((file) => file.type !== "registry:lib")
     .flatMap((file) => exportsOf(file.content))
-    .sort();
+    .toSorted();
   const documented = flatten(doc.parts)
     .map((part) => part.name)
-    .sort();
+    .toSorted();
 
   const missing = exported.filter((name) => !documented.includes(name));
   const invented = documented.filter((name) => !exported.includes(name));

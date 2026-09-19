@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/fallow/schema.json",
+  // oxfmt reads its config by filename, the way oxlint does, but fallow only
+  // knows the latter as a root.
+  "entry": ["oxfmt.config.ts"],
   "ignoreExports": [
     {
       // The registry payload is a public API by definition. Its exports are
@@ -9,7 +12,7 @@
       // shadcn's own surface, and dropping them would make these components
       // stop being drop-in replacements.
       "file": "registry/terminal/**/*.tsx",
-      "exports": ["*"]
+      "exports": ["*"],
     },
     {
       // Next reads these by filename, so there is no import to trace. fallow
@@ -17,8 +20,8 @@
       // and `generateStaticParams` is what prerenders one OG image per item at
       // build time rather than on the first request.
       "file": "app/**/{opengraph-image,apple-icon,icon}.tsx",
-      "exports": ["generateStaticParams", "alt", "size", "contentType"]
-    }
+      "exports": ["generateStaticParams", "alt", "size", "contentType"],
+    },
   ],
   // Next loads these through its config and the generated MDX modules.
   "ignoreDependencies": [
@@ -26,7 +29,7 @@
     "@mdx-js/react",
     "@next/mdx",
     "@shikijs/rehype",
-    "rehype-slug"
+    "rehype-slug",
   ],
   "duplicates": {
     // An example is the thing somebody copies, so it has to be a whole file:
@@ -35,7 +38,7 @@
     // share a row of volumes are the arrangement working, and extracting the
     // shared half would leave both snippets referencing a file that does not
     // exist outside this repository.
-    "ignore": ["components/examples/**"]
+    "ignore": ["components/examples/**"],
   },
   // All four thresholds are stated, because this block replaces the defaults
   // rather than merging with them. Three are fallow's own numbers; only
@@ -51,7 +54,7 @@
     // metric starts measuring the thing it was built to measure.
     "maxCrap": 420,
     "maxCyclomatic": 20,
-    "maxUnitSize": 60
+    "maxUnitSize": 60,
   },
   "rules": {
     // Reported, not fatal. Tailwind is imported by `app/globals.css` and
@@ -60,6 +63,6 @@
     // satisfy the rule would be the wrong signal. Left at `warn` rather than
     // `off` so the check still fires on a package that really did belong in
     // production.
-    "dev-dependencies-in-production": "warn"
-  }
+    "dev-dependencies-in-production": "warn",
+  },
 }

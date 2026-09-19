@@ -91,9 +91,9 @@ export function ScanlinesDefault() {
       </div>
 
       <p className="max-w-prose text-muted-foreground text-sm">
-        Page glass is this site's own sheet, not part of the component. It sits
-        over everything including the panel above, so turn it off to see the
-        scanlines switch on its own.
+        Page glass is this site&apos;s own sheet, not part of the component. It
+        sits over everything including the panel above, so turn it off to see
+        the scanlines switch on its own.
       </p>
     </div>
   );

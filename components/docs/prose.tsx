@@ -2,12 +2,11 @@ import type { ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
-const SEGMENT = /`([^`]+)`/g;
+const SEGMENT = /`([^`]+)`/gu;
 
 function inline(text: string): ReactNode[] {
   return text.split(SEGMENT).map((part, index) =>
     index % 2 === 1 ? (
-      // biome-ignore lint/suspicious/noArrayIndexKey: split position is the identity.
       <code className="text-phosphor" key={index}>
         {part}
       </code>

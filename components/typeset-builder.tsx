@@ -126,7 +126,7 @@ function TypesetSpecimen() {
       </p>
       <h2 id="signal-path">Signal path</h2>
       <ul>
-        <li>Headings use the theme's monospace stack.</li>
+        <li>Headings use the theme&apos;s monospace stack.</li>
         <li>Body copy keeps the sans-serif stack for long reading.</li>
         <li>Code, keys, rules, and tables reuse existing semantic tokens.</li>
       </ul>

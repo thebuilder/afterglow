@@ -10,7 +10,7 @@ export function AvatarDefault() {
         <AvatarFallback>N4</AvatarFallback>
       </Avatar>
       <Avatar className="size-6">
-        <AvatarFallback className="text-[0.5rem]">OP</AvatarFallback>
+        <AvatarFallback className="text-4xs">OP</AvatarFallback>
       </Avatar>
     </div>
   );

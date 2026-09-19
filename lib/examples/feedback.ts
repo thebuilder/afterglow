@@ -6,7 +6,6 @@ import { SkeletonRows } from "@/components/examples/skeleton-rows";
 import { SpinnerSizes } from "@/components/examples/spinner-sizes";
 import { SpinnerVariants } from "@/components/examples/spinner-variants";
 import { ToastTones } from "@/components/examples/toast-tones";
-
 import type { ExampleMap } from "@/lib/example";
 
 export const feedbackExamples: ExampleMap = {

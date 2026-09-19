@@ -6,7 +6,6 @@ import { ScreenDefault } from "@/components/examples/screen-default";
 import { TypewriterDefault } from "@/components/examples/typewriter-default";
 import { UseCopiedDefault } from "@/components/examples/use-copied-default";
 import { UseReducedMotionDefault } from "@/components/examples/use-reduced-motion-default";
-
 import type { ExampleMap } from "@/lib/example";
 
 export const effectExamples: ExampleMap = {

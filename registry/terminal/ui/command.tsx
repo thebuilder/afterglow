@@ -54,7 +54,12 @@ function CommandDialog({
         <DialogDescription>{description}</DialogDescription>
       </DialogHeader>
       <DialogContent
-        className={cn("overflow-hidden p-0 sm:max-w-xl", className)}
+        className={cn(
+          // The dialog is one chrome around cmdk, so the spacing of the
+          // groups and the height of the input are set here, once.
+          "overflow-hidden p-0 sm:max-w-xl [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group]]:px-1 [&_[cmdk-input-wrapper]]:h-11",
+          className
+        )}
         initialFocus={initialFocus}
         showCloseButton={showCloseButton}
       >

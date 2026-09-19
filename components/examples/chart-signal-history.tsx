@@ -3,13 +3,13 @@
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 
 import {
-  type ChartConfig,
   ChartContainer,
   ChartLegend,
   ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
 } from "@/registry/terminal/ui/chart";
+import type { ChartConfig } from "@/registry/terminal/ui/chart";
 
 const READINGS = [
   { channel: 1, noise: 12, signal: 38 },

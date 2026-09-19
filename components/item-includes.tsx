@@ -1,11 +1,7 @@
 import Link from "next/link";
 
-import {
-  findItem,
-  internalName,
-  isInternal,
-  type RegistryItem,
-} from "@/lib/registry";
+import { findItem, internalName, isInternal } from "@/lib/registry";
+import type { RegistryItem } from "@/lib/registry";
 import { Eyebrow } from "@/registry/terminal/components/eyebrow";
 import { Badge } from "@/registry/terminal/ui/badge";
 

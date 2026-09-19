@@ -11,7 +11,6 @@ import { ResizableDefault } from "@/components/examples/resizable-default";
 import { ScrollAreaDefault } from "@/components/examples/scroll-area-default";
 import { SheetDefault } from "@/components/examples/sheet-default";
 import { TooltipDefault } from "@/components/examples/tooltip-default";
-
 import type { ExampleMap } from "@/lib/example";
 
 export const structureExamples: ExampleMap = {

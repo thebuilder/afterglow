@@ -1,7 +1,7 @@
 import type * as React from "react";
 import type { BundledLanguage } from "shiki";
-import { cn } from "@/lib/utils";
 
+import { cn } from "@/lib/utils";
 import { highlightCode } from "@/registry/terminal/lib/shiki";
 import { CodeBlockCopy } from "@/registry/terminal/ui/code-block-copy";
 
@@ -71,7 +71,7 @@ function CodeBlockBody({
     >
       <div
         className="[&_pre]:!bg-transparent overflow-x-auto py-3.5 pr-12 pl-4 font-mono text-xs leading-relaxed [&_pre]:outline-none"
-        // biome-ignore lint/security/noDangerouslySetInnerHtml: Shiki output for code the caller passed in.
+        // oxlint-disable-next-line react/no-danger -- Shiki output for code the caller passed in.
         dangerouslySetInnerHTML={{ __html: html }}
       />
       <CodeBlockCopy

@@ -1,11 +1,14 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { type ChangeEvent, useCallback, useSyncExternalStore } from "react";
+import { useCallback, useSyncExternalStore } from "react";
+import type { CSSProperties, ChangeEvent } from "react";
 
 import { PHOSPHORS } from "@/lib/phosphor";
 
-const emptySubscribe = () => () => undefined;
+const emptySubscribe = () => () => {
+  // Nothing to tear down: the snapshot never changes after hydration.
+};
 const getClientSnapshot = (): boolean => true;
 const getServerSnapshot = (): boolean => false;
 
@@ -32,7 +35,7 @@ export function ThemePhosphorSelector() {
       <div className="flex flex-wrap gap-2 pt-2">
         {PHOSPHORS.map((phosphor) => (
           <label
-            className="grid size-10 cursor-pointer place-items-center border border-line bg-panel outline-none transition-colors has-[:checked]:border-phosphor-bright has-[:checked]:shadow-[0_0_12px_color-mix(in_oklab,var(--phosphor)_35%,transparent)] hover:border-phosphor focus-within:border-phosphor-bright"
+            className="grid size-10 cursor-pointer place-items-center border border-line bg-panel outline-none transition-colors has-[:checked]:border-phosphor-bright has-[:checked]:shadow-glow-slider hover:border-phosphor focus-within:border-phosphor-bright"
             key={phosphor.value}
             title={phosphor.label}
           >
@@ -46,8 +49,8 @@ export function ThemePhosphorSelector() {
             />
             <span
               aria-hidden="true"
-              className="size-4 shadow-[0_0_10px_currentColor]"
-              style={{ backgroundColor: phosphor.color, color: phosphor.color }}
+              className="size-4 bg-(--swatch) text-(--swatch) shadow-glow-current"
+              style={{ "--swatch": phosphor.color } as CSSProperties}
             />
             <span className="sr-only">{phosphor.label}</span>
           </label>

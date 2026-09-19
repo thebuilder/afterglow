@@ -2,7 +2,8 @@
 
 import { Combobox as ComboboxPrimitive } from "@base-ui/react/combobox";
 import { CheckIcon, ChevronDownIcon, XIcon } from "lucide-react";
-import { type ComponentPropsWithRef, useRef } from "react";
+import { useRef } from "react";
+import type { ComponentPropsWithRef } from "react";
 
 import { cn } from "@/lib/utils";
 import {
@@ -25,7 +26,12 @@ function ComboboxTrigger({
 }: ComboboxPrimitive.Trigger.Props) {
   return (
     <ComboboxPrimitive.Trigger
-      className={cn("[&_svg:not([class*='size-'])]:size-4", className)}
+      className={cn(
+        // The trigger shows the chosen value, so the button it renders drops
+        // the label treatment: a value reads as written.
+        "font-normal normal-case tracking-normal [&_svg:not([class*='size-'])]:size-4",
+        className
+      )}
       data-slot="combobox-trigger"
       {...props}
     >

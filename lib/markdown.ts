@@ -1,23 +1,14 @@
-import {
-  compositionOf,
-  documentedParts,
-  type ItemDoc,
-  nests,
-  type PartDoc,
-  reference,
-} from "@/lib/doc";
+import { compositionOf, documentedParts, nests, reference } from "@/lib/doc";
+import type { ItemDoc, PartDoc } from "@/lib/doc";
 import { docFor } from "@/lib/docs";
 import { examplesFor } from "@/lib/examples";
 import { guideMarkdown } from "@/lib/guide-source";
 import { allGuides, guideMarkdownUrl } from "@/lib/guides";
-import {
-  allItems,
-  HOMEPAGE,
-  installCommand,
-  type RegistryItem,
-} from "@/lib/registry";
+import { allItems, HOMEPAGE, installCommand } from "@/lib/registry";
+import type { RegistryItem } from "@/lib/registry";
 import { sectionsWithItems } from "@/lib/sections";
-import { exampleSource, type Source, sourcesFor } from "@/lib/source";
+import { exampleSource, sourcesFor } from "@/lib/source";
+import type { Source } from "@/lib/source";
 
 function fence(language: string, body: string): string[] {
   return [`\`\`\`${language}`, body, "```", ""];
@@ -68,7 +59,7 @@ function props(part: PartDoc): string[] {
     "| Prop | Type | Default |",
     "| --- | --- | --- |",
     ...part.props.map((prop) => {
-      const type = prop.type.replace(/\|/g, "\\|");
+      const type = prop.type.replaceAll("|", "\\|");
       const fallback = prop.default ? `\`${prop.default}\`` : "-";
       return `| \`${prop.name}\` | \`${type}\` | ${fallback} |`;
     }),

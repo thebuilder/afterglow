@@ -1,3 +1,5 @@
+import type { CSSProperties } from "react";
+
 const GROUPS = [
   {
     label: "Foundations",
@@ -57,8 +59,10 @@ export function ThemePalette() {
                 key={swatch.token}
               >
                 <span
-                  className="size-6 shrink-0 border border-line"
-                  style={{ background: `var(--${swatch.token})` }}
+                  className="size-6 shrink-0 border border-line bg-(--swatch)"
+                  style={
+                    { "--swatch": `var(--${swatch.token})` } as CSSProperties
+                  }
                 />
                 <code className="font-mono text-phosphor-bright text-xs">
                   --{swatch.token}

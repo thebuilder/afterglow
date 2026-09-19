@@ -1,4 +1,5 @@
-import { baseUi, type DocMap } from "@/lib/doc";
+import { baseUi } from "@/lib/doc";
+import type { DocMap } from "@/lib/doc";
 
 const TOGGLE_PROPS = [
   { default: '"default"', name: "variant", type: '"default" | "outline"' },

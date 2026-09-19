@@ -3,13 +3,13 @@
 import { Pie, PieChart } from "recharts";
 
 import {
-  type ChartConfig,
   ChartContainer,
   ChartLegend,
   ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
 } from "@/registry/terminal/ui/chart";
+import type { ChartConfig } from "@/registry/terminal/ui/chart";
 
 const VOLUME = [
   { fill: "var(--color-telemetry)", source: "telemetry", value: 48 },

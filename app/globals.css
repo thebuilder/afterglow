@@ -284,6 +284,7 @@
   --radius-sm: 0px;
   --radius-xl: 0px;
   --shadow-glow: 0 0 18px color-mix(in srgb, var(--phosphor) 18%, transparent);
+  --shadow-glow-current: 0 0 8px currentColor;
   --shadow-glow-destructive: 0 0 18px color-mix(in srgb, var(--destructive) 20%, transparent);
   --shadow-glow-line: 0 0 16px 1px color-mix(in srgb, var(--phosphor) 55%, transparent);
   --shadow-glow-progress: 0 0 12px color-mix(in srgb, var(--phosphor) 50%, transparent);

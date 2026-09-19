@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+
 import { OG_CONTENT_TYPE, OG_SIZE, ogImage } from "@/lib/og";
 import { findItem } from "@/lib/registry";
 

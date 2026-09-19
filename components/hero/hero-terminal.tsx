@@ -58,7 +58,7 @@ const LINES = OUTPUT.length + 1;
 // finished writing rather than racing the last wipe.
 const STEPS = LINES + 1;
 
-const WORDS = /\s+/;
+const WORDS = /\s+/u;
 
 const HELP = [
   "help              list commands",
@@ -172,7 +172,9 @@ function Readout({
   );
 }
 
-const emptySubscribe = () => () => undefined;
+const emptySubscribe = () => () => {
+  // Nothing to tear down: the snapshot never changes after hydration.
+};
 const getClientSnapshot = (): boolean => true;
 const getServerSnapshot = (): boolean => false;
 
@@ -206,13 +208,15 @@ export function HeroTerminal({ items }: { items: number }) {
         ...session,
       ];
 
-  // A terminal keeps the newest line in view rather than the oldest.
+  // A terminal keeps the newest line in view rather than the oldest. The
+  // count is the dependency because the transcript is rebuilt every render.
+  const lineCount = transcript.length;
   useEffect(() => {
     const box = view.current;
-    if (transcript.length > 0) {
+    if (lineCount > 0) {
       box?.scrollTo({ top: box.scrollHeight });
     }
-  }, [transcript]);
+  }, [lineCount]);
 
   const run = useCallback(
     (input: string) => {

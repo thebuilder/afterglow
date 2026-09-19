@@ -1,4 +1,5 @@
 import { PowerIcon, SearchIcon } from "lucide-react";
+
 import { Button } from "@/registry/terminal/ui/button";
 
 export function ButtonSizes() {
