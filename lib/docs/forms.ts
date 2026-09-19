@@ -42,6 +42,70 @@ export const formDocs: DocMap = {
     upstream: [baseUi("checkbox")],
   },
 
+  combobox: {
+    notes: [
+      "A label has to sit inside its `ComboboxGroup`. Base UI throws when it does not, and it throws at open time rather than at compile time.",
+    ],
+    parts: [
+      {
+        name: "Combobox",
+        parts: [
+          {
+            name: "ComboboxInput",
+            parts: [{ name: "ComboboxTrigger" }, { name: "ComboboxClear" }],
+            props: [
+              { default: "true", name: "showTrigger", type: "boolean" },
+              { default: "false", name: "showClear", type: "boolean" },
+            ],
+            summary:
+              "An `InputGroup` holding the text field, the chevron and the clear button. Children land inside the group, so an `InputGroupAddon` can put an icon in front of the text.",
+          },
+          {
+            name: "ComboboxChips",
+            parts: [
+              { name: "ComboboxValue", parts: [{ name: "ComboboxChip" }] },
+              { name: "ComboboxChipsInput" },
+            ],
+            summary:
+              "The field for `multiple`. Pass it the ref from `useComboboxAnchor` and hand the same ref to `ComboboxContent` as `anchor`.",
+          },
+          {
+            name: "ComboboxContent",
+            parts: [
+              { name: "ComboboxEmpty" },
+              {
+                name: "ComboboxList",
+                parts: [
+                  {
+                    name: "ComboboxGroup",
+                    parts: [
+                      { name: "ComboboxLabel" },
+                      {
+                        name: "ComboboxCollection",
+                        parts: [{ name: "ComboboxItem" }],
+                      },
+                    ],
+                  },
+                  { name: "ComboboxSeparator" },
+                ],
+              },
+            ],
+            props: [
+              { default: '"bottom"', name: "side", type: "Side" },
+              { default: '"start"', name: "align", type: "Align" },
+              { default: "4", name: "sideOffset", type: "number" },
+              { name: "anchor", type: "RefObject<HTMLElement | null>" },
+            ],
+            summary:
+              "Base UI's `Portal`, `Positioner` and `Popup` in one part.",
+          },
+        ],
+      },
+      { name: "useComboboxAnchor" },
+    ],
+    upstream: [baseUi("combobox")],
+  },
+
   "date-picker": {
     notes: [
       "A date picker is a composition of `Popover`, `Calendar` and `Button`, rather than another UI primitive.",
